@@ -79,3 +79,6 @@ Expect ($principal.RunLevel -in @($null, '', 'LeastPrivilege')) "the task runnin
 $mine = (Get-Acl $exposed).Access | Where-Object { $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -eq $me }
 Expect ([bool]($mine | Where-Object { $_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify })) 'change rights for that person'
 Uninstall $exposed
+
+# The last check asks schtasks for the removed task, which exits 1 by design.
+exit 0
