@@ -20,12 +20,10 @@ export interface Run {
 export function plannedSteps(mode: Mode, platform: string): string[] {
   const linux = platform === 'linux';
   if (mode === 'uninstall') {
-    return linux
-      ? ['prepare', 'shortcuts', 'remove']
-      : ['prepare', 'close', 'updates', 'shortcuts', 'register', 'remove'];
+    return linux ? ['remove'] : ['close', 'remove'];
   }
   return linux
-    ? ['prepare', 'files', 'shortcuts']
+    ? ['prepare', 'files', 'shortcuts', 'register']
     : ['prepare', 'close', 'legacy', 'files', 'shortcuts', 'register', 'updates'];
 }
 

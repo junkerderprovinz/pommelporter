@@ -85,8 +85,9 @@ function isDesktop(): boolean {
 async function wailsInstaller(): Promise<Installer> {
   // Loading the runtime also tells Wails the page is ready for events.
   const runtime = (await import(/* @vite-ignore */ RUNTIME_URL)) as Runtime;
+  // Wails names a bound method after the full import path of its package.
   const call = <T>(method: string, ...args: unknown[]) =>
-    runtime.Call.ByName(`pommelporter.Installer.${method}`, ...args) as Promise<T>;
+    runtime.Call.ByName(`github.com/junkerderprovinz/pommelporter.Installer.${method}`, ...args) as Promise<T>;
   return {
     info: () => call('Info'),
     defaults: () => call('Defaults'),

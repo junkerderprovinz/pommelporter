@@ -14,7 +14,7 @@ import (
 const progressEvent = "progress"
 
 // Installer is the service the window calls, as Call.ByName
-// "pommelporter.Installer.<Method>".
+// "github.com/junkerderprovinz/pommelporter.Installer.<Method>".
 type Installer struct {
 	p         setup.Platform
 	a         setup.App
