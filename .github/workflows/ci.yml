@@ -48,4 +48,4 @@ jobs:
           go build -tags gtk3 -o pommelexample-installer ./example
 
       - name: Install, check and uninstall
-        run: ./example/roundtrip.sh ./pommelexample-installer ./payload
+        run: bash ./example/roundtrip.sh ./pommelexample-installer ./payload

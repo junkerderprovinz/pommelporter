@@ -4,6 +4,7 @@ package windows
 
 import (
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -149,7 +150,15 @@ func TestCheckDirRefusesFoldersUsersCanSwap(t *testing.T) {
 	p, _ := testPlatform(t)
 	// The folders a user's temp folder sits in belong to that user.
 	checkCode(t, p, filepath.Join(t.TempDir(), "Prog"), setup.DirUnsafeParent)
-	checkCode(t, p, filepath.Join(safeBase(t), "below", "Prog"), setup.DirUnsafeParent)
+	// Whoever may delete inside a folder can move the install folder out of it.
+	below := filepath.Join(safeBase(t), "below")
+	if err := os.Mkdir(below, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if out, err := exec.Command("icacls", below, "/grant", "*S-1-5-32-545:(DC)").CombinedOutput(); err != nil {
+		t.Fatalf("icacls: %v: %s", err, out)
+	}
+	checkCode(t, p, filepath.Join(below, "Prog"), setup.DirUnsafeParent)
 }
 
 func TestCheckDirAcceptsAFolderUnderSafeParents(t *testing.T) {
@@ -214,7 +223,12 @@ func TestNormalizeUsesLongNames(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if want := filepath.Join(dir, "Prog"); !strings.EqualFold(got, want) {
+	// The temp folder itself may be spelled short, as on CI runners.
+	n, err = windows.GetLongPathName(p, &buf[0], uint32(len(buf)))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := filepath.Join(windows.UTF16ToString(buf[:n]), "Prog"); !strings.EqualFold(got, want) {
 		t.Errorf("normalize = %s, want %s", got, want)
 	}
 }
