@@ -32,7 +32,7 @@ export const cs: Dict = {
   'welcome.repair': '{name} {version} už je nainstalovaný. Nová instalace ho opraví a vaše nastavení zůstane, jak je.',
 
   'options.folder': 'Složka instalace',
-  'options.folderHint': '{name} se aktualizuje na pozadí s plnými systémovými právy, proto smí jeho složku měnit jen správci. Instalátor zkontroluje každou složku, kterou vyberete.',
+  'options.folderHint': '{name} se sám aktualizuje na pozadí. Instalátor k tomu připraví složku, kterou vybereš.',
   'options.startMenu': 'Položka v nabídce Start',
   'options.menu': 'Položka v nabídce aplikací',
   'options.desktop': 'Zástupce na ploše',
@@ -41,7 +41,6 @@ export const cs: Dict = {
   'refusal.notLocal': 'Tato složka je na síťové, USB nebo optické jednotce. Vyberte složku na disku vestavěném v tomto počítači.',
   'refusal.noAcl': 'Tato jednotka neumí omezit, kdo mění její soubory, stejně jako FAT a exFAT. Vyberte složku na jednotce NTFS.',
   'refusal.notEmpty': 'V této složce už jsou jiné soubory. Vyberte prázdnou složku nebo vytvořte novou.',
-  'refusal.unsafeParent': 'Běžní uživatelé by mohli složku nad touto přejmenovat nebo nahradit. Vyberte složku v Program Files nebo jinou, kterou mohou měnit jen správci.',
   'refusal.link': 'Tato složka nebo některá nad ní je odkaz jinam. Vyberte skutečnou složku.',
   'refusal.file': 'Soubor s tímto názvem už existuje. Vyberte složku.',
   'refusal.fixed': 'V tomto systému jde {name} vždy do své obvyklé složky.',

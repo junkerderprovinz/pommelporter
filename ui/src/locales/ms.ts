@@ -32,7 +32,7 @@ export const ms: Dict = {
   'welcome.repair': '{name} {version} sudah dipasang. Memasangnya semula akan membaikinya, dan tetapan anda kekal seperti biasa.',
 
   'options.folder': 'Folder pemasangan',
-  'options.folderHint': '{name} mengemas kini dirinya di latar belakang dengan hak sistem penuh, jadi foldernya mesti folder yang hanya boleh diubah oleh pentadbir. Pemasang menyemak setiap folder yang anda pilih.',
+  'options.folderHint': '{name} mengemas kini dirinya sendiri di latar belakang. Pemasang menyediakan folder yang kamu pilih untuk itu.',
   'options.startMenu': 'Entri dalam menu Mula',
   'options.menu': 'Entri dalam menu aplikasi',
   'options.desktop': 'Pintasan pada desktop',
@@ -41,7 +41,6 @@ export const ms: Dict = {
   'refusal.notLocal': 'Folder ini berada pada pemacu rangkaian, USB atau optik. Pilih folder pada cakera dalaman komputer ini.',
   'refusal.noAcl': 'Pemacu ini tidak dapat mengehadkan siapa yang mengubah failnya, sama seperti FAT dan exFAT. Pilih folder pada pemacu NTFS.',
   'refusal.notEmpty': 'Folder ini sudah ada fail lain. Pilih folder kosong atau cipta folder baharu.',
-  'refusal.unsafeParent': 'Pengguna biasa boleh menamakan semula atau menggantikan folder di atas folder ini. Pilih folder dalam Program Files atau folder lain yang hanya boleh diubah oleh pentadbir.',
   'refusal.link': 'Folder ini, atau folder di atasnya, ialah pautan ke tempat lain. Pilih folder yang sebenar.',
   'refusal.file': 'Sudah ada fail dengan nama ini. Pilih folder sebaliknya.',
   'refusal.fixed': 'Pada sistem ini, {name} sentiasa dipasang dalam folder biasanya.',

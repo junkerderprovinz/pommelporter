@@ -32,7 +32,7 @@ export const lt: Dict = {
   'welcome.repair': '{name} {version} jau įdiegta. Įdiegus iš naujo ji bus pataisyta, o jūsų nustatymai liks tokie patys.',
 
   'options.folder': 'Diegimo aplankas',
-  'options.folderHint': '{name} atsinaujina fone su visomis sistemos teisėmis, todėl jos aplanką keisti gali tik administratoriai. Diegimo programa patikrina kiekvieną jūsų pasirinktą aplanką.',
+  'options.folderHint': '{name} pats atsinaujina fone. Diegimo programa tam paruošia tavo pasirinktą aplanką.',
   'options.startMenu': 'Įrašas meniu Pradžia',
   'options.menu': 'Įrašas programų meniu',
   'options.desktop': 'Nuoroda darbalaukyje',
@@ -41,7 +41,6 @@ export const lt: Dict = {
   'refusal.notLocal': 'Šis aplankas yra tinklo, USB ar optiniame diske. Pasirinkite aplanką šio kompiuterio vidiniame diske.',
   'refusal.noAcl': 'Šis diskas negali riboti, kas keičia jo failus, kaip ir FAT bei exFAT. Pasirinkite aplanką NTFS diske.',
   'refusal.notEmpty': 'Šiame aplanke jau yra kitų failų. Pasirinkite tuščią aplanką arba sukurkite naują.',
-  'refusal.unsafeParent': 'Paprasti naudotojai galėtų pervadinti ar pakeisti aukščiau esantį aplanką. Pasirinkite aplanką Program Files viduje arba kitą, kurį keisti gali tik administratoriai.',
   'refusal.link': 'Šis aplankas arba aukščiau esantis yra nuoroda į kitą vietą. Pasirinkite tikrąjį aplanką.',
   'refusal.file': 'Failas tokiu pavadinimu jau yra. Pasirinkite aplanką.',
   'refusal.fixed': 'Šioje sistemoje {name} visada diegiama į įprastą savo aplanką.',

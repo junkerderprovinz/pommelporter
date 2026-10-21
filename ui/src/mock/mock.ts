@@ -71,7 +71,6 @@ export function mockInstaller(query: URLSearchParams): Installer {
     if (!/^[A-Za-z]:\\/.test(dir)) return refused('relative');
     const clean = dir.length > 3 ? dir.replace(/\\+$/, '') : dir;
     if (clean.startsWith('E:')) return refused('notLocal');
-    if (clean.startsWith('C:\\Users')) return refused('unsafeParent');
     const children = tree.get(clean);
     if (children && children.length > 0 && clean !== defaultDir) return refused('notEmpty');
     return { ok: true };

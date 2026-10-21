@@ -32,7 +32,7 @@ export const vi: Dict = {
   'welcome.repair': '{name} {version} đã được cài. Cài lại sẽ sửa nó, và cài đặt của bạn vẫn giữ nguyên.',
 
   'options.folder': 'Thư mục cài đặt',
-  'options.folderHint': '{name} tự cập nhật ở chế độ nền với toàn quyền hệ thống, nên thư mục của nó phải là nơi chỉ quản trị viên mới thay đổi được. Trình cài đặt kiểm tra mọi thư mục bạn chọn.',
+  'options.folderHint': '{name} tự cập nhật trong nền. Trình cài đặt sẽ chuẩn bị thư mục bạn chọn cho việc đó.',
   'options.startMenu': 'Mục trong menu Start',
   'options.menu': 'Mục trong menu ứng dụng',
   'options.desktop': 'Lối tắt trên màn hình nền',
@@ -41,7 +41,6 @@ export const vi: Dict = {
   'refusal.notLocal': 'Thư mục này nằm trên ổ mạng, USB hoặc ổ quang. Hãy chọn thư mục trên ổ đĩa gắn trong máy tính này.',
   'refusal.noAcl': 'Ổ đĩa này không giới hạn được ai thay đổi tệp của nó, giống FAT và exFAT. Hãy chọn thư mục trên ổ NTFS.',
   'refusal.notEmpty': 'Thư mục này đã có tệp khác. Hãy chọn một thư mục trống hoặc tạo thư mục mới.',
-  'refusal.unsafeParent': 'Người dùng thông thường có thể đổi tên hoặc thay thế một thư mục phía trên thư mục này. Hãy chọn thư mục trong Program Files hoặc thư mục khác chỉ quản trị viên mới thay đổi được.',
   'refusal.link': 'Thư mục này, hoặc một thư mục phía trên, là liên kết đến nơi khác. Hãy chọn thư mục thật.',
   'refusal.file': 'Đã có một tệp trùng tên. Hãy chọn một thư mục.',
   'refusal.fixed': 'Trên hệ thống này, {name} luôn được cài vào thư mục quen thuộc của nó.',

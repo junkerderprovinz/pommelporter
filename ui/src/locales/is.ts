@@ -32,7 +32,7 @@ export const is: Dict = {
   'welcome.repair': '{name} {version} er þegar uppsett. Ný uppsetning lagar það og stillingarnar þínar haldast óbreyttar.',
 
   'options.folder': 'Uppsetningarmappa',
-  'options.folderHint': '{name} uppfærir sig í bakgrunni með fullum kerfisréttindum, svo aðeins kerfisstjórar mega geta breytt möppunni. Uppsetningarforritið athugar hverja möppu sem þú velur.',
+  'options.folderHint': '{name} uppfærir sig sjálft í bakgrunni. Uppsetningarforritið undirbýr möppuna sem þú velur fyrir það.',
   'options.startMenu': 'Færsla í Start-valmynd',
   'options.menu': 'Færsla í forritavalmynd',
   'options.desktop': 'Flýtileið á skjáborði',
@@ -41,7 +41,6 @@ export const is: Dict = {
   'refusal.notLocal': 'Þessi mappa er á net-, USB- eða geisladrifi. Veldu möppu á innbyggðu drifi í þessari tölvu.',
   'refusal.noAcl': 'Þetta drif getur ekki takmarkað hver breytir skránum, eins og FAT og exFAT. Veldu möppu á NTFS-drifi.',
   'refusal.notEmpty': 'Í þessari möppu eru þegar aðrar skrár. Veldu tóma möppu eða búðu til nýja.',
-  'refusal.unsafeParent': 'Venjulegir notendur gætu endurnefnt eða skipt út möppu fyrir ofan þessa. Veldu möppu í Program Files eða aðra sem aðeins kerfisstjórar geta breytt.',
   'refusal.link': 'Þessi mappa, eða mappa fyrir ofan hana, er tengill á annan stað. Veldu raunverulegu möppuna.',
   'refusal.file': 'Skrá heitir þegar þessu nafni. Veldu frekar möppu.',
   'refusal.fixed': '{name} fer alltaf í sína venjulegu möppu á þessu kerfi.',

@@ -61,9 +61,20 @@ Run $Installer @('/S', "/D=$custom")
 CheckInstalled $custom
 Uninstall $custom
 
-# A folder an ordinary user created must be refused for the update task's sake.
+# Below a folder ordinary users may change, the update task runs as the person
+# installing instead of SYSTEM, who may then change the install folder.
 $open = "$env:SystemDrive\OpenForAll"
 New-Item -ItemType Directory $open | Out-Null
 icacls $open /grant '*S-1-5-32-545:(OI)(CI)M' | Out-Null
-$p = Start-Process -FilePath $Installer -ArgumentList @('/S', "/D=$open\$name") -Wait -PassThru -NoNewWindow
-Expect ($p.ExitCode -ne 0) 'a folder below one ordinary users can change is refused'
+$exposed = "$open\$name"
+Run $Installer @('/S', "/D=$exposed")
+Expect (Test-Path "$exposed\$exe") "$exe in $exposed"
+$me = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+[xml] $definition = (schtasks /Query /TN $task /XML) -join "`n"
+$principal = $definition.Task.Principals.Principal
+Expect ($principal.UserId -eq $me) "the task running as $me, got $($principal.UserId)"
+Expect ($principal.LogonType -eq 'S4U') 'the task running whether or not that person is signed in'
+Expect ($principal.RunLevel -eq 'LeastPrivilege') 'the task running without elevation'
+$mine = (Get-Acl $exposed).Access | Where-Object { $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -eq $me }
+Expect ($mine | Where-Object { $_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify }) 'change rights for that person'
+Uninstall $exposed

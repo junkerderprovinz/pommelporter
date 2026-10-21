@@ -32,7 +32,7 @@ export const sl: Dict = {
   'welcome.repair': '{name} {version} je že nameščen. Ponovna namestitev ga popravi, vaše nastavitve pa ostanejo, kot so.',
 
   'options.folder': 'Mapa namestitve',
-  'options.folderHint': '{name} se v ozadju posodablja s polnimi sistemskimi pravicami, zato smejo njegovo mapo spreminjati samo skrbniki. Namestitveni program preveri vsako mapo, ki jo izberete.',
+  'options.folderHint': '{name} se sam posodablja v ozadju. Namestitveni program za to pripravi mapo, ki jo izbereš.',
   'options.startMenu': 'Vnos v meniju Start',
   'options.menu': 'Vnos v meniju aplikacij',
   'options.desktop': 'Bližnjica na namizju',
@@ -41,7 +41,6 @@ export const sl: Dict = {
   'refusal.notLocal': 'Ta mapa je na omrežnem, USB ali optičnem pogonu. Izberite mapo na vgrajenem disku tega računalnika.',
   'refusal.noAcl': 'Ta pogon ne more omejiti, kdo spreminja njegove datoteke, kot je pri FAT in exFAT. Izberite mapo na pogonu NTFS.',
   'refusal.notEmpty': 'V tej mapi so že druge datoteke. Izberite prazno mapo ali ustvarite novo.',
-  'refusal.unsafeParent': 'Običajni uporabniki bi lahko preimenovali ali zamenjali mapo nad to. Izberite mapo v Program Files ali drugo, ki jo lahko spreminjajo samo skrbniki.',
   'refusal.link': 'Ta mapa ali mapa nad njo je povezava drugam. Izberite pravo mapo.',
   'refusal.file': 'Datoteka s tem imenom že obstaja. Izberite mapo.',
   'refusal.fixed': 'Na tem sistemu gre {name} vedno v svojo običajno mapo.',

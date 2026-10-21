@@ -13,6 +13,7 @@ import (
 	"time"
 	"unicode/utf16"
 
+	"golang.org/x/sys/windows"
 	"golang.org/x/sys/windows/registry"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
@@ -238,7 +239,7 @@ func TestOlderUserInstallBehindAJunctionKeepsItsTarget(t *testing.T) {
 }
 
 func TestTaskDefinition(t *testing.T) {
-	b := taskXML(appFixture(), `C:\Program Files\Prog\Prog.exe`)
+	b := taskXML(appFixture(), `C:\Program Files\Prog\Prog.exe`, nil)
 	if b[0] != 0xff || b[1] != 0xfe {
 		t.Fatalf("no UTF-16 byte order mark: % x", b[:2])
 	}
@@ -259,6 +260,27 @@ func TestTaskDefinition(t *testing.T) {
 		if !strings.Contains(text, want) {
 			t.Errorf("the task lacks %q", want)
 		}
+	}
+}
+
+func TestTaskRunsAsTheUserGiven(t *testing.T) {
+	user, err := windows.StringToSid(someUser)
+	if err != nil {
+		t.Fatal(err)
+	}
+	b := taskXML(appFixture(), `D:\Prog\Prog.exe`, user)
+	u := make([]uint16, len(b)/2)
+	for i := range u {
+		u[i] = uint16(b[2*i]) | uint16(b[2*i+1])<<8
+	}
+	text := string(utf16.Decode(u[1:]))
+	for _, want := range []string{"<UserId>" + someUser + "</UserId>", "<LogonType>S4U</LogonType>", "<RunLevel>LeastPrivilege</RunLevel>"} {
+		if !strings.Contains(text, want) {
+			t.Errorf("the task lacks %q", want)
+		}
+	}
+	if strings.Contains(text, "S-1-5-18") {
+		t.Error("the task still runs as SYSTEM")
 	}
 }
 

@@ -32,7 +32,7 @@ export const sv: Dict = {
   'welcome.repair': '{name} {version} är redan installerat. Att installera det igen lagar det, och dina inställningar blir kvar som de är.',
 
   'options.folder': 'Installationsmapp',
-  'options.folderHint': '{name} uppdaterar sig själv i bakgrunden med fulla systemrättigheter, så bara administratörer får kunna ändra dess mapp. Installationsprogrammet kontrollerar varje mapp du väljer.',
+  'options.folderHint': '{name} håller sig själv uppdaterad i bakgrunden. Installationsprogrammet gör mappen du väljer redo för det.',
   'options.startMenu': 'Post i Start-menyn',
   'options.menu': 'Post i appmenyn',
   'options.desktop': 'Genväg på skrivbordet',
@@ -41,7 +41,6 @@ export const sv: Dict = {
   'refusal.notLocal': 'Den här mappen ligger på en nätverks-, USB- eller optisk enhet. Välj en på en inbyggd disk i den här datorn.',
   'refusal.noAcl': 'Den här enheten kan inte styra vem som ändrar dess filer, som med FAT och exFAT. Välj en mapp på en NTFS-enhet.',
   'refusal.notEmpty': 'Den här mappen innehåller redan andra filer. Välj en tom mapp eller skapa en ny.',
-  'refusal.unsafeParent': 'Vanliga användare skulle kunna byta namn på eller ersätta en mapp ovanför den här. Välj en mapp i Program Files eller en annan som bara administratörer kan ändra.',
   'refusal.link': 'Den här mappen, eller en ovanför, är en länk till en annan plats. Välj den riktiga mappen.',
   'refusal.file': 'En fil har redan det namnet. Välj en mapp i stället.',
   'refusal.fixed': 'På det här systemet hamnar {name} alltid i sin vanliga mapp.',

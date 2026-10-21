@@ -170,6 +170,15 @@ func (p *platform) Install(ctx context.Context, app setup.App, o setup.Options, 
 	}
 	exe := filepath.Join(dir, app.Executable)
 	earlier := p.holdsEarlier(app, dir)
+	// Where the folders above are open to everyone, the person installing
+	// keeps the copy current instead of SYSTEM, so swapping the folder gains
+	// nothing.
+	var writer *windows.SID
+	if exposed(dir) {
+		if writer, err = installingUser(); err != nil {
+			return err
+		}
+	}
 
 	report(setup.StepClose)
 	closeRunning(dir, app.InstanceID)
@@ -181,7 +190,7 @@ func (p *platform) Install(ctx context.Context, app setup.App, o setup.Options, 
 	p.removeUserCopies(app, exe)
 
 	report(setup.StepFiles)
-	size, err := placeFiles(app, dir, earlier)
+	size, err := placeFiles(app, dir, earlier, writer)
 	if err != nil {
 		return err
 	}
@@ -200,19 +209,19 @@ func (p *platform) Install(ctx context.Context, app setup.App, o setup.Options, 
 	// a folder that cannot be made safe does not fail the install. A task
 	// from an earlier install would use that folder all the same and goes.
 	report(setup.StepUpdates)
-	if err := prepareData(filepath.Join(p.places.programData, app.Name)); err != nil {
+	if err := prepareData(filepath.Join(p.places.programData, app.Name), writer); err != nil {
 		p.deleteTask(app)
 		return nil
 	}
-	p.createTask(app, exe)
+	p.createTask(app, exe, writer)
 	return nil
 }
 
 // placeFiles makes dir safe, then puts the payload and the uninstaller in it
 // and returns their size. A folder that held nothing of the app's must still
 // be empty once nobody else can change it.
-func placeFiles(app setup.App, dir string, earlier bool) (int64, error) {
-	if err := lockChain(dir); err != nil {
+func placeFiles(app setup.App, dir string, earlier bool, writer *windows.SID) (int64, error) {
+	if err := lockChain(dir, writer); err != nil {
 		return 0, err
 	}
 	if !earlier {

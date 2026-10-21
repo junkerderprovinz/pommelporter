@@ -32,7 +32,7 @@ export const fr: Dict = {
   'welcome.repair': '{name} {version} est déjà installé. Le réinstaller le répare, et vos réglages restent tels quels.',
 
   'options.folder': "Dossier d'installation",
-  'options.folderHint': "{name} se met à jour en arrière-plan avec tous les droits système. Son dossier doit donc être modifiable par les administrateurs seulement. L'installateur vérifie chaque dossier que vous choisissez.",
+  'options.folderHint': "{name} se met à jour tout seul en arrière-plan. Le programme d'installation prépare pour cela le dossier que tu choisis.",
   'options.startMenu': 'Entrée dans le menu Démarrer',
   'options.menu': 'Entrée dans le menu des applications',
   'options.desktop': 'Raccourci sur le bureau',
@@ -41,7 +41,6 @@ export const fr: Dict = {
   'refusal.notLocal': 'Ce dossier se trouve sur un lecteur réseau, USB ou optique. Choisissez-en un sur un disque intégré à cet ordinateur.',
   'refusal.noAcl': "Ce lecteur ne peut pas limiter qui modifie ses fichiers, comme c'est le cas avec FAT et exFAT. Choisissez un dossier sur un lecteur NTFS.",
   'refusal.notEmpty': "Ce dossier contient déjà d'autres fichiers. Choisissez un dossier vide ou créez-en un nouveau.",
-  'refusal.unsafeParent': 'Des utilisateurs ordinaires pourraient renommer ou remplacer un dossier au-dessus de celui-ci. Choisissez un dossier dans Programmes ou un autre que seuls les administrateurs peuvent modifier.',
   'refusal.link': 'Ce dossier, ou un dossier au-dessus, est un lien vers un autre emplacement. Choisissez le vrai dossier.',
   'refusal.file': 'Un fichier porte déjà ce nom. Choisissez plutôt un dossier.',
   'refusal.fixed': 'Sur ce système, {name} va toujours dans son dossier habituel.',

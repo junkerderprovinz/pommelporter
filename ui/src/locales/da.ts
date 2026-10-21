@@ -32,7 +32,7 @@ export const da: Dict = {
   'welcome.repair': '{name} {version} er allerede installeret. En ny installation reparerer det, og dine indstillinger forbliver, som de er.',
 
   'options.folder': 'Installationsmappe',
-  'options.folderHint': '{name} opdaterer sig selv i baggrunden med fulde systemrettigheder, så kun administratorer må kunne ændre mappen. Installationsprogrammet tjekker hver mappe, du vælger.',
+  'options.folderHint': '{name} holder sig selv opdateret i baggrunden. Installationsprogrammet gør den mappe, du vælger, klar til det.',
   'options.startMenu': 'Punkt i menuen Start',
   'options.menu': 'Punkt i appmenuen',
   'options.desktop': 'Genvej på skrivebordet',
@@ -41,7 +41,6 @@ export const da: Dict = {
   'refusal.notLocal': 'Denne mappe ligger på et netværks-, USB- eller optisk drev. Vælg en på et indbygget drev i denne computer.',
   'refusal.noAcl': 'Dette drev kan ikke styre, hvem der ændrer dets filer, som med FAT og exFAT. Vælg en mappe på et NTFS-drev.',
   'refusal.notEmpty': 'Denne mappe indeholder allerede andre filer. Vælg en tom mappe, eller opret en ny.',
-  'refusal.unsafeParent': 'Almindelige brugere kunne omdøbe eller erstatte en mappe over denne. Vælg en mappe i Program Files eller en anden, som kun administratorer kan ændre.',
   'refusal.link': 'Denne mappe, eller en over den, er et link til et andet sted. Vælg den rigtige mappe.',
   'refusal.file': 'En fil har allerede dette navn. Vælg en mappe i stedet.',
   'refusal.fixed': 'På dette system kommer {name} altid i sin sædvanlige mappe.',

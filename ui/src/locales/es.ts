@@ -32,7 +32,7 @@ export const es: Dict = {
   'welcome.repair': '{name} {version} ya está instalado. Instalarlo de nuevo lo repara y tu configuración se queda como está.',
 
   'options.folder': 'Carpeta de instalación',
-  'options.folderHint': '{name} se actualiza en segundo plano con todos los permisos del sistema, así que su carpeta solo deben poder cambiarla los administradores. El instalador comprueba cada carpeta que elijas.',
+  'options.folderHint': '{name} se mantiene al día en segundo plano. El instalador prepara para ello la carpeta que elijas.',
   'options.startMenu': 'Entrada en el menú Inicio',
   'options.menu': 'Entrada en el menú de aplicaciones',
   'options.desktop': 'Acceso directo en el escritorio',
@@ -41,7 +41,6 @@ export const es: Dict = {
   'refusal.notLocal': 'Esta carpeta está en una unidad de red, USB u óptica. Elige una en un disco integrado en este equipo.',
   'refusal.noAcl': 'Esta unidad no puede limitar quién cambia sus archivos, como ocurre con FAT y exFAT. Elige una carpeta en una unidad NTFS.',
   'refusal.notEmpty': 'Esta carpeta ya tiene otros archivos. Elige una carpeta vacía o crea una nueva.',
-  'refusal.unsafeParent': 'Usuarios normales podrían renombrar o sustituir una carpeta superior. Elige una carpeta dentro de Archivos de programa u otra que solo los administradores puedan cambiar.',
   'refusal.link': 'Esta carpeta, o una superior, es un enlace a otro sitio. Elige la carpeta real.',
   'refusal.file': 'Ya hay un archivo con este nombre. Elige una carpeta.',
   'refusal.fixed': 'En este sistema, {name} siempre va a su carpeta habitual.',

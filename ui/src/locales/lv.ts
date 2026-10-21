@@ -32,7 +32,7 @@ export const lv: Dict = {
   'welcome.repair': '{name} {version} jau ir instalēta. Atkārtota instalēšana to salabo, un jūsu iestatījumi paliks tādi paši.',
 
   'options.folder': 'Instalēšanas mape',
-  'options.folderHint': '{name} atjaunina sevi fonā ar pilnām sistēmas tiesībām, tāpēc tās mapi drīkst mainīt tikai administratori. Instalēšanas programma pārbauda katru izvēlēto mapi.',
+  'options.folderHint': '{name} pats atjauninās fonā. Instalētājs šim nolūkam sagatavo tevis izvēlēto mapi.',
   'options.startMenu': 'Ieraksts izvēlnē Sākt',
   'options.menu': 'Ieraksts lietotņu izvēlnē',
   'options.desktop': 'Saīsne darbvirsmā',
@@ -41,7 +41,6 @@ export const lv: Dict = {
   'refusal.notLocal': 'Šī mape atrodas tīkla, USB vai optiskajā diskā. Izvēlieties mapi šī datora iebūvētajā diskā.',
   'refusal.noAcl': 'Šis disks nevar ierobežot, kas maina tā failus, kā tas ir ar FAT un exFAT. Izvēlieties mapi NTFS diskā.',
   'refusal.notEmpty': 'Šajā mapē jau ir citi faili. Izvēlieties tukšu mapi vai izveidojiet jaunu.',
-  'refusal.unsafeParent': 'Parasti lietotāji varētu pārdēvēt vai aizstāt mapi virs šīs. Izvēlieties mapi Program Files vai citu, ko var mainīt tikai administratori.',
   'refusal.link': 'Šī mape vai kāda virs tās ir saite uz citu vietu. Izvēlieties īsto mapi.',
   'refusal.file': 'Fails ar šādu nosaukumu jau pastāv. Izvēlieties mapi.',
   'refusal.fixed': 'Šajā sistēmā {name} vienmēr tiek instalēta savā ierastajā mapē.',

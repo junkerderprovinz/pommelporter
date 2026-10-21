@@ -32,7 +32,7 @@ export const gl: Dict = {
   'welcome.repair': '{name} {version} xa está instalado. Instalalo de novo repárao e a túa configuración queda como está.',
 
   'options.folder': 'Cartafol de instalación',
-  'options.folderHint': '{name} actualízase en segundo plano con todos os permisos do sistema, así que só os administradores deben poder cambiar o seu cartafol. O instalador comproba cada cartafol que escollas.',
+  'options.folderHint': '{name} actualízase só en segundo plano. O instalador prepara para iso o cartafol que escollas.',
   'options.startMenu': 'Entrada no menú Inicio',
   'options.menu': 'Entrada no menú de aplicacións',
   'options.desktop': 'Atallo no escritorio',
@@ -41,7 +41,6 @@ export const gl: Dict = {
   'refusal.notLocal': 'Este cartafol está nunha unidade de rede, USB ou óptica. Escolle un nun disco interno deste ordenador.',
   'refusal.noAcl': 'Esta unidade non pode limitar quen cambia os seus ficheiros, como pasa con FAT e exFAT. Escolle un cartafol nunha unidade NTFS.',
   'refusal.notEmpty': 'Este cartafol xa ten outros ficheiros. Escolle un cartafol baleiro ou crea un novo.',
-  'refusal.unsafeParent': 'Usuarios normais poderían renomear ou substituír un cartafol superior. Escolle un cartafol dentro de Program Files ou outro que só poidan cambiar os administradores.',
   'refusal.link': 'Este cartafol, ou un superior, é unha ligazón a outro sitio. Escolle o cartafol real.',
   'refusal.file': 'Xa hai un ficheiro con este nome. Escolle un cartafol.',
   'refusal.fixed': 'Neste sistema, {name} vai sempre ao seu cartafol habitual.',

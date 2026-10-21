@@ -32,7 +32,7 @@ export const ro: Dict = {
   'welcome.repair': '{name} {version} este deja instalat. Reinstalarea îl repară, iar setările tale rămân cum sunt.',
 
   'options.folder': 'Dosarul de instalare',
-  'options.folderHint': '{name} se actualizează în fundal cu drepturi depline de sistem, așa că dosarul lui trebuie să poată fi schimbat doar de administratori. Programul de instalare verifică fiecare dosar pe care îl alegi.',
+  'options.folderHint': '{name} se actualizează singur în fundal. Programul de instalare pregătește pentru asta folderul pe care îl alegi.',
   'options.startMenu': 'Intrare în meniul Start',
   'options.menu': 'Intrare în meniul de aplicații',
   'options.desktop': 'Comandă rapidă pe desktop',
@@ -41,7 +41,6 @@ export const ro: Dict = {
   'refusal.notLocal': 'Acest dosar este pe o unitate de rețea, USB sau optică. Alege unul pe un disc intern al acestui computer.',
   'refusal.noAcl': 'Această unitate nu poate limita cine îi modifică fișierele, cum e cazul la FAT și exFAT. Alege un dosar pe o unitate NTFS.',
   'refusal.notEmpty': 'Acest dosar conține deja alte fișiere. Alege un dosar gol sau creează unul nou.',
-  'refusal.unsafeParent': 'Utilizatorii obișnuiți ar putea redenumi sau înlocui un dosar de deasupra. Alege un dosar în Program Files sau altul pe care doar administratorii îl pot schimba.',
   'refusal.link': 'Acest dosar, sau unul de deasupra, este o legătură spre alt loc. Alege dosarul real.',
   'refusal.file': 'Există deja un fișier cu acest nume. Alege un dosar.',
   'refusal.fixed': 'Pe acest sistem, {name} merge mereu în dosarul lui obișnuit.',

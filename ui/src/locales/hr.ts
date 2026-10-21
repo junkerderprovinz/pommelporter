@@ -32,7 +32,7 @@ export const hr: Dict = {
   'welcome.repair': '{name} {version} već je instaliran. Ponovna instalacija ga popravlja, a vaše postavke ostaju kakve jesu.',
 
   'options.folder': 'Mapa instalacije',
-  'options.folderHint': '{name} se ažurira u pozadini s punim pravima sustava, pa njegovu mapu smiju mijenjati samo administratori. Instalacijski program provjerava svaku mapu koju odaberete.',
+  'options.folderHint': '{name} se sam ažurira u pozadini. Instalacijski program za to priprema mapu koju odabereš.',
   'options.startMenu': 'Stavka u izborniku Start',
   'options.menu': 'Stavka u izborniku aplikacija',
   'options.desktop': 'Prečac na radnoj površini',
@@ -41,7 +41,6 @@ export const hr: Dict = {
   'refusal.notLocal': 'Ova je mapa na mrežnom, USB ili optičkom pogonu. Odaberite mapu na ugrađenom disku ovog računala.',
   'refusal.noAcl': 'Ovaj pogon ne može ograničiti tko mijenja njegove datoteke, kao kod FAT-a i exFAT-a. Odaberite mapu na NTFS pogonu.',
   'refusal.notEmpty': 'U ovoj su mapi već druge datoteke. Odaberite praznu mapu ili stvorite novu.',
-  'refusal.unsafeParent': 'Obični korisnici mogli bi preimenovati ili zamijeniti mapu iznad ove. Odaberite mapu unutar Program Files ili drugu koju mogu mijenjati samo administratori.',
   'refusal.link': 'Ova mapa, ili neka iznad nje, poveznica je na drugo mjesto. Odaberite pravu mapu.',
   'refusal.file': 'Datoteka s tim nazivom već postoji. Odaberite mapu.',
   'refusal.fixed': 'Na ovom sustavu {name} uvijek ide u svoju uobičajenu mapu.',

@@ -76,7 +76,7 @@ func TestLockedRisk(t *testing.T) {
 		{"users may add folders", "O:BAD:P(A;OICI;FA;;;BA)(A;;0x4;;;AU)", false},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			err := lockedRisk(descriptor(t, tc.sddl))
+			err := lockedRisk(descriptor(t, tc.sddl), nil)
 			if tc.safe && err != nil {
 				t.Errorf("refused: %v", err)
 			}
@@ -146,10 +146,10 @@ func TestCheckDirRefusesJunctions(t *testing.T) {
 	checkCode(t, p, filepath.Join(link, "Prog"), setup.DirLink)
 }
 
-func TestCheckDirRefusesFoldersUsersCanSwap(t *testing.T) {
+func TestFoldersUsersCanSwapAreAcceptedAsExposed(t *testing.T) {
 	p, _ := testPlatform(t)
 	// The folders a user's temp folder sits in belong to that user.
-	checkCode(t, p, filepath.Join(t.TempDir(), "Prog"), setup.DirUnsafeParent)
+	under := filepath.Join(t.TempDir(), "Prog")
 	// Whoever may delete inside a folder can move the install folder out of it.
 	below := filepath.Join(safeBase(t), "below")
 	if err := os.Mkdir(below, 0o755); err != nil {
@@ -158,7 +158,20 @@ func TestCheckDirRefusesFoldersUsersCanSwap(t *testing.T) {
 	if out, err := exec.Command("icacls", below, "/grant", "*S-1-5-32-545:(DC)").CombinedOutput(); err != nil {
 		t.Fatalf("icacls: %v: %s", err, out)
 	}
-	checkCode(t, p, filepath.Join(below, "Prog"), setup.DirUnsafeParent)
+	for _, dir := range []string{under, filepath.Join(below, "Prog")} {
+		checkCode(t, p, dir, "")
+		if !exposed(dir) {
+			t.Errorf("%s is not seen as exposed", dir)
+		}
+	}
+}
+
+func TestAFolderUnderSafeParentsIsNotExposed(t *testing.T) {
+	// Run without elevation, the test's own folder belongs to the user.
+	needAdmin(t)
+	if dir := filepath.Join(safeBase(t), "Prog"); exposed(dir) {
+		t.Errorf("%s is seen as exposed", dir)
+	}
 }
 
 func TestCheckDirAcceptsAFolderUnderSafeParents(t *testing.T) {
@@ -241,7 +254,7 @@ func TestLockDirRefusesAJunction(t *testing.T) {
 	}
 	link := filepath.Join(tmp, "link")
 	junction(t, link, real)
-	if err := lockDir(link); err == nil {
+	if err := lockDir(link, nil); err == nil {
 		t.Fatal("lockDir took a junction")
 	}
 }
@@ -249,7 +262,7 @@ func TestLockDirRefusesAJunction(t *testing.T) {
 func TestLockDirRefusesAFile(t *testing.T) {
 	file := filepath.Join(t.TempDir(), "file")
 	writeFile(t, file, "x")
-	if err := lockDir(file); err == nil {
+	if err := lockDir(file, nil); err == nil {
 		t.Fatal("lockDir took a file")
 	}
 }
@@ -261,7 +274,7 @@ func lockedOK(t *testing.T, dir string) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if err := lockedRisk(sd); err != nil {
+	if err := lockedRisk(sd, nil); err != nil {
 		t.Errorf("%s: %v", dir, err)
 	}
 }
@@ -281,7 +294,7 @@ func TestLockDirTakesOverAUsersFolder(t *testing.T) {
 		windows.DACL_SECURITY_INFORMATION|windows.PROTECTED_DACL_SECURITY_INFORMATION, nil, nil, dacl, nil); err != nil {
 		t.Fatal(err)
 	}
-	if err := lockDir(dir); err != nil {
+	if err := lockDir(dir, nil); err != nil {
 		t.Fatal(err)
 	}
 	lockedOK(t, dir)
@@ -291,7 +304,7 @@ func TestLockChainLocksMissingFolders(t *testing.T) {
 	needAdmin(t)
 	base := safeBase(t)
 	dir := filepath.Join(base, "a", "b")
-	if err := lockChain(dir); err != nil {
+	if err := lockChain(dir, nil); err != nil {
 		t.Fatal(err)
 	}
 	lockedOK(t, filepath.Join(base, "a"))

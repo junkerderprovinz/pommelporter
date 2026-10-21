@@ -32,7 +32,7 @@ export const ko: Dict = {
   'welcome.repair': '{name} {version}이(가) 이미 설치되어 있습니다. 다시 설치하면 복구되며, 설정은 그대로 유지됩니다.',
 
   'options.folder': '설치 폴더',
-  'options.folderHint': '{name}은(는) 백그라운드에서 시스템 전체 권한으로 스스로 업데이트하므로, 관리자만 바꿀 수 있는 폴더여야 합니다. 설치 프로그램이 선택한 폴더를 모두 확인합니다.',
+  'options.folderHint': '{name}은(는) 백그라운드에서 스스로 업데이트됩니다. 설치 프로그램이 선택한 폴더를 그에 맞게 준비합니다.',
   'options.startMenu': '시작 메뉴 항목',
   'options.menu': '앱 메뉴 항목',
   'options.desktop': '바탕 화면 바로 가기',
@@ -41,7 +41,6 @@ export const ko: Dict = {
   'refusal.notLocal': '이 폴더는 네트워크, USB 또는 광학 드라이브에 있습니다. 이 컴퓨터의 내장 드라이브에 있는 폴더를 선택하세요.',
   'refusal.noAcl': '이 드라이브는 FAT, exFAT처럼 파일을 바꿀 수 있는 사람을 제한하지 못합니다. NTFS 드라이브의 폴더를 선택하세요.',
   'refusal.notEmpty': '이 폴더에는 이미 다른 파일이 있습니다. 빈 폴더를 선택하거나 새로 만드세요.',
-  'refusal.unsafeParent': '일반 사용자가 상위 폴더의 이름을 바꾸거나 다른 폴더로 바꿀 수 있습니다. Program Files 안의 폴더나 관리자만 바꿀 수 있는 다른 폴더를 선택하세요.',
   'refusal.link': '이 폴더나 상위 폴더가 다른 위치로 연결되는 링크입니다. 실제 폴더를 선택하세요.',
   'refusal.file': '같은 이름의 파일이 이미 있습니다. 폴더를 선택하세요.',
   'refusal.fixed': '이 시스템에서는 {name}이(가) 항상 원래 폴더에 설치됩니다.',

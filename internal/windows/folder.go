@@ -21,6 +21,20 @@ import (
 // above. 0x1200a9 is what icacls calls RX.
 const lockedSDDL = "O:BAD:P(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1200a9;;;BU)"
 
+// modify is what icacls calls M: everything but changing the rights or the
+// owner.
+const modify = 0x1301bf
+
+// sddlFor is lockedSDDL, with writer allowed to change what is in the folder
+// when there is one: the person installing, whose own task keeps the copy
+// current where the folders above are open to everyone.
+func sddlFor(writer *windows.SID) string {
+	if writer == nil {
+		return lockedSDDL
+	}
+	return fmt.Sprintf("%s(A;OICI;0x%x;;;%s)", lockedSDDL, modify, writer.String())
+}
+
 const (
 	readAndRun      = 0x1200a9
 	fileDeleteChild = 0x40
@@ -105,9 +119,9 @@ func parentRisk(sd *windows.SECURITY_DESCRIPTOR) error {
 	})
 }
 
-// lockedRisk says how a folder falls short of lockedSDDL, or returns nil.
-// Unlike a parent, the install folder itself may not let anyone else write.
-func lockedRisk(sd *windows.SECURITY_DESCRIPTOR) error {
+// lockedRisk says how a folder falls short of sddlFor(writer), or returns
+// nil. Unlike a parent, the install folder itself may let nobody else write.
+func lockedRisk(sd *windows.SECURITY_DESCRIPTOR, writer *windows.SID) error {
 	owner, _, err := sd.Owner()
 	if err != nil {
 		return err
@@ -126,7 +140,7 @@ func lockedRisk(sd *windows.SECURITY_DESCRIPTOR) error {
 		switch {
 		case sid == nil:
 			return errors.New("its access list lets everyone change it")
-		case trusted(sid):
+		case trusted(sid), writer != nil && sid.Equals(writer):
 			return nil
 		case mask&^readAndRun != 0:
 			return fmt.Errorf("%s may change what is in it", account(sid))
@@ -241,7 +255,7 @@ func checkDir(dir string, earlier func(string) bool) setup.DirCheck {
 			break
 		}
 		if err != nil {
-			return refuse(setup.DirUnsafeParent, "%s cannot be read: %v", p, err)
+			return refuse("", "%s cannot be read: %v", p, err)
 		}
 		if isLink(attrs) {
 			return refuse(setup.DirLink, "%s is a link to another place", p)
@@ -250,20 +264,6 @@ func checkDir(dir string, earlier func(string) bool) setup.DirCheck {
 			return refuse(setup.DirFile, "%s is a file", p)
 		}
 		found = append(found, p)
-	}
-
-	for _, p := range found {
-		if p == dir {
-			break
-		}
-		sd, err := windows.GetNamedSecurityInfo(p, windows.SE_FILE_OBJECT,
-			windows.OWNER_SECURITY_INFORMATION|windows.DACL_SECURITY_INFORMATION)
-		if err != nil {
-			return refuse(setup.DirUnsafeParent, "the rights on %s cannot be read: %v", p, err)
-		}
-		if err := parentRisk(sd); err != nil {
-			return refuse(setup.DirUnsafeParent, "%s is above the folder and %v", p, err)
-		}
 	}
 
 	if len(found) == len(chain) {
@@ -276,6 +276,37 @@ func checkDir(dir string, earlier func(string) bool) setup.DirCheck {
 		}
 	}
 	return setup.DirCheck{OK: true}
+}
+
+// exposed reports whether someone other than the administrators may rename,
+// replace or re-permit a folder above dir, as on a second drive whose top
+// folder is open to everyone. Whoever can do that can swap the install
+// folder, so the update task there must not run as SYSTEM.
+func exposed(dir string) bool {
+	root := filepath.VolumeName(dir) + `\`
+	for p := filepath.Dir(dir); ; p = filepath.Dir(p) {
+		if exists(p) {
+			sd, err := windows.GetNamedSecurityInfo(p, windows.SE_FILE_OBJECT,
+				windows.OWNER_SECURITY_INFORMATION|windows.DACL_SECURITY_INFORMATION)
+			if err != nil || parentRisk(sd) != nil {
+				return true
+			}
+		}
+		if p == root {
+			return false
+		}
+	}
+}
+
+// installingUser is the account the installer runs as. Elevation keeps the
+// account, so this is the person who started it, or the administrator who
+// signed in for them.
+func installingUser() (*windows.SID, error) {
+	u, err := windows.GetCurrentProcessToken().GetTokenUser()
+	if err != nil {
+		return nil, err
+	}
+	return u.User.Sid.Copy()
 }
 
 // enablePrivileges lets the installer take over a folder whatever its access
@@ -300,14 +331,14 @@ func enablePrivileges() error {
 	return nil
 }
 
-func lockedDescriptor() (*windows.SECURITY_DESCRIPTOR, error) {
-	return windows.SecurityDescriptorFromString(lockedSDDL)
+func lockedDescriptor(writer *windows.SID) (*windows.SECURITY_DESCRIPTOR, error) {
+	return windows.SecurityDescriptorFromString(sddlFor(writer))
 }
 
 // createLocked creates path with lockedSDDL in one step, so nobody else ever
 // holds rights on it. It fails when path exists.
 func createLocked(path string) error {
-	sd, err := lockedDescriptor()
+	sd, err := lockedDescriptor(nil)
 	if err != nil {
 		return err
 	}
@@ -319,11 +350,12 @@ func createLocked(path string) error {
 	return windows.CreateDirectory(p, &sa)
 }
 
-// lockDir makes path a folder only administrators can change: created that
-// way when it is missing, taken over when it exists. The work goes through a
+// lockDir makes path a folder only administrators and writer, when there is
+// one, can change: created that way when it is missing, taken over when it
+// exists. The work goes through a
 // handle to the folder itself, never through a link, and ends with a check
 // that the rights hold and the path still names the same folder.
-func lockDir(path string) error {
+func lockDir(path string, writer *windows.SID) error {
 	if err := enablePrivileges(); err != nil {
 		return err
 	}
@@ -342,7 +374,7 @@ func lockDir(path string) error {
 		return fmt.Errorf("%s is a file", path)
 	}
 
-	sd, err := lockedDescriptor()
+	sd, err := lockedDescriptor(writer)
 	if err != nil {
 		return err
 	}
@@ -365,7 +397,7 @@ func lockDir(path string) error {
 	if err != nil {
 		return err
 	}
-	if err := lockedRisk(got); err != nil {
+	if err := lockedRisk(got, writer); err != nil {
 		return fmt.Errorf("the rights on %s did not hold: %v", path, err)
 	}
 
@@ -401,18 +433,19 @@ func openNoFollow(path string, access uint32) (windows.Handle, windows.ByHandleF
 	return h, info, nil
 }
 
-// lockChain locks dir and every missing folder above it. A new folder would
+// lockChain locks dir for writer and every missing folder above it for the
+// administrators alone. A new folder would
 // otherwise inherit what the drive's top folder hands down, which on a second
 // drive lets every user rename it.
-func lockChain(dir string) error {
+func lockChain(dir string, writer *windows.SID) error {
 	var missing []string
 	for p := filepath.Dir(dir); !exists(p); p = filepath.Dir(p) {
 		missing = append(missing, p)
 	}
 	for i := len(missing) - 1; i >= 0; i-- {
-		if err := lockDir(missing[i]); err != nil {
+		if err := lockDir(missing[i], nil); err != nil {
 			return err
 		}
 	}
-	return lockDir(dir)
+	return lockDir(dir, writer)
 }

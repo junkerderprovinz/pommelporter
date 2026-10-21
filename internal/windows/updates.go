@@ -25,13 +25,14 @@ import (
 const settingsFile = "settings.json"
 
 // prepareData readies the folder under ProgramData that holds the update
-// switch and the task's log. It belongs to the administrators and only
-// settings.json is open to every user, so the app's settings can change the
-// switch; anything else a user could write there, the task running as SYSTEM
-// could be tricked into writing somewhere else. What an earlier folder held
+// switch and the task's log. It belongs to the administrators, and to
+// writer when the task runs as that person, and only settings.json is open
+// to every user, so the app's settings can change the switch; anything else
+// a user could write there, a task running as SYSTEM could be tricked into
+// writing somewhere else. What an earlier folder held
 // is cleared, keeping only the switch. An error means the folder is not safe
 // for the task.
-func prepareData(dir string) error {
+func prepareData(dir string, writer *windows.SID) error {
 	auto := readAutoUpdate(filepath.Join(dir, settingsFile))
 
 	// A junction in place of the folder would lead everything below elsewhere.
@@ -42,7 +43,7 @@ func prepareData(dir string) error {
 	}
 	// A user may have made the folder before the first install and given
 	// themselves rights on it. It is cleared only once no user can change it.
-	if err := lockDir(dir); err != nil {
+	if err := lockDir(dir, writer); err != nil {
 		return err
 	}
 	entries, err := os.ReadDir(dir)
@@ -90,8 +91,9 @@ func readAutoUpdate(path string) bool {
 func taskName(app setup.App) string { return app.Name + " Update" }
 
 // taskTemplate runs the program with --update once a day and five minutes
-// after the computer starts, as SYSTEM, the way browsers keep themselves
-// current.
+// after the computer starts, the way browsers keep themselves current: as
+// SYSTEM, or as User without elevation where the folders above the copy are
+// open to everyone. S4U runs it whether or not that person is signed in.
 var taskTemplate = template.Must(template.New("task").Funcs(template.FuncMap{"x": xmlText}).Parse(
 	`<?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
@@ -112,9 +114,15 @@ var taskTemplate = template.Must(template.New("task").Funcs(template.FuncMap{"x"
     </CalendarTrigger>
   </Triggers>
   <Principals>
-    <Principal id="System">
+    <Principal id="Updater">
+{{- if .User}}
+      <UserId>{{x .User}}</UserId>
+      <LogonType>S4U</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+{{- else}}
       <UserId>S-1-5-18</UserId>
       <RunLevel>HighestAvailable</RunLevel>
+{{- end}}
     </Principal>
   </Principals>
   <Settings>
@@ -124,7 +132,7 @@ var taskTemplate = template.Must(template.New("task").Funcs(template.FuncMap{"x"
     <StartWhenAvailable>true</StartWhenAvailable>
     <ExecutionTimeLimit>PT1H</ExecutionTimeLimit>
   </Settings>
-  <Actions Context="System">
+  <Actions Context="Updater">
     <Exec>
       <Command>"{{x .Exe}}"</Command>
       <Arguments>--update</Arguments>
@@ -141,9 +149,13 @@ func xmlText(s string) string {
 
 // taskXML renders the task's definition as schtasks reads it: UTF-16 with a
 // byte order mark and CRLF line ends.
-func taskXML(app setup.App, exe string) []byte {
+func taskXML(app setup.App, exe string, user *windows.SID) []byte {
+	var sid string
+	if user != nil {
+		sid = user.String()
+	}
 	var b strings.Builder
-	taskTemplate.Execute(&b, struct{ Name, Publisher, Exe string }{app.Name, app.Publisher, exe})
+	taskTemplate.Execute(&b, struct{ Name, Publisher, Exe, User string }{app.Name, app.Publisher, exe, sid})
 	text := strings.ReplaceAll(b.String(), "\n", "\r\n")
 	u := append([]uint16{0xfeff}, utf16.Encode([]rune(text))...)
 	out := make([]byte, 2*len(u))
@@ -153,17 +165,17 @@ func taskXML(app setup.App, exe string) []byte {
 	return out
 }
 
-// createTask registers the update task. The definition is written to a
-// folder only administrators can change, since whoever could swap it before
-// schtasks reads it would choose what SYSTEM runs.
-func (p *platform) createTask(app setup.App, exe string) error {
+// createTask registers the update task, as user when one is given. The
+// definition is written to a folder only administrators can change, since
+// whoever could swap it before schtasks reads it would choose what runs.
+func (p *platform) createTask(app setup.App, exe string, user *windows.SID) error {
 	tmp, err := privateTemp()
 	if err != nil {
 		return err
 	}
 	defer removeTree(tmp)
 	def := filepath.Join(tmp, "task.xml")
-	if err := os.WriteFile(def, taskXML(app, exe), 0o600); err != nil {
+	if err := os.WriteFile(def, taskXML(app, exe, user), 0o600); err != nil {
 		return err
 	}
 	return p.schtasks("/Create", "/TN", taskName(app), "/XML", def, "/F")
@@ -198,7 +210,7 @@ func privateTemp() (string, error) {
 	if err := createLocked(dir); err != nil {
 		return "", err
 	}
-	if err := lockDir(dir); err != nil {
+	if err := lockDir(dir, nil); err != nil {
 		os.Remove(dir)
 		return "", err
 	}

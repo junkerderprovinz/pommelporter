@@ -32,7 +32,7 @@ export const nl: Dict = {
   'welcome.repair': '{name} {version} is al geïnstalleerd. Opnieuw installeren repareert het, en je instellingen blijven zoals ze zijn.',
 
   'options.folder': 'Installatiemap',
-  'options.folderHint': '{name} werkt zichzelf op de achtergrond bij met volledige systeemrechten, dus alleen beheerders mogen de map kunnen wijzigen. Het installatieprogramma controleert elke map die je kiest.',
+  'options.folderHint': '{name} houdt zichzelf op de achtergrond up-to-date. Het installatieprogramma maakt de map die je kiest daarvoor klaar.',
   'options.startMenu': 'Item in het Startmenu',
   'options.menu': 'Item in het appmenu',
   'options.desktop': 'Snelkoppeling op het bureaublad',
@@ -41,7 +41,6 @@ export const nl: Dict = {
   'refusal.notLocal': 'Deze map staat op een netwerk-, USB- of optisch station. Kies er een op een ingebouwde schijf van deze computer.',
   'refusal.noAcl': 'Dit station kan niet regelen wie de bestanden wijzigt, zoals bij FAT en exFAT. Kies een map op een NTFS-station.',
   'refusal.notEmpty': 'In deze map staan al andere bestanden. Kies een lege map of maak een nieuwe.',
-  'refusal.unsafeParent': 'Gewone gebruikers kunnen een map hierboven hernoemen of vervangen. Kies een map in Program Files of een andere die alleen beheerders kunnen wijzigen.',
   'refusal.link': 'Deze map, of een map erboven, is een koppeling naar een andere plek. Kies de echte map.',
   'refusal.file': 'Er heeft al een bestand deze naam. Kies liever een map.',
   'refusal.fixed': 'Op dit systeem komt {name} altijd in de vaste map.',

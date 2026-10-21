@@ -60,7 +60,6 @@ const (
 	DirNotLocal     = "notLocal"     // a network, removable or optical drive
 	DirNoACL        = "noAcl"        // a filesystem without access lists, such as FAT
 	DirNotEmpty     = "notEmpty"     // holds files that are not an earlier copy of this app
-	DirUnsafeParent = "unsafeParent" // a folder above it lets ordinary users rename or replace it
 	DirLink         = "link"         // the folder or one above it is a link or junction
 	DirFile         = "file"         // a file has that name
 	DirFixed        = "fixed"        // the platform installs into one folder only

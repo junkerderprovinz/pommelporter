@@ -32,7 +32,7 @@ export const zh: Dict = {
   'welcome.repair': '{name} {version} 已经安装。重新安装可以修复它，你的设置保持不变。',
 
   'options.folder': '安装文件夹',
-  'options.folderHint': '{name} 会在后台以完整的系统权限更新自己，所以它的文件夹必须只有管理员才能更改。安装程序会检查你选择的每个文件夹。',
+  'options.folderHint': '{name} 会在后台自动更新。安装程序会为此准备好你选择的文件夹。',
   'options.startMenu': '开始菜单项',
   'options.menu': '应用菜单项',
   'options.desktop': '桌面快捷方式',
@@ -41,7 +41,6 @@ export const zh: Dict = {
   'refusal.notLocal': '此文件夹位于网络、USB 或光盘驱动器上。请选择这台电脑内置磁盘上的文件夹。',
   'refusal.noAcl': '此驱动器和 FAT、exFAT 一样，无法限制谁能更改其中的文件。请选择 NTFS 驱动器上的文件夹。',
   'refusal.notEmpty': '此文件夹中已有其他文件。请选择一个空文件夹，或新建一个。',
-  'refusal.unsafeParent': '普通用户可以重命名或替换上层的某个文件夹。请选择 Program Files 中的文件夹，或其他只有管理员能更改的文件夹。',
   'refusal.link': '此文件夹或其上层文件夹是指向别处的链接。请选择真实的文件夹。',
   'refusal.file': '已有同名文件。请选择一个文件夹。',
   'refusal.fixed': '在此系统上，{name} 总是安装到它的固定文件夹。',

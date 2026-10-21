@@ -32,7 +32,7 @@ export const fi: Dict = {
   'welcome.repair': '{name} {version} on jo asennettu. Uudelleenasennus korjaa sen, ja asetuksesi säilyvät ennallaan.',
 
   'options.folder': 'Asennuskansio',
-  'options.folderHint': '{name} päivittää itsensä taustalla täysin järjestelmäoikeuksin, joten vain järjestelmänvalvojat saavat voida muuttaa sen kansiota. Asennusohjelma tarkistaa jokaisen valitsemasi kansion.',
+  'options.folderHint': '{name} pitää itsensä ajan tasalla taustalla. Asennusohjelma valmistelee valitsemasi kansion sitä varten.',
   'options.startMenu': 'Kohde Käynnistä-valikossa',
   'options.menu': 'Kohde sovellusvalikossa',
   'options.desktop': 'Pikakuvake työpöydällä',
@@ -41,7 +41,6 @@ export const fi: Dict = {
   'refusal.notLocal': 'Tämä kansio on verkko-, USB- tai optisella asemalla. Valitse kansio tämän tietokoneen sisäiseltä levyltä.',
   'refusal.noAcl': 'Tämä asema ei voi rajata, kuka muuttaa sen tiedostoja, kuten FAT ja exFAT. Valitse kansio NTFS-asemalta.',
   'refusal.notEmpty': 'Tässä kansiossa on jo muita tiedostoja. Valitse tyhjä kansio tai luo uusi.',
-  'refusal.unsafeParent': 'Tavalliset käyttäjät voisivat nimetä uudelleen tai korvata yläpuolisen kansion. Valitse kansio Program Files -kansiosta tai muu, jota vain järjestelmänvalvojat voivat muuttaa.',
   'refusal.link': 'Tämä kansio tai jokin sen yläpuolella on linkki toiseen paikkaan. Valitse oikea kansio.',
   'refusal.file': 'Tällä nimellä on jo tiedosto. Valitse kansio.',
   'refusal.fixed': 'Tässä järjestelmässä {name} asennetaan aina tavalliseen kansioonsa.',

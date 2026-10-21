@@ -32,7 +32,7 @@ export const pl: Dict = {
   'welcome.repair': '{name} {version} jest już zainstalowany. Ponowna instalacja go naprawi, a twoje ustawienia zostaną bez zmian.',
 
   'options.folder': 'Folder instalacji',
-  'options.folderHint': '{name} aktualizuje się w tle z pełnymi uprawnieniami systemu, więc jego folder mogą zmieniać tylko administratorzy. Instalator sprawdza każdy wybrany folder.',
+  'options.folderHint': '{name} sam aktualizuje się w tle. Instalator przygotowuje do tego wybrany przez ciebie folder.',
   'options.startMenu': 'Pozycja w menu Start',
   'options.menu': 'Pozycja w menu aplikacji',
   'options.desktop': 'Skrót na pulpicie',
@@ -41,7 +41,6 @@ export const pl: Dict = {
   'refusal.notLocal': 'Ten folder jest na dysku sieciowym, USB lub optycznym. Wybierz folder na dysku wbudowanym w ten komputer.',
   'refusal.noAcl': 'Ten dysk nie potrafi ograniczyć, kto zmienia jego pliki, tak jak FAT i exFAT. Wybierz folder na dysku NTFS.',
   'refusal.notEmpty': 'W tym folderze są już inne pliki. Wybierz pusty folder albo utwórz nowy.',
-  'refusal.unsafeParent': 'Zwykli użytkownicy mogliby zmienić nazwę folderu powyżej lub go podmienić. Wybierz folder w Program Files albo inny, który mogą zmieniać tylko administratorzy.',
   'refusal.link': 'Ten folder lub folder powyżej to łącze do innego miejsca. Wybierz prawdziwy folder.',
   'refusal.file': 'Plik o tej nazwie już istnieje. Wybierz folder.',
   'refusal.fixed': 'W tym systemie {name} zawsze trafia do swojego zwykłego folderu.',

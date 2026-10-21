@@ -32,7 +32,7 @@ export const eu: Dict = {
   'welcome.repair': '{name} {version} instalatuta dago jada. Berriro instalatzeak konpontzen du, eta zure ezarpenak dauden bezala geratzen dira.',
 
   'options.folder': 'Instalazio-karpeta',
-  'options.folderHint': '{name} atzeko planoan eguneratzen da sistemaren eskubide guztiekin, beraz administratzaileek bakarrik aldatu behar lukete haren karpeta. Instalatzaileak aukeratzen duzun karpeta bakoitza egiaztatzen du.',
+  'options.folderHint': '{name} bere kabuz eguneratzen da atzeko planoan. Instalatzaileak horretarako prestatzen du aukeratzen duzun karpeta.',
   'options.startMenu': 'Sarrera Hasiera menuan',
   'options.menu': 'Sarrera aplikazioen menuan',
   'options.desktop': 'Lasterbidea mahaigainean',
@@ -41,7 +41,6 @@ export const eu: Dict = {
   'refusal.notLocal': 'Karpeta hau sareko, USB edo unitate optiko batean dago. Aukeratu ordenagailu honen barneko disko bateko karpeta.',
   'refusal.noAcl': 'Unitate honek ezin du mugatu nork aldatzen dituen bere fitxategiak, FAT eta exFAT bezala. Aukeratu NTFS unitate bateko karpeta.',
   'refusal.notEmpty': 'Karpeta honek beste fitxategi batzuk ditu jada. Aukeratu karpeta huts bat edo sortu berri bat.',
-  'refusal.unsafeParent': 'Erabiltzaile arruntek honen gaineko karpeta bat berrizendatu edo ordeztu lezakete. Aukeratu Program Files barruko karpeta bat edo administratzaileek bakarrik alda dezaketen beste bat.',
   'refusal.link': 'Karpeta hau, edo gaineko bat, beste leku baterako esteka da. Aukeratu benetako karpeta.',
   'refusal.file': 'Izen hori duen fitxategi bat dago jada. Aukeratu karpeta bat.',
   'refusal.fixed': 'Sistema honetan, {name} beti bere ohiko karpetara doa.',

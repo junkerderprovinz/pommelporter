@@ -32,7 +32,7 @@ export const it: Dict = {
   'welcome.repair': '{name} {version} è già installato. Reinstallarlo lo ripara e le tue impostazioni restano come sono.',
 
   'options.folder': 'Cartella di installazione',
-  'options.folderHint': '{name} si aggiorna in background con tutti i diritti di sistema, quindi la sua cartella deve poter essere modificata solo dagli amministratori. Il programma di installazione controlla ogni cartella che scegli.',
+  'options.folderHint': '{name} si aggiorna da solo in background. Il programma di installazione prepara a questo scopo la cartella che scegli.',
   'options.startMenu': 'Voce nel menu Start',
   'options.menu': 'Voce nel menu delle app',
   'options.desktop': 'Collegamento sul desktop',
@@ -41,7 +41,6 @@ export const it: Dict = {
   'refusal.notLocal': "Questa cartella si trova su un'unità di rete, USB o ottica. Scegline una su un disco interno di questo computer.",
   'refusal.noAcl': "Questa unità non può limitare chi modifica i suoi file, come succede con FAT ed exFAT. Scegli una cartella su un'unità NTFS.",
   'refusal.notEmpty': 'Questa cartella contiene già altri file. Scegli una cartella vuota o creane una nuova.',
-  'refusal.unsafeParent': "Utenti normali potrebbero rinominare o sostituire una cartella superiore. Scegli una cartella dentro Programmi o un'altra che solo gli amministratori possono modificare.",
   'refusal.link': "Questa cartella, o una superiore, è un collegamento a un'altra posizione. Scegli la cartella vera.",
   'refusal.file': "C'è già un file con questo nome. Scegli una cartella.",
   'refusal.fixed': 'Su questo sistema {name} va sempre nella sua cartella abituale.',

@@ -14,7 +14,6 @@ const REFUSALS: Record<string, Key> = {
   notLocal: 'refusal.notLocal',
   noAcl: 'refusal.noAcl',
   notEmpty: 'refusal.notEmpty',
-  unsafeParent: 'refusal.unsafeParent',
   link: 'refusal.link',
   file: 'refusal.file',
   fixed: 'refusal.fixed',

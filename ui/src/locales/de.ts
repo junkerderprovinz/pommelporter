@@ -32,7 +32,7 @@ export const de: Dict = {
   'welcome.repair': '{name} {version} ist schon installiert. Installierst du es noch mal, wird es repariert. Deine Einstellungen bleiben, wie sie sind.',
 
   'options.folder': 'Installationsordner',
-  'options.folderHint': '{name} aktualisiert sich im Hintergrund mit vollen Systemrechten. Deshalb muss sein Ordner einer sein, den nur Administratoren ändern können. Der Installer prüft jeden Ordner, den du wählst.',
+  'options.folderHint': '{name} hält sich im Hintergrund selbst aktuell. Der Installer richtet den Ordner, den du wählst, dafür passend ein.',
   'options.startMenu': 'Eintrag im Startmenü',
   'options.menu': 'Eintrag im App-Menü',
   'options.desktop': 'Verknüpfung auf dem Desktop',
@@ -41,7 +41,6 @@ export const de: Dict = {
   'refusal.notLocal': 'Dieser Ordner liegt auf einem Netzwerk-, USB- oder optischen Laufwerk. Nimm einen auf einem fest eingebauten Laufwerk.',
   'refusal.noAcl': 'Auf diesem Laufwerk lässt sich nicht regeln, wer Dateien ändern darf, etwa bei FAT oder exFAT. Nimm einen Ordner auf einem NTFS-Laufwerk.',
   'refusal.notEmpty': 'In diesem Ordner liegen schon andere Dateien. Nimm einen leeren Ordner oder leg einen neuen an.',
-  'refusal.unsafeParent': 'Normale Benutzer könnten einen Ordner darüber umbenennen oder ersetzen. Nimm einen Ordner unter Programme oder einen anderen, den nur Administratoren ändern können.',
   'refusal.link': 'Dieser Ordner oder einer darüber verweist woandershin. Nimm den echten Ordner.',
   'refusal.file': 'Eine Datei heißt schon so. Nimm stattdessen einen Ordner.',
   'refusal.fixed': 'Auf diesem System kommt {name} immer in seinen üblichen Ordner.',

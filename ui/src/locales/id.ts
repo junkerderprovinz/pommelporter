@@ -32,7 +32,7 @@ export const id: Dict = {
   'welcome.repair': '{name} {version} sudah terpasang. Memasangnya lagi akan memperbaikinya, dan pengaturan Anda tetap seperti semula.',
 
   'options.folder': 'Folder pemasangan',
-  'options.folderHint': '{name} memperbarui dirinya di latar belakang dengan hak sistem penuh, jadi foldernya harus folder yang hanya bisa diubah administrator. Pemasang memeriksa setiap folder yang Anda pilih.',
+  'options.folderHint': '{name} memperbarui dirinya sendiri di latar belakang. Penginstal menyiapkan folder yang kamu pilih untuk itu.',
   'options.startMenu': 'Entri di menu Start',
   'options.menu': 'Entri di menu aplikasi',
   'options.desktop': 'Pintasan di desktop',
@@ -41,7 +41,6 @@ export const id: Dict = {
   'refusal.notLocal': 'Folder ini ada di drive jaringan, USB, atau optik. Pilih folder di disk bawaan komputer ini.',
   'refusal.noAcl': 'Drive ini tidak bisa membatasi siapa yang mengubah filenya, seperti FAT dan exFAT. Pilih folder di drive NTFS.',
   'refusal.notEmpty': 'Folder ini sudah berisi file lain. Pilih folder kosong atau buat yang baru.',
-  'refusal.unsafeParent': 'Pengguna biasa bisa mengganti nama atau mengganti folder di atas folder ini. Pilih folder di dalam Program Files atau folder lain yang hanya bisa diubah administrator.',
   'refusal.link': 'Folder ini, atau folder di atasnya, adalah tautan ke tempat lain. Pilih folder yang asli.',
   'refusal.file': 'Sudah ada file dengan nama ini. Pilih sebuah folder.',
   'refusal.fixed': 'Di sistem ini, {name} selalu dipasang di folder biasanya.',

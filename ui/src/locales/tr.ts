@@ -32,7 +32,7 @@ export const tr: Dict = {
   'welcome.repair': '{name} {version} zaten kurulu. Yeniden kurmak onu onarır, ayarlarınız olduğu gibi kalır.',
 
   'options.folder': 'Kurulum klasörü',
-  'options.folderHint': '{name} arka planda tam sistem yetkisiyle kendini günceller, bu yüzden klasörünü yalnızca yöneticiler değiştirebilmelidir. Kurulum programı seçtiğiniz her klasörü denetler.',
+  'options.folderHint': '{name} arka planda kendini güncel tutar. Yükleyici, seçtiğin klasörü bunun için hazırlar.',
   'options.startMenu': 'Başlat menüsü girdisi',
   'options.menu': 'Uygulama menüsü girdisi',
   'options.desktop': 'Masaüstü kısayolu',
@@ -41,7 +41,6 @@ export const tr: Dict = {
   'refusal.notLocal': 'Bu klasör bir ağ, USB veya optik sürücüde. Bu bilgisayarın dahili bir diskinde klasör seçin.',
   'refusal.noAcl': 'Bu sürücü, dosyalarını kimin değiştireceğini sınırlayamaz; FAT ve exFAT böyledir. NTFS sürücüde bir klasör seçin.',
   'refusal.notEmpty': 'Bu klasörde zaten başka dosyalar var. Boş bir klasör seçin veya yeni bir klasör oluşturun.',
-  'refusal.unsafeParent': 'Sıradan kullanıcılar bunun üstündeki bir klasörü yeniden adlandırabilir veya değiştirebilir. Program Files içinde ya da yalnızca yöneticilerin değiştirebildiği başka bir klasör seçin.',
   'refusal.link': 'Bu klasör veya üstündeki bir klasör başka bir yere bağlantı. Gerçek klasörü seçin.',
   'refusal.file': 'Bu adda bir dosya zaten var. Bunun yerine bir klasör seçin.',
   'refusal.fixed': 'Bu sistemde {name} her zaman kendi olağan klasörüne kurulur.',

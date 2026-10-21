@@ -32,7 +32,7 @@ export const sk: Dict = {
   'welcome.repair': '{name} {version} je už nainštalovaný. Nová inštalácia ho opraví a vaše nastavenia zostanú, ako sú.',
 
   'options.folder': 'Priečinok inštalácie',
-  'options.folderHint': '{name} sa aktualizuje na pozadí s plnými systémovými právami, preto smú jeho priečinok meniť iba správcovia. Inštalátor skontroluje každý priečinok, ktorý vyberiete.',
+  'options.folderHint': '{name} sa sám aktualizuje na pozadí. Inštalátor na to pripraví priečinok, ktorý vyberieš.',
   'options.startMenu': 'Položka v ponuke Štart',
   'options.menu': 'Položka v ponuke aplikácií',
   'options.desktop': 'Odkaz na pracovnej ploche',
@@ -41,7 +41,6 @@ export const sk: Dict = {
   'refusal.notLocal': 'Tento priečinok je na sieťovej, USB alebo optickej jednotke. Vyberte priečinok na disku zabudovanom v tomto počítači.',
   'refusal.noAcl': 'Táto jednotka nevie obmedziť, kto mení jej súbory, rovnako ako FAT a exFAT. Vyberte priečinok na jednotke NTFS.',
   'refusal.notEmpty': 'V tomto priečinku už sú iné súbory. Vyberte prázdny priečinok alebo vytvorte nový.',
-  'refusal.unsafeParent': 'Bežní používatelia by mohli priečinok nad týmto premenovať alebo nahradiť. Vyberte priečinok v Program Files alebo iný, ktorý môžu meniť iba správcovia.',
   'refusal.link': 'Tento priečinok alebo niektorý nad ním je odkaz inam. Vyberte skutočný priečinok.',
   'refusal.file': 'Súbor s týmto názvom už existuje. Vyberte priečinok.',
   'refusal.fixed': 'V tomto systéme ide {name} vždy do svojho obvyklého priečinka.',

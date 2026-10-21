@@ -32,7 +32,7 @@ export const et: Dict = {
   'welcome.repair': '{name} {version} on juba paigaldatud. Uuesti paigaldamine parandab selle ja sinu seaded jäävad samaks.',
 
   'options.folder': 'Paigalduskaust',
-  'options.folderHint': '{name} uuendab end taustal täielike süsteemiõigustega, seega tohivad selle kausta muuta ainult administraatorid. Paigaldaja kontrollib iga kausta, mille valid.',
+  'options.folderHint': '{name} uuendab end taustal ise. Paigaldaja seab valitud kausta selleks valmis.',
   'options.startMenu': 'Kirje menüüs Start',
   'options.menu': 'Kirje rakenduste menüüs',
   'options.desktop': 'Otsetee töölaual',
@@ -41,7 +41,6 @@ export const et: Dict = {
   'refusal.notLocal': 'See kaust asub võrgu-, USB- või optilisel draivil. Vali kaust selle arvuti sisemisel kettal.',
   'refusal.noAcl': 'See draiv ei saa piirata, kes selle faile muudab, nagu FAT ja exFAT. Vali kaust NTFS-draivil.',
   'refusal.notEmpty': 'Selles kaustas on juba teisi faile. Vali tühi kaust või loo uus.',
-  'refusal.unsafeParent': 'Tavakasutajad võiksid selle kohal oleva kausta ümber nimetada või asendada. Vali kaust Program Filesi all või muu, mida saavad muuta ainult administraatorid.',
   'refusal.link': 'See kaust või mõni selle kohal on link teise kohta. Vali päris kaust.',
   'refusal.file': 'Sellise nimega fail on juba olemas. Vali hoopis kaust.',
   'refusal.fixed': 'Selles süsteemis läheb {name} alati oma tavapärasesse kausta.',

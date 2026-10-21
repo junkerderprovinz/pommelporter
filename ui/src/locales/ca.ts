@@ -32,7 +32,7 @@ export const ca: Dict = {
   'welcome.repair': '{name} {version} ja està instal·lat. Instal·lar-lo de nou el repara i la teva configuració es queda com està.',
 
   'options.folder': "Carpeta d'instal·lació",
-  'options.folderHint': "{name} s'actualitza en segon pla amb tots els permisos del sistema, així que només els administradors han de poder canviar-ne la carpeta. L'instal·lador comprova cada carpeta que triïs.",
+  'options.folderHint': "{name} s'actualitza tot sol en segon pla. L'instal·lador prepara per a això la carpeta que triïs.",
   'options.startMenu': 'Entrada al menú Inici',
   'options.menu': "Entrada al menú d'aplicacions",
   'options.desktop': "Drecera a l'escriptori",
@@ -41,7 +41,6 @@ export const ca: Dict = {
   'refusal.notLocal': "Aquesta carpeta és en una unitat de xarxa, USB o òptica. Tria'n una en un disc intern d'aquest ordinador.",
   'refusal.noAcl': 'Aquesta unitat no pot limitar qui en canvia els fitxers, com passa amb FAT i exFAT. Tria una carpeta en una unitat NTFS.',
   'refusal.notEmpty': "Aquesta carpeta ja té altres fitxers. Tria una carpeta buida o crea'n una de nova.",
-  'refusal.unsafeParent': 'Usuaris normals podrien canviar el nom o substituir una carpeta superior. Tria una carpeta dins de Program Files o una altra que només puguin canviar els administradors.',
   'refusal.link': 'Aquesta carpeta, o una de superior, és un enllaç a un altre lloc. Tria la carpeta real.',
   'refusal.file': 'Ja hi ha un fitxer amb aquest nom. Tria una carpeta.',
   'refusal.fixed': 'En aquest sistema, {name} sempre va a la seva carpeta habitual.',

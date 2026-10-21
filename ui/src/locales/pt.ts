@@ -32,7 +32,7 @@ export const pt: Dict = {
   'welcome.repair': 'O {name} {version} já está instalado. Instalá-lo de novo repara-o e as suas definições ficam como estão.',
 
   'options.folder': 'Pasta de instalação',
-  'options.folderHint': 'O {name} atualiza-se em segundo plano com todos os direitos do sistema, por isso a sua pasta só pode ser alterada por administradores. O instalador verifica cada pasta que escolher.',
+  'options.folderHint': '{name} mantém-se atualizado em segundo plano. O instalador prepara para isso a pasta que escolheres.',
   'options.startMenu': 'Entrada no menu Iniciar',
   'options.menu': 'Entrada no menu de aplicações',
   'options.desktop': 'Atalho no ambiente de trabalho',
@@ -41,7 +41,6 @@ export const pt: Dict = {
   'refusal.notLocal': 'Esta pasta está numa unidade de rede, USB ou ótica. Escolha uma num disco interno deste computador.',
   'refusal.noAcl': 'Esta unidade não consegue limitar quem altera os seus ficheiros, como acontece com FAT e exFAT. Escolha uma pasta numa unidade NTFS.',
   'refusal.notEmpty': 'Esta pasta já tem outros ficheiros. Escolha uma pasta vazia ou crie uma nova.',
-  'refusal.unsafeParent': 'Utilizadores comuns poderiam mudar o nome ou substituir uma pasta acima desta. Escolha uma pasta dentro de Programas ou outra que só os administradores possam alterar.',
   'refusal.link': 'Esta pasta, ou uma acima dela, é uma ligação para outro sítio. Escolha a pasta real.',
   'refusal.file': 'Já existe um ficheiro com este nome. Escolha antes uma pasta.',
   'refusal.fixed': 'Neste sistema, o {name} vai sempre para a sua pasta habitual.',

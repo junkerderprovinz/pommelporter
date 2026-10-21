@@ -32,7 +32,7 @@ export const en = {
   'welcome.repair': '{name} {version} is already installed. Installing it again repairs it, and your settings stay as they are.',
 
   'options.folder': 'Install folder',
-  'options.folderHint': '{name} updates itself in the background with full system rights, so its folder must be one that only administrators can change. The installer checks every folder you pick.',
+  'options.folderHint': '{name} keeps itself up to date in the background. The installer sets up the folder you pick for that.',
   'options.startMenu': 'Start menu entry',
   'options.menu': 'App menu entry',
   'options.desktop': 'Desktop shortcut',
@@ -41,7 +41,6 @@ export const en = {
   'refusal.notLocal': 'This folder is on a network, USB or optical drive. Pick one on a drive built into this computer.',
   'refusal.noAcl': "This drive can't control who changes its files, which is the case with FAT and exFAT. Pick a folder on an NTFS drive.",
   'refusal.notEmpty': 'This folder already has other files in it. Pick an empty folder or create a new one.',
-  'refusal.unsafeParent': 'Ordinary users could rename or replace a folder above this one. Pick a folder inside Program Files or another one only administrators can change.',
   'refusal.link': 'This folder, or one above it, is a link to somewhere else. Pick the real folder.',
   'refusal.file': 'A file already has this name. Pick a folder instead.',
   'refusal.fixed': 'On this system, {name} always goes to its usual folder.',

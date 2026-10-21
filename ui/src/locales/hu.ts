@@ -32,7 +32,7 @@ export const hu: Dict = {
   'welcome.repair': 'A(z) {name} {version} már telepítve van. Az újratelepítés kijavítja, a beállításai változatlanok maradnak.',
 
   'options.folder': 'Telepítési mappa',
-  'options.folderHint': 'A(z) {name} a háttérben teljes rendszerjogokkal frissíti magát, ezért a mappáját csak rendszergazdák módosíthatják. A telepítő minden választott mappát ellenőriz.',
+  'options.folderHint': 'A(z) {name} a háttérben magától frissül. A telepítő ehhez előkészíti a választott mappát.',
   'options.startMenu': 'Bejegyzés a Start menüben',
   'options.menu': 'Bejegyzés az alkalmazásmenüben',
   'options.desktop': 'Parancsikon az asztalon',
@@ -41,7 +41,6 @@ export const hu: Dict = {
   'refusal.notLocal': 'Ez a mappa hálózati, USB- vagy optikai meghajtón van. Válasszon mappát a számítógép beépített lemezén.',
   'refusal.noAcl': 'Ez a meghajtó nem tudja korlátozni, ki módosítja a fájljait, ahogy a FAT és az exFAT sem. Válasszon mappát NTFS-meghajtón.',
   'refusal.notEmpty': 'Ebben a mappában már vannak más fájlok. Válasszon üres mappát, vagy hozzon létre újat.',
-  'refusal.unsafeParent': 'Átlagos felhasználók átnevezhetnek vagy lecserélhetnek egy fölötte lévő mappát. Válasszon mappát a Program Files alatt, vagy egy másikat, amelyet csak rendszergazdák módosíthatnak.',
   'refusal.link': 'Ez a mappa vagy egy fölötte lévő máshová mutató hivatkozás. Válassza a valódi mappát.',
   'refusal.file': 'Már van ilyen nevű fájl. Válasszon inkább mappát.',
   'refusal.fixed': 'Ezen a rendszeren a(z) {name} mindig a megszokott mappájába kerül.',
