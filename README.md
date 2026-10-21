@@ -9,8 +9,7 @@
   <a href="https://github.com/junkerderprovinz/pommelporter/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/pommelporter/ci.yml?branch=main&label=Build&style=for-the-badge&logo=githubactions&logoColor=white" alt="Build" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/pommelporter/actions/workflows/style.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/pommelporter/style.yml?branch=main&label=Style&style=for-the-badge&logo=githubactions&logoColor=white" alt="Style" height="36"></a>&nbsp;
   <a href="https://github.com/junkerderprovinz/pommelporter/releases/latest"><img src="https://img.shields.io/github/v/release/junkerderprovinz/pommelporter?style=for-the-badge&logo=github&logoColor=white&label=Release&color=FCC419" alt="Release" height="36"></a>&nbsp;
-  <a href="https://pkg.go.dev/github.com/junkerderprovinz/pommelporter"><img src="https://img.shields.io/badge/Go-Reference-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go Reference" height="36"></a>&nbsp;
-  <a href="https://wails.io"><img src="https://img.shields.io/badge/Wails-3-DF0000?style=for-the-badge&logoColor=white" alt="Wails 3" height="36"></a>&nbsp;
+  <a href="https://pkg.go.dev/github.com/junkerderprovinz/pommelporter"><img src="https://img.shields.io/github/go-mod/go-version/junkerderprovinz/pommelporter?style=for-the-badge&logo=go&logoColor=white&label=Go&color=00ADD8" alt="Go" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge&logo=gnu&logoColor=white" alt="License: AGPL-3.0" height="36"></a>
 </p>
 
