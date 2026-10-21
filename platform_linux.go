@@ -8,3 +8,5 @@ import (
 const platformName = "linux"
 
 func platform() setup.Platform { return linux.New() }
+
+func prepare(setup.App, bool, bool) error { return nil }

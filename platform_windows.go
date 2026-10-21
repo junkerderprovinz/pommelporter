@@ -8,3 +8,7 @@ import (
 const platformName = "windows"
 
 func platform() setup.Platform { return windows.New() }
+
+func prepare(a setup.App, silent, uninstall bool) error {
+	return windows.Prepare(a, silent, uninstall)
+}

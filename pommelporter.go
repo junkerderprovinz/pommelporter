@@ -81,6 +81,9 @@ func Run(app App) error {
 	if err != nil {
 		return err
 	}
+	if err := prepare(a, args.silent, args.uninstall); err != nil {
+		return err
+	}
 	p := platform()
 	if args.silent {
 		return runSilent(p, a, args)
