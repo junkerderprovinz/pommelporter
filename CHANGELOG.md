@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.0.3 - 2026-10-22
+
+## 🎨 Design
+
+- **More room under the app tile.** The progress bar and the uninstall page started right below the tile. Both now sit in the middle of the window like the other pages, and a failed install still leaves space between the tile, the error and the buttons.
+
 ## 1.0.2 - 2026-10-21
 
 ## 🐛 Fixed
