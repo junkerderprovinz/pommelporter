@@ -19,6 +19,7 @@ type App struct {
 	Accent     string
 	Logo       []byte
 	Icon       []byte
+	Categories []string
 	Payload    fs.FS
 	InstanceID string
 	Autostart  string
@@ -62,6 +63,7 @@ const (
 	DirUnsafeParent = "unsafeParent" // a folder above it lets ordinary users rename or replace it
 	DirLink         = "link"         // the folder or one above it is a link or junction
 	DirFile         = "file"         // a file has that name
+	DirFixed        = "fixed"        // the platform installs into one folder only
 )
 
 // Folder is one directory as the folder chooser shows it.

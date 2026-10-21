@@ -33,6 +33,9 @@ type App struct {
 	Logo []byte
 	// Icon is a 256 px PNG for the Linux menu entry.
 	Icon []byte
+	// Categories place the Linux menu entry, such as Network and
+	// FileTransfer; without any it goes under Utility.
+	Categories []string
 	// Payload holds the files to install, at the top of the install folder.
 	Payload fs.FS
 	// InstanceID is the Wails single-instance ID of a copy running on its
@@ -70,7 +73,7 @@ func Run(app App) error {
 	a := setup.App{
 		Name: app.Name, ID: app.ID, Executable: app.Executable, Version: app.Version,
 		Publisher: app.Publisher, Homepage: app.Homepage, Accent: app.Accent,
-		Logo: app.Logo, Icon: app.Icon, Payload: app.Payload,
+		Logo: app.Logo, Icon: app.Icon, Categories: app.Categories, Payload: app.Payload,
 		InstanceID: app.InstanceID, Autostart: app.Autostart,
 		Legacy: setup.Legacy(app.Legacy),
 	}
