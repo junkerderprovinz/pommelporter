@@ -20,7 +20,6 @@ export const sl: Dict = {
   'button.use': 'Uporabi to mapo',
 
   'welcome.byline': 'Različica {version}, {publisher}',
-  'welcome.language': 'Jezik',
   'welcome.windows': 'S tem namestite {name} za vse, ki uporabljajo ta računalnik.',
   'welcome.linux': 'S tem namestite {name} zase na tem računalniku.',
   'welcome.update': '{name} {old} je že nameščen. Zamenjala ga bo različica {version}, vaše nastavitve pa ostanejo, kot so.',

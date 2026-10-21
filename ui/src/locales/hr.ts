@@ -20,7 +20,6 @@ export const hr: Dict = {
   'button.use': 'Koristi ovu mapu',
 
   'welcome.byline': 'Verzija {version}, {publisher}',
-  'welcome.language': 'Jezik',
   'welcome.windows': 'Ovime instalirate {name} za sve koji koriste ovo računalo.',
   'welcome.linux': 'Ovime instalirate {name} za sebe na ovom računalu.',
   'welcome.update': '{name} {old} već je instaliran. Zamijenit će ga verzija {version}, a vaše postavke ostaju kakve jesu.',

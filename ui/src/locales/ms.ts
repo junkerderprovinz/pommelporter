@@ -20,7 +20,6 @@ export const ms: Dict = {
   'button.use': 'Guna folder ini',
 
   'welcome.byline': 'Versi {version} oleh {publisher}',
-  'welcome.language': 'Bahasa',
   'welcome.windows': 'Ini memasang {name} untuk semua orang yang menggunakan komputer ini.',
   'welcome.linux': 'Ini memasang {name} untuk anda di komputer ini.',
   'welcome.update': '{name} {old} sudah dipasang. Versi {version} akan menggantikannya, dan tetapan anda kekal seperti biasa.',

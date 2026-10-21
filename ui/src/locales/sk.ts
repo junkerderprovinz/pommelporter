@@ -20,7 +20,6 @@ export const sk: Dict = {
   'button.use': 'Použiť tento priečinok',
 
   'welcome.byline': 'Verzia {version} od {publisher}',
-  'welcome.language': 'Jazyk',
   'welcome.windows': 'Takto nainštalujete {name} pre všetkých, ktorí tento počítač používajú.',
   'welcome.linux': 'Takto nainštalujete {name} pre seba na tomto počítači.',
   'welcome.update': '{name} {old} je už nainštalovaný. Nahradí ho verzia {version} a vaše nastavenia zostanú, ako sú.',

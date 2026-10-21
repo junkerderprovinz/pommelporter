@@ -20,7 +20,6 @@ export const fr: Dict = {
   'button.use': 'Utiliser ce dossier',
 
   'welcome.byline': 'Version {version} par {publisher}',
-  'welcome.language': 'Langue',
   'welcome.windows': 'Ceci installe {name} pour toutes les personnes qui utilisent cet ordinateur.',
   'welcome.linux': 'Ceci installe {name} pour vous sur cet ordinateur.',
   'welcome.update': '{name} {old} est déjà installé. Il sera remplacé par la version {version}, et vos réglages restent tels quels.',

@@ -20,7 +20,6 @@ export const bg: Dict = {
   'button.use': 'Използвай тази папка',
 
   'welcome.byline': 'Версия {version} от {publisher}',
-  'welcome.language': 'Език',
   'welcome.windows': 'Това инсталира {name} за всички, които ползват този компютър.',
   'welcome.linux': 'Това инсталира {name} за вас на този компютър.',
   'welcome.update': '{name} {old} вече е инсталиран. Ще бъде заменен с версия {version}, а настройките ви остават същите.',

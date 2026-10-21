@@ -20,7 +20,6 @@ export const ar: Dict = {
   'button.use': 'استخدم هذا المجلد',
 
   'welcome.byline': 'الإصدار {version} من {publisher}',
-  'welcome.language': 'اللغة',
   'welcome.windows': 'سيُثبَّت {name} لكل من يستخدم هذا الكمبيوتر.',
   'welcome.linux': 'سيُثبَّت {name} لك على هذا الكمبيوتر.',
   'welcome.update': '{name} {old} مثبت بالفعل. سيحل محله الإصدار {version}، وتبقى إعداداتك كما هي.',

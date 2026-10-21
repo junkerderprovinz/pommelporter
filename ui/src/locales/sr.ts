@@ -20,7 +20,6 @@ export const sr: Dict = {
   'button.use': 'Користи ову фасциклу',
 
   'welcome.byline': 'Верзија {version}, {publisher}',
-  'welcome.language': 'Језик',
   'welcome.windows': 'Овим инсталирате {name} за све који користе овај рачунар.',
   'welcome.linux': 'Овим инсталирате {name} за себе на овом рачунару.',
   'welcome.update': '{name} {old} је већ инсталиран. Замениће га верзија {version}, а ваша подешавања остају каква јесу.',

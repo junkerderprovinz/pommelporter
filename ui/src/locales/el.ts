@@ -20,7 +20,6 @@ export const el: Dict = {
   'button.use': 'Χρήση αυτού του φακέλου',
 
   'welcome.byline': 'Έκδοση {version} από {publisher}',
-  'welcome.language': 'Γλώσσα',
   'welcome.windows': 'Έτσι εγκαθίσταται το {name} για όλους όσοι χρησιμοποιούν αυτόν τον υπολογιστή.',
   'welcome.linux': 'Έτσι εγκαθίσταται το {name} για εσάς σε αυτόν τον υπολογιστή.',
   'welcome.update': 'Το {name} {old} είναι ήδη εγκατεστημένο. Θα αντικατασταθεί από την έκδοση {version} και οι ρυθμίσεις σας μένουν ως έχουν.',

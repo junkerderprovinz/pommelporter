@@ -20,7 +20,6 @@ export const nl: Dict = {
   'button.use': 'Deze map gebruiken',
 
   'welcome.byline': 'Versie {version} van {publisher}',
-  'welcome.language': 'Taal',
   'welcome.windows': 'Hiermee installeer je {name} voor iedereen die deze computer gebruikt.',
   'welcome.linux': 'Hiermee installeer je {name} voor jezelf op deze computer.',
   'welcome.update': '{name} {old} is al geïnstalleerd. Dit vervangt het door {version}, en je instellingen blijven zoals ze zijn.',

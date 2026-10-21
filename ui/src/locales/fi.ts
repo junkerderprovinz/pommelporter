@@ -20,7 +20,6 @@ export const fi: Dict = {
   'button.use': 'Käytä tätä kansiota',
 
   'welcome.byline': 'Versio {version}, {publisher}',
-  'welcome.language': 'Kieli',
   'welcome.windows': 'Tämä asentaa sovelluksen {name} kaikille tämän tietokoneen käyttäjille.',
   'welcome.linux': 'Tämä asentaa sovelluksen {name} sinulle tähän tietokoneeseen.',
   'welcome.update': '{name} {old} on jo asennettu. Se korvataan versiolla {version}, ja asetuksesi säilyvät ennallaan.',

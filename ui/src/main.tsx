@@ -54,7 +54,7 @@ setGlyphResolver((key) => GLYPHS[key]?.());
 
 const installer = await connect();
 const [info, defaults] = await Promise.all([installer.info(), installer.defaults()]);
-await setLanguage(defaults.language || navigator.language);
+await setLanguage(navigator.language);
 applyAccent(info.accent);
 document.title = info.name;
 document.documentElement.classList.toggle('floating', info.frameless);

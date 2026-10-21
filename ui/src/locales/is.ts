@@ -20,7 +20,6 @@ export const is: Dict = {
   'button.use': 'Nota þessa möppu',
 
   'welcome.byline': 'Útgáfa {version} frá {publisher}',
-  'welcome.language': 'Tungumál',
   'welcome.windows': 'Þetta setur {name} upp fyrir alla sem nota þessa tölvu.',
   'welcome.linux': 'Þetta setur {name} upp fyrir þig á þessari tölvu.',
   'welcome.update': '{name} {old} er þegar uppsett. Útgáfa {version} kemur í staðinn og stillingarnar þínar haldast óbreyttar.',

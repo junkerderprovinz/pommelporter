@@ -20,7 +20,6 @@ export const no: Dict = {
   'button.use': 'Bruk denne mappen',
 
   'welcome.byline': 'Versjon {version} fra {publisher}',
-  'welcome.language': 'Språk',
   'welcome.windows': 'Dette installerer {name} for alle som bruker denne datamaskinen.',
   'welcome.linux': 'Dette installerer {name} for deg på denne datamaskinen.',
   'welcome.update': '{name} {old} er allerede installert. Det erstattes med {version}, og innstillingene dine blir som de er.',

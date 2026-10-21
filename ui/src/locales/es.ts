@@ -20,7 +20,6 @@ export const es: Dict = {
   'button.use': 'Usar esta carpeta',
 
   'welcome.byline': 'Versión {version} de {publisher}',
-  'welcome.language': 'Idioma',
   'welcome.windows': 'Esto instala {name} para todas las personas que usan este equipo.',
   'welcome.linux': 'Esto instala {name} para ti en este equipo.',
   'welcome.update': '{name} {old} ya está instalado. Esto lo sustituye por la versión {version} y tu configuración se queda como está.',

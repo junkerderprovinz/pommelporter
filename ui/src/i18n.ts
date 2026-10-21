@@ -1,5 +1,5 @@
-// The window speaks the language the last install chose, else the system's,
-// and English where it has no dictionary. Only the chosen dictionary is loaded.
+// The window speaks the system's language, read from navigator.language, and
+// English where it has no dictionary. Only that dictionary is loaded.
 import { en, type Dict, type Key } from './locales/en';
 
 export type { Key };

@@ -29,7 +29,7 @@ export interface Options {
   dir: string;
   startMenu: boolean;
   desktop: boolean;
-  /** The language code the app first starts in, or "" before anyone chose. */
+  /** The language code the app first starts in: the one this window speaks. */
   language: string;
 }
 

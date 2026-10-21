@@ -20,7 +20,6 @@ export const et: Dict = {
   'button.use': 'Kasuta seda kausta',
 
   'welcome.byline': 'Versioon {version}, {publisher}',
-  'welcome.language': 'Keel',
   'welcome.windows': 'Nii paigaldad {name} kõigile, kes seda arvutit kasutavad.',
   'welcome.linux': 'Nii paigaldad {name} endale selles arvutis.',
   'welcome.update': '{name} {old} on juba paigaldatud. Selle asemele tuleb versioon {version} ja sinu seaded jäävad samaks.',

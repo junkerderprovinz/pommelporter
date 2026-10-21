@@ -20,7 +20,6 @@ export const hu: Dict = {
   'button.use': 'Ez a mappa legyen',
 
   'welcome.byline': 'Verzió: {version}, kiadó: {publisher}',
-  'welcome.language': 'Nyelv',
   'welcome.windows': 'Ez mindenkinek telepíti a(z) {name} programot, aki ezt a számítógépet használja.',
   'welcome.linux': 'Ez önnek telepíti a(z) {name} programot ezen a számítógépen.',
   'welcome.update': 'A(z) {name} {old} már telepítve van. A(z) {version} verzió váltja fel, a beállításai változatlanok maradnak.',

@@ -20,7 +20,6 @@ export const tr: Dict = {
   'button.use': 'Bu klasörü kullan',
 
   'welcome.byline': 'Sürüm {version}, {publisher}',
-  'welcome.language': 'Dil',
   'welcome.windows': 'Bu, {name} uygulamasını bu bilgisayarı kullanan herkes için kurar.',
   'welcome.linux': 'Bu, {name} uygulamasını bu bilgisayarda sizin için kurar.',
   'welcome.update': '{name} {old} zaten kurulu. Yerine {version} sürümü gelir, ayarlarınız olduğu gibi kalır.',

@@ -20,7 +20,6 @@ export const uk: Dict = {
   'button.use': 'Вибрати цю теку',
 
   'welcome.byline': 'Версія {version}, {publisher}',
-  'welcome.language': 'Мова',
   'welcome.windows': "{name} буде встановлено для всіх, хто користується цим комп'ютером.",
   'welcome.linux': "{name} буде встановлено для вас на цьому комп'ютері.",
   'welcome.update': '{name} {old} уже встановлено. Його буде замінено версією {version}, а ваші налаштування залишаться без змін.',

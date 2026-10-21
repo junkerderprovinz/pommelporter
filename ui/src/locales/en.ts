@@ -20,7 +20,6 @@ export const en = {
   'button.use': 'Use this folder',
 
   'welcome.byline': 'Version {version} by {publisher}',
-  'welcome.language': 'Language',
   'welcome.windows': 'This sets up {name} for everyone who uses this computer.',
   'welcome.linux': 'This sets up {name} for you on this computer.',
   'welcome.update': '{name} {old} is already installed. This replaces it with {version}, and your settings stay as they are.',

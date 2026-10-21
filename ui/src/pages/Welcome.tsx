@@ -2,7 +2,6 @@ import type { Info } from '../bridge';
 import { t } from '../i18n';
 import { Button } from '../glimstone/react/Button';
 import { Page } from '../components/Page';
-import { LanguagePicker } from '../components/LanguagePicker';
 
 function lead(info: Info): string {
   const { name, version, existing } = info;
@@ -13,15 +12,11 @@ function lead(info: Info): string {
 
 export function Welcome({
   info,
-  language,
-  onLanguage,
   onNext,
   onCancel,
   onWebsite,
 }: {
   info: Info;
-  language: string;
-  onLanguage: (code: string) => void;
   onNext: () => void;
   onCancel: () => void;
   onWebsite: () => void;
@@ -48,10 +43,6 @@ export function Welcome({
           </p>
         </div>
         <p className="text-body text-carbon-textSub">{lead(info)}</p>
-        <div className="mt-2 flex items-center gap-4">
-          <span className="text-body text-carbon-textSub">{t('welcome.language')}</span>
-          <LanguagePicker label={t('welcome.language')} value={language} onChange={onLanguage} />
-        </div>
       </div>
     </Page>
   );

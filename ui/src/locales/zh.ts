@@ -20,7 +20,6 @@ export const zh: Dict = {
   'button.use': '使用此文件夹',
 
   'welcome.byline': '版本 {version}，{publisher}',
-  'welcome.language': '语言',
   'welcome.windows': '这会为使用这台电脑的所有人安装 {name}。',
   'welcome.linux': '这会在这台电脑上为你安装 {name}。',
   'welcome.update': '{name} {old} 已经安装。它将被替换为 {version}，你的设置保持不变。',

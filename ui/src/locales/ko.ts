@@ -20,7 +20,6 @@ export const ko: Dict = {
   'button.use': '이 폴더 사용',
 
   'welcome.byline': '버전 {version}, {publisher}',
-  'welcome.language': '언어',
   'welcome.windows': '이 컴퓨터를 쓰는 모든 사람을 위해 {name}을(를) 설치합니다.',
   'welcome.linux': '이 컴퓨터에 나만 쓸 {name}을(를) 설치합니다.',
   'welcome.update': '{name} {old}이(가) 이미 설치되어 있습니다. {version} 버전으로 바꾸며, 설정은 그대로 유지됩니다.',
