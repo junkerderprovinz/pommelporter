@@ -74,7 +74,8 @@ $me = [System.Security.Principal.WindowsIdentity]::GetCurrent().User.Value
 $principal = $definition.Task.Principals.Principal
 Expect ($principal.UserId -eq $me) "the task running as $me, got $($principal.UserId)"
 Expect ($principal.LogonType -eq 'S4U') 'the task running whether or not that person is signed in'
-Expect ($principal.RunLevel -eq 'LeastPrivilege') 'the task running without elevation'
+# schtasks leaves out a run level that is the default, which is no elevation.
+Expect ($principal.RunLevel -in @($null, '', 'LeastPrivilege')) "the task running without elevation, got $($principal.RunLevel)"
 $mine = (Get-Acl $exposed).Access | Where-Object { $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -eq $me }
 Expect ($mine | Where-Object { $_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify }) 'change rights for that person'
 Uninstall $exposed
