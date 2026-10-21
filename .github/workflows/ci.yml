@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version-file: go.mod
+
+      - run: go vet ./...
+      # The runner is elevated, so the tests that need administrator rights
+      # run here too.
+      - run: go test ./...
+
+      - name: Build the example installer
+        run: |
+          go build -o payload/PommelExample.exe ./example/stub
+          go build -o PommelExample-installer.exe ./example
+
+      - name: Install, check and uninstall
+        shell: pwsh
+        run: ./example/roundtrip.ps1 -Installer ./PommelExample-installer.exe -Payload ./payload
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        with:
+          go-version-file: go.mod
+
+      - run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+      - run: go vet -tags gtk3 ./...
+      - run: go test -tags gtk3 ./...
+
+      - name: Build the example installer
+        run: |
+          go build -tags gtk3 -o payload/pommelexample ./example/stub
+          go build -tags gtk3 -o pommelexample-installer ./example
+
+      - name: Install, check and uninstall
+        run: ./example/roundtrip.sh ./pommelexample-installer ./payload
