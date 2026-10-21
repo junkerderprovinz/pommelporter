@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const gl: Dict = {
-  'title.welcome': 'Benvida',
   'title.options': 'Opcións',
   'title.installing': 'Instalando',
   'title.uninstall': 'Desinstalar',

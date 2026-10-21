@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const hi: Dict = {
-  'title.welcome': 'स्वागत है',
   'title.options': 'विकल्प',
   'title.installing': 'इंस्टॉल हो रहा है',
   'title.uninstall': 'अनइंस्टॉल',

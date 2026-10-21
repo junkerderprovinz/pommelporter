@@ -30,8 +30,8 @@ export function LanguagePicker({
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-[var(--btn-h-key)] w-full items-center gap-2.5 bg-carbon-surface2 ps-3 pe-8 text-start text-body
-          text-carbon-text outline-none transition hover:bg-carbon-surface3 focus-visible:brightness-125"
+        className="flex h-[var(--btn-h-key)] w-full items-center gap-2.5 bg-carbon-surface3 ps-3 pe-8 text-start text-body
+          text-carbon-text outline-none transition hover:bg-carbon-hoverRaised focus-visible:brightness-125"
         style={{ borderRadius: 'var(--radius-control)' }}
       >
         <Flag flag={current.flag} />

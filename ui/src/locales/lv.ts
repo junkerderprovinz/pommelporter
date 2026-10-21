@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const lv: Dict = {
-  'title.welcome': 'Laipni lūdzam',
   'title.options': 'Opcijas',
   'title.installing': 'Instalē',
   'title.uninstall': 'Atinstalēt',

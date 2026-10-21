@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const et: Dict = {
-  'title.welcome': 'Tere tulemast',
   'title.options': 'Valikud',
   'title.installing': 'Paigaldamine',
   'title.uninstall': 'Eemalda',

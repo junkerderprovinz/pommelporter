@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const hu: Dict = {
-  'title.welcome': 'Üdvözöljük',
   'title.options': 'Beállítások',
   'title.installing': 'Telepítés',
   'title.uninstall': 'Eltávolítás',

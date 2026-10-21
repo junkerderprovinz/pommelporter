@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const fr: Dict = {
-  'title.welcome': 'Bienvenue',
   'title.options': 'Options',
   'title.installing': 'Installation',
   'title.uninstall': 'Désinstaller',

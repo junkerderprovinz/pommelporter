@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const vi: Dict = {
-  'title.welcome': 'Chào mừng',
   'title.options': 'Tùy chọn',
   'title.installing': 'Đang cài đặt',
   'title.uninstall': 'Gỡ cài đặt',

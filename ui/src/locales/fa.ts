@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const fa: Dict = {
-  'title.welcome': 'خوش آمدید',
   'title.options': 'گزینه‌ها',
   'title.installing': 'در حال نصب',
   'title.uninstall': 'حذف نصب',

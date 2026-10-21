@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const el: Dict = {
-  'title.welcome': 'Καλώς ήρθατε',
   'title.options': 'Επιλογές',
   'title.installing': 'Εγκατάσταση',
   'title.uninstall': 'Απεγκατάσταση',

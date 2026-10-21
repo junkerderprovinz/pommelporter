@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const uk: Dict = {
-  'title.welcome': 'Ласкаво просимо',
   'title.options': 'Параметри',
   'title.installing': 'Встановлення',
   'title.uninstall': 'Видалення',

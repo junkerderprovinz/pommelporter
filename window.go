@@ -129,16 +129,16 @@ func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 	svc.app = app
 	opts := application.WebviewWindowOptions{
 		Title:               title,
-		Width:               640,
+		Width:               760,
 		Height:              480,
 		DisableResize:       true,
 		MinimiseButtonState: application.ButtonEnabled,
 		MaximiseButtonState: application.ButtonHidden,
 	}
 	if frameless {
-		// The window is clear and the page draws its card with the logo on
-		// the top edge, so it needs room above the card and for its shadow,
-		// and none of the corners and shadow Windows would add.
+		// The window is clear and the page draws its own card, so it needs
+		// room around the card for its shadow and none of the corners and
+		// shadow Windows would add.
 		opts.Frameless = true
 		opts.Height = 560
 		opts.BackgroundType = application.BackgroundTypeTransparent

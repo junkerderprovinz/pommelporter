@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const cs: Dict = {
-  'title.welcome': 'Vítejte',
   'title.options': 'Možnosti',
   'title.installing': 'Instalace',
   'title.uninstall': 'Odinstalovat',

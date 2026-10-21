@@ -12,14 +12,15 @@ export function Page({
   actions,
   start,
 }: {
-  title: string;
+  /** Left out on the first page, where the app's name says enough. */
+  title?: string;
   children: ReactNode;
   actions?: ReactNode;
   start?: ReactNode;
 }) {
   return (
     <div className="flex h-full flex-col gap-4 px-6 pt-2 pb-5">
-      <h1 className="glim-eyebrow text-center">{title}</h1>
+      {title && <h1 className="glim-eyebrow text-center">{title}</h1>}
       <main className="glim-page-enter flex min-h-0 flex-1 flex-col">{children}</main>
       <footer className="flex min-h-[var(--btn-h-key)] items-center gap-3">
         {start}

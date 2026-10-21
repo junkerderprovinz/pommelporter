@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const zh: Dict = {
-  'title.welcome': '欢迎',
   'title.options': '选项',
   'title.installing': '正在安装',
   'title.uninstall': '卸载',

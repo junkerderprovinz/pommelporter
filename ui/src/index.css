@@ -10,6 +10,18 @@ body,
   height: 100%;
 }
 
+/* The two halves of the app tile, lit from the left as on the apps' icons. */
+:root {
+  --tile-lit: #ffffff;
+  --tile-shade: #e0e0e0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tile-lit: #4a4a4a;
+    --tile-shade: #393939;
+  }
+}
+
 /* A window without a frame is clear, and the card inside it is the window. */
 html.floating,
 html.floating body {

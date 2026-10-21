@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const he: Dict = {
-  'title.welcome': 'ברוכים הבאים',
   'title.options': 'אפשרויות',
   'title.installing': 'מתקין',
   'title.uninstall': 'הסרה',

@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const ar: Dict = {
-  'title.welcome': 'أهلًا بك',
   'title.options': 'الخيارات',
   'title.installing': 'جارٍ التثبيت',
   'title.uninstall': 'إلغاء التثبيت',

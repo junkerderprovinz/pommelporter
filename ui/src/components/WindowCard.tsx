@@ -10,11 +10,11 @@ const drag = { '--wails-draggable': 'drag' } as CSSProperties;
 const noDrag = { '--wails-draggable': 'no-drag' } as CSSProperties;
 
 /**
- * The whole window as one card with the app's logo on its top edge. Where the
- * window has no frame of its own, the card floats in a clear window with room
- * above it for the logo and around it for the shadow, carries the window's two
- * buttons, and is what the window is dragged by. Close is held back while the
- * installer works, as the window would only refuse it.
+ * The whole window as one card, with the app's logo on its tile at the top.
+ * Where the window has no frame of its own, the card floats in a clear window
+ * with room around it for the shadow, carries the window's two buttons, and is
+ * what the window is dragged by. Close is held back while the installer works,
+ * as the window would only refuse it.
  */
 export function WindowCard({
   info,
@@ -29,21 +29,21 @@ export function WindowCard({
   onClose: () => void;
   children: ReactNode;
 }) {
-  if (!info.frameless) {
-    return (
-      <div className="flex h-full flex-col bg-carbon-surface">
-        <div className="flex shrink-0 justify-center pt-5">
-          <Logo svg={info.logo} className="h-20 max-w-[50%] object-contain" />
-        </div>
-        <div className="min-h-0 flex-1">{children}</div>
+  const content = (
+    <>
+      <div className="flex shrink-0 justify-center pt-7" style={drag}>
+        <AppTile svg={info.logo} />
       </div>
-    );
+      <div className="min-h-0 flex-1">{children}</div>
+    </>
+  );
+  if (!info.frameless) {
+    return <div className="flex h-full flex-col bg-carbon-surface">{content}</div>;
   }
   return (
-    <div className="relative h-full px-3 pt-14 pb-3">
+    <div className="h-full p-3">
       <div className="glim-card relative flex h-full flex-col">
-        <div className="absolute inset-x-0 top-0 h-16" style={drag} />
-        <div className="absolute end-1 top-1 flex">
+        <div className="absolute end-1 top-1 z-10 flex">
           <WindowButton label={t('button.minimise')} onClick={onMinimise}>
             <IconMinimise />
           </WindowButton>
@@ -51,11 +51,26 @@ export function WindowCard({
             <IconClose />
           </WindowButton>
         </div>
-        <div className="min-h-0 flex-1 pt-16">{children}</div>
+        {content}
       </div>
-      <div className="absolute start-1/2 top-0 flex max-w-[60%] -translate-x-1/2 rtl:translate-x-1/2" style={drag}>
-        <Logo svg={info.logo} className="h-28 max-w-full object-contain drop-shadow-lg" />
-      </div>
+    </div>
+  );
+}
+
+/**
+ * The logo on the app's tile, lit from the left as on its icon, so it stands
+ * on the card like on a pedestal. The tile follows the colour mode.
+ */
+function AppTile({ svg }: { svg: string }) {
+  return (
+    <div
+      className="relative flex size-28 items-center justify-center rounded-[1.6rem]"
+      style={{
+        background: 'linear-gradient(90deg, var(--tile-lit) 50%, var(--tile-shade) 50%)',
+        boxShadow: 'var(--elevation), var(--hairline)',
+      }}
+    >
+      <Logo svg={svg} className="h-24 max-w-24 object-contain" />
     </div>
   );
 }

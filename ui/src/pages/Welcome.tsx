@@ -28,7 +28,6 @@ export function Welcome({
 }) {
   return (
     <Page
-      title={t('title.welcome')}
       start={
         info.homepage && (
           <Button label={t('button.website')} labelKey="button.website" tone="subtle" className="glim-btn-key" onClick={onWebsite} />
@@ -48,7 +47,7 @@ export function Welcome({
             {t('welcome.byline', { version: info.version, publisher: info.publisher })}
           </p>
         </div>
-        <p className="max-w-md text-body text-carbon-textSub">{lead(info)}</p>
+        <p className="text-body text-carbon-textSub">{lead(info)}</p>
         <div className="mt-2 flex items-center gap-4">
           <span className="text-body text-carbon-textSub">{t('welcome.language')}</span>
           <LanguagePicker label={t('welcome.language')} value={language} onChange={onLanguage} />

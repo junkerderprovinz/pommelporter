@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const bg: Dict = {
-  'title.welcome': 'Добре дошли',
   'title.options': 'Настройки',
   'title.installing': 'Инсталиране',
   'title.uninstall': 'Деинсталиране',

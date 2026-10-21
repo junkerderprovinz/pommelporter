@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const ko: Dict = {
-  'title.welcome': '환영합니다',
   'title.options': '옵션',
   'title.installing': '설치 중',
   'title.uninstall': '제거',

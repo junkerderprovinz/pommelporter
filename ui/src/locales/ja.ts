@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const ja: Dict = {
-  'title.welcome': 'ようこそ',
   'title.options': 'オプション',
   'title.installing': 'インストール中',
   'title.uninstall': 'アンインストール',

@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const fi: Dict = {
-  'title.welcome': 'Tervetuloa',
   'title.options': 'Asetukset',
   'title.installing': 'Asennetaan',
   'title.uninstall': 'Poista asennus',

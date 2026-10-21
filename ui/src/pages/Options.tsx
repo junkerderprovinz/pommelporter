@@ -80,7 +80,7 @@ export function Options({
         </>
       }
     >
-      <div className="flex flex-col gap-5">
+      <div className="my-auto flex flex-col gap-5">
         {!linux && (
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-4">

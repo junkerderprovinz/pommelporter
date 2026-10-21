@@ -1,7 +1,6 @@
 import type { Dict } from './en';
 
 export const th: Dict = {
-  'title.welcome': 'ยินดีต้อนรับ',
   'title.options': 'ตัวเลือก',
   'title.installing': 'กำลังติดตั้ง',
   'title.uninstall': 'ถอนการติดตั้ง',
