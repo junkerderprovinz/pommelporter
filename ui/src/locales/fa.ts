@@ -13,6 +13,7 @@ export const fa: Dict = {
   'button.back': 'قبلی',
   'button.cancel': 'لغو',
   'button.close': 'بستن',
+  'button.minimise': 'کوچک کردن',
   'button.install': 'نصب',
   'button.uninstall': 'حذف نصب',
   'button.start': 'اجرای {name}',

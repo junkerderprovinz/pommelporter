@@ -13,6 +13,7 @@ export const ar: Dict = {
   'button.back': 'رجوع',
   'button.cancel': 'إلغاء',
   'button.close': 'إغلاق',
+  'button.minimise': 'تصغير',
   'button.install': 'تثبيت',
   'button.uninstall': 'إلغاء التثبيت',
   'button.start': 'تشغيل {name}',

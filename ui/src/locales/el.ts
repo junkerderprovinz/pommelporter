@@ -13,6 +13,7 @@ export const el: Dict = {
   'button.back': 'Πίσω',
   'button.cancel': 'Ακύρωση',
   'button.close': 'Κλείσιμο',
+  'button.minimise': 'Ελαχιστοποίηση',
   'button.install': 'Εγκατάσταση',
   'button.uninstall': 'Απεγκατάσταση',
   'button.start': 'Άνοιγμα {name}',

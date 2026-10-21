@@ -13,6 +13,7 @@ export const ko: Dict = {
   'button.back': '뒤로',
   'button.cancel': '취소',
   'button.close': '닫기',
+  'button.minimise': '최소화',
   'button.install': '설치',
   'button.uninstall': '제거',
   'button.start': '{name} 시작',

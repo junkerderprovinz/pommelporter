@@ -13,6 +13,7 @@ export const is: Dict = {
   'button.back': 'Til baka',
   'button.cancel': 'Hætta við',
   'button.close': 'Loka',
+  'button.minimise': 'Lágmarka',
   'button.install': 'Setja upp',
   'button.uninstall': 'Fjarlægja',
   'button.start': 'Ræsa {name}',

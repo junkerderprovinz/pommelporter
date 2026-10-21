@@ -13,6 +13,7 @@ export const cs: Dict = {
   'button.back': 'Zpět',
   'button.cancel': 'Zrušit',
   'button.close': 'Zavřít',
+  'button.minimise': 'Minimalizovat',
   'button.install': 'Nainstalovat',
   'button.uninstall': 'Odinstalovat',
   'button.start': 'Spustit {name}',

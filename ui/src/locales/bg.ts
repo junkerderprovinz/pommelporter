@@ -13,6 +13,7 @@ export const bg: Dict = {
   'button.back': 'Назад',
   'button.cancel': 'Отказ',
   'button.close': 'Затвори',
+  'button.minimise': 'Минимизиране',
   'button.install': 'Инсталирай',
   'button.uninstall': 'Деинсталирай',
   'button.start': 'Стартирай {name}',

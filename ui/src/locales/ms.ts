@@ -13,6 +13,7 @@ export const ms: Dict = {
   'button.back': 'Kembali',
   'button.cancel': 'Batal',
   'button.close': 'Tutup',
+  'button.minimise': 'Minimumkan',
   'button.install': 'Pasang',
   'button.uninstall': 'Nyahpasang',
   'button.start': 'Buka {name}',

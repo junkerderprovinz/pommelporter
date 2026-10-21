@@ -13,6 +13,7 @@ export const he: Dict = {
   'button.back': 'הקודם',
   'button.cancel': 'ביטול',
   'button.close': 'סגירה',
+  'button.minimise': 'מזעור',
   'button.install': 'התקנה',
   'button.uninstall': 'הסרה',
   'button.start': 'הפעלת {name}',

@@ -13,6 +13,7 @@ export const en = {
   'button.back': 'Back',
   'button.cancel': 'Cancel',
   'button.close': 'Close',
+  'button.minimise': 'Minimise',
   'button.install': 'Install',
   'button.uninstall': 'Uninstall',
   'button.start': 'Start {name}',

@@ -13,6 +13,7 @@ export const lv: Dict = {
   'button.back': 'Atpakaļ',
   'button.cancel': 'Atcelt',
   'button.close': 'Aizvērt',
+  'button.minimise': 'Minimizēt',
   'button.install': 'Instalēt',
   'button.uninstall': 'Atinstalēt',
   'button.start': 'Palaist {name}',

@@ -13,6 +13,7 @@ export const ru: Dict = {
   'button.back': 'Назад',
   'button.cancel': 'Отмена',
   'button.close': 'Закрыть',
+  'button.minimise': 'Свернуть',
   'button.install': 'Установить',
   'button.uninstall': 'Удалить',
   'button.start': 'Запустить {name}',

@@ -13,6 +13,7 @@ export const et: Dict = {
   'button.back': 'Tagasi',
   'button.cancel': 'Loobu',
   'button.close': 'Sulge',
+  'button.minimise': 'Minimeeri',
   'button.install': 'Paigalda',
   'button.uninstall': 'Eemalda',
   'button.start': 'Käivita {name}',

@@ -13,6 +13,7 @@ export const zh: Dict = {
   'button.back': '上一步',
   'button.cancel': '取消',
   'button.close': '关闭',
+  'button.minimise': '最小化',
   'button.install': '安装',
   'button.uninstall': '卸载',
   'button.start': '启动 {name}',

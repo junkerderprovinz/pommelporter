@@ -13,6 +13,7 @@ export const ja: Dict = {
   'button.back': '戻る',
   'button.cancel': 'キャンセル',
   'button.close': '閉じる',
+  'button.minimise': '最小化',
   'button.install': 'インストール',
   'button.uninstall': 'アンインストール',
   'button.start': '{name} を起動',

@@ -13,6 +13,7 @@ export const pl: Dict = {
   'button.back': 'Wstecz',
   'button.cancel': 'Anuluj',
   'button.close': 'Zamknij',
+  'button.minimise': 'Minimalizuj',
   'button.install': 'Zainstaluj',
   'button.uninstall': 'Odinstaluj',
   'button.start': 'Uruchom {name}',

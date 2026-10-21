@@ -20,6 +20,8 @@ export interface Info {
   mode: 'install' | 'uninstall';
   platform: string;
   existing: Existing | null;
+  /** Whether the window draws its own title bar, as on Windows. */
+  frameless: boolean;
 }
 
 /** The choices on the options page, as setup.Options. */
@@ -65,6 +67,7 @@ export interface Installer {
   uninstall(): Promise<void>;
   launch(): Promise<void>;
   openURL(url: string): Promise<void>;
+  minimise(): Promise<void>;
   quit(): Promise<void>;
   /** Returns the function that stops listening. */
   onProgress(listener: (p: Progress) => void): () => void;
@@ -98,6 +101,7 @@ async function wailsInstaller(): Promise<Installer> {
     uninstall: () => call('Uninstall'),
     launch: () => call('Launch'),
     openURL: (url) => call('OpenURL', url),
+    minimise: () => call('Minimise'),
     quit: () => call('Quit'),
     onProgress: (listener) => runtime.Events.On('progress', (event) => listener(event.data as Progress)),
   };

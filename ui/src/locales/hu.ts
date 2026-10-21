@@ -13,6 +13,7 @@ export const hu: Dict = {
   'button.back': 'Vissza',
   'button.cancel': 'Mégse',
   'button.close': 'Bezárás',
+  'button.minimise': 'Kis méret',
   'button.install': 'Telepítés',
   'button.uninstall': 'Eltávolítás',
   'button.start': '{name} indítása',

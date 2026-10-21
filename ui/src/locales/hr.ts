@@ -13,6 +13,7 @@ export const hr: Dict = {
   'button.back': 'Natrag',
   'button.cancel': 'Odustani',
   'button.close': 'Zatvori',
+  'button.minimise': 'Smanji',
   'button.install': 'Instaliraj',
   'button.uninstall': 'Deinstaliraj',
   'button.start': 'Pokreni {name}',

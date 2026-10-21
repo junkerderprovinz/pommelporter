@@ -13,6 +13,7 @@ export const eu: Dict = {
   'button.back': 'Atzera',
   'button.cancel': 'Utzi',
   'button.close': 'Itxi',
+  'button.minimise': 'Ikonotu',
   'button.install': 'Instalatu',
   'button.uninstall': 'Desinstalatu',
   'button.start': 'Abiarazi {name}',

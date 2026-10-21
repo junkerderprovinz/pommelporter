@@ -13,6 +13,7 @@ export const tr: Dict = {
   'button.back': 'Geri',
   'button.cancel': 'İptal',
   'button.close': 'Kapat',
+  'button.minimise': 'Simge durumuna küçült',
   'button.install': 'Kur',
   'button.uninstall': 'Kaldır',
   'button.start': '{name} uygulamasını başlat',

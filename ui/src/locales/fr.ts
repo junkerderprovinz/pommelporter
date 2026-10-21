@@ -13,6 +13,7 @@ export const fr: Dict = {
   'button.back': 'Retour',
   'button.cancel': 'Annuler',
   'button.close': 'Fermer',
+  'button.minimise': 'Réduire',
   'button.install': 'Installer',
   'button.uninstall': 'Désinstaller',
   'button.start': 'Lancer {name}',

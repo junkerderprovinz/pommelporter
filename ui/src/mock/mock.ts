@@ -60,6 +60,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
     logo: app.logo,
     mode: uninstall ? 'uninstall' : 'install',
     platform: linux ? 'linux' : 'windows',
+    frameless: !linux,
     existing: hasExisting ? { version: uninstall ? '5.0.0' : '4.6.2', dir: defaultDir } : null,
   };
 
@@ -134,6 +135,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
     uninstall: async () => void run('uninstall'),
     launch: async () => {},
     openURL: async (url) => void window.open(url, '_blank'),
+    minimise: async () => {},
     quit: async () => window.location.reload(),
     onProgress: (listener) => {
       listeners.add(listener);

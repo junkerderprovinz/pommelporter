@@ -13,6 +13,7 @@ export const sl: Dict = {
   'button.back': 'Nazaj',
   'button.cancel': 'Prekliči',
   'button.close': 'Zapri',
+  'button.minimise': 'Pomanjšaj',
   'button.install': 'Namesti',
   'button.uninstall': 'Odstrani',
   'button.start': 'Zaženi {name}',

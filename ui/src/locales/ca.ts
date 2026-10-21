@@ -13,6 +13,7 @@ export const ca: Dict = {
   'button.back': 'Enrere',
   'button.cancel': 'Cancel·la',
   'button.close': 'Tanca',
+  'button.minimise': 'Minimitza',
   'button.install': 'Instal·la',
   'button.uninstall': 'Desinstal·la',
   'button.start': 'Obre {name}',

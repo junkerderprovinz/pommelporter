@@ -13,6 +13,7 @@ export const gl: Dict = {
   'button.back': 'Atrás',
   'button.cancel': 'Cancelar',
   'button.close': 'Pechar',
+  'button.minimise': 'Minimizar',
   'button.install': 'Instalar',
   'button.uninstall': 'Desinstalar',
   'button.start': 'Abrir {name}',

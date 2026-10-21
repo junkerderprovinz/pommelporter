@@ -13,6 +13,7 @@ export const ro: Dict = {
   'button.back': 'Înapoi',
   'button.cancel': 'Anulează',
   'button.close': 'Închide',
+  'button.minimise': 'Minimizează',
   'button.install': 'Instalează',
   'button.uninstall': 'Dezinstalează',
   'button.start': 'Pornește {name}',

@@ -13,6 +13,7 @@ export const vi: Dict = {
   'button.back': 'Quay lại',
   'button.cancel': 'Hủy',
   'button.close': 'Đóng',
+  'button.minimise': 'Thu nhỏ',
   'button.install': 'Cài đặt',
   'button.uninstall': 'Gỡ cài đặt',
   'button.start': 'Mở {name}',

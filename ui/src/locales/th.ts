@@ -13,6 +13,7 @@ export const th: Dict = {
   'button.back': 'ย้อนกลับ',
   'button.cancel': 'ยกเลิก',
   'button.close': 'ปิด',
+  'button.minimise': 'ย่อเล็กสุด',
   'button.install': 'ติดตั้ง',
   'button.uninstall': 'ถอนการติดตั้ง',
   'button.start': 'เปิด {name}',

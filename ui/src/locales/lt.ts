@@ -13,6 +13,7 @@ export const lt: Dict = {
   'button.back': 'Atgal',
   'button.cancel': 'Atšaukti',
   'button.close': 'Uždaryti',
+  'button.minimise': 'Sumažinti',
   'button.install': 'Įdiegti',
   'button.uninstall': 'Pašalinti',
   'button.start': 'Paleisti {name}',

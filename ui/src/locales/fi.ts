@@ -13,6 +13,7 @@ export const fi: Dict = {
   'button.back': 'Takaisin',
   'button.cancel': 'Peruuta',
   'button.close': 'Sulje',
+  'button.minimise': 'Pienennä',
   'button.install': 'Asenna',
   'button.uninstall': 'Poista asennus',
   'button.start': 'Käynnistä {name}',

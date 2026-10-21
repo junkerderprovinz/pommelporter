@@ -13,6 +13,7 @@ export const hi: Dict = {
   'button.back': 'पीछे',
   'button.cancel': 'रद्द करें',
   'button.close': 'बंद करें',
+  'button.minimise': 'छोटा करें',
   'button.install': 'इंस्टॉल करें',
   'button.uninstall': 'अनइंस्टॉल करें',
   'button.start': '{name} शुरू करें',

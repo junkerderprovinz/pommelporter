@@ -13,6 +13,7 @@ export const sv: Dict = {
   'button.back': 'Tillbaka',
   'button.cancel': 'Avbryt',
   'button.close': 'Stäng',
+  'button.minimise': 'Minimera',
   'button.install': 'Installera',
   'button.uninstall': 'Avinstallera',
   'button.start': 'Starta {name}',

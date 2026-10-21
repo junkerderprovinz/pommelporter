@@ -7,11 +7,16 @@ import (
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
 	"github.com/junkerderprovinz/pommelporter/ui"
 	"github.com/wailsapp/wails/v3/pkg/application"
+	"github.com/wailsapp/wails/v3/pkg/events"
 )
 
 // progressEvent carries each step to the window as {"step": name}, and a
 // failure as {"error": text}.
 const progressEvent = "progress"
+
+// frameless leaves out the system's title bar on Windows, where the window
+// draws its own. Linux keeps the frame its window manager draws.
+const frameless = platformName == "windows"
 
 // Installer is the service the window calls, as Call.ByName
 // "github.com/junkerderprovinz/pommelporter.Installer.<Method>".
@@ -20,6 +25,7 @@ type Installer struct {
 	a         setup.App
 	uninstall bool
 	app       *application.App
+	window    *application.WebviewWindow
 
 	mu   sync.Mutex
 	busy bool
@@ -36,6 +42,7 @@ type Info struct {
 	Mode      string          `json:"mode"`
 	Platform  string          `json:"platform"`
 	Existing  *setup.Existing `json:"existing"`
+	Frameless bool            `json:"frameless"`
 }
 
 func (s *Installer) Info() Info {
@@ -46,7 +53,7 @@ func (s *Installer) Info() Info {
 	return Info{
 		Name: s.a.Name, Version: s.a.Version, Publisher: s.a.Publisher, Homepage: s.a.Homepage,
 		Accent: s.a.Accent, Logo: string(s.a.Logo), Mode: mode, Platform: platformName,
-		Existing: s.p.Existing(s.a),
+		Existing: s.p.Existing(s.a), Frameless: frameless,
 	}
 }
 
@@ -79,6 +86,8 @@ func (s *Installer) Uninstall() {
 func (s *Installer) Launch() error { return s.p.Launch(s.a) }
 
 func (s *Installer) OpenURL(url string) error { return s.app.Browser.OpenURL(url) }
+
+func (s *Installer) Minimise() { s.window.Minimise() }
 
 func (s *Installer) Quit() { s.app.Quit() }
 
@@ -115,13 +124,23 @@ func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 		Mac:      application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
 	})
 	svc.app = app
-	app.Window.NewWithOptions(application.WebviewWindowOptions{
+	svc.window = app.Window.NewWithOptions(application.WebviewWindowOptions{
 		Title:               title,
 		Width:               640,
 		Height:              480,
 		DisableResize:       true,
+		Frameless:           frameless,
 		MinimiseButtonState: application.ButtonEnabled,
 		MaximiseButtonState: application.ButtonHidden,
+	})
+	// Closing halfway would leave a half-installed copy behind, so the window
+	// stays open until the work is done, whichever way it is closed.
+	svc.window.RegisterHook(events.Common.WindowClosing, func(e *application.WindowEvent) {
+		svc.mu.Lock()
+		defer svc.mu.Unlock()
+		if svc.busy {
+			e.Cancel()
+		}
 	})
 	return app.Run()
 }

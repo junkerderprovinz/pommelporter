@@ -6,6 +6,7 @@ import { Done } from './pages/Done';
 import { Options } from './pages/Options';
 import { Progress } from './pages/Progress';
 import { Welcome } from './pages/Welcome';
+import { TitleBar } from './components/TitleBar';
 
 type Step = 'welcome' | 'options' | 'confirm' | 'progress' | 'done';
 
@@ -33,46 +34,58 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   }
 
   const quit = () => void installer.quit();
+  const working = step === 'progress' && !run.finished && !run.error;
 
-  switch (step) {
-    case 'welcome':
-      return (
-        <Welcome info={info} onNext={() => setStep('options')} onCancel={quit} onWebsite={() => void installer.openURL(info.homepage)} />
-      );
-    case 'options':
-      return (
-        <Options
-          installer={installer}
-          info={info}
-          choices={choices}
-          onChange={setChoices}
-          onInstall={begin}
-          onBack={() => setStep('welcome')}
-          onCancel={quit}
-        />
-      );
-    case 'confirm':
-      return <Confirm info={info} onUninstall={begin} onCancel={quit} />;
-    case 'progress':
-      return (
-        <Progress
-          info={info}
-          run={run}
-          onRetry={begin}
-          onBack={() => setStep(mode === 'install' ? 'options' : 'confirm')}
-          onClose={quit}
-        />
-      );
-    case 'done':
-      return (
-        <Done
-          info={info}
-          onLaunch={async () => {
-            await installer.launch();
-            quit();
-          }}
-          onClose={quit}
-        />
-      );
+  return (
+    <div className="flex h-full flex-col">
+      {info.frameless && (
+        <TitleBar info={info} closable={!working} onMinimise={() => void installer.minimise()} onClose={quit} />
+      )}
+      <div className="min-h-0 flex-1">{page()}</div>
+    </div>
+  );
+
+  function page() {
+    switch (step) {
+      case 'welcome':
+        return (
+          <Welcome info={info} onNext={() => setStep('options')} onCancel={quit} onWebsite={() => void installer.openURL(info.homepage)} />
+        );
+      case 'options':
+        return (
+          <Options
+            installer={installer}
+            info={info}
+            choices={choices}
+            onChange={setChoices}
+            onInstall={begin}
+            onBack={() => setStep('welcome')}
+            onCancel={quit}
+          />
+        );
+      case 'confirm':
+        return <Confirm info={info} onUninstall={begin} onCancel={quit} />;
+      case 'progress':
+        return (
+          <Progress
+            info={info}
+            run={run}
+            onRetry={begin}
+            onBack={() => setStep(mode === 'install' ? 'options' : 'confirm')}
+            onClose={quit}
+          />
+        );
+      case 'done':
+        return (
+          <Done
+            info={info}
+            onLaunch={async () => {
+              await installer.launch();
+              quit();
+            }}
+            onClose={quit}
+          />
+        );
+    }
   }
 }
