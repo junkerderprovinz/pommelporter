@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const hi: Dict = {
-  'title.options': 'विकल्प',
-  'title.installing': 'इंस्टॉल हो रहा है',
-  'title.uninstall': 'अनइंस्टॉल',
-  'title.uninstalling': 'अनइंस्टॉल हो रहा है',
-  'title.done': 'हो गया',
   'title.chooser': 'फ़ोल्डर चुनें',
 
   'button.next': 'आगे',

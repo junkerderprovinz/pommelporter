@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const hu: Dict = {
-  'title.options': 'Beállítások',
-  'title.installing': 'Telepítés',
-  'title.uninstall': 'Eltávolítás',
-  'title.uninstalling': 'Eltávolítás',
-  'title.done': 'Kész',
   'title.chooser': 'Mappa választása',
 
   'button.next': 'Tovább',

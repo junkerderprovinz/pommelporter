@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const et: Dict = {
-  'title.options': 'Valikud',
-  'title.installing': 'Paigaldamine',
-  'title.uninstall': 'Eemalda',
-  'title.uninstalling': 'Eemaldamine',
-  'title.done': 'Valmis',
   'title.chooser': 'Vali kaust',
 
   'button.next': 'Edasi',

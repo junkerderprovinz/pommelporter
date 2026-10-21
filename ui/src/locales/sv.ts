@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const sv: Dict = {
-  'title.options': 'Alternativ',
-  'title.installing': 'Installerar',
-  'title.uninstall': 'Avinstallera',
-  'title.uninstalling': 'Avinstallerar',
-  'title.done': 'Klart',
   'title.chooser': 'Välj en mapp',
 
   'button.next': 'Nästa',

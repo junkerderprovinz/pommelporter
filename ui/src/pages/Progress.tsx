@@ -59,7 +59,6 @@ export function Progress({
 
   return (
     <Page
-      title={t(mode === 'install' ? 'title.installing' : 'title.uninstalling')}
       actions={
         failed && (
           <>

@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const tr: Dict = {
-  'title.options': 'Seçenekler',
-  'title.installing': 'Kuruluyor',
-  'title.uninstall': 'Kaldır',
-  'title.uninstalling': 'Kaldırılıyor',
-  'title.done': 'Bitti',
   'title.chooser': 'Klasör seçin',
 
   'button.next': 'İleri',

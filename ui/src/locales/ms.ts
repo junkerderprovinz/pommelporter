@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ms: Dict = {
-  'title.options': 'Pilihan',
-  'title.installing': 'Memasang',
-  'title.uninstall': 'Nyahpasang',
-  'title.uninstalling': 'Menyahpasang',
-  'title.done': 'Selesai',
   'title.chooser': 'Pilih folder',
 
   'button.next': 'Seterusnya',

@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const zh: Dict = {
-  'title.options': '选项',
-  'title.installing': '正在安装',
-  'title.uninstall': '卸载',
-  'title.uninstalling': '正在卸载',
-  'title.done': '完成',
   'title.chooser': '选择文件夹',
 
   'button.next': '下一步',

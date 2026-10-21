@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const fa: Dict = {
-  'title.options': 'گزینه‌ها',
-  'title.installing': 'در حال نصب',
-  'title.uninstall': 'حذف نصب',
-  'title.uninstalling': 'در حال حذف نصب',
-  'title.done': 'انجام شد',
   'title.chooser': 'انتخاب پوشه',
 
   'button.next': 'بعدی',

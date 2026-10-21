@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ko: Dict = {
-  'title.options': '옵션',
-  'title.installing': '설치 중',
-  'title.uninstall': '제거',
-  'title.uninstalling': '제거 중',
-  'title.done': '완료',
   'title.chooser': '폴더 선택',
 
   'button.next': '다음',

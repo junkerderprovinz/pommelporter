@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ro: Dict = {
-  'title.options': 'Opțiuni',
-  'title.installing': 'Se instalează',
-  'title.uninstall': 'Dezinstalare',
-  'title.uninstalling': 'Se dezinstalează',
-  'title.done': 'Gata',
   'title.chooser': 'Alege un dosar',
 
   'button.next': 'Înainte',

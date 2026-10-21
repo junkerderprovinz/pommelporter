@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ar: Dict = {
-  'title.options': 'الخيارات',
-  'title.installing': 'جارٍ التثبيت',
-  'title.uninstall': 'إلغاء التثبيت',
-  'title.uninstalling': 'جارٍ إلغاء التثبيت',
-  'title.done': 'تم',
   'title.chooser': 'اختر مجلدًا',
 
   'button.next': 'التالي',

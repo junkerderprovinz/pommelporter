@@ -29,7 +29,6 @@ export function Confirm({ info, onUninstall, onCancel }: { info: Info; onUninsta
 
   return (
     <Page
-      title={t('title.uninstall')}
       actions={
         <>
           <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" autoFocus onClick={onCancel} />

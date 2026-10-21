@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const pl: Dict = {
-  'title.options': 'Opcje',
-  'title.installing': 'Instalacja',
-  'title.uninstall': 'Odinstaluj',
-  'title.uninstalling': 'Odinstalowywanie',
-  'title.done': 'Gotowe',
   'title.chooser': 'Wybierz folder',
 
   'button.next': 'Dalej',

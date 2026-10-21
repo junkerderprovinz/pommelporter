@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ca: Dict = {
-  'title.options': 'Opcions',
-  'title.installing': "S'està instal·lant",
-  'title.uninstall': 'Desinstal·la',
-  'title.uninstalling': "S'està desinstal·lant",
-  'title.done': 'Fet',
   'title.chooser': 'Tria una carpeta',
 
   'button.next': 'Següent',

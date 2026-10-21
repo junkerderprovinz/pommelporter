@@ -64,7 +64,6 @@ export function Options({
 
   return (
     <Page
-      title={t('title.options')}
       actions={
         <>
           <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" onClick={onCancel} />

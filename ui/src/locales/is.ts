@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const is: Dict = {
-  'title.options': 'Valkostir',
-  'title.installing': 'Set upp',
-  'title.uninstall': 'Fjarlægja',
-  'title.uninstalling': 'Fjarlægi',
-  'title.done': 'Lokið',
   'title.chooser': 'Veldu möppu',
 
   'button.next': 'Áfram',

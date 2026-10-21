@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const fi: Dict = {
-  'title.options': 'Asetukset',
-  'title.installing': 'Asennetaan',
-  'title.uninstall': 'Poista asennus',
-  'title.uninstalling': 'Poistetaan',
-  'title.done': 'Valmis',
   'title.chooser': 'Valitse kansio',
 
   'button.next': 'Seuraava',

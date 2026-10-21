@@ -1,11 +1,6 @@
 // The source language. Every other dictionary has exactly these keys, which
 // locales.test.ts checks along with the placeholders each string keeps.
 export const en = {
-  'title.options': 'Options',
-  'title.installing': 'Installing',
-  'title.uninstall': 'Uninstall',
-  'title.uninstalling': 'Uninstalling',
-  'title.done': 'Done',
   'title.chooser': 'Choose a folder',
 
   'button.next': 'Next',

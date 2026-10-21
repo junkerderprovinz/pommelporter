@@ -1,26 +1,21 @@
 import type { ReactNode } from 'react';
 
 /**
- * One step of the wizard inside the window's card: the step's name under the
- * logo, its content, and the foot row that answers it. Actions stand at the
- * end of the foot with the forward one last; `start` holds a link out of the
- * window.
+ * One step of the wizard inside the window's card: its content under the logo
+ * and the foot row that answers it. Actions stand at the end of the foot with
+ * the forward one last; `start` holds a link out of the window.
  */
 export function Page({
-  title,
   children,
   actions,
   start,
 }: {
-  /** Left out on the first page, where the app's name says enough. */
-  title?: string;
   children: ReactNode;
   actions?: ReactNode;
   start?: ReactNode;
 }) {
   return (
     <div className="flex h-full flex-col gap-4 px-6 pt-2 pb-5">
-      {title && <h1 className="glim-eyebrow text-center">{title}</h1>}
       <main className="glim-page-enter flex min-h-0 flex-1 flex-col">{children}</main>
       <footer className="flex min-h-[var(--btn-h-key)] items-center gap-3">
         {start}

@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const th: Dict = {
-  'title.options': 'ตัวเลือก',
-  'title.installing': 'กำลังติดตั้ง',
-  'title.uninstall': 'ถอนการติดตั้ง',
-  'title.uninstalling': 'กำลังถอนการติดตั้ง',
-  'title.done': 'เสร็จแล้ว',
   'title.chooser': 'เลือกโฟลเดอร์',
 
   'button.next': 'ถัดไป',

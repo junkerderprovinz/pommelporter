@@ -10,7 +10,6 @@ export function Done({ info, onLaunch, onClose }: { info: Info; onLaunch: () => 
 
   return (
     <Page
-      title={t('title.done')}
       actions={
         installed ? (
           <>

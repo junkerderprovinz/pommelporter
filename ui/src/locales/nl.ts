@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const nl: Dict = {
-  'title.options': 'Opties',
-  'title.installing': 'Installeren',
-  'title.uninstall': 'Verwijderen',
-  'title.uninstalling': 'Verwijderen',
-  'title.done': 'Klaar',
   'title.chooser': 'Map kiezen',
 
   'button.next': 'Volgende',

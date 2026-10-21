@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const bg: Dict = {
-  'title.options': 'Настройки',
-  'title.installing': 'Инсталиране',
-  'title.uninstall': 'Деинсталиране',
-  'title.uninstalling': 'Деинсталиране',
-  'title.done': 'Готово',
   'title.chooser': 'Изберете папка',
 
   'button.next': 'Напред',

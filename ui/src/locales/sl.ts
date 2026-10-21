@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const sl: Dict = {
-  'title.options': 'Možnosti',
-  'title.installing': 'Nameščanje',
-  'title.uninstall': 'Odstrani',
-  'title.uninstalling': 'Odstranjevanje',
-  'title.done': 'Končano',
   'title.chooser': 'Izberite mapo',
 
   'button.next': 'Naprej',

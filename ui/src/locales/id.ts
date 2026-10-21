@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const id: Dict = {
-  'title.options': 'Opsi',
-  'title.installing': 'Memasang',
-  'title.uninstall': 'Copot',
-  'title.uninstalling': 'Mencopot',
-  'title.done': 'Selesai',
   'title.chooser': 'Pilih folder',
 
   'button.next': 'Berikutnya',

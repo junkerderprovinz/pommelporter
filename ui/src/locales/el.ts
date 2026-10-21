@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const el: Dict = {
-  'title.options': 'Επιλογές',
-  'title.installing': 'Εγκατάσταση',
-  'title.uninstall': 'Απεγκατάσταση',
-  'title.uninstalling': 'Απεγκατάσταση',
-  'title.done': 'Έτοιμο',
   'title.chooser': 'Επιλογή φακέλου',
 
   'button.next': 'Επόμενο',

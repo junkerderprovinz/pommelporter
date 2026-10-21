@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const sk: Dict = {
-  'title.options': 'Možnosti',
-  'title.installing': 'Inštalácia',
-  'title.uninstall': 'Odinštalovať',
-  'title.uninstalling': 'Odinštalovanie',
-  'title.done': 'Hotovo',
   'title.chooser': 'Vyberte priečinok',
 
   'button.next': 'Ďalej',

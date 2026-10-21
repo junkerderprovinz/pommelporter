@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const eu: Dict = {
-  'title.options': 'Aukerak',
-  'title.installing': 'Instalatzen',
-  'title.uninstall': 'Desinstalatu',
-  'title.uninstalling': 'Desinstalatzen',
-  'title.done': 'Eginda',
   'title.chooser': 'Aukeratu karpeta bat',
 
   'button.next': 'Hurrengoa',

@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const ru: Dict = {
-  'title.options': 'Параметры',
-  'title.installing': 'Установка',
-  'title.uninstall': 'Удаление',
-  'title.uninstalling': 'Удаление',
-  'title.done': 'Готово',
   'title.chooser': 'Выбор папки',
 
   'button.next': 'Далее',

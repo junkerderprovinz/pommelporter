@@ -1,11 +1,6 @@
 import type { Dict } from './en';
 
 export const da: Dict = {
-  'title.options': 'Indstillinger',
-  'title.installing': 'Installerer',
-  'title.uninstall': 'Afinstaller',
-  'title.uninstalling': 'Afinstallerer',
-  'title.done': 'Færdig',
   'title.chooser': 'Vælg en mappe',
 
   'button.next': 'Næste',

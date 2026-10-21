@@ -64,13 +64,13 @@ export function WindowCard({
 function AppTile({ svg }: { svg: string }) {
   return (
     <div
-      className="relative flex size-28 items-center justify-center rounded-[1.6rem]"
+      className="relative flex size-36 items-center justify-center rounded-[2rem]"
       style={{
         background: 'linear-gradient(90deg, var(--tile-lit) 50%, var(--tile-shade) 50%)',
         boxShadow: 'var(--elevation), var(--hairline)',
       }}
     >
-      <Logo svg={svg} className="h-24 max-w-24 object-contain" />
+      <Logo svg={svg} className="h-32 max-w-32 object-contain" />
     </div>
   );
 }
