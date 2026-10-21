@@ -26,6 +26,7 @@ export const vi: Dict = {
   'button.use': 'Dùng thư mục này',
 
   'welcome.byline': 'Phiên bản {version} của {publisher}',
+  'welcome.language': 'Ngôn ngữ',
   'welcome.windows': 'Bước này cài {name} cho tất cả những ai dùng máy tính này.',
   'welcome.linux': 'Bước này cài {name} cho bạn trên máy tính này.',
   'welcome.update': '{name} {old} đã được cài. Phiên bản {version} sẽ thay thế nó, và cài đặt của bạn vẫn giữ nguyên.',

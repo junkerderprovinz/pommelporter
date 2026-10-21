@@ -26,6 +26,7 @@ export const ja: Dict = {
   'button.use': 'このフォルダーを使う',
 
   'welcome.byline': 'バージョン {version}、{publisher}',
+  'welcome.language': '言語',
   'welcome.windows': 'このコンピューターを使うすべての人に {name} をインストールします。',
   'welcome.linux': 'このコンピューターにあなた用の {name} をインストールします。',
   'welcome.update': '{name} {old} はインストール済みです。バージョン {version} に置き換えます。設定はそのまま残ります。',

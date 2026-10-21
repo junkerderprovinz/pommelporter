@@ -26,6 +26,7 @@ export const da: Dict = {
   'button.use': 'Brug denne mappe',
 
   'welcome.byline': 'Version {version} fra {publisher}',
+  'welcome.language': 'Sprog',
   'welcome.windows': 'Dette installerer {name} for alle, der bruger denne computer.',
   'welcome.linux': 'Dette installerer {name} for dig på denne computer.',
   'welcome.update': '{name} {old} er allerede installeret. Det bliver erstattet af {version}, og dine indstillinger forbliver, som de er.',

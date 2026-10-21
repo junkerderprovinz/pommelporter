@@ -29,6 +29,8 @@ export interface Options {
   dir: string;
   startMenu: boolean;
   desktop: boolean;
+  /** The language code the app first starts in, or "" before anyone chose. */
+  language: string;
 }
 
 /** Whether a folder may take the program, as setup.DirCheck. */

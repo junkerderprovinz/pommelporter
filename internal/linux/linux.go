@@ -39,6 +39,8 @@ type state struct {
 	Version   string `json:"version"`
 	StartMenu bool   `json:"startMenu"`
 	Desktop   bool   `json:"desktop"`
+	// Language is what the app first starts in; it reads it from here.
+	Language string `json:"language,omitempty"`
 }
 
 func (platform) Defaults(app setup.App) setup.Options {
@@ -49,7 +51,7 @@ func (platform) Defaults(app setup.App) setup.Options {
 	}
 	o.Dir = p.dir
 	if s, ok := loadState(p); ok {
-		o.StartMenu, o.Desktop = s.StartMenu, s.Desktop
+		o.StartMenu, o.Desktop, o.Language = s.StartMenu, s.Desktop, s.Language
 	}
 	return o
 }
@@ -107,7 +109,7 @@ func (platform) Install(ctx context.Context, app setup.App, o setup.Options, rep
 	}
 
 	report(setup.StepRegister)
-	data, err := json.Marshal(state{Version: app.Version, StartMenu: o.StartMenu, Desktop: o.Desktop})
+	data, err := json.Marshal(state{Version: app.Version, StartMenu: o.StartMenu, Desktop: o.Desktop, Language: o.Language})
 	if err != nil {
 		return err
 	}

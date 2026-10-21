@@ -26,6 +26,7 @@ export const th: Dict = {
   'button.use': 'ใช้โฟลเดอร์นี้',
 
   'welcome.byline': 'เวอร์ชัน {version} โดย {publisher}',
+  'welcome.language': 'ภาษา',
   'welcome.windows': 'ขั้นตอนนี้จะติดตั้ง {name} ให้ทุกคนที่ใช้คอมพิวเตอร์เครื่องนี้',
   'welcome.linux': 'ขั้นตอนนี้จะติดตั้ง {name} ให้คุณบนคอมพิวเตอร์เครื่องนี้',
   'welcome.update': '{name} {old} ติดตั้งอยู่แล้ว เวอร์ชัน {version} จะมาแทนที่ และการตั้งค่าของคุณยังคงเหมือนเดิม',

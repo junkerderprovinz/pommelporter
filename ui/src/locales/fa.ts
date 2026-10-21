@@ -26,6 +26,7 @@ export const fa: Dict = {
   'button.use': 'استفاده از این پوشه',
 
   'welcome.byline': 'نسخهٔ {version} از {publisher}',
+  'welcome.language': 'زبان',
   'welcome.windows': 'با این کار {name} برای همهٔ کسانی که از این رایانه استفاده می‌کنند نصب می‌شود.',
   'welcome.linux': 'با این کار {name} برای شما روی این رایانه نصب می‌شود.',
   'welcome.update': '{name} {old} از قبل نصب است. نسخهٔ {version} جای آن را می‌گیرد و تنظیمات شما همان‌طور می‌ماند.',

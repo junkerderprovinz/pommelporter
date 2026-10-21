@@ -26,6 +26,7 @@ export const eu: Dict = {
   'button.use': 'Erabili karpeta hau',
 
   'welcome.byline': '{version} bertsioa, {publisher}',
+  'welcome.language': 'Hizkuntza',
   'welcome.windows': 'Honek {name} instalatzen du ordenagailu hau erabiltzen duten guztientzat.',
   'welcome.linux': 'Honek {name} instalatzen du zuretzat ordenagailu honetan.',
   'welcome.update': '{name} {old} instalatuta dago jada. {version} bertsioak ordezkatuko du, eta zure ezarpenak dauden bezala geratzen dira.',

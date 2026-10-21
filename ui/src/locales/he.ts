@@ -26,6 +26,7 @@ export const he: Dict = {
   'button.use': 'שימוש בתיקייה הזו',
 
   'welcome.byline': 'גרסה {version} מאת {publisher}',
+  'welcome.language': 'שפה',
   'welcome.windows': 'כך {name} יותקן לכל מי שמשתמש במחשב הזה.',
   'welcome.linux': 'כך {name} יותקן עבורך במחשב הזה.',
   'welcome.update': '{name} {old} כבר מותקן. גרסה {version} תחליף אותו, וההגדרות שלך יישארו כמו שהן.',

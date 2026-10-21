@@ -26,6 +26,7 @@ export const pl: Dict = {
   'button.use': 'Użyj tego folderu',
 
   'welcome.byline': 'Wersja {version} od {publisher}',
+  'welcome.language': 'Język',
   'welcome.windows': 'To zainstaluje {name} dla wszystkich, którzy korzystają z tego komputera.',
   'welcome.linux': 'To zainstaluje {name} dla ciebie na tym komputerze.',
   'welcome.update': '{name} {old} jest już zainstalowany. Zostanie zastąpiony wersją {version}, a twoje ustawienia zostaną bez zmian.',

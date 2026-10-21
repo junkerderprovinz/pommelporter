@@ -26,6 +26,7 @@ export const gl: Dict = {
   'button.use': 'Usar este cartafol',
 
   'welcome.byline': 'Versión {version} de {publisher}',
+  'welcome.language': 'Idioma',
   'welcome.windows': 'Isto instala {name} para todas as persoas que usan este ordenador.',
   'welcome.linux': 'Isto instala {name} para ti neste ordenador.',
   'welcome.update': '{name} {old} xa está instalado. Substitúese pola versión {version} e a túa configuración queda como está.',

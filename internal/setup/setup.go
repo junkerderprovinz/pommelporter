@@ -38,6 +38,23 @@ type Options struct {
 	Dir       string `json:"dir"`
 	StartMenu bool   `json:"startMenu"`
 	Desktop   bool   `json:"desktop"`
+	// Language is the code the installed app starts in until someone picks
+	// another one inside it, such as "de".
+	Language string `json:"language"`
+}
+
+// ValidLanguage reports whether code looks like one of the apps' language
+// codes, so nothing else reaches the files the apps read it from.
+func ValidLanguage(code string) bool {
+	if len(code) != 2 {
+		return false
+	}
+	for _, r := range code {
+		if r < 'a' || r > 'z' {
+			return false
+		}
+	}
+	return true
 }
 
 // Existing describes a copy that is already installed.

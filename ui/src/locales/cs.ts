@@ -26,6 +26,7 @@ export const cs: Dict = {
   'button.use': 'Použít tuto složku',
 
   'welcome.byline': 'Verze {version} od {publisher}',
+  'welcome.language': 'Jazyk',
   'welcome.windows': 'Tím nainstalujete {name} pro všechny, kdo tento počítač používají.',
   'welcome.linux': 'Tím nainstalujete {name} pro sebe na tomto počítači.',
   'welcome.update': '{name} {old} už je nainstalovaný. Nahradí ho verze {version} a vaše nastavení zůstane, jak je.',

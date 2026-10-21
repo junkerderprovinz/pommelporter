@@ -26,6 +26,7 @@ export const hi: Dict = {
   'button.use': 'यह फ़ोल्डर इस्तेमाल करें',
 
   'welcome.byline': 'संस्करण {version}, {publisher}',
+  'welcome.language': 'भाषा',
   'welcome.windows': 'इससे {name} इस कंप्यूटर के सभी उपयोगकर्ताओं के लिए इंस्टॉल होगा।',
   'welcome.linux': 'इससे {name} इस कंप्यूटर पर आपके लिए इंस्टॉल होगा।',
   'welcome.update': '{name} {old} पहले से इंस्टॉल है। इसकी जगह संस्करण {version} आएगा, और आपकी सेटिंग्स जैसी हैं वैसी रहेंगी।',

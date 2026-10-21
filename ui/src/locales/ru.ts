@@ -26,6 +26,7 @@ export const ru: Dict = {
   'button.use': 'Выбрать эту папку',
 
   'welcome.byline': 'Версия {version}, {publisher}',
+  'welcome.language': 'Язык',
   'welcome.windows': '{name} будет установлен для всех, кто пользуется этим компьютером.',
   'welcome.linux': '{name} будет установлен для вас на этом компьютере.',
   'welcome.update': '{name} {old} уже установлен. Он будет заменён версией {version}, а ваши настройки останутся как есть.',

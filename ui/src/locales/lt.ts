@@ -26,6 +26,7 @@ export const lt: Dict = {
   'button.use': 'Naudoti šį aplanką',
 
   'welcome.byline': 'Versija {version}, {publisher}',
+  'welcome.language': 'Kalba',
   'welcome.windows': 'Taip {name} bus įdiegta visiems, kurie naudojasi šiuo kompiuteriu.',
   'welcome.linux': 'Taip {name} bus įdiegta jums šiame kompiuteryje.',
   'welcome.update': '{name} {old} jau įdiegta. Ją pakeis versija {version}, o jūsų nustatymai liks tokie patys.',

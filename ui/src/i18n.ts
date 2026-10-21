@@ -1,5 +1,5 @@
-// The window speaks the system's language, read from navigator.language, and
-// English where it has no dictionary. Only the chosen dictionary is loaded.
+// The window speaks the language the last install chose, else the system's,
+// and English where it has no dictionary. Only the chosen dictionary is loaded.
 import { en, type Dict, type Key } from './locales/en';
 
 export type { Key };
@@ -22,14 +22,18 @@ export function pickLanguage(tag: string): string {
 }
 
 let dict: Dict = en;
+let current = 'en';
 
-/** Loads the system language and sets lang and dir on the page; call it before the first render. */
-export async function loadLanguage(): Promise<void> {
-  const code = pickLanguage(navigator.language);
-  if (code !== 'en') {
-    const module = await dictionaries[`./locales/${code}.ts`]!();
-    dict = module[code]!;
-  }
+/** The code of the language the window speaks. */
+export function language(): string {
+  return current;
+}
+
+/** Switches to the language of tag, loading its dictionary the first time, and sets lang and dir on the page. */
+export async function setLanguage(tag: string): Promise<void> {
+  const code = pickLanguage(tag);
+  dict = code === 'en' ? en : (await dictionaries[`./locales/${code}.ts`]!())[code]!;
+  current = code;
   document.documentElement.lang = code;
   document.documentElement.dir = RTL.has(code) ? 'rtl' : 'ltr';
 }

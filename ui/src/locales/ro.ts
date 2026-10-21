@@ -26,6 +26,7 @@ export const ro: Dict = {
   'button.use': 'Folosește acest dosar',
 
   'welcome.byline': 'Versiunea {version} de la {publisher}',
+  'welcome.language': 'Limbă',
   'welcome.windows': 'Astfel instalezi {name} pentru toți cei care folosesc acest computer.',
   'welcome.linux': 'Astfel instalezi {name} pentru tine pe acest computer.',
   'welcome.update': '{name} {old} este deja instalat. Va fi înlocuit cu versiunea {version}, iar setările tale rămân cum sunt.',

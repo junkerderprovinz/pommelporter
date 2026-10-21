@@ -72,6 +72,9 @@ func (s *Installer) Install(o setup.Options) {
 		if chk := s.p.CheckDir(s.a, o.Dir); !chk.OK {
 			return &dirError{chk}
 		}
+		if !setup.ValidLanguage(o.Language) {
+			o.Language = ""
+		}
 		return s.p.Install(ctx, s.a, o, report)
 	})
 }

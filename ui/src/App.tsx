@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Info, Installer, Options as Choices } from './bridge';
 import { advance, plannedSteps, startRun, type Run } from './run';
+import { language, setLanguage } from './i18n';
 import { Confirm } from './pages/Confirm';
 import { Done } from './pages/Done';
 import { Options } from './pages/Options';
@@ -16,7 +17,7 @@ const DONE_PAUSE_MS = 600;
 export function App({ installer, info, defaults }: { installer: Installer; info: Info; defaults: Choices }) {
   const mode = info.mode;
   const [step, setStep] = useState<Step>(mode === 'install' ? 'welcome' : 'confirm');
-  const [choices, setChoices] = useState(defaults);
+  const [choices, setChoices] = useState({ ...defaults, language: defaults.language || language() });
   const [run, setRun] = useState<Run>(() => startRun(plannedSteps(mode, info.platform)));
 
   useEffect(() => installer.onProgress((event) => setRun((r) => advance(r, event))), [installer]);
@@ -34,6 +35,12 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   }
 
   const quit = () => void installer.quit();
+  // The window switches with the choice, so every page after it reads in the
+  // language the app will start in.
+  const chooseLanguage = async (code: string) => {
+    await setLanguage(code);
+    setChoices((c) => ({ ...c, language: language() }));
+  };
   const working = step === 'progress' && !run.finished && !run.error;
 
   return (
@@ -46,7 +53,14 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
     switch (step) {
       case 'welcome':
         return (
-          <Welcome info={info} onNext={() => setStep('options')} onCancel={quit} onWebsite={() => void installer.openURL(info.homepage)} />
+          <Welcome
+            info={info}
+            language={choices.language}
+            onLanguage={(code) => void chooseLanguage(code)}
+            onNext={() => setStep('options')}
+            onCancel={quit}
+            onWebsite={() => void installer.openURL(info.homepage)}
+          />
         );
       case 'options':
         return (

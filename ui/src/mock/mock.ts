@@ -116,7 +116,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
 
   return {
     info: () => later(() => info),
-    defaults: () => later((): Options => ({ dir: defaultDir, startMenu: true, desktop: true })),
+    defaults: () => later((): Options => ({ dir: defaultDir, startMenu: true, desktop: true, language: '' })),
     checkDir: (dir) => later(() => checkDir(dir)),
     listDir: (path) => later(() => listDir(path)),
     makeDir: (parent, name) =>

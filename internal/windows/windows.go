@@ -79,6 +79,7 @@ func (p *platform) Defaults(app setup.App) setup.Options {
 		Dir:       dir,
 		StartMenu: p.choice(app, "StartMenuShortcut"),
 		Desktop:   p.choice(app, "DesktopShortcut"),
+		Language:  readLanguage(filepath.Join(p.places.programData, app.Name, settingsFile)),
 	}
 }
 
@@ -209,7 +210,7 @@ func (p *platform) Install(ctx context.Context, app setup.App, o setup.Options, 
 	// a folder that cannot be made safe does not fail the install. A task
 	// from an earlier install would use that folder all the same and goes.
 	report(setup.StepUpdates)
-	if err := prepareData(filepath.Join(p.places.programData, app.Name), writer); err != nil {
+	if err := prepareData(filepath.Join(p.places.programData, app.Name), writer, o.Language); err != nil {
 		p.deleteTask(app)
 		return nil
 	}

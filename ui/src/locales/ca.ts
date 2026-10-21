@@ -26,6 +26,7 @@ export const ca: Dict = {
   'button.use': 'Fes servir aquesta carpeta',
 
   'welcome.byline': 'Versió {version} de {publisher}',
+  'welcome.language': 'Idioma',
   'welcome.windows': 'Això instal·la {name} per a totes les persones que fan servir aquest ordinador.',
   'welcome.linux': 'Això instal·la {name} per a tu en aquest ordinador.',
   'welcome.update': '{name} {old} ja està instal·lat. Se substituirà per la versió {version} i la teva configuració es queda com està.',

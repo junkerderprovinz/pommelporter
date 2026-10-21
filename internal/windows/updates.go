@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"crypto/rand"
 	"encoding/hex"
+	"encoding/json"
 	"encoding/xml"
 	"errors"
 	"fmt"
@@ -25,14 +26,14 @@ import (
 const settingsFile = "settings.json"
 
 // prepareData readies the folder under ProgramData that holds the update
-// switch and the task's log. It belongs to the administrators, and to
+// switch, the language the app first starts in, and the task's log. It belongs to the administrators, and to
 // writer when the task runs as that person, and only settings.json is open
 // to every user, so the app's settings can change the switch; anything else
 // a user could write there, a task running as SYSTEM could be tricked into
 // writing somewhere else. What an earlier folder held
 // is cleared, keeping only the switch. An error means the folder is not safe
 // for the task.
-func prepareData(dir string, writer *windows.SID) error {
+func prepareData(dir string, writer *windows.SID, language string) error {
 	auto := readAutoUpdate(filepath.Join(dir, settingsFile))
 
 	// A junction in place of the folder would lead everything below elsewhere.
@@ -61,7 +62,7 @@ func prepareData(dir string, writer *windows.SID) error {
 	}
 
 	settings := filepath.Join(dir, settingsFile)
-	if err := placeFile(settings, strings.NewReader(fmt.Sprintf("{\"autoUpdate\":%t}\r\n", auto))); err != nil {
+	if err := placeFile(settings, strings.NewReader(fmt.Sprintf("{\"autoUpdate\":%t,\"language\":%q}\r\n", auto, language))); err != nil {
 		return err
 	}
 	sd, err := windows.SecurityDescriptorFromString("D:(A;;FRFW;;;BU)")
@@ -74,6 +75,21 @@ func prepareData(dir string, writer *windows.SID) error {
 	}
 	return windows.SetNamedSecurityInfo(settings, windows.SE_FILE_OBJECT,
 		windows.DACL_SECURITY_INFORMATION|windows.UNPROTECTED_DACL_SECURITY_INFORMATION, nil, nil, dacl, nil)
+}
+
+// readLanguage is the language an earlier install wrote, or "".
+func readLanguage(path string) string {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return ""
+	}
+	var s struct {
+		Language string `json:"language"`
+	}
+	if json.Unmarshal(b, &s) != nil || !setup.ValidLanguage(s.Language) {
+		return ""
+	}
+	return s.Language
 }
 
 // readAutoUpdate keeps the switch an earlier install left: off only when

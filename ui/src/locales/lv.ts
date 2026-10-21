@@ -26,6 +26,7 @@ export const lv: Dict = {
   'button.use': 'Izmantot šo mapi',
 
   'welcome.byline': 'Versija {version}, {publisher}',
+  'welcome.language': 'Valoda',
   'welcome.windows': 'Tā {name} tiks instalēta visiem, kas lieto šo datoru.',
   'welcome.linux': 'Tā {name} tiks instalēta jums šajā datorā.',
   'welcome.update': '{name} {old} jau ir instalēta. To aizstās versija {version}, un jūsu iestatījumi paliks tādi paši.',

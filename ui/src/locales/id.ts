@@ -26,6 +26,7 @@ export const id: Dict = {
   'button.use': 'Gunakan folder ini',
 
   'welcome.byline': 'Versi {version} dari {publisher}',
+  'welcome.language': 'Bahasa',
   'welcome.windows': 'Ini memasang {name} untuk semua orang yang memakai komputer ini.',
   'welcome.linux': 'Ini memasang {name} untuk Anda di komputer ini.',
   'welcome.update': '{name} {old} sudah terpasang. Versi {version} akan menggantikannya, dan pengaturan Anda tetap seperti semula.',
