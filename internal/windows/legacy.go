@@ -80,6 +80,8 @@ func (p *platform) removeUserCopies(app setup.App, exe string) {
 	}
 }
 
+// moveAutostart points the app's Run entry from the old copy at exe, keeping
+// whatever arguments the app put after the path, such as --tray.
 func (p *platform) moveAutostart(app setup.App, old, exe string) {
 	if app.Autostart == "" {
 		return
@@ -90,8 +92,13 @@ func (p *platform) moveAutostart(app setup.App, old, exe string) {
 	}
 	defer k.Close()
 	v, _, err := k.GetStringValue(app.Autostart)
-	if err != nil || !strings.EqualFold(v, `"`+old+`"`) {
+	if err != nil {
 		return
 	}
-	k.SetStringValue(app.Autostart, `"`+exe+`"`)
+	v = strings.TrimSpace(v)
+	quoted := `"` + old + `"`
+	if len(v) < len(quoted) || !strings.EqualFold(v[:len(quoted)], quoted) {
+		return
+	}
+	k.SetStringValue(app.Autostart, `"`+exe+`"`+v[len(quoted):])
 }

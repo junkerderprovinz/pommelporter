@@ -196,7 +196,7 @@ func TestOlderUserInstallIsRemoved(t *testing.T) {
 	key := app.Legacy.UserKeys[0]
 	setString(t, p.user, key, "DisplayIcon", old)
 	setString(t, p.user, app.Legacy.ChoiceKeys[0], "x", "x")
-	setString(t, p.user, runKey, "Prog", `"`+strings.ToUpper(old)+`"`)
+	setString(t, p.user, runKey, "Prog", `"`+strings.ToUpper(old)+`" --tray`)
 	setString(t, p.user, runKey, "Other", `"`+old+`"`)
 
 	exe := `C:\Program Files\Prog\Prog.exe`
@@ -214,7 +214,7 @@ func TestOlderUserInstallIsRemoved(t *testing.T) {
 	if keyExists(p.user, key) || keyExists(p.user, app.Legacy.ChoiceKeys[0]) {
 		t.Error("the older keys are still there")
 	}
-	if got := readString(p.user, runKey, "Prog"); got != `"`+exe+`"` {
+	if got := readString(p.user, runKey, "Prog"); got != `"`+exe+`" --tray` {
 		t.Errorf("autostart = %s", got)
 	}
 	if got := readString(p.user, runKey, "Other"); got != `"`+old+`"` {
