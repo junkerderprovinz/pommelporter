@@ -54,25 +54,22 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 ## 1. What it looks like
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/welcome-dark.png"><img src=".github/assets/screenshots/welcome-light.png" alt="Start page with the app, its version and publisher" width="49%"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/options-dark.png"><img src=".github/assets/screenshots/options-light.png" alt="Install folder, Start menu entry and desktop shortcut" width="49%"></picture>
-  <br><em>The start page shows the app on its tile, the next one asks for the folder and the shortcuts.</em>
+  <img src=".github/assets/screenshots/folder.png" alt="PommelPorter's folder picker with a button for each drive" width="100%">
+  <br><em>The folder picker reaches every drive, not only the one Windows starts from.</em>
 </p>
 
 <br>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/folder-dark.png"><img src=".github/assets/screenshots/folder-light.png" alt="Folder picker with a button for each drive" width="49%"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/progress-dark.png"><img src=".github/assets/screenshots/progress-light.png" alt="Installation in progress, step by step" width="49%"></picture>
-  <br><em>The folder picker reaches every drive, and the progress page lists each step as it runs.</em>
+  <img src=".github/assets/screenshots/progress.png" alt="Installation in progress, step by step" width="100%">
+  <br><em>Each step shows up as it runs, and a failed one says why.</em>
 </p>
 
 <br>
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/done-dark.png"><img src=".github/assets/screenshots/done-light.png" alt="Installation finished, with a button to start the app" width="49%"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/uninstall-dark.png"><img src=".github/assets/screenshots/uninstall-light.png" alt="Uninstall, with what goes and what stays" width="49%"></picture>
-  <br><em>Once it is done, the app can start right away. The uninstaller lists what it removes and what it keeps.</em>
+  <img src=".github/assets/screenshots/uninstall.png" alt="Uninstall page listing what goes and what stays" width="100%">
+  <br><em>The uninstaller lists what it removes and what it keeps.</em>
 </p>
 
 <br>
