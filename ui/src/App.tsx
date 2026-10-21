@@ -6,7 +6,7 @@ import { Done } from './pages/Done';
 import { Options } from './pages/Options';
 import { Progress } from './pages/Progress';
 import { Welcome } from './pages/Welcome';
-import { TitleBar } from './components/TitleBar';
+import { WindowCard } from './components/WindowCard';
 
 type Step = 'welcome' | 'options' | 'confirm' | 'progress' | 'done';
 
@@ -37,12 +37,9 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   const working = step === 'progress' && !run.finished && !run.error;
 
   return (
-    <div className="flex h-full flex-col">
-      {info.frameless && (
-        <TitleBar info={info} closable={!working} onMinimise={() => void installer.minimise()} onClose={quit} />
-      )}
-      <div className="min-h-0 flex-1">{page()}</div>
-    </div>
+    <WindowCard info={info} closable={!working} onMinimise={() => void installer.minimise()} onClose={quit}>
+      {page()}
+    </WindowCard>
   );
 
   function page() {

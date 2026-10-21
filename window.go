@@ -124,15 +124,24 @@ func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 		Mac:      application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
 	})
 	svc.app = app
-	svc.window = app.Window.NewWithOptions(application.WebviewWindowOptions{
+	opts := application.WebviewWindowOptions{
 		Title:               title,
 		Width:               640,
 		Height:              480,
 		DisableResize:       true,
-		Frameless:           frameless,
 		MinimiseButtonState: application.ButtonEnabled,
 		MaximiseButtonState: application.ButtonHidden,
-	})
+	}
+	if frameless {
+		// The window is clear and the page draws its card with the logo on
+		// the top edge, so it needs room above the card and for its shadow,
+		// and none of the corners and shadow Windows would add.
+		opts.Frameless = true
+		opts.Height = 560
+		opts.BackgroundType = application.BackgroundTypeTransparent
+		opts.Windows.DisableFramelessWindowDecorations = true
+	}
+	svc.window = app.Window.NewWithOptions(opts)
 	// Closing halfway would leave a half-installed copy behind, so the window
 	// stays open until the work is done, whichever way it is closed.
 	svc.window.RegisterHook(events.Common.WindowClosing, func(e *application.WindowEvent) {

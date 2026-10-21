@@ -10,6 +10,12 @@ body,
   height: 100%;
 }
 
+/* A window without a frame is clear, and the card inside it is the window. */
+html.floating,
+html.floating body {
+  background: transparent;
+}
+
 /* The window has a fixed size, so nothing scrolls but the lists inside it. */
 body {
   overflow: hidden;

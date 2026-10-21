@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
-import { Card } from '../glimstone/react/Card';
 
 /**
- * One step of the wizard: a card that fills the window, titled with the step's
- * name, and the foot row that answers it. Actions stand at the end of the
- * foot with the forward one last; `start` holds a link out of the window.
+ * One step of the wizard inside the window's card: the step's name under the
+ * logo, its content, and the foot row that answers it. Actions stand at the
+ * end of the foot with the forward one last; `start` holds a link out of the
+ * window.
  */
 export function Page({
   title,
@@ -18,11 +18,9 @@ export function Page({
   start?: ReactNode;
 }) {
   return (
-    <div className="flex h-full flex-col gap-4 px-5 pt-6 pb-4">
-      {/* A one-row grid stretches the card to the height that is left. */}
-      <main className="glim-page-enter grid min-h-0 flex-1 grid-rows-1">
-        <Card title={title}>{children}</Card>
-      </main>
+    <div className="flex h-full flex-col gap-4 px-6 pt-2 pb-5">
+      <h1 className="glim-eyebrow text-center">{title}</h1>
+      <main className="glim-page-enter flex min-h-0 flex-1 flex-col">{children}</main>
       <footer className="flex min-h-[var(--btn-h-key)] items-center gap-3">
         {start}
         <span className="flex-1" />

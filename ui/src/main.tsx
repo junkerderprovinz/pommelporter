@@ -56,6 +56,7 @@ const [installer] = await Promise.all([connect(), loadLanguage()]);
 const [info, defaults] = await Promise.all([installer.info(), installer.defaults()]);
 applyAccent(info.accent);
 document.title = info.name;
+document.documentElement.classList.toggle('floating', info.frameless);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

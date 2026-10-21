@@ -1,7 +1,7 @@
 import type { Info } from '../bridge';
 import { t } from '../i18n';
 import { Button } from '../glimstone/react/Button';
-import { Logo, Page } from '../components/Page';
+import { Page } from '../components/Page';
 
 function lead(info: Info): string {
   const { name, version, existing } = info;
@@ -37,7 +37,6 @@ export function Welcome({
       }
     >
       <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-        <Logo svg={info.logo} className="h-24 w-24" />
         <div className="flex flex-col gap-1">
           <p className="text-status font-semibold text-carbon-text">{info.name}</p>
           <p className="text-subline text-carbon-textSub">
