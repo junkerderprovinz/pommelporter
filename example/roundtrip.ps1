@@ -77,5 +77,5 @@ Expect ($principal.LogonType -eq 'S4U') 'the task running whether or not that pe
 # schtasks leaves out a run level that is the default, which is no elevation.
 Expect ($principal.RunLevel -in @($null, '', 'LeastPrivilege')) "the task running without elevation, got $($principal.RunLevel)"
 $mine = (Get-Acl $exposed).Access | Where-Object { $_.IdentityReference.Translate([System.Security.Principal.SecurityIdentifier]).Value -eq $me }
-Expect ($mine | Where-Object { $_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify }) 'change rights for that person'
+Expect ([bool]($mine | Where-Object { $_.FileSystemRights -band [System.Security.AccessControl.FileSystemRights]::Modify })) 'change rights for that person'
 Uninstall $exposed
