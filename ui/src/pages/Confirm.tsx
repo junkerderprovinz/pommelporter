@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { Info } from '../bridge';
 import { t } from '../i18n';
 import { Button } from '../glimstone/react/Button';
-import { Logo, Page } from '../components/Page';
+import { Page } from '../components/Page';
 
 function List({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -37,8 +37,7 @@ export function Confirm({ info, onUninstall, onCancel }: { info: Info; onUninsta
         </>
       }
     >
-      <div className="flex items-center gap-4">
-        <Logo svg={info.logo} className="h-14 w-14" />
+      <div className="flex justify-center text-center">
         <div className="flex min-w-0 flex-col gap-0.5">
           <p className="text-title font-semibold text-carbon-text">{info.name}</p>
           <p className="text-body text-carbon-textSub">{t('confirm.lead', { name: info.name, version })}</p>

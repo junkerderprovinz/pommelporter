@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { Info } from '../bridge';
 import { t } from '../i18n';
 import { Button } from '../glimstone/react/Button';
-import { Logo, Page } from '../components/Page';
+import { Page } from '../components/Page';
 
 export function Done({ info, onLaunch, onClose }: { info: Info; onLaunch: () => Promise<void>; onClose: () => void }) {
   const [launchError, setLaunchError] = useState('');
@@ -29,7 +29,6 @@ export function Done({ info, onLaunch, onClose }: { info: Info; onLaunch: () => 
       }
     >
       <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-        <Logo svg={info.logo} className={`h-20 w-20 ${installed ? '' : 'grayscale'}`} />
         <p className="text-title font-semibold text-carbon-text">
           {t(installed ? 'done.installed' : 'done.uninstalled', { name: info.name })}
         </p>

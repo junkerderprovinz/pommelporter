@@ -53,15 +53,15 @@ export function mockInstaller(query: URLSearchParams): Installer {
 
   const info: Info = {
     name: app.name,
-    version: '5.0.0',
-    publisher: 'Junker der Provinz',
+    version: '2.2.0',
+    publisher: 'junkerderprovinz',
     homepage: `https://github.com/junkerderprovinz/${app.name.toLowerCase()}`,
     accent: `#${query.get('accent') ?? 'FCC419'}`,
     logo: app.logo,
     mode: uninstall ? 'uninstall' : 'install',
     platform: linux ? 'linux' : 'windows',
     frameless: !linux,
-    existing: hasExisting ? { version: uninstall ? '5.0.0' : '4.6.2', dir: defaultDir } : null,
+    existing: hasExisting ? { version: uninstall ? '2.2.0' : '2.1.0', dir: defaultDir } : null,
   };
 
   function checkDir(dir: string): DirCheck {
