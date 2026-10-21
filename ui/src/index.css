@@ -28,6 +28,12 @@ html.floating body {
   background: transparent;
 }
 
+/* Past the card's edge is the desktop, which a dialog has no business dimming. */
+html.floating .glim-modal-backdrop {
+  inset: 0.75rem;
+  border-radius: var(--radius-card);
+}
+
 /* The window has a fixed size, so nothing scrolls but the lists inside it. */
 body {
   overflow: hidden;
