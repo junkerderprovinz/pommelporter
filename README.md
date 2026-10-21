@@ -14,6 +14,23 @@ The update task needs a folder nobody else can change. The installer gives the i
 
 The window speaks the 42 languages the apps do, picked from the system's language, and hands that language to the app for its first start.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/welcome-dark.png"><img src=".github/assets/screenshots/welcome-light.png" alt="Start page with the app, its version and publisher"></picture></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/options-dark.png"><img src=".github/assets/screenshots/options-light.png" alt="Install folder, Start menu entry and desktop shortcut"></picture></td>
+  </tr>
+  <tr>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/progress-dark.png"><img src=".github/assets/screenshots/progress-light.png" alt="Installation in progress, step by step"></picture></td>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/done-dark.png"><img src=".github/assets/screenshots/done-light.png" alt="Installation finished, with a button to start the app"></picture></td>
+  </tr>
+  <tr>
+    <td><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/screenshots/uninstall-dark.png"><img src=".github/assets/screenshots/uninstall-light.png" alt="Uninstall, with what goes and what stays"></picture></td>
+    <td></td>
+  </tr>
+</table>
+
 ## Using it in an app
 
 An app keeps a small main package next to its desktop module, embeds the built program as its payload, and calls `Run`:
