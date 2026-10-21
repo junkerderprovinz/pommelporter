@@ -69,43 +69,45 @@ export function Progress({
         )
       }
     >
-      <div
-        role="progressbar"
-        aria-label={t('progress.label')}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={percent}
-        className="h-2 shrink-0 overflow-hidden rounded-pill bg-carbon-surface2"
-      >
+      <div className="my-auto flex flex-col gap-4">
         <div
-          className={`h-full rounded-pill transition-[width] duration-500 ease-out ${failed ? 'bg-statusFailSolid' : 'bg-accent'}`}
-          style={{ width: `${percent}%` }}
-        />
-      </div>
-      <ol className="flex flex-col gap-1">
-        {run.steps.map((step, i) => {
-          const state = stepState(run, i);
-          return (
-            <li key={step} className="flex items-center gap-3 text-sm" aria-current={state === 'running' ? 'step' : undefined}>
-              <span className="flex h-4 w-4 shrink-0 items-center justify-center">
-                <StepMark state={state} />
-              </span>
-              <span className={LABEL_INK[state]}>{stepLabel(step, mode, info.name)}</span>
-            </li>
-          );
-        })}
-      </ol>
-      {failed && (
-        <div role="alert" className="glim-well flex shrink-0 flex-col gap-1 px-4 py-2.5">
-          <p className="text-sm font-medium text-carbon-text">
-            {t(mode === 'install' ? 'progress.failed.install' : 'progress.failed.uninstall', { name: info.name })}
-          </p>
-          {/* The platform reports in English, so the sentence keeps its own direction. */}
-          <p dir="auto" className="max-h-10 overflow-y-auto text-subline break-words text-carbon-textSub select-text">
-            {run.error}
-          </p>
+          role="progressbar"
+          aria-label={t('progress.label')}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={percent}
+          className="h-2 shrink-0 overflow-hidden rounded-pill bg-carbon-surface2"
+        >
+          <div
+            className={`h-full rounded-pill transition-[width] duration-500 ease-out ${failed ? 'bg-statusFailSolid' : 'bg-accent'}`}
+            style={{ width: `${percent}%` }}
+          />
         </div>
-      )}
+        <ol className="flex flex-col">
+          {run.steps.map((step, i) => {
+            const state = stepState(run, i);
+            return (
+              <li key={step} className="flex items-center gap-3 text-sm" aria-current={state === 'running' ? 'step' : undefined}>
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                  <StepMark state={state} />
+                </span>
+                <span className={LABEL_INK[state]}>{stepLabel(step, mode, info.name)}</span>
+              </li>
+            );
+          })}
+        </ol>
+        {failed && (
+          <div role="alert" className="glim-well flex shrink-0 flex-col gap-1 px-4 py-2.5">
+            <p className="text-sm font-medium text-carbon-text">
+              {t(mode === 'install' ? 'progress.failed.install' : 'progress.failed.uninstall', { name: info.name })}
+            </p>
+            {/* The platform reports in English, so the sentence keeps its own direction. */}
+            <p dir="auto" className="max-h-10 overflow-y-auto text-subline break-words text-carbon-textSub select-text">
+              {run.error}
+            </p>
+          </div>
+        )}
+      </div>
     </Page>
   );
 }

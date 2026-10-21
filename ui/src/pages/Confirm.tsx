@@ -37,27 +37,29 @@ export function Confirm({ info, onUninstall, onCancel }: { info: Info; onUninsta
         </>
       }
     >
-      <div className="flex justify-center text-center">
-        <div className="flex min-w-0 flex-col gap-0.5">
-          <p className="text-title font-semibold text-carbon-text">{info.name}</p>
-          <p className="text-body text-carbon-textSub">{t('confirm.lead', { name: info.name, version })}</p>
-          {info.existing && (
-            <p dir="ltr" className="truncate text-start font-mono text-meta text-carbon-textMuted">
-              {info.existing.dir}
-            </p>
-          )}
+      <div className="my-auto flex flex-col gap-4">
+        <div className="flex justify-center text-center">
+          <div className="flex min-w-0 flex-col gap-0.5">
+            <p className="text-title font-semibold text-carbon-text">{info.name}</p>
+            <p className="text-body text-carbon-textSub">{t('confirm.lead', { name: info.name, version })}</p>
+            {info.existing && (
+              <p dir="ltr" className="truncate text-start font-mono text-meta text-carbon-textMuted">
+                {info.existing.dir}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <List title={t('confirm.removed')}>
-          <Item>{t('confirm.program')}</Item>
-          <Item>{t(linux ? 'options.menu' : 'options.startMenu')}</Item>
-          <Item>{t('options.desktop')}</Item>
-          {!linux && <Item>{t('confirm.updates')}</Item>}
-        </List>
-        <List title={t('confirm.kept')}>
-          <Item>{t('confirm.data')}</Item>
-        </List>
+        <div className="grid grid-cols-2 gap-3">
+          <List title={t('confirm.removed')}>
+            <Item>{t('confirm.program')}</Item>
+            <Item>{t(linux ? 'options.menu' : 'options.startMenu')}</Item>
+            <Item>{t('options.desktop')}</Item>
+            {!linux && <Item>{t('confirm.updates')}</Item>}
+          </List>
+          <List title={t('confirm.kept')}>
+            <Item>{t('confirm.data')}</Item>
+          </List>
+        </div>
       </div>
     </Page>
   );
