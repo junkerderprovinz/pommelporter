@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.0.1 - 2026-10-21
+
+## 🎨 Design
+
+- **The app's logo shows once.** The uninstall page and the last page put a second, smaller logo under the app tile at the top of the window. Only the tile is left.
+
 ## 1.0.0 - 2026-10-21
 
 ## ✨ Added
