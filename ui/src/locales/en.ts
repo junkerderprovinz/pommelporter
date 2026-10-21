@@ -1,0 +1,84 @@
+// The source language. Every other dictionary has exactly these keys, which
+// locales.test.ts checks along with the placeholders each string keeps.
+export const en = {
+  'title.welcome': 'Welcome',
+  'title.options': 'Options',
+  'title.installing': 'Installing',
+  'title.uninstall': 'Uninstall',
+  'title.uninstalling': 'Uninstalling',
+  'title.done': 'Done',
+  'title.chooser': 'Choose a folder',
+
+  'button.next': 'Next',
+  'button.back': 'Back',
+  'button.cancel': 'Cancel',
+  'button.close': 'Close',
+  'button.install': 'Install',
+  'button.uninstall': 'Uninstall',
+  'button.start': 'Start {name}',
+  'button.retry': 'Try again',
+  'button.website': 'Website',
+  'button.browse': 'Browse',
+  'button.up': 'Up one folder',
+  'button.newFolder': 'New folder',
+  'button.create': 'Create',
+  'button.use': 'Use this folder',
+
+  'welcome.byline': 'Version {version} by {publisher}',
+  'welcome.windows': 'This sets up {name} for everyone who uses this computer.',
+  'welcome.linux': 'This sets up {name} for you on this computer.',
+  'welcome.update': '{name} {old} is already installed. This replaces it with {version}, and your settings stay as they are.',
+  'welcome.repair': '{name} {version} is already installed. Installing it again repairs it, and your settings stay as they are.',
+
+  'options.folder': 'Install folder',
+  'options.folderHint': '{name} updates itself in the background with full system rights, so its folder must be one that only administrators can change. The installer checks every folder you pick.',
+  'options.startMenu': 'Start menu entry',
+  'options.menu': 'App menu entry',
+  'options.desktop': 'Desktop shortcut',
+
+  'refusal.relative': 'Enter a full path that starts with a drive letter, such as C:\\.',
+  'refusal.notLocal': 'This folder is on a network, USB or optical drive. Pick one on a drive built into this computer.',
+  'refusal.noAcl': "This drive can't control who changes its files, which is the case with FAT and exFAT. Pick a folder on an NTFS drive.",
+  'refusal.notEmpty': 'This folder already has other files in it. Pick an empty folder or create a new one.',
+  'refusal.unsafeParent': 'Ordinary users could rename or replace a folder above this one. Pick a folder inside Program Files or another one only administrators can change.',
+  'refusal.link': 'This folder, or one above it, is a link to somewhere else. Pick the real folder.',
+  'refusal.file': 'A file already has this name. Pick a folder instead.',
+  'refusal.fixed': 'On this system, {name} always goes to its usual folder.',
+
+  'chooser.path': 'Folder path',
+  'chooser.drives': 'Drives',
+  'chooser.empty': 'No folders here',
+  'chooser.loading': 'Loading …',
+  'chooser.newName': 'Name of the new folder',
+
+  'step.prepare': 'Getting ready',
+  'step.close': 'Closing {name}',
+  'step.legacy': 'Removing the old installation',
+  'step.files': 'Copying files',
+  'step.shortcuts.install': 'Creating shortcuts',
+  'step.shortcuts.uninstall': 'Removing shortcuts',
+  'step.register.install': 'Adding {name} to the installed apps',
+  'step.register.uninstall': 'Removing {name} from the installed apps',
+  'step.updates.install': 'Setting up automatic updates',
+  'step.updates.uninstall': 'Turning off automatic updates',
+  'step.remove': 'Removing files',
+  'step.other': 'Working on it',
+
+  'progress.label': 'Progress',
+  'progress.failed.install': "{name} couldn't be installed.",
+  'progress.failed.uninstall': "{name} couldn't be uninstalled.",
+
+  'done.installed': '{name} is installed.',
+  'done.uninstalled': '{name} has been uninstalled.',
+  'done.kept': 'Your downloads, settings and accounts are still there.',
+
+  'confirm.lead': 'This removes {name} {version} from this computer.',
+  'confirm.removed': 'Removed',
+  'confirm.kept': 'Kept',
+  'confirm.program': 'The program and its folder',
+  'confirm.updates': 'Automatic updates',
+  'confirm.data': 'Your downloads, settings and accounts',
+};
+
+export type Key = keyof typeof en;
+export type Dict = Record<Key, string>;

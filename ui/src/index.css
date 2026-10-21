@@ -1,0 +1,28 @@
+@import './glimstone/tokens.css';
+@import './glimstone/tailwind-theme.css';
+
+/* dist/ is committed; without this Tailwind would scan its own last output. */
+@source not "../dist";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* The window has a fixed size, so nothing scrolls but the lists inside it. */
+body {
+  overflow: hidden;
+  user-select: none;
+}
+
+input,
+.select-text {
+  user-select: text;
+}
+
+/* A field shows focus as a step up the surface ramp and its caret, not as the
+   ring every other control gets (GlimStone rule 14). */
+input:focus-visible {
+  outline: none;
+}
