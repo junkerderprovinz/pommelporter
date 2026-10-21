@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.0.2 - 2026-10-21
+
+## 🐛 Fixed
+
+- **The folder picker no longer dims the desktop.** On Windows the window is clear around its card, and the dark scrim behind the folder picker covered that edge too, so a dark frame showed on the desktop around the installer. The scrim stays on the card.
+
 ## 1.0.1 - 2026-10-21
 
 ## 🎨 Design
