@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.0.4 - 2026-10-22
+
+## 🎨 Design
+
+- **The logo uses the family colours.** The pommel had its own gold and a plain grey, so it looked different from KnightLoader and ArrowLoop. It now uses the same gold and silver as they do, in the window icon, the README banner and the screenshots.
+
 ## 1.0.3 - 2026-10-22
 
 ## 🎨 Design
