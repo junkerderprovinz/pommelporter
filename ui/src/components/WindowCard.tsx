@@ -1,7 +1,8 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { Info } from '../bridge';
 import { t } from '../i18n';
-import { IconClose, IconMinimise } from './icons';
+import { IconClose, IconWindowMinimise } from '../glimstone/react/glyphs';
+import { IconTipButton } from '../glimstone/react/IconTipButton';
 import { Logo } from './Page';
 
 // Wails moves the window by any element marked draggable, so the buttons opt
@@ -43,11 +44,11 @@ export function WindowCard({
   return (
     <div className="h-full p-3">
       <div className="glim-card relative flex h-full flex-col">
-        <div className="absolute end-1 top-1 z-10 flex">
-          <WindowButton label={t('button.minimise')} onClick={onMinimise}>
-            <IconMinimise />
+        <div className="absolute end-1 top-1 z-10 flex h-10">
+          <WindowButton label={t('button.minimise')} onPress={onMinimise}>
+            <IconWindowMinimise />
           </WindowButton>
-          <WindowButton label={t('button.close')} disabled={!closable} onClick={onClose}>
+          <WindowButton label={t('button.close')} disabled={!closable} onPress={onClose}>
             <IconClose />
           </WindowButton>
         </div>
@@ -75,30 +76,22 @@ function AppTile({ svg }: { svg: string }) {
   );
 }
 
+// The window buttons of GlimStone's WindowBar, standing in the card's corner
+// instead of on a bar, since the card is the window.
 function WindowButton({
   label,
   disabled = false,
-  onClick,
+  onPress,
   children,
 }: {
   label: string;
   disabled?: boolean;
-  onClick: () => void;
+  onPress: () => void;
   children: ReactNode;
 }) {
   return (
-    <button
-      type="button"
-      aria-label={label}
-      title={label}
-      disabled={disabled}
-      onClick={onClick}
-      style={noDrag}
-      className="flex h-9 w-10 items-center justify-center rounded-control text-carbon-textMuted transition-colors
-        hover:bg-carbon-surface3 hover:text-carbon-text disabled:opacity-40
-        disabled:hover:bg-transparent disabled:hover:text-carbon-textMuted"
-    >
-      {children}
-    </button>
+    <IconTipButton tip={label} disabled={disabled} onClick={onPress} style={noDrag} className="glim-window-button">
+      <span className="glim-window-square">{children}</span>
+    </IconTipButton>
   );
 }

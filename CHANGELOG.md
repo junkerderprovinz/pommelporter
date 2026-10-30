@@ -6,6 +6,10 @@ Every release is written by hand. The full notes for each release are in
 
 ## Unreleased
 
+## 🎨 Design
+
+- **The window follows GlimStone 3.8.0.** Install, Try again, Create and Use this folder wear the glyphs the family gives those meanings, as the apps do. Minimise and Close in the window's corner look and answer like the title bar the apps draw, with a bubble that names them. The progress bar keeps its changes to itself and glides only when the system allows motion.
+
 ## 🐛 Fixed
 
 - **Uninstalling keeps what the app's window remembers.** On Windows the uninstaller deleted `%APPDATA%\<program>.exe`, where the app's window keeps its storage, such as the language and look picked in it. A test build runs a program of the same name, so uninstalling only the test build wiped the real app's window storage too. That folder now stays. A switch on the uninstall page, off by default, deletes it as well. A silent uninstall leaves the folder alone.

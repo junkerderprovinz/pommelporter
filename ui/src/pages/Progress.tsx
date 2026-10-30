@@ -76,10 +76,10 @@ export function Progress({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={percent}
-          className="h-2 shrink-0 overflow-hidden rounded-pill bg-carbon-surface2"
+          className="glim-meter h-2 shrink-0 overflow-hidden rounded-pill bg-carbon-surface2"
         >
           <div
-            className={`h-full rounded-pill transition-[width] duration-500 ease-out ${failed ? 'bg-statusFailSolid' : 'bg-accent'}`}
+            className={`h-full rounded-pill ease-out motion-safe:transition-[width] motion-safe:duration-500 ${failed ? 'bg-statusFailSolid' : 'bg-accent'}`}
             style={{ width: `${percent}%` }}
           />
         </div>

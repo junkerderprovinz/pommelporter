@@ -50,3 +50,14 @@ input,
 input:focus-visible {
   outline: none;
 }
+
+/* Close is held back while the installer works, so it does not answer the
+   pointer either. */
+.glim-window-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.glim-window-button:disabled .glim-window-square {
+  background-color: transparent;
+  color: var(--carbon-text-sub);
+}

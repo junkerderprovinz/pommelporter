@@ -12,17 +12,18 @@ import { applyAccent, applyMotion, applyShape, DEFAULT_MOTION, DEFAULT_SHAPE } f
 import { applyStoredLabelModes } from './glimstone/controls';
 import { setGlyphResolver } from './glimstone/react/glyphs';
 import {
+  IconAdd,
+  IconApply,
   IconBack,
-  IconCheck,
   IconClose,
-  IconDownload,
   IconExternalLink,
   IconFolderAdd,
   IconFolderOpen,
   IconFolderUp,
   IconForward,
+  IconInstall,
   IconPlay,
-  IconRefresh,
+  IconRetry,
   IconTrash,
 } from './components/icons';
 
@@ -33,16 +34,16 @@ const GLYPHS: Record<string, () => ReactNode> = {
   'button.back': () => <IconBack className={mirrored} />,
   'button.cancel': () => <IconClose />,
   'button.close': () => <IconClose />,
-  'button.install': () => <IconDownload />,
+  'button.install': () => <IconInstall />,
   'button.uninstall': () => <IconTrash />,
   'button.start': () => <IconPlay />,
-  'button.retry': () => <IconRefresh />,
+  'button.retry': () => <IconRetry />,
   'button.website': () => <IconExternalLink />,
   'button.browse': () => <IconFolderOpen />,
   'button.up': () => <IconFolderUp />,
   'button.newFolder': () => <IconFolderAdd />,
-  'button.create': () => <IconFolderAdd />,
-  'button.use': () => <IconCheck />,
+  'button.create': () => <IconAdd />,
+  'button.use': () => <IconApply />,
 };
 
 // The installer has no settings of its own, so every engine starts at the

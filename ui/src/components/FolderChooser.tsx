@@ -214,7 +214,7 @@ export function FolderChooser({
           </p>
         )}
 
-        <div className="flex items-center justify-end gap-3 pt-1">
+        <footer className="flex items-center justify-end gap-3 pt-1">
           <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" onClick={onClose} />
           <Button
             label={t('button.use')}
@@ -224,7 +224,7 @@ export function FolderChooser({
             disabled={text.trim() === ''}
             onClick={() => onPick(text.trim())}
           />
-        </div>
+        </footer>
       </div>
     </div>,
     document.body,
