@@ -72,4 +72,5 @@ export const ro: Dict = {
   'confirm.program': 'Programul și dosarul lui',
   'confirm.updates': 'Actualizări automate',
   'confirm.data': 'Descărcările, setările și conturile tale',
+  'confirm.windowData': 'Șterge și ce reține fereastra {name}, de exemplu limba și aspectul',
 };

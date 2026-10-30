@@ -72,4 +72,5 @@ export const de: Dict = {
   'confirm.program': 'Das Programm und sein Ordner',
   'confirm.updates': 'Automatische Updates',
   'confirm.data': 'Deine Downloads, Einstellungen und Konten',
+  'confirm.windowData': 'Auch löschen, was sich das Fenster von {name} merkt, etwa Sprache und Aussehen',
 };

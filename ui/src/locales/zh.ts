@@ -72,4 +72,5 @@ export const zh: Dict = {
   'confirm.program': '程序及其文件夹',
   'confirm.updates': '自动更新',
   'confirm.data': '你的下载、设置和账户',
+  'confirm.windowData': '同时删除 {name} 窗口记住的内容，例如语言和外观',
 };

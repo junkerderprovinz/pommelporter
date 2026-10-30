@@ -72,4 +72,5 @@ export const vi: Dict = {
   'confirm.program': 'Chương trình và thư mục của nó',
   'confirm.updates': 'Cập nhật tự động',
   'confirm.data': 'Tệp đã tải, cài đặt và tài khoản của bạn',
+  'confirm.windowData': 'Xóa cả những gì cửa sổ {name} ghi nhớ, như ngôn ngữ và giao diện',
 };

@@ -72,4 +72,5 @@ export const lt: Dict = {
   'confirm.program': 'Programa ir jos aplankas',
   'confirm.updates': 'Automatiniai naujinimai',
   'confirm.data': 'Jūsų atsisiuntimai, nustatymai ir paskyros',
+  'confirm.windowData': 'Taip pat ištrinti tai, ką prisimena {name} langas, pvz., kalbą ir išvaizdą',
 };

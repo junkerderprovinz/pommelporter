@@ -33,6 +33,12 @@ export interface Options {
   language: string;
 }
 
+/** The choice on the uninstall page, as setup.Removal. */
+export interface Removal {
+  /** Also delete what the app's window remembers; Windows only. */
+  windowData: boolean;
+}
+
 /** Whether a folder may take the program, as setup.DirCheck. */
 export interface DirCheck {
   ok: boolean;
@@ -66,7 +72,7 @@ export interface Installer {
   makeDir(parent: string, name: string): Promise<string>;
   /** Returns at once; the work reports through onProgress. */
   install(options: Options): Promise<void>;
-  uninstall(): Promise<void>;
+  uninstall(removal: Removal): Promise<void>;
   launch(): Promise<void>;
   openURL(url: string): Promise<void>;
   minimise(): Promise<void>;
@@ -100,7 +106,7 @@ async function wailsInstaller(): Promise<Installer> {
     listDir: (path) => call('ListDir', path),
     makeDir: (parent, name) => call('MakeDir', parent, name),
     install: (options) => call('Install', options),
-    uninstall: () => call('Uninstall'),
+    uninstall: (removal) => call('Uninstall', removal),
     launch: () => call('Launch'),
     openURL: (url) => call('OpenURL', url),
     minimise: () => call('Minimise'),

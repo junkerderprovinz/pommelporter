@@ -80,9 +80,9 @@ func (s *Installer) Install(o setup.Options) {
 }
 
 // Uninstall runs in the background like Install.
-func (s *Installer) Uninstall() {
+func (s *Installer) Uninstall(r setup.Removal) {
 	s.start(func(ctx context.Context, report setup.Report) error {
-		return s.p.Uninstall(ctx, s.a, report)
+		return s.p.Uninstall(ctx, s.a, r, report)
 	})
 }
 

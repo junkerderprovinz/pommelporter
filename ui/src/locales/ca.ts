@@ -72,4 +72,5 @@ export const ca: Dict = {
   'confirm.program': 'El programa i la seva carpeta',
   'confirm.updates': 'Actualitzacions automàtiques',
   'confirm.data': 'Les teves baixades, configuració i comptes',
+  'confirm.windowData': "Esborrar també el que recorda la finestra de {name}, com l'idioma i l'aspecte",
 };

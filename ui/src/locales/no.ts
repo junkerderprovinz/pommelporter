@@ -72,4 +72,5 @@ export const no: Dict = {
   'confirm.program': 'Programmet og mappen',
   'confirm.updates': 'Automatiske oppdateringer',
   'confirm.data': 'Nedlastingene, innstillingene og kontoene dine',
+  'confirm.windowData': 'Slett også det vinduet til {name} husker, som språk og utseende',
 };

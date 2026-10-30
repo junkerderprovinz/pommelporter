@@ -184,7 +184,7 @@ func TestUninstallRemovesEverythingButTheSettings(t *testing.T) {
 	}
 
 	var steps []string
-	if err := New().Uninstall(context.Background(), app, func(s string) { steps = append(steps, s) }); err != nil {
+	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(s string) { steps = append(steps, s) }); err != nil {
 		t.Fatalf("Uninstall: %v", err)
 	}
 	if !slices.Equal(steps, []string{setup.StepRemove}) {
@@ -217,7 +217,7 @@ func TestLauncherLeavesAnotherProgramsNameAlone(t *testing.T) {
 		t.Fatal(err)
 	}
 	install(t, app, New().Defaults(app))
-	if err := New().Uninstall(context.Background(), app, func(string) {}); err != nil {
+	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
 		t.Fatal(err)
 	}
 	if data, err := os.ReadFile(other); err != nil || string(data) != "someone else's" {

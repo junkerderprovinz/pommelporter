@@ -72,4 +72,5 @@ export const is: Dict = {
   'confirm.program': 'Forritið og mappan þess',
   'confirm.updates': 'Sjálfvirkar uppfærslur',
   'confirm.data': 'Niðurhal, stillingar og aðgangar þínir',
+  'confirm.windowData': 'Eyða líka því sem gluggi {name} man, svo sem tungumáli og útliti',
 };

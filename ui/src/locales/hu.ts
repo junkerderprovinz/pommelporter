@@ -72,4 +72,5 @@ export const hu: Dict = {
   'confirm.program': 'A program és a mappája',
   'confirm.updates': 'Automatikus frissítések',
   'confirm.data': 'A letöltései, beállításai és fiókjai',
+  'confirm.windowData': 'Annak törlése is, amit a(z) {name} ablaka megjegyez, például a nyelv és a megjelenés',
 };

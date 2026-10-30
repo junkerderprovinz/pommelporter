@@ -43,6 +43,15 @@ type Options struct {
 	Language string `json:"language"`
 }
 
+// Removal is the choice on the uninstall page. Without it an uninstall leaves
+// everything in the person's own profile where it is.
+type Removal struct {
+	// WindowData also deletes what the app's window keeps for the person
+	// uninstalling, such as the language and look picked in it. A test build
+	// shares that folder with the real app, since both run the same program.
+	WindowData bool `json:"windowData"`
+}
+
 // ValidLanguage reports whether code looks like one of the apps' language
 // codes, so nothing else reaches the files the apps read it from.
 func ValidLanguage(code string) bool {
@@ -125,7 +134,7 @@ type Platform interface {
 	// Roots are the tops of the filesystems the folder chooser offers.
 	Roots() []string
 	Install(ctx context.Context, app App, o Options, report Report) error
-	Uninstall(ctx context.Context, app App, report Report) error
+	Uninstall(ctx context.Context, app App, r Removal, report Report) error
 	// Launch starts the installed program as the person who ran the
 	// installer, not with the installer's rights.
 	Launch(app App) error

@@ -72,4 +72,5 @@ export const he: Dict = {
   'confirm.program': 'התוכנה והתיקייה שלה',
   'confirm.updates': 'עדכונים אוטומטיים',
   'confirm.data': 'ההורדות, ההגדרות והחשבונות שלך',
+  'confirm.windowData': 'למחוק גם את מה שהחלון של {name} זוכר, כמו שפה ומראה',
 };

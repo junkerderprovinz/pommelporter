@@ -72,4 +72,5 @@ export const gl: Dict = {
   'confirm.program': 'O programa e o seu cartafol',
   'confirm.updates': 'Actualizacións automáticas',
   'confirm.data': 'As túas descargas, configuración e contas',
+  'confirm.windowData': 'Borrar tamén o que lembra a xanela de {name}, como o idioma e o aspecto',
 };

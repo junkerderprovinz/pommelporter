@@ -72,4 +72,5 @@ export const fi: Dict = {
   'confirm.program': 'Ohjelma ja sen kansio',
   'confirm.updates': 'Automaattiset päivitykset',
   'confirm.data': 'Latauksesi, asetuksesi ja tilisi',
+  'confirm.windowData': 'Poista myös se, mitä {name}-ikkuna muistaa, kuten kieli ja ulkoasu',
 };

@@ -72,4 +72,5 @@ export const ar: Dict = {
   'confirm.program': 'البرنامج ومجلده',
   'confirm.updates': 'التحديثات التلقائية',
   'confirm.data': 'تنزيلاتك وإعداداتك وحساباتك',
+  'confirm.windowData': 'حذف ما تتذكره نافذة {name} أيضًا، مثل اللغة والمظهر',
 };

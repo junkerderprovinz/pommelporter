@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
-import type { Info } from '../bridge';
+import type { Info, Removal } from '../bridge';
 import { t } from '../i18n';
 import { Button } from '../glimstone/react/Button';
+import { Toggle } from '../glimstone/react/Toggle';
 import { Page } from '../components/Page';
 
 function List({ title, children }: { title: string; children: ReactNode }) {
@@ -23,7 +24,19 @@ function Item({ children }: { children: ReactNode }) {
 }
 
 /** The uninstall question: what goes, and that the person's own things stay. */
-export function Confirm({ info, onUninstall, onCancel }: { info: Info; onUninstall: () => void; onCancel: () => void }) {
+export function Confirm({
+  info,
+  removal,
+  onChange,
+  onUninstall,
+  onCancel,
+}: {
+  info: Info;
+  removal: Removal;
+  onChange: (next: Removal) => void;
+  onUninstall: () => void;
+  onCancel: () => void;
+}) {
   const linux = info.platform === 'linux';
   const version = info.existing?.version ?? info.version;
 
@@ -60,6 +73,14 @@ export function Confirm({ info, onUninstall, onCancel }: { info: Info; onUninsta
             <Item>{t('confirm.data')}</Item>
           </List>
         </div>
+        {!linux && (
+          <Toggle
+            className="justify-between"
+            label={t('confirm.windowData', { name: info.name })}
+            checked={removal.windowData}
+            onChange={(windowData) => onChange({ ...removal, windowData })}
+          />
+        )}
       </div>
     </Page>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Info, Installer, Options as Choices } from './bridge';
+import type { Info, Installer, Options as Choices, Removal } from './bridge';
 import { advance, plannedSteps, startRun, type Run } from './run';
 import { language } from './i18n';
 import { Confirm } from './pages/Confirm';
@@ -18,6 +18,7 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   const mode = info.mode;
   const [step, setStep] = useState<Step>(mode === 'install' ? 'welcome' : 'confirm');
   const [choices, setChoices] = useState({ ...defaults, language: language() });
+  const [removal, setRemoval] = useState<Removal>({ windowData: false });
   const [run, setRun] = useState<Run>(() => startRun(plannedSteps(mode, info.platform)));
 
   useEffect(() => installer.onProgress((event) => setRun((r) => advance(r, event))), [installer]);
@@ -31,7 +32,7 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   function begin() {
     setRun(startRun(plannedSteps(mode, info.platform)));
     setStep('progress');
-    void (mode === 'install' ? installer.install(choices) : installer.uninstall());
+    void (mode === 'install' ? installer.install(choices) : installer.uninstall(removal));
   }
 
   const quit = () => void installer.quit();
@@ -67,7 +68,7 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
           />
         );
       case 'confirm':
-        return <Confirm info={info} onUninstall={begin} onCancel={quit} />;
+        return <Confirm info={info} removal={removal} onChange={setRemoval} onUninstall={begin} onCancel={quit} />;
       case 'progress':
         return (
           <Progress
