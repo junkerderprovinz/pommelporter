@@ -72,4 +72,5 @@ export const tr: Dict = {
   'confirm.program': 'Program ve klasörü',
   'confirm.updates': 'Otomatik güncellemeler',
   'confirm.data': 'İndirmeleriniz, ayarlarınız ve hesaplarınız',
+  'confirm.windowData': '{name} penceresinin hatırladıkları da silinsin, örneğin dil ve görünüm',
 };

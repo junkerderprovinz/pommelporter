@@ -31,7 +31,7 @@ type places struct {
 	publicDesktop  string
 	userPrograms   string // the Start menu of the person running the installer
 	userDesktop    string
-	appData        string // their roaming AppData, where the webview keeps its cache
+	appData        string // their roaming AppData
 }
 
 type platform struct {
@@ -403,7 +403,13 @@ func (p *platform) installedDir(app setup.App) (string, error) {
 	return filepath.Dir(self), nil
 }
 
-func (p *platform) Uninstall(ctx context.Context, app setup.App, report setup.Report) error {
+// windowData is where WebView2 keeps the app window's storage for the person
+// running the installer, unless the app names another folder.
+func (p *platform) windowData(app setup.App) string {
+	return filepath.Join(p.places.appData, app.Executable)
+}
+
+func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal, report setup.Report) error {
 	dir, err := p.installedDir(app)
 	if err != nil {
 		return err
@@ -422,9 +428,9 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, report setup.Re
 		}
 	}
 	keep(removeTree(filepath.Join(p.places.programData, app.Name)))
-	// The webview's cache of the person uninstalling; their settings and
-	// downloads stay.
-	keep(removeTree(filepath.Join(p.places.appData, app.Executable)))
+	if r.WindowData {
+		keep(removeTree(p.windowData(app)))
+	}
 
 	// Only what the installer and the updates put there, since the folder
 	// could have been chosen by hand. A copy that still runs goes at the

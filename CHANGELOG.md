@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## Unreleased
+
+## 🐛 Fixed
+
+- **Uninstalling keeps what the app's window remembers.** On Windows the uninstaller deleted `%APPDATA%\<program>.exe`, where the app's window keeps its storage, such as the language and look picked in it. A test build runs a program of the same name, so uninstalling only the test build wiped the real app's window storage too. That folder now stays. A switch on the uninstall page, off by default, deletes it as well. A silent uninstall leaves the folder alone.
+
 ## 1.0.4 - 2026-10-22
 
 ## 🎨 Design

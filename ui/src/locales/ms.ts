@@ -72,4 +72,5 @@ export const ms: Dict = {
   'confirm.program': 'Program dan foldernya',
   'confirm.updates': 'Kemas kini automatik',
   'confirm.data': 'Muat turun, tetapan dan akaun anda',
+  'confirm.windowData': 'Padam juga apa yang diingati tetingkap {name}, seperti bahasa dan rupa',
 };

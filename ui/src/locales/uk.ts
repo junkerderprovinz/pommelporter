@@ -72,4 +72,5 @@ export const uk: Dict = {
   'confirm.program': 'Програма та її тека',
   'confirm.updates': 'Автоматичні оновлення',
   'confirm.data': 'Ваші завантаження, налаштування й облікові записи',
+  'confirm.windowData': 'Видалити й те, що пам’ятає вікно {name}, як-от мову та вигляд',
 };

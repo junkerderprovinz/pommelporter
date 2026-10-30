@@ -72,4 +72,5 @@ export const lv: Dict = {
   'confirm.program': 'Programma un tās mape',
   'confirm.updates': 'Automātiskie atjauninājumi',
   'confirm.data': 'Jūsu lejupielādes, iestatījumi un konti',
+  'confirm.windowData': 'Dzēst arī to, ko atceras {name} logs, piemēram, valodu un izskatu',
 };

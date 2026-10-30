@@ -72,4 +72,5 @@ export const et: Dict = {
   'confirm.program': 'Programm ja selle kaust',
   'confirm.updates': 'Automaatsed uuendused',
   'confirm.data': 'Sinu allalaadimised, seaded ja kontod',
+  'confirm.windowData': 'Kustuta ka see, mida {name} aken mäletab, näiteks keel ja välimus',
 };

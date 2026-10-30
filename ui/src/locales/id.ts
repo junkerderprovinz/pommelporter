@@ -72,4 +72,5 @@ export const id: Dict = {
   'confirm.program': 'Program dan foldernya',
   'confirm.updates': 'Pembaruan otomatis',
   'confirm.data': 'Unduhan, pengaturan, dan akun Anda',
+  'confirm.windowData': 'Hapus juga yang diingat jendela {name}, seperti bahasa dan tampilan',
 };

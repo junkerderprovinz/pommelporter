@@ -72,4 +72,5 @@ export const hi: Dict = {
   'confirm.program': 'प्रोग्राम और उसका फ़ोल्डर',
   'confirm.updates': 'अपने-आप अपडेट',
   'confirm.data': 'आपके डाउनलोड, सेटिंग्स और खाते',
+  'confirm.windowData': 'वह भी हटाएँ जो {name} की विंडो याद रखती है, जैसे भाषा और रूप',
 };

@@ -72,4 +72,5 @@ export const cs: Dict = {
   'confirm.program': 'Program a jeho složka',
   'confirm.updates': 'Automatické aktualizace',
   'confirm.data': 'Vaše stažené soubory, nastavení a účty',
+  'confirm.windowData': 'Smazat také, co si okno {name} pamatuje, třeba jazyk a vzhled',
 };

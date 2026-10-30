@@ -72,4 +72,5 @@ export const nl: Dict = {
   'confirm.program': 'Het programma en de map',
   'confirm.updates': 'Automatische updates',
   'confirm.data': 'Je downloads, instellingen en accounts',
+  'confirm.windowData': 'Ook wissen wat het venster van {name} onthoudt, zoals taal en uiterlijk',
 };

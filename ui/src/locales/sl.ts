@@ -72,4 +72,5 @@ export const sl: Dict = {
   'confirm.program': 'Program in njegova mapa',
   'confirm.updates': 'Samodejne posodobitve',
   'confirm.data': 'Vaši prenosi, nastavitve in računi',
+  'confirm.windowData': 'Izbrisati tudi, kar si zapomni okno {name}, na primer jezik in videz',
 };

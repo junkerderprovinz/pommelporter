@@ -117,8 +117,9 @@ func (platform) Install(ctx context.Context, app setup.App, o setup.Options, rep
 }
 
 // Uninstall removes the program, its entries and what its updater left in
-// the install folder. Settings live under ~/.config and stay.
-func (platform) Uninstall(ctx context.Context, app setup.App, report setup.Report) error {
+// the install folder. Settings live under ~/.config and stay, and the window
+// asks about the webview's storage on Windows only.
+func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, report setup.Report) error {
 	p, err := locate(app)
 	if err != nil {
 		return err

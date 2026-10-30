@@ -473,7 +473,7 @@ func TestInstallAndUninstall(t *testing.T) {
 	}
 
 	steps = nil
-	if err := p.Uninstall(context.Background(), app, report); err != nil {
+	if err := p.Uninstall(context.Background(), app, setup.Removal{}, report); err != nil {
 		t.Fatal(err)
 	}
 	for _, gone := range []string{dir, data, filepath.Join(p.places.commonPrograms, "Prog.lnk")} {
@@ -487,5 +487,28 @@ func TestInstallAndUninstall(t *testing.T) {
 	last := tasks.calls[len(tasks.calls)-1]
 	if last[0] != "/Delete" {
 		t.Errorf("the task was not deleted: %v", last)
+	}
+}
+
+func TestUninstallKeepsTheWindowDataUnlessAsked(t *testing.T) {
+	for _, asked := range []bool{false, true} {
+		p, _ := testPlatform(t)
+		app := appFixture()
+		dir := filepath.Join(t.TempDir(), "Prog")
+		writeFile(t, filepath.Join(dir, "Prog.exe"), "program")
+		setString(t, p.machine, entryKey(app), "InstallLocation", dir)
+		storage := filepath.Join(p.windowData(app), "EBWebView", "Default", "Local Storage", "leveldb", "000003.log")
+		writeFile(t, storage, "language=de")
+
+		if err := p.Uninstall(context.Background(), app, setup.Removal{WindowData: asked}, func(string) {}); err != nil {
+			t.Fatal(err)
+		}
+		if _, err := os.Stat(filepath.Join(dir, "Prog.exe")); !os.IsNotExist(err) {
+			t.Errorf("asked=%t: the program is still there", asked)
+		}
+		_, err := os.Stat(p.windowData(app))
+		if kept := err == nil; kept == asked {
+			t.Errorf("asked=%t: window data kept = %t", asked, kept)
+		}
 	}
 }

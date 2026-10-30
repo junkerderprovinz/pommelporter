@@ -72,4 +72,5 @@ export const ja: Dict = {
   'confirm.program': 'プログラムとそのフォルダー',
   'confirm.updates': '自動更新',
   'confirm.data': 'ダウンロード、設定、アカウント',
+  'confirm.windowData': '{name} のウィンドウが覚えている言語や外観なども削除する',
 };

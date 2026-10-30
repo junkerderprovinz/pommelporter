@@ -72,6 +72,7 @@ export const en = {
   'confirm.program': 'The program and its folder',
   'confirm.updates': 'Automatic updates',
   'confirm.data': 'Your downloads, settings and accounts',
+  'confirm.windowData': "Also delete what {name}'s window remembers, such as language and look",
 };
 
 export type Key = keyof typeof en;

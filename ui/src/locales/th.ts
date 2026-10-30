@@ -72,4 +72,5 @@ export const th: Dict = {
   'confirm.program': 'โปรแกรมและโฟลเดอร์ของมัน',
   'confirm.updates': 'การอัปเดตอัตโนมัติ',
   'confirm.data': 'ไฟล์ที่ดาวน์โหลด การตั้งค่า และบัญชีของคุณ',
+  'confirm.windowData': 'ลบสิ่งที่หน้าต่าง {name} จำไว้ด้วย เช่น ภาษาและรูปลักษณ์',
 };

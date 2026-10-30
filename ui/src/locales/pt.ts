@@ -72,4 +72,5 @@ export const pt: Dict = {
   'confirm.program': 'O programa e a sua pasta',
   'confirm.updates': 'Atualizações automáticas',
   'confirm.data': 'As suas transferências, definições e contas',
+  'confirm.windowData': 'Apagar também o que a janela do {name} memoriza, como o idioma e o aspeto',
 };

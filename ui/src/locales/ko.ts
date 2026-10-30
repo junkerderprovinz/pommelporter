@@ -72,4 +72,5 @@ export const ko: Dict = {
   'confirm.program': '프로그램과 해당 폴더',
   'confirm.updates': '자동 업데이트',
   'confirm.data': '다운로드, 설정, 계정',
+  'confirm.windowData': '{name} 창이 기억하는 언어와 모양 같은 설정도 삭제',
 };

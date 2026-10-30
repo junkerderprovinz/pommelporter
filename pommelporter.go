@@ -127,7 +127,7 @@ func parseArgs(argv []string) (cmdline, error) {
 func runSilent(p setup.Platform, a setup.App, c cmdline) error {
 	ctx := context.Background()
 	if c.uninstall {
-		return p.Uninstall(ctx, a, func(string) {})
+		return p.Uninstall(ctx, a, setup.Removal{}, func(string) {})
 	}
 	o := p.Defaults(a)
 	if c.dir != "" {

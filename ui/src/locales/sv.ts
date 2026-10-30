@@ -72,4 +72,5 @@ export const sv: Dict = {
   'confirm.program': 'Programmet och dess mapp',
   'confirm.updates': 'Automatiska uppdateringar',
   'confirm.data': 'Dina nedladdningar, inställningar och konton',
+  'confirm.windowData': 'Radera även det som fönstret i {name} minns, som språk och utseende',
 };

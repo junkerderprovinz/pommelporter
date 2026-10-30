@@ -72,4 +72,5 @@ export const ru: Dict = {
   'confirm.program': 'Программа и её папка',
   'confirm.updates': 'Автоматические обновления',
   'confirm.data': 'Ваши загрузки, настройки и учётные записи',
+  'confirm.windowData': 'Удалить и то, что запомнило окно {name}, например язык и оформление',
 };

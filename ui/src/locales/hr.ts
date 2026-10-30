@@ -72,4 +72,5 @@ export const hr: Dict = {
   'confirm.program': 'Program i njegova mapa',
   'confirm.updates': 'Automatska ažuriranja',
   'confirm.data': 'Vaša preuzimanja, postavke i računi',
+  'confirm.windowData': 'Izbrisati i ono što prozor aplikacije {name} pamti, poput jezika i izgleda',
 };

@@ -72,4 +72,5 @@ export const eu: Dict = {
   'confirm.program': 'Programa eta bere karpeta',
   'confirm.updates': 'Eguneratze automatikoak',
   'confirm.data': 'Zure deskargak, ezarpenak eta kontuak',
+  'confirm.windowData': 'Ezabatu {name} leihoak gogoratzen duena ere, hala nola hizkuntza eta itxura',
 };

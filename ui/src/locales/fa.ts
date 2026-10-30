@@ -72,4 +72,5 @@ export const fa: Dict = {
   'confirm.program': 'برنامه و پوشه‌اش',
   'confirm.updates': 'به‌روزرسانی خودکار',
   'confirm.data': 'دانلودها، تنظیمات و حساب‌های شما',
+  'confirm.windowData': 'آنچه پنجرهٔ {name} به خاطر دارد، مانند زبان و ظاهر، هم پاک شود',
 };
