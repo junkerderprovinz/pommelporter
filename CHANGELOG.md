@@ -4,39 +4,19 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
-## Unreleased
+## 1.1.0 - 2026-10-31
 
 ## 🎨 Design
 
-- **The window follows GlimStone 3.8.0.** Install, Try again, Create and Use this folder wear the glyphs the family gives those meanings, as the apps do. Minimise and Close in the window's corner look and answer like the title bar the apps draw, with a bubble that names them. The progress bar keeps its changes to itself and glides only when the system allows motion.
+- **The window follows GlimStone 3.8.0.** Install, Try again, Create and Use this folder wear the same glyphs as in the apps. Minimise and Close look and behave like the buttons in the apps' title bar and show their name in a bubble. The progress bar only glides when your system allows motion.
+- **The logo uses the family colours.** The pommel wears the gold and silver of KnightLoader and ArrowLoop, in the window icon, the README banner and the screenshots.
+- **The app's logo shows once.** The uninstall page and the last page show the app tile and no second, smaller logo under it.
+- **More room under the app tile.** The progress bar and the uninstall page sit in the middle of the window like the other pages, and a failed install leaves space between the tile, the error and the buttons.
 
 ## 🐛 Fixed
 
-- **Uninstalling keeps what the app's window remembers.** On Windows the uninstaller deleted `%APPDATA%\<program>.exe`, where the app's window keeps its storage, such as the language and look picked in it. A test build runs a program of the same name, so uninstalling only the test build wiped the real app's window storage too. That folder now stays. A switch on the uninstall page, off by default, deletes it as well. A silent uninstall leaves the folder alone.
-
-## 1.0.4 - 2026-10-22
-
-## 🎨 Design
-
-- **The logo uses the family colours.** The pommel had its own gold and a plain grey, so it looked different from KnightLoader and ArrowLoop. It now uses the same gold and silver as they do, in the window icon, the README banner and the screenshots.
-
-## 1.0.3 - 2026-10-22
-
-## 🎨 Design
-
-- **More room under the app tile.** The progress bar and the uninstall page started right below the tile. Both now sit in the middle of the window like the other pages, and a failed install still leaves space between the tile, the error and the buttons.
-
-## 1.0.2 - 2026-10-21
-
-## 🐛 Fixed
-
-- **The folder picker no longer dims the desktop.** On Windows the window is clear around its card, and the dark scrim behind the folder picker covered that edge too, so a dark frame showed on the desktop around the installer. The scrim stays on the card.
-
-## 1.0.1 - 2026-10-21
-
-## 🎨 Design
-
-- **The app's logo shows once.** The uninstall page and the last page put a second, smaller logo under the app tile at the top of the window. Only the tile is left.
+- **Uninstalling keeps what the app's window remembers.** On Windows the uninstaller deleted `%APPDATA%\<program>.exe`, where the app's window keeps the language and look you picked in it. A test build runs a program of the same name, so uninstalling just the test build wiped the real app's settings there too. The folder now stays. A switch on the uninstall page, off by default, deletes it as well.
+- **The folder picker no longer dims the desktop.** On Windows its dark backdrop covered the clear edge around the installer and showed as a dark frame on the desktop. It stays on the card now.
 
 ## 1.0.0 - 2026-10-21
 
