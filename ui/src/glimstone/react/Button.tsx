@@ -1,5 +1,5 @@
-import type { CSSProperties, ReactNode, Ref } from "react";
-import { hueVars } from "../appearance";
+import type { CSSProperties, FocusEvent, MouseEvent, ReactNode, Ref } from "react";
+import { hueVars, takePageHue } from "../appearance";
 import { hidesLabel, labelWidth, widthStage, type WidthStage } from "../controls";
 import { useLabelMode } from "./useLabelMode";
 import { useTipBubble } from "./useTipBubble";
@@ -53,10 +53,11 @@ export type ButtonVariant = "default" | "chip" | "icon";
 // controls with no fill, and on the dark ramp it is darker than surface2. The
 // accent and status fills have no ramp, so each steps toward the theme's text
 // colour; `opacity` would let the card show through and move the other way.
+// The two surface tones also take the accent tint of rule 40 from tokens.css.
 const TONE_CLASS: Record<ButtonTone, string> = {
   accent: "bg-accent text-accentContrast hover:bg-accentHover",
-  neutral: "bg-carbon-surface3 text-carbon-text hover:bg-carbon-hoverRaised",
-  subtle: "bg-carbon-surface2 text-carbon-text hover:bg-carbon-surface3",
+  neutral: "glim-btn-neutral bg-carbon-surface3 text-carbon-text hover:bg-carbon-hoverRaised",
+  subtle: "glim-btn-subtle bg-carbon-surface2 text-carbon-text hover:bg-carbon-surface3",
   ok: "bg-statusOkSolid text-carbon-background hover:bg-statusOkHover",
   danger: "bg-statusFailSolid text-carbon-background hover:bg-statusFailHover",
   warn: "bg-statusWarnSolid text-carbon-background hover:bg-statusWarnHover",
@@ -180,6 +181,22 @@ export function Button({
   const tooltip = useTipBubble(reactive && !disabled ? undefined : tip, disabled);
 
   const hueOn = hueIndex !== undefined;
+  // The surface tones carry rule 40's tint; a button with its own palette
+  // position keeps that colour.
+  const pageHue = !hueOn && !chip && (tone === "neutral" || tone === "subtle");
+  const handlers = pageHue
+    ? {
+        ...tooltip.handlers,
+        onMouseEnter: (e: MouseEvent<HTMLElement>) => {
+          takePageHue(e.currentTarget);
+          tooltip.handlers.onMouseEnter();
+        },
+        onFocus: (e: FocusEvent<HTMLElement>) => {
+          takePageHue(e.currentTarget);
+          tooltip.handlers.onFocus();
+        },
+      }
+    : tooltip.handlers;
   // The reveal's ceiling in the label's visual units (see `.glim-label-reactive`
   // in reference/tokens.css).
   const hueStyle = {
@@ -203,7 +220,7 @@ export function Button({
           autoFocus={autoFocus}
           aria-busy={busy || undefined}
           aria-describedby={tooltip.describedBy}
-          {...tooltip.handlers}
+          {...handlers}
           style={Object.keys(hueStyle).length ? hueStyle : undefined}
           className={`glim-btn ${stage} ${chip ? "" : TONE_CLASS[tone]}${hueOn ? " glim-hue" : ""}${reactive ? " glim-reactive" : ""} ${className}`.trim()}
         >

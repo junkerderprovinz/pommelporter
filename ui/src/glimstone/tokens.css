@@ -1819,6 +1819,30 @@ body {
 .glim-btn-md { min-width: var(--btn-w-md); }
 .glim-btn-lg { min-width: var(--btn-w-lg); }
 
+/* Rule 40. A surface-filled button's hovered ground takes 22% of the tint and
+   its glyph all of it; its words keep the text colour, which the accent on a
+   tinted ground would not be legible against. A bare glyph button has no
+   ground to tint. `--btn-tint` reads `--accent-glyph`; under rainbow
+   takePageHue() sets it inline to the button's own position on the page. */
+.glim-btn-neutral,
+.glim-btn-subtle,
+.glim-btn-bare {
+  --btn-tint: var(--accent-glyph);
+}
+.glim-btn-subtle:not(:disabled):is(:hover, :focus-visible) {
+  background-color: color-mix(in srgb, var(--carbon-surface3), var(--btn-tint) 22%);
+}
+.glim-btn-neutral:not(:disabled):is(:hover, :focus-visible) {
+  background-color: color-mix(in srgb, var(--carbon-hover-raised), var(--btn-tint) 22%);
+}
+:is(.glim-btn-neutral, .glim-btn-subtle):not(:disabled):is(:hover, :focus-visible) > .glim-btn-glyph,
+.glim-btn-bare:not(:disabled):is(:hover, :focus-visible) {
+  color: var(--btn-tint);
+}
+.glim-btn-bare:is(:hover, :focus-visible) {
+  background-color: transparent;
+}
+
 /* The single-colour marks at rest. A published brand colour fails on one of
    the two grounds, so the Info tile's marks take the adjusted theme tokens,
    and the house mark follows the accent and, under rainbow, its position. */
@@ -1876,6 +1900,8 @@ body {
 .glim-tile-linux   { --tile: #fcc624; --tile-ink: #161616; } /* 11.4:1 */
 .glim-tile-android { --tile: #32de84; --tile-ink: #161616; } /* 10.3:1 */
 .glim-tile-play    { --tile: #01875f; --tile-ink: #ffffff; } /* 4.5:1 */
+/* F-Droid's blue from its README button. */
+.glim-tile-fdroid  { --tile: #1976d2; --tile-ink: #ffffff; } /* 4.6:1 */
 .glim-tile-docker  { --tile: #1d63ed; --tile-ink: #ffffff; } /* 5.2:1 */
 .glim-tile-unraid  { --tile: #f15a2c; --tile-ink: #ffffff; } /* 3.4:1 */
 .glim-tile-zip     { --tile: #4d5562; --tile-ink: #ffffff; } /* 7.5:1 */

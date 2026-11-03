@@ -145,7 +145,9 @@ export function FolderChooser({
                   aria-pressed={on}
                   onClick={() => go(root)}
                   className={`h-7 min-w-14 rounded-pill px-3 text-sm font-medium transition-colors ${
-                    on ? 'bg-accent text-accentContrast' : 'bg-carbon-surface2 text-carbon-textSub hover:bg-carbon-surface3 hover:text-carbon-text'
+                    on
+                      ? 'bg-accent text-accentContrast'
+                      : 'glim-btn-subtle bg-carbon-surface2 text-carbon-textSub hover:bg-carbon-surface3 hover:text-carbon-text'
                   }`}
                 >
                   {root}
