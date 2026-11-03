@@ -4,11 +4,15 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
-## Unreleased
+## 1.1.1 - 2026-11-03
 
 ## 🎨 Design
 
 - **The window follows GlimStone 3.9.0.** Cancel, Back, Browse and the other grey buttons take on a touch of the app's colour when the pointer or the keyboard reaches them, and their glyph turns that colour. The drive buttons in the folder picker do the same.
+
+## 🔧 Under the hood
+
+- **Wails 3.1.0** draws the window.
 
 ## 1.1.0 - 2026-10-31
 
