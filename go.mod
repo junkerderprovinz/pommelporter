@@ -2,6 +2,8 @@ module github.com/junkerderprovinz/pommelporter
 
 go 1.26.0
 
+toolchain go1.27.3
+
 require (
 	github.com/go-ole/go-ole v1.3.0
 	github.com/srwiley/oksvg v0.0.0-20221011165216-be6e8873101c
