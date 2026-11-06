@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.1.2 - 2026-11-06
+
+## 🔧 Under the hood
+
+- **The example installer is built with Go 1.27.3.**
+
 ## 1.1.1 - 2026-11-03
 
 ## 🎨 Design
