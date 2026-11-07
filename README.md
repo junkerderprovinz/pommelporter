@@ -20,6 +20,19 @@ It installs a <a href="https://wails.io">Wails</a> desktop app on Windows and Li
 
 <br>
 
+<p><a id="table-of-contents" href="#table-of-contents"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/table-of-contents-dark.svg"><img src=".github/assets/sections/table-of-contents.svg" alt="Table of Contents" width="100%"></picture></a></p>
+
+1. [Support](#1-support)
+2. [What it looks like](#2-what-it-looks-like)
+3. [What it does](#3-what-it-does)
+4. [Using it in an app](#4-using-it-in-an-app)
+5. [Building](#5-building)
+6. [How AI is used here](#6-how-ai-is-used-here)
+
+<br>
+
+<p><a id="1-support" href="#1-support"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/1-support-dark.svg"><img src=".github/assets/sections/1-support.svg" alt="1. Support" width="100%"></picture></a></p>
+
 <p align="center">
 A one-knight job: I build it, keep it running, work through the issues and add what people ask for, until nothing is missing. It is free, with no accounts, no telemetry, no ads and no paid tier. No asterisk anywhere. Nothing readable ever leaves your own walls. Forged on evenings and weekends, with heart and stubbornness.
 </p>
@@ -40,18 +53,7 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <br>
 
-## Contents
-
-1. [What it looks like](#1-what-it-looks-like)
-2. [What it does](#2-what-it-does)
-3. [Using it in an app](#3-using-it-in-an-app)
-4. [Building](#4-building)
-5. [How AI is used here](#5-how-ai-is-used-here)
-6. [Support this project](#6-support-this-project)
-
-<br>
-
-## 1. What it looks like
+<p><a id="2-what-it-looks-like" href="#2-what-it-looks-like"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/2-what-it-looks-like-dark.svg"><img src=".github/assets/sections/2-what-it-looks-like.svg" alt="2. What it looks like" width="100%"></picture></a></p>
 
 <p align="center">
   <img src=".github/assets/screenshots/folder.png" alt="PommelPorter's folder picker with a button for each drive" width="100%">
@@ -74,7 +76,7 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <br>
 
-## 2. What it does
+<p><a id="3-what-it-does" href="#3-what-it-does"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/3-what-it-does-dark.svg"><img src=".github/assets/sections/3-what-it-does.svg" alt="3. What it does" width="100%"></picture></a></p>
 
 **On Windows** it installs for everyone on the computer, under `C:\Program Files\<App>` or a folder you pick. It adds a Start menu entry and a desktop shortcut if you want them, an entry under Apps with its uninstaller, and a scheduled task that keeps the app up to date. A copy that is still running is asked to quit first, and installations left by the apps' earlier installers are taken over or removed.
 
@@ -88,7 +90,7 @@ The window speaks the 42 languages the apps do, picked from the system's languag
 
 <br>
 
-## 3. Using it in an app
+<p><a id="4-using-it-in-an-app" href="#4-using-it-in-an-app"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/4-using-it-in-an-app-dark.svg"><img src=".github/assets/sections/4-using-it-in-an-app.svg" alt="4. Using it in an app" width="100%"></picture></a></p>
 
 An app keeps a small main package next to its desktop module, embeds the built program as its payload, and calls `Run`:
 
@@ -128,7 +130,7 @@ The finished installer takes these switches:
 
 <br>
 
-## 4. Building
+<p><a id="5-building" href="#5-building"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/5-building-dark.svg"><img src=".github/assets/sections/5-building.svg" alt="5. Building" width="100%"></picture></a></p>
 
 The window lives in `ui/` (Vite, React, Tailwind) and is built into `ui/dist`, which is committed and embedded:
 
@@ -142,7 +144,7 @@ go test ./...
 
 <br>
 
-## 5. How AI is used here
+<p><a id="6-how-ai-is-used-here" href="#6-how-ai-is-used-here"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/6-how-ai-is-used-here-dark.svg"><img src=".github/assets/sections/6-how-ai-is-used-here.svg" alt="6. How AI is used here" width="100%"></picture></a></p>
 
 One knight builds this, and AI is one of the tools I work with, the same way I work with an editor or a compiler. It helps me write code and documentation and it checks my work, and that saves me a good many evenings. It does not make the decisions, though. I read and understand everything before it ships, and if something here breaks, that is on me and not on the tool.
 
@@ -150,18 +152,4 @@ You do not have to take my word for it. The code is open and every release note 
 
 <br>
 
-## 6. Support this project
-
 Bugs, ideas or questions? Please [open a GitHub issue](https://github.com/junkerderprovinz/pommelporter/issues).
-
-A one-knight job: I build it, keep it running, work through the issues and add what people ask for, until nothing is missing. It is free, with no accounts, no telemetry, no ads and no paid tier. No asterisk anywhere. Nothing readable ever leaves your own walls. Forged on evenings and weekends, with heart and stubbornness.
-
-If it has earned a place on your server or computer, toss a coin to your knight: it helps cover the costs and keeps the project alive. It also makes this knight's heart beat a little faster. Three ways below, whichever suits you.
-
-<p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/give.svg#svgView(viewBox(0,0,841.9,245.3))" alt="Buy me a coffee" width="160" height="46.62"></a>
-  &nbsp;
-  <a href="https://www.paypal.com/donate/?hosted_button_id=76FVV52TKXTUS"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/give.svg#svgView(viewBox(841.9,0,841.9,245.3))" alt="PayPal" width="160" height="46.62"></a>
-  &nbsp;
-  <a href="https://junkerderprovinz.github.io/junkerderprovinz/"><img src="https://raw.githubusercontent.com/junkerderprovinz/junkerderprovinz/main/donate/buttons/give.svg#svgView(viewBox(1683.8,0,841.9,245.3))" alt="Donate with crypto" width="160" height="46.62"></a>
-</p>
