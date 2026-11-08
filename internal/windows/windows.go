@@ -408,6 +408,9 @@ func (p *platform) installedDir(app setup.App) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if original := handedOver(); original != "" {
+		self = original
+	}
 	if !strings.EqualFold(filepath.Base(self), uninstaller) {
 		return "", fmt.Errorf("%s is not installed", app.Name)
 	}
@@ -450,7 +453,8 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 
 	// Only what the installer and the updates put there, since the folder
 	// could have been chosen by hand. A copy that still runs goes at the
-	// next start, and so does the uninstaller running now.
+	// next start. The uninstaller that handed the work to this copy and its
+	// folder go once it has ended, see FinishHandOver.
 	var dirs []string
 	fs.WalkDir(app.Payload, ".", func(name string, d fs.DirEntry, err error) error {
 		if err != nil || name == "." {
@@ -466,12 +470,17 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 	})
 	keep(removeSoon(exe + ".old"))
 	keep(removeMatches(filepath.Join(dir, "."+app.Executable+".update-*")))
-	keep(removeSoon(filepath.Join(dir, uninstaller)))
+	own := filepath.Join(dir, uninstaller)
+	if !strings.EqualFold(handedOver(), own) {
+		keep(removeSoon(own))
+	}
 	slices.Reverse(dirs)
 	for _, d := range dirs {
 		os.Remove(d)
 	}
-	keep(removeDirSoon(dir))
+	if handedOver() == "" {
+		keep(removeDirSoon(dir))
+	}
 
 	for _, lnk := range []string{
 		filepath.Join(p.places.commonPrograms, app.Name+".lnk"),

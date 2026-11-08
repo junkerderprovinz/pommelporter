@@ -109,14 +109,32 @@ func Run(app App) error {
 	if err != nil {
 		return err
 	}
+	if args.uninstall {
+		handled, code, err := handOver(os.Args[1:])
+		if err != nil {
+			return err
+		}
+		if handled {
+			os.Exit(code)
+		}
+	}
 	if err := prepare(a, args.silent, args.uninstall); err != nil {
 		return err
 	}
 	p := platform()
 	if args.silent {
-		return runSilent(p, a, args)
+		err = runSilent(p, a, args)
+	} else {
+		err = runWindow(p, a, args.uninstall)
 	}
-	return runWindow(p, a, args.uninstall)
+	if args.uninstall {
+		code := 0
+		if err != nil {
+			code = 1
+		}
+		finishHandOver(code)
+	}
+	return err
 }
 
 type cmdline struct {

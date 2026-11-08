@@ -12,3 +12,7 @@ func platform() setup.Platform { return windows.New() }
 func prepare(a setup.App, silent, uninstall bool) error {
 	return windows.Prepare(a, silent, uninstall)
 }
+
+func handOver(args []string) (bool, int, error) { return windows.HandOver(args) }
+
+func finishHandOver(code int) { windows.FinishHandOver(code) }
