@@ -16,6 +16,7 @@ import (
 	"path/filepath"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
 )
@@ -113,7 +114,23 @@ func (platform) Install(ctx context.Context, app setup.App, o setup.Options, rep
 	if err != nil {
 		return err
 	}
-	return writeFile(filepath.Join(p.dir, stateFile), bytes.NewReader(data), 0o644)
+	if err := writeFile(filepath.Join(p.dir, stateFile), bytes.NewReader(data), 0o644); err != nil {
+		return err
+	}
+	// The app's own choices change things outside its folder, such as which
+	// program opens folders. They are the person's to have, so one that fails
+	// leaves the install as it is.
+	for _, args := range app.Ticked("linux", o) {
+		_ = program(ctx, p.exe, args)
+	}
+	return nil
+}
+
+// program runs the installed program with args and waits for it to end.
+var program = func(ctx context.Context, exe string, args []string) error {
+	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	defer cancel()
+	return exec.CommandContext(ctx, exe, args...).Run()
 }
 
 // Uninstall removes the program, its entries and what its updater left in
@@ -125,6 +142,13 @@ func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, r
 		return err
 	}
 	report(setup.StepRemove)
+	// What the choices changed outside the folder goes back while the program
+	// is still there to do it.
+	if _, err := os.Stat(p.exe); err == nil {
+		for _, args := range app.Undos("linux") {
+			_ = program(ctx, p.exe, args)
+		}
+	}
 	var errs []error
 	if p.desktop != "" {
 		errs = append(errs, removeFile(p.desktop))

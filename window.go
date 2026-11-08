@@ -43,6 +43,8 @@ type Info struct {
 	Platform  string          `json:"platform"`
 	Existing  *setup.Existing `json:"existing"`
 	Frameless bool            `json:"frameless"`
+	// Choices are the app's own ticks for this platform.
+	Choices []setup.Choice `json:"choices"`
 }
 
 func (s *Installer) Info() Info {
@@ -53,7 +55,7 @@ func (s *Installer) Info() Info {
 	return Info{
 		Name: s.a.Name, Version: s.a.Version, Publisher: s.a.Publisher, Homepage: s.a.Homepage,
 		Accent: s.a.Accent, Logo: string(s.a.Logo), Mode: mode, Platform: platformName,
-		Existing: s.p.Existing(s.a), Frameless: frameless,
+		Existing: s.p.Existing(s.a), Frameless: frameless, Choices: s.a.ChoicesOn(platformName),
 	}
 }
 

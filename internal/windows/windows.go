@@ -41,6 +41,9 @@ type platform struct {
 	user     registry.Key
 	places   places
 	schtasks func(args ...string) error
+	// program runs the installed program with args as the person signed in
+	// and waits for it to end.
+	program func(exe string, args []string) error
 }
 
 // New returns the Windows platform.
@@ -58,6 +61,7 @@ func New() setup.Platform {
 			appData:        known(windows.FOLDERID_RoamingAppData),
 		},
 		schtasks: runSchtasks,
+		program:  runAsPerson,
 	}
 }
 
@@ -204,6 +208,13 @@ func (p *platform) Install(ctx context.Context, app setup.App, o setup.Options, 
 	report(setup.StepRegister)
 	if err := p.register(app, dir, size, o); err != nil {
 		return err
+	}
+
+	// The app's own choices change things outside its folder, such as which
+	// program opens folders. They are the person's to have, so one that fails
+	// leaves the install as it is.
+	for _, args := range app.Ticked("windows", o) {
+		_ = p.program(exe, args)
 	}
 
 	// The program works without the task, it only stays at this version, so
@@ -420,6 +431,11 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 	closeRunning(dir, app.InstanceID)
 
 	report(setup.StepRemove)
+	// What the choices changed outside the folder goes back while the program
+	// is still there to do it.
+	for _, args := range app.Undos("windows") {
+		_ = p.program(exe, args)
+	}
 	p.deleteTask(app)
 	var errs []error
 	keep := func(err error) {
@@ -477,5 +493,5 @@ func (p *platform) Launch(app setup.App) error {
 	if err != nil {
 		return err
 	}
-	return shellExecute(filepath.Join(dir, app.Executable))
+	return shellExecute(filepath.Join(dir, app.Executable), "")
 }

@@ -337,3 +337,28 @@ func TestExecArgQuotesWhatTheEntryReserves(t *testing.T) {
 		}
 	}
 }
+
+func TestTheProgramCarriesOutTheChoicesAndTakesThemBack(t *testing.T) {
+	home := newHome(t)
+	app := testApp()
+	app.Payload = fstest.MapFS{
+		"knightloader": {Data: []byte("#!/bin/sh\nprintf '%s\\n' \"$*\" >> \"$HOME/choices\"\n"), Mode: 0o555},
+	}
+	app.Choices = []setup.Choice{
+		{ID: "folders", Platforms: []string{"windows", "linux"}, Do: []string{"--file-manager", "on"}, Undo: []string{"--file-manager", "off"}},
+		{ID: "unticked", Do: []string{"--never"}},
+	}
+	o := New().Defaults(app)
+	o.Choices = map[string]bool{"folders": true}
+	install(t, app, o)
+	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	got, err := os.ReadFile(filepath.Join(home, "choices"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := "--file-manager on\n--file-manager off\n"; string(got) != want {
+		t.Fatalf("the program ran with %q", got)
+	}
+}

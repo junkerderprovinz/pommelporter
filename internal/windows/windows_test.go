@@ -3,6 +3,7 @@
 package windows
 
 import (
+	"reflect"
 	"context"
 	"os"
 	"os/exec"
@@ -40,7 +41,7 @@ func TestDefaultsOnAFirstInstall(t *testing.T) {
 	p, _ := testPlatform(t)
 	o := p.Defaults(appFixture())
 	want := setup.Options{Dir: filepath.Join(p.places.programFiles, "Prog"), StartMenu: true, Desktop: true}
-	if o != want {
+	if !reflect.DeepEqual(o, want) {
 		t.Errorf("Defaults = %+v, want %+v", o, want)
 	}
 }
@@ -510,5 +511,43 @@ func TestUninstallKeepsTheWindowDataUnlessAsked(t *testing.T) {
 		if kept := err == nil; kept == asked {
 			t.Errorf("asked=%t: window data kept = %t", asked, kept)
 		}
+	}
+}
+
+func TestUninstallUndoesTheChoicesWhileTheProgramIsThere(t *testing.T) {
+	p, _ := testPlatform(t)
+	app := appFixture()
+	app.Choices = []setup.Choice{
+		{ID: "folders", Platforms: []string{"windows"}, Do: []string{"--file-manager", "on"}, Undo: []string{"--file-manager", "off"}},
+		{ID: "elsewhere", Platforms: []string{"linux"}, Undo: []string{"--never"}},
+	}
+	dir := filepath.Join(t.TempDir(), "Prog")
+	exe := filepath.Join(dir, "Prog.exe")
+	writeFile(t, exe, "program")
+	setString(t, p.machine, entryKey(app), "InstallLocation", dir)
+	var ran [][]string
+	p.program = func(got string, args []string) error {
+		if got != exe {
+			t.Errorf("ran %s", got)
+		}
+		if _, err := os.Stat(exe); err != nil {
+			t.Errorf("the program was gone before %v: %v", args, err)
+		}
+		ran = append(ran, args)
+		return nil
+	}
+	if err := p.Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	if want := [][]string{{"--file-manager", "off"}}; !reflect.DeepEqual(ran, want) {
+		t.Fatalf("ran %v", ran)
+	}
+}
+
+func TestWaitingForAProgramThatNeverStartsEndsSoon(t *testing.T) {
+	began := time.Now()
+	waitForProgram(filepath.Join(t.TempDir(), "Prog.exe"), 200*time.Millisecond, 10*time.Second)
+	if waited := time.Since(began); waited > 2*time.Second {
+		t.Fatalf("waited %s", waited)
 	}
 }

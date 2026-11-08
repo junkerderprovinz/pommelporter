@@ -5,6 +5,7 @@ package setup
 import (
 	"context"
 	"io/fs"
+	"slices"
 )
 
 // App is the program an installer carries. See pommelporter.App, which the
@@ -24,6 +25,54 @@ type App struct {
 	InstanceID string
 	Autostart  string
 	Legacy     Legacy
+	Choices    []Choice
+}
+
+// Choice is a tick of the app's own on the options page. See
+// pommelporter.Choice.
+type Choice struct {
+	ID        string            `json:"id"`
+	Label     map[string]string `json:"label"`
+	Platforms []string          `json:"-"`
+	Do        []string          `json:"-"`
+	Undo      []string          `json:"-"`
+}
+
+// ChoicesOn are the app's choices that apply on platform, a name such as
+// "windows".
+func (a App) ChoicesOn(platform string) []Choice {
+	var on []Choice
+	for _, c := range a.Choices {
+		if len(c.Platforms) == 0 || slices.Contains(c.Platforms, platform) {
+			on = append(on, c)
+		}
+	}
+	return on
+}
+
+// Ticked are the arguments to run the installed program with after an
+// install, one list for each choice o ticked.
+func (a App) Ticked(platform string, o Options) [][]string {
+	var runs [][]string
+	for _, c := range a.ChoicesOn(platform) {
+		if o.Choices[c.ID] && len(c.Do) > 0 {
+			runs = append(runs, c.Do)
+		}
+	}
+	return runs
+}
+
+// Undos are the arguments to run the installed program with before an
+// uninstall, for every choice whether or not it was ticked, since the person
+// may have switched it on inside the app since.
+func (a App) Undos(platform string) [][]string {
+	var runs [][]string
+	for _, c := range a.ChoicesOn(platform) {
+		if len(c.Undo) > 0 {
+			runs = append(runs, c.Undo)
+		}
+	}
+	return runs
 }
 
 // Legacy names what earlier installers of an app left behind.
@@ -41,6 +90,9 @@ type Options struct {
 	// Language is the code the installed app starts in until someone picks
 	// another one inside it, such as "de".
 	Language string `json:"language"`
+	// Choices holds the app's own choices by ID; one that is missing is not
+	// ticked.
+	Choices map[string]bool `json:"choices,omitempty"`
 }
 
 // Removal is the choice on the uninstall page. Without it an uninstall leaves

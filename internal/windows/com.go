@@ -125,7 +125,7 @@ func makeShortcut(lnk, target string) error {
 
 // shellExecute starts file through the desktop's Explorer, so it runs as the
 // person signed in and without the installer's elevation.
-func shellExecute(file string) error {
+func shellExecute(file, args string) error {
 	return withCOM(func() error {
 		unk, err := ole.CreateInstance(clsidShellWindows, iidShellWindows)
 		if err != nil {
@@ -184,7 +184,7 @@ func shellExecute(file string) error {
 		}
 		shell := app.ToIDispatch()
 		defer shell.Release()
-		_, err = oleutil.CallMethod(shell, "ShellExecute", file, "", filepath.Dir(file), "open", 1)
+		_, err = oleutil.CallMethod(shell, "ShellExecute", file, args, filepath.Dir(file), "open", 1)
 		return err
 	})
 }

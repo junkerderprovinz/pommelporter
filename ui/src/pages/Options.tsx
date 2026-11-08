@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { DirCheck, Info, Installer, Options as Choices } from '../bridge';
-import { t, type Key } from '../i18n';
+import type { Choice, DirCheck, Info, Installer, Options as Choices } from '../bridge';
+import { language, t, type Key } from '../i18n';
 import { Button } from '../glimstone/react/Button';
 import { InfoBubble } from '../glimstone/react/InfoBubble';
 import { Toggle } from '../glimstone/react/Toggle';
@@ -23,6 +23,11 @@ const REFUSALS: Record<string, Key> = {
 export function refusalText(check: DirCheck, name: string): string {
   const key = check.code ? REFUSALS[check.code] : undefined;
   return key ? t(key, { name }) : (check.detail ?? '');
+}
+
+/** A choice's text in the language the window speaks, else in English. */
+export function choiceLabel(choice: Choice, lang = language()): string {
+  return choice.label[lang] ?? choice.label.en ?? choice.id;
 }
 
 export function Options({
@@ -118,6 +123,15 @@ export function Options({
           checked={choices.desktop}
           onChange={(desktop) => onChange({ ...choices, desktop })}
         />
+        {(info.choices ?? []).map((c) => (
+          <Toggle
+            key={c.id}
+            className="justify-between"
+            label={choiceLabel(c)}
+            checked={!!choices.choices?.[c.id]}
+            onChange={(on) => onChange({ ...choices, choices: { ...choices.choices, [c.id]: on } })}
+          />
+        ))}
       </div>
       {choosing && (
         <FolderChooser

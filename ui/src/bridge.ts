@@ -22,6 +22,15 @@ export interface Info {
   existing: Existing | null;
   /** Whether the window draws its own title bar, as on Windows. */
   frameless: boolean;
+  /** The app's own ticks for this platform. */
+  choices: Choice[] | null;
+}
+
+/** A tick of the app's own, as setup.Choice. */
+export interface Choice {
+  id: string;
+  /** The text beside the tick by language code. */
+  label: Record<string, string>;
 }
 
 /** The choices on the options page, as setup.Options. */
@@ -31,6 +40,8 @@ export interface Options {
   desktop: boolean;
   /** The language code the app first starts in: the one this window speaks. */
   language: string;
+  /** The app's own ticks by id; a missing one is not ticked. */
+  choices?: Record<string, boolean>;
 }
 
 /** The choice on the uninstall page, as setup.Removal. */

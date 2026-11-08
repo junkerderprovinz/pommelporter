@@ -47,6 +47,28 @@ type App struct {
 	Autostart string
 	// Legacy names what earlier installers left behind.
 	Legacy Legacy
+	// Choices are ticks of the app's own on the options page, each unticked
+	// until the person ticks it.
+	Choices []Choice
+}
+
+// Choice is a tick of the app's own on the options page, for something the
+// installed program does itself, such as taking over a file type. After an
+// install the program runs once with Do for each ticked choice, as the person
+// signed in; before an uninstall it runs with Undo for every choice, ticked
+// or not, so nothing it changed outside its folder outlives it. Do and Undo
+// must be quick, show no window and do nothing when there is nothing to do.
+type Choice struct {
+	// ID names the choice in the options the window sends.
+	ID string
+	// Label is the text beside the tick by language code, such as "de";
+	// "en" stands in for a language it lacks.
+	Label map[string]string
+	// Platforms limits the choice to these, "windows" or "linux"; empty
+	// means everywhere.
+	Platforms []string
+	Do        []string
+	Undo      []string
 }
 
 // Legacy names the registry keys of earlier installers, relative to
@@ -76,6 +98,9 @@ func Run(app App) error {
 		Logo: app.Logo, Icon: app.Icon, Categories: app.Categories, Payload: app.Payload,
 		InstanceID: app.InstanceID, Autostart: app.Autostart,
 		Legacy: setup.Legacy(app.Legacy),
+	}
+	for _, c := range app.Choices {
+		a.Choices = append(a.Choices, setup.Choice(c))
 	}
 	if a.Name == "" || a.Executable == "" || a.Payload == nil {
 		return errors.New("pommelporter: App needs a Name, an Executable and a Payload")

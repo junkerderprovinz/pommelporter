@@ -92,6 +92,7 @@ func testPlatform(t *testing.T) (*platform, *fakeTasks) {
 			appData:        dir("AppData"),
 		},
 		schtasks: tasks.run,
+		program:  func(string, []string) error { return nil },
 	}, tasks
 }
 
