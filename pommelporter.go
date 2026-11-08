@@ -50,6 +50,20 @@ type App struct {
 	// Choices are ticks of the app's own on the options page, each unticked
 	// until the person ticks it.
 	Choices []Choice
+	// Stays names what an uninstall leaves on the computer, by language code
+	// such as "de", with "en" for a language it lacks. Without it the window
+	// says the downloads, settings and accounts stay.
+	Stays map[string]Stay
+}
+
+// Stay is what an uninstall leaves, in one language.
+type Stay struct {
+	// Item is the line under Kept on the uninstall page, such as "Your
+	// settings and bookmarks".
+	Item string
+	// Note is the sentence after the uninstall, such as "Your settings and
+	// bookmarks are still there."
+	Note string
 }
 
 // Choice is a tick of the app's own on the options page, for something the
@@ -101,6 +115,12 @@ func Run(app App) error {
 	}
 	for _, c := range app.Choices {
 		a.Choices = append(a.Choices, setup.Choice(c))
+	}
+	if len(app.Stays) > 0 {
+		a.Stays = map[string]setup.Stay{}
+		for lang, s := range app.Stays {
+			a.Stays[lang] = setup.Stay(s)
+		}
 	}
 	if a.Name == "" || a.Executable == "" || a.Payload == nil {
 		return errors.New("pommelporter: App needs a Name, an Executable and a Payload")

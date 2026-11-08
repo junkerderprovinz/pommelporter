@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Info, Removal } from '../bridge';
 import { t } from '../i18n';
+import { stays } from '../stays';
 import { Button } from '../glimstone/react/Button';
 import { Toggle } from '../glimstone/react/Toggle';
 import { Page } from '../components/Page';
@@ -70,7 +71,7 @@ export function Confirm({
             {!linux && <Item>{t('confirm.updates')}</Item>}
           </List>
           <List title={t('confirm.kept')}>
-            <Item>{t('confirm.data')}</Item>
+            <Item>{stays(info, 'item')}</Item>
           </List>
         </div>
         {!linux && (

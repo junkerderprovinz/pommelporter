@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Info } from '../bridge';
 import { t } from '../i18n';
+import { stays } from '../stays';
 import { Button } from '../glimstone/react/Button';
 import { Page } from '../components/Page';
 
@@ -32,7 +33,7 @@ export function Done({ info, onLaunch, onClose }: { info: Info; onLaunch: () => 
         <p className="text-title font-semibold text-carbon-text">
           {t(installed ? 'done.installed' : 'done.uninstalled', { name: info.name })}
         </p>
-        {!installed && <p className="max-w-md text-body text-carbon-textSub">{t('done.kept')}</p>}
+        {!installed && <p className="max-w-md text-body text-carbon-textSub">{stays(info, 'note')}</p>}
         {launchError && (
           <p role="alert" dir="auto" className="max-w-md text-subline text-statusFail">
             {launchError}

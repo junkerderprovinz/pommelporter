@@ -45,6 +45,9 @@ type Info struct {
 	Frameless bool            `json:"frameless"`
 	// Choices are the app's own ticks for this platform.
 	Choices []setup.Choice `json:"choices"`
+	// Stays names what an uninstall leaves, by language; null for the
+	// window's own words.
+	Stays map[string]setup.Stay `json:"stays"`
 }
 
 func (s *Installer) Info() Info {
@@ -56,6 +59,7 @@ func (s *Installer) Info() Info {
 		Name: s.a.Name, Version: s.a.Version, Publisher: s.a.Publisher, Homepage: s.a.Homepage,
 		Accent: s.a.Accent, Logo: string(s.a.Logo), Mode: mode, Platform: platformName,
 		Existing: s.p.Existing(s.a), Frameless: frameless, Choices: s.a.ChoicesOn(platformName),
+		Stays: s.a.Stays,
 	}
 }
 

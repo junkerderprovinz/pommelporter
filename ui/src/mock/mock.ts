@@ -62,6 +62,8 @@ export function mockInstaller(query: URLSearchParams): Installer {
     platform: linux ? 'linux' : 'windows',
     frameless: !linux,
     // ?choice shows an app's own tick, as CannonCommander offers to open folders.
+    // ?stays names what CannonCommander leaves after an uninstall.
+    stays: query.has('stays') ? { de: { item: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte', note: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte sind noch da.' } } : null,
     choices: query.has('choice') ? [{ id: 'folders', label: { de: 'Als Standard-Dateimanager festlegen', en: 'Make it the default file manager' } }] : null,
     existing: hasExisting ? { version: uninstall ? '2.2.0' : '2.1.0', dir: defaultDir } : null,
   };

@@ -26,6 +26,14 @@ type App struct {
 	Autostart  string
 	Legacy     Legacy
 	Choices    []Choice
+	Stays      map[string]Stay
+}
+
+// Stay is what is left on the computer after an uninstall, in one language.
+// See pommelporter.Stay.
+type Stay struct {
+	Item string `json:"item"`
+	Note string `json:"note"`
 }
 
 // Choice is a tick of the app's own on the options page. See

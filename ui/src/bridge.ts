@@ -24,6 +24,16 @@ export interface Info {
   frameless: boolean;
   /** The app's own ticks for this platform. */
   choices: Choice[] | null;
+  /** What an uninstall leaves, by language code; null for the window's own words. */
+  stays?: Record<string, Stay> | null;
+}
+
+/** What an uninstall leaves in one language, as setup.Stay. */
+export interface Stay {
+  /** The line under Kept on the uninstall page. */
+  item: string;
+  /** The sentence after the uninstall. */
+  note: string;
 }
 
 /** A tick of the app's own, as setup.Choice. */
