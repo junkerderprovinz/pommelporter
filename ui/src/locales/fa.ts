@@ -64,13 +64,13 @@ export const fa: Dict = {
 
   'done.installed': '{name} نصب شد.',
   'done.uninstalled': 'نصب {name} حذف شد.',
-  'done.kept': 'دانلودها، تنظیمات و حساب‌های شما هنوز سر جایشان هستند.',
+  'done.kept': 'تنظیمات و داده‌های شما هنوز سر جایشان هستند.',
 
   'confirm.lead': 'با این کار {name} {version} از این رایانه حذف می‌شود.',
   'confirm.removed': 'حذف می‌شود',
   'confirm.kept': 'می‌ماند',
   'confirm.program': 'برنامه و پوشه‌اش',
   'confirm.updates': 'به‌روزرسانی خودکار',
-  'confirm.data': 'دانلودها، تنظیمات و حساب‌های شما',
+  'confirm.data': 'تنظیمات و داده‌های شما',
   'confirm.windowData': 'آنچه پنجرهٔ {name} به خاطر دارد، مانند زبان و ظاهر، هم پاک شود',
 };

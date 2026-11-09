@@ -64,13 +64,13 @@ export const tr: Dict = {
 
   'done.installed': '{name} kuruldu.',
   'done.uninstalled': '{name} kaldırıldı.',
-  'done.kept': 'İndirmeleriniz, ayarlarınız ve hesaplarınız hâlâ yerinde.',
+  'done.kept': 'Ayarlarınız ve verileriniz hâlâ yerinde.',
 
   'confirm.lead': 'Bu, {name} {version} uygulamasını bu bilgisayardan kaldırır.',
   'confirm.removed': 'Kaldırılır',
   'confirm.kept': 'Kalır',
   'confirm.program': 'Program ve klasörü',
   'confirm.updates': 'Otomatik güncellemeler',
-  'confirm.data': 'İndirmeleriniz, ayarlarınız ve hesaplarınız',
+  'confirm.data': 'Ayarlarınız ve verileriniz',
   'confirm.windowData': '{name} penceresinin hatırladıkları da silinsin, örneğin dil ve görünüm',
 };

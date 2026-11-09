@@ -64,13 +64,13 @@ export const zh: Dict = {
 
   'done.installed': '{name} 已安装。',
   'done.uninstalled': '{name} 已卸载。',
-  'done.kept': '你的下载、设置和账户都还在。',
+  'done.kept': '你的设置和数据都还在。',
 
   'confirm.lead': '这会从这台电脑上移除 {name} {version}。',
   'confirm.removed': '将移除',
   'confirm.kept': '将保留',
   'confirm.program': '程序及其文件夹',
   'confirm.updates': '自动更新',
-  'confirm.data': '你的下载、设置和账户',
+  'confirm.data': '你的设置和数据',
   'confirm.windowData': '同时删除 {name} 窗口记住的内容，例如语言和外观',
 };

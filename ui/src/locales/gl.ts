@@ -64,13 +64,13 @@ export const gl: Dict = {
 
   'done.installed': '{name} está instalado.',
   'done.uninstalled': '{name} foi desinstalado.',
-  'done.kept': 'As túas descargas, configuración e contas seguen aí.',
+  'done.kept': 'A túa configuración e os teus datos seguen aí.',
 
   'confirm.lead': 'Isto quita {name} {version} deste ordenador.',
   'confirm.removed': 'Quítase',
   'confirm.kept': 'Queda',
   'confirm.program': 'O programa e o seu cartafol',
   'confirm.updates': 'Actualizacións automáticas',
-  'confirm.data': 'As túas descargas, configuración e contas',
+  'confirm.data': 'A túa configuración e os teus datos',
   'confirm.windowData': 'Borrar tamén o que lembra a xanela de {name}, como o idioma e o aspecto',
 };

@@ -64,13 +64,13 @@ export const lv: Dict = {
 
   'done.installed': '{name} ir instalēta.',
   'done.uninstalled': '{name} ir atinstalēta.',
-  'done.kept': 'Jūsu lejupielādes, iestatījumi un konti joprojām ir vietā.',
+  'done.kept': 'Jūsu iestatījumi un dati joprojām ir vietā.',
 
   'confirm.lead': 'Tā {name} {version} tiks noņemta no šī datora.',
   'confirm.removed': 'Tiek noņemts',
   'confirm.kept': 'Paliek',
   'confirm.program': 'Programma un tās mape',
   'confirm.updates': 'Automātiskie atjauninājumi',
-  'confirm.data': 'Jūsu lejupielādes, iestatījumi un konti',
+  'confirm.data': 'Jūsu iestatījumi un dati',
   'confirm.windowData': 'Dzēst arī to, ko atceras {name} logs, piemēram, valodu un izskatu',
 };

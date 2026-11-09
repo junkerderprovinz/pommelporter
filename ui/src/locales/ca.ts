@@ -64,13 +64,13 @@ export const ca: Dict = {
 
   'done.installed': '{name} està instal·lat.',
   'done.uninstalled': "{name} s'ha desinstal·lat.",
-  'done.kept': 'Les teves baixades, configuració i comptes encara hi són.',
+  'done.kept': 'La teva configuració i les teves dades encara hi són.',
 
   'confirm.lead': "Això treu {name} {version} d'aquest ordinador.",
   'confirm.removed': 'Es treu',
   'confirm.kept': 'Es queda',
   'confirm.program': 'El programa i la seva carpeta',
   'confirm.updates': 'Actualitzacions automàtiques',
-  'confirm.data': 'Les teves baixades, configuració i comptes',
+  'confirm.data': 'La teva configuració i les teves dades',
   'confirm.windowData': "Esborrar també el que recorda la finestra de {name}, com l'idioma i l'aspecte",
 };

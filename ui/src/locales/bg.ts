@@ -64,13 +64,13 @@ export const bg: Dict = {
 
   'done.installed': '{name} е инсталиран.',
   'done.uninstalled': '{name} е деинсталиран.',
-  'done.kept': 'Изтеглянията, настройките и акаунтите ви са все още там.',
+  'done.kept': 'Настройките и данните ви са все още там.',
 
   'confirm.lead': 'Това премахва {name} {version} от този компютър.',
   'confirm.removed': 'Премахва се',
   'confirm.kept': 'Остава',
   'confirm.program': 'Програмата и нейната папка',
   'confirm.updates': 'Автоматични обновления',
-  'confirm.data': 'Вашите изтегляния, настройки и акаунти',
+  'confirm.data': 'Вашите настройки и данни',
   'confirm.windowData': 'Изтриване и на това, което помни прозорецът на {name}, като език и облик',
 };

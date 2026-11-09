@@ -64,13 +64,13 @@ export const nl: Dict = {
 
   'done.installed': '{name} is geïnstalleerd.',
   'done.uninstalled': '{name} is verwijderd.',
-  'done.kept': 'Je downloads, instellingen en accounts zijn er nog.',
+  'done.kept': 'Je instellingen en gegevens zijn er nog.',
 
   'confirm.lead': 'Dit verwijdert {name} {version} van deze computer.',
   'confirm.removed': 'Wordt verwijderd',
   'confirm.kept': 'Blijft',
   'confirm.program': 'Het programma en de map',
   'confirm.updates': 'Automatische updates',
-  'confirm.data': 'Je downloads, instellingen en accounts',
+  'confirm.data': 'Je instellingen en gegevens',
   'confirm.windowData': 'Ook wissen wat het venster van {name} onthoudt, zoals taal en uiterlijk',
 };

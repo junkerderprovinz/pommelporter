@@ -64,13 +64,13 @@ export const hi: Dict = {
 
   'done.installed': '{name} इंस्टॉल हो गया है।',
   'done.uninstalled': '{name} अनइंस्टॉल हो गया है।',
-  'done.kept': 'आपके डाउनलोड, सेटिंग्स और खाते अब भी मौजूद हैं।',
+  'done.kept': 'आपकी सेटिंग्स और डेटा अब भी मौजूद हैं।',
 
   'confirm.lead': 'इससे {name} {version} इस कंप्यूटर से हट जाएगा।',
   'confirm.removed': 'हटेगा',
   'confirm.kept': 'रहेगा',
   'confirm.program': 'प्रोग्राम और उसका फ़ोल्डर',
   'confirm.updates': 'अपने-आप अपडेट',
-  'confirm.data': 'आपके डाउनलोड, सेटिंग्स और खाते',
+  'confirm.data': 'आपकी सेटिंग्स और डेटा',
   'confirm.windowData': 'वह भी हटाएँ जो {name} की विंडो याद रखती है, जैसे भाषा और रूप',
 };

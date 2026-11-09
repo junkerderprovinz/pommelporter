@@ -64,13 +64,13 @@ export const ar: Dict = {
 
   'done.installed': 'تم تثبيت {name}.',
   'done.uninstalled': 'تم إلغاء تثبيت {name}.',
-  'done.kept': 'تنزيلاتك وإعداداتك وحساباتك ما زالت موجودة.',
+  'done.kept': 'إعداداتك وبياناتك ما زالت موجودة.',
 
   'confirm.lead': 'سيُزال {name} {version} من هذا الكمبيوتر.',
   'confirm.removed': 'يُزال',
   'confirm.kept': 'يبقى',
   'confirm.program': 'البرنامج ومجلده',
   'confirm.updates': 'التحديثات التلقائية',
-  'confirm.data': 'تنزيلاتك وإعداداتك وحساباتك',
+  'confirm.data': 'إعداداتك وبياناتك',
   'confirm.windowData': 'حذف ما تتذكره نافذة {name} أيضًا، مثل اللغة والمظهر',
 };

@@ -64,13 +64,13 @@ export const fi: Dict = {
 
   'done.installed': '{name} on asennettu.',
   'done.uninstalled': '{name} on poistettu.',
-  'done.kept': 'Latauksesi, asetuksesi ja tilisi ovat yhä tallessa.',
+  'done.kept': 'Asetuksesi ja tietosi ovat yhä tallessa.',
 
   'confirm.lead': 'Tämä poistaa sovelluksen {name} {version} tästä tietokoneesta.',
   'confirm.removed': 'Poistetaan',
   'confirm.kept': 'Säilyy',
   'confirm.program': 'Ohjelma ja sen kansio',
   'confirm.updates': 'Automaattiset päivitykset',
-  'confirm.data': 'Latauksesi, asetuksesi ja tilisi',
+  'confirm.data': 'Asetuksesi ja tietosi',
   'confirm.windowData': 'Poista myös se, mitä {name}-ikkuna muistaa, kuten kieli ja ulkoasu',
 };

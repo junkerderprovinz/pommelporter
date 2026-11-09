@@ -64,13 +64,13 @@ export const sl: Dict = {
 
   'done.installed': '{name} je nameščen.',
   'done.uninstalled': '{name} je odstranjen.',
-  'done.kept': 'Vaši prenosi, nastavitve in računi so še vedno tam.',
+  'done.kept': 'Vaše nastavitve in podatki so še vedno tam.',
 
   'confirm.lead': 'S tem odstranite {name} {version} s tega računalnika.',
   'confirm.removed': 'Odstrani se',
   'confirm.kept': 'Ostane',
   'confirm.program': 'Program in njegova mapa',
   'confirm.updates': 'Samodejne posodobitve',
-  'confirm.data': 'Vaši prenosi, nastavitve in računi',
+  'confirm.data': 'Vaše nastavitve in podatki',
   'confirm.windowData': 'Izbrisati tudi, kar si zapomni okno {name}, na primer jezik in videz',
 };

@@ -64,13 +64,13 @@ export const no: Dict = {
 
   'done.installed': '{name} er installert.',
   'done.uninstalled': '{name} er avinstallert.',
-  'done.kept': 'Nedlastingene, innstillingene og kontoene dine er der fortsatt.',
+  'done.kept': 'Innstillingene og dataene dine er der fortsatt.',
 
   'confirm.lead': 'Dette fjerner {name} {version} fra denne datamaskinen.',
   'confirm.removed': 'Fjernes',
   'confirm.kept': 'Blir',
   'confirm.program': 'Programmet og mappen',
   'confirm.updates': 'Automatiske oppdateringer',
-  'confirm.data': 'Nedlastingene, innstillingene og kontoene dine',
+  'confirm.data': 'Innstillingene og dataene dine',
   'confirm.windowData': 'Slett også det vinduet til {name} husker, som språk og utseende',
 };

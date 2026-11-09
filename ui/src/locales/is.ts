@@ -64,13 +64,13 @@ export const is: Dict = {
 
   'done.installed': '{name} er uppsett.',
   'done.uninstalled': '{name} hefur verið fjarlægt.',
-  'done.kept': 'Niðurhal, stillingar og aðgangar þínir eru enn til staðar.',
+  'done.kept': 'Stillingar og gögn þín eru enn til staðar.',
 
   'confirm.lead': 'Þetta fjarlægir {name} {version} úr þessari tölvu.',
   'confirm.removed': 'Fjarlægt',
   'confirm.kept': 'Helst',
   'confirm.program': 'Forritið og mappan þess',
   'confirm.updates': 'Sjálfvirkar uppfærslur',
-  'confirm.data': 'Niðurhal, stillingar og aðgangar þínir',
+  'confirm.data': 'Stillingar og gögn þín',
   'confirm.windowData': 'Eyða líka því sem gluggi {name} man, svo sem tungumáli og útliti',
 };

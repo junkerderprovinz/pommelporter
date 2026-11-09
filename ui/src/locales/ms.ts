@@ -64,13 +64,13 @@ export const ms: Dict = {
 
   'done.installed': '{name} sudah dipasang.',
   'done.uninstalled': '{name} sudah dinyahpasang.',
-  'done.kept': 'Muat turun, tetapan dan akaun anda masih ada.',
+  'done.kept': 'Tetapan dan data anda masih ada.',
 
   'confirm.lead': 'Ini membuang {name} {version} daripada komputer ini.',
   'confirm.removed': 'Dibuang',
   'confirm.kept': 'Kekal',
   'confirm.program': 'Program dan foldernya',
   'confirm.updates': 'Kemas kini automatik',
-  'confirm.data': 'Muat turun, tetapan dan akaun anda',
+  'confirm.data': 'Tetapan dan data anda',
   'confirm.windowData': 'Padam juga apa yang diingati tetingkap {name}, seperti bahasa dan rupa',
 };

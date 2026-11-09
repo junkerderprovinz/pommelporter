@@ -64,13 +64,13 @@ export const ru: Dict = {
 
   'done.installed': '{name} установлен.',
   'done.uninstalled': '{name} удалён.',
-  'done.kept': 'Ваши загрузки, настройки и учётные записи на месте.',
+  'done.kept': 'Ваши настройки и данные на месте.',
 
   'confirm.lead': '{name} {version} будет удалён с этого компьютера.',
   'confirm.removed': 'Удаляется',
   'confirm.kept': 'Остаётся',
   'confirm.program': 'Программа и её папка',
   'confirm.updates': 'Автоматические обновления',
-  'confirm.data': 'Ваши загрузки, настройки и учётные записи',
+  'confirm.data': 'Ваши настройки и данные',
   'confirm.windowData': 'Удалить и то, что запомнило окно {name}, например язык и оформление',
 };

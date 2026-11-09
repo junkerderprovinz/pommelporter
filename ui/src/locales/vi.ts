@@ -64,13 +64,13 @@ export const vi: Dict = {
 
   'done.installed': '{name} đã được cài.',
   'done.uninstalled': '{name} đã được gỡ.',
-  'done.kept': 'Tệp đã tải, cài đặt và tài khoản của bạn vẫn còn đó.',
+  'done.kept': 'Cài đặt và dữ liệu của bạn vẫn còn đó.',
 
   'confirm.lead': 'Bước này gỡ {name} {version} khỏi máy tính này.',
   'confirm.removed': 'Bị gỡ',
   'confirm.kept': 'Được giữ lại',
   'confirm.program': 'Chương trình và thư mục của nó',
   'confirm.updates': 'Cập nhật tự động',
-  'confirm.data': 'Tệp đã tải, cài đặt và tài khoản của bạn',
+  'confirm.data': 'Cài đặt và dữ liệu của bạn',
   'confirm.windowData': 'Xóa cả những gì cửa sổ {name} ghi nhớ, như ngôn ngữ và giao diện',
 };

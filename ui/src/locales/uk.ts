@@ -64,13 +64,13 @@ export const uk: Dict = {
 
   'done.installed': '{name} встановлено.',
   'done.uninstalled': '{name} видалено.',
-  'done.kept': 'Ваші завантаження, налаштування й облікові записи на місці.',
+  'done.kept': 'Ваші налаштування й дані на місці.',
 
   'confirm.lead': "{name} {version} буде видалено з цього комп'ютера.",
   'confirm.removed': 'Видаляється',
   'confirm.kept': 'Залишається',
   'confirm.program': 'Програма та її тека',
   'confirm.updates': 'Автоматичні оновлення',
-  'confirm.data': 'Ваші завантаження, налаштування й облікові записи',
+  'confirm.data': 'Ваші налаштування й дані',
   'confirm.windowData': 'Видалити й те, що пам’ятає вікно {name}, як-от мову та вигляд',
 };

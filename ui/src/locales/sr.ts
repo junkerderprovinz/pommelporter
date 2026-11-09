@@ -64,13 +64,13 @@ export const sr: Dict = {
 
   'done.installed': '{name} је инсталиран.',
   'done.uninstalled': '{name} је деинсталиран.',
-  'done.kept': 'Ваша преузимања, подешавања и налози су и даље ту.',
+  'done.kept': 'Ваша подешавања и подаци су и даље ту.',
 
   'confirm.lead': 'Овим уклањате {name} {version} са овог рачунара.',
   'confirm.removed': 'Уклања се',
   'confirm.kept': 'Остаје',
   'confirm.program': 'Програм и његова фасцикла',
   'confirm.updates': 'Аутоматска ажурирања',
-  'confirm.data': 'Ваша преузимања, подешавања и налози',
+  'confirm.data': 'Ваша подешавања и подаци',
   'confirm.windowData': 'Обрисати и оно што прозор апликације {name} памти, попут језика и изгледа',
 };

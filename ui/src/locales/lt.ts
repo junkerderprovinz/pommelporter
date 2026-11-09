@@ -64,13 +64,13 @@ export const lt: Dict = {
 
   'done.installed': '{name} įdiegta.',
   'done.uninstalled': '{name} pašalinta.',
-  'done.kept': 'Jūsų atsisiuntimai, nustatymai ir paskyros liko vietoje.',
+  'done.kept': 'Jūsų nustatymai ir duomenys liko vietoje.',
 
   'confirm.lead': 'Taip {name} {version} bus pašalinta iš šio kompiuterio.',
   'confirm.removed': 'Pašalinama',
   'confirm.kept': 'Lieka',
   'confirm.program': 'Programa ir jos aplankas',
   'confirm.updates': 'Automatiniai naujinimai',
-  'confirm.data': 'Jūsų atsisiuntimai, nustatymai ir paskyros',
+  'confirm.data': 'Jūsų nustatymai ir duomenys',
   'confirm.windowData': 'Taip pat ištrinti tai, ką prisimena {name} langas, pvz., kalbą ir išvaizdą',
 };

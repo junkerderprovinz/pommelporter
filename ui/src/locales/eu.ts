@@ -64,13 +64,13 @@ export const eu: Dict = {
 
   'done.installed': '{name} instalatuta dago.',
   'done.uninstalled': '{name} desinstalatu da.',
-  'done.kept': 'Zure deskargak, ezarpenak eta kontuak hor daude oraindik.',
+  'done.kept': 'Zure ezarpenak eta datuak hor daude oraindik.',
 
   'confirm.lead': 'Honek {name} {version} kentzen du ordenagailu honetatik.',
   'confirm.removed': 'Kentzen da',
   'confirm.kept': 'Geratzen da',
   'confirm.program': 'Programa eta bere karpeta',
   'confirm.updates': 'Eguneratze automatikoak',
-  'confirm.data': 'Zure deskargak, ezarpenak eta kontuak',
+  'confirm.data': 'Zure ezarpenak eta datuak',
   'confirm.windowData': 'Ezabatu {name} leihoak gogoratzen duena ere, hala nola hizkuntza eta itxura',
 };

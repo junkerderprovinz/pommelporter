@@ -64,13 +64,13 @@ export const id: Dict = {
 
   'done.installed': '{name} sudah terpasang.',
   'done.uninstalled': '{name} sudah dicopot.',
-  'done.kept': 'Unduhan, pengaturan, dan akun Anda masih ada.',
+  'done.kept': 'Pengaturan dan data Anda masih ada.',
 
   'confirm.lead': 'Ini menghapus {name} {version} dari komputer ini.',
   'confirm.removed': 'Dihapus',
   'confirm.kept': 'Tetap ada',
   'confirm.program': 'Program dan foldernya',
   'confirm.updates': 'Pembaruan otomatis',
-  'confirm.data': 'Unduhan, pengaturan, dan akun Anda',
+  'confirm.data': 'Pengaturan dan data Anda',
   'confirm.windowData': 'Hapus juga yang diingat jendela {name}, seperti bahasa dan tampilan',
 };

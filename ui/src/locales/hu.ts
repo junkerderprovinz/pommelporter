@@ -64,13 +64,13 @@ export const hu: Dict = {
 
   'done.installed': 'A(z) {name} telepítve.',
   'done.uninstalled': 'A(z) {name} eltávolítva.',
-  'done.kept': 'A letöltései, beállításai és fiókjai megmaradtak.',
+  'done.kept': 'A beállításai és adatai megmaradtak.',
 
   'confirm.lead': 'Ez eltávolítja a(z) {name} {version} programot erről a számítógépről.',
   'confirm.removed': 'Eltávolítva',
   'confirm.kept': 'Megmarad',
   'confirm.program': 'A program és a mappája',
   'confirm.updates': 'Automatikus frissítések',
-  'confirm.data': 'A letöltései, beállításai és fiókjai',
+  'confirm.data': 'A beállításai és adatai',
   'confirm.windowData': 'Annak törlése is, amit a(z) {name} ablaka megjegyez, például a nyelv és a megjelenés',
 };

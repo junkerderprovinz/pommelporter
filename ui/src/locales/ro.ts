@@ -64,13 +64,13 @@ export const ro: Dict = {
 
   'done.installed': '{name} este instalat.',
   'done.uninstalled': '{name} a fost dezinstalat.',
-  'done.kept': 'Descărcările, setările și conturile tale sunt încă acolo.',
+  'done.kept': 'Setările și datele tale sunt încă acolo.',
 
   'confirm.lead': 'Astfel elimini {name} {version} de pe acest computer.',
   'confirm.removed': 'Se elimină',
   'confirm.kept': 'Rămâne',
   'confirm.program': 'Programul și dosarul lui',
   'confirm.updates': 'Actualizări automate',
-  'confirm.data': 'Descărcările, setările și conturile tale',
+  'confirm.data': 'Setările și datele tale',
   'confirm.windowData': 'Șterge și ce reține fereastra {name}, de exemplu limba și aspectul',
 };

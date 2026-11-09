@@ -64,14 +64,14 @@ export const en = {
 
   'done.installed': '{name} is installed.',
   'done.uninstalled': '{name} has been uninstalled.',
-  'done.kept': 'Your downloads, settings and accounts are still there.',
+  'done.kept': 'Your settings and data are still there.',
 
   'confirm.lead': 'This removes {name} {version} from this computer.',
   'confirm.removed': 'Removed',
   'confirm.kept': 'Kept',
   'confirm.program': 'The program and its folder',
   'confirm.updates': 'Automatic updates',
-  'confirm.data': 'Your downloads, settings and accounts',
+  'confirm.data': 'Your settings and data',
   'confirm.windowData': "Also delete what {name}'s window remembers, such as language and look",
 };
 

@@ -64,13 +64,13 @@ export const et: Dict = {
 
   'done.installed': '{name} on paigaldatud.',
   'done.uninstalled': '{name} on eemaldatud.',
-  'done.kept': 'Sinu allalaadimised, seaded ja kontod on alles.',
+  'done.kept': 'Sinu seaded ja andmed on alles.',
 
   'confirm.lead': 'Nii eemaldad {name} {version} sellest arvutist.',
   'confirm.removed': 'Eemaldatakse',
   'confirm.kept': 'Jääb alles',
   'confirm.program': 'Programm ja selle kaust',
   'confirm.updates': 'Automaatsed uuendused',
-  'confirm.data': 'Sinu allalaadimised, seaded ja kontod',
+  'confirm.data': 'Sinu seaded ja andmed',
   'confirm.windowData': 'Kustuta ka see, mida {name} aken mäletab, näiteks keel ja välimus',
 };

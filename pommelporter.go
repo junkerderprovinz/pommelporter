@@ -52,7 +52,7 @@ type App struct {
 	Choices []Choice
 	// Stays names what an uninstall leaves on the computer, by language code
 	// such as "de", with "en" for a language it lacks. Without it the window
-	// says the downloads, settings and accounts stay.
+	// says the settings and data stay.
 	Stays map[string]Stay
 }
 

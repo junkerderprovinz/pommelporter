@@ -64,13 +64,13 @@ export const sv: Dict = {
 
   'done.installed': '{name} är installerat.',
   'done.uninstalled': '{name} har avinstallerats.',
-  'done.kept': 'Dina nedladdningar, inställningar och konton finns kvar.',
+  'done.kept': 'Dina inställningar och data finns kvar.',
 
   'confirm.lead': 'Det här tar bort {name} {version} från den här datorn.',
   'confirm.removed': 'Tas bort',
   'confirm.kept': 'Blir kvar',
   'confirm.program': 'Programmet och dess mapp',
   'confirm.updates': 'Automatiska uppdateringar',
-  'confirm.data': 'Dina nedladdningar, inställningar och konton',
+  'confirm.data': 'Dina inställningar och data',
   'confirm.windowData': 'Radera även det som fönstret i {name} minns, som språk och utseende',
 };

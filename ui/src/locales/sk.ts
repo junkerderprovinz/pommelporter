@@ -64,13 +64,13 @@ export const sk: Dict = {
 
   'done.installed': '{name} je nainštalovaný.',
   'done.uninstalled': '{name} je odinštalovaný.',
-  'done.kept': 'Vaše stiahnuté súbory, nastavenia a účty tu zostali.',
+  'done.kept': 'Vaše nastavenia a údaje tu zostali.',
 
   'confirm.lead': 'Týmto odstránite {name} {version} z tohto počítača.',
   'confirm.removed': 'Odstráni sa',
   'confirm.kept': 'Zostane',
   'confirm.program': 'Program a jeho priečinok',
   'confirm.updates': 'Automatické aktualizácie',
-  'confirm.data': 'Vaše stiahnuté súbory, nastavenia a účty',
+  'confirm.data': 'Vaše nastavenia a údaje',
   'confirm.windowData': 'Vymazať aj to, čo si pamätá okno {name}, napríklad jazyk a vzhľad',
 };

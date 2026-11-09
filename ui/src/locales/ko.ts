@@ -64,13 +64,13 @@ export const ko: Dict = {
 
   'done.installed': '{name}이(가) 설치되었습니다.',
   'done.uninstalled': '{name}이(가) 제거되었습니다.',
-  'done.kept': '다운로드, 설정, 계정은 그대로 남아 있습니다.',
+  'done.kept': '설정과 데이터는 그대로 남아 있습니다.',
 
   'confirm.lead': '이 컴퓨터에서 {name} {version}을(를) 제거합니다.',
   'confirm.removed': '제거됨',
   'confirm.kept': '유지됨',
   'confirm.program': '프로그램과 해당 폴더',
   'confirm.updates': '자동 업데이트',
-  'confirm.data': '다운로드, 설정, 계정',
+  'confirm.data': '설정과 데이터',
   'confirm.windowData': '{name} 창이 기억하는 언어와 모양 같은 설정도 삭제',
 };

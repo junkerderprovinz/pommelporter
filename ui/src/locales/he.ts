@@ -64,13 +64,13 @@ export const he: Dict = {
 
   'done.installed': '{name} מותקן.',
   'done.uninstalled': '{name} הוסר.',
-  'done.kept': 'ההורדות, ההגדרות והחשבונות שלך עדיין שם.',
+  'done.kept': 'ההגדרות והנתונים שלך עדיין שם.',
 
   'confirm.lead': 'הפעולה מסירה את {name} {version} מהמחשב הזה.',
   'confirm.removed': 'יוסר',
   'confirm.kept': 'יישאר',
   'confirm.program': 'התוכנה והתיקייה שלה',
   'confirm.updates': 'עדכונים אוטומטיים',
-  'confirm.data': 'ההורדות, ההגדרות והחשבונות שלך',
+  'confirm.data': 'ההגדרות והנתונים שלך',
   'confirm.windowData': 'למחוק גם את מה שהחלון של {name} זוכר, כמו שפה ומראה',
 };

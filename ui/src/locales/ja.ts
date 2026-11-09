@@ -64,13 +64,13 @@ export const ja: Dict = {
 
   'done.installed': '{name} をインストールしました。',
   'done.uninstalled': '{name} をアンインストールしました。',
-  'done.kept': 'ダウンロード、設定、アカウントはそのまま残っています。',
+  'done.kept': '設定とデータはそのまま残っています。',
 
   'confirm.lead': 'このコンピューターから {name} {version} を削除します。',
   'confirm.removed': '削除されるもの',
   'confirm.kept': '残るもの',
   'confirm.program': 'プログラムとそのフォルダー',
   'confirm.updates': '自動更新',
-  'confirm.data': 'ダウンロード、設定、アカウント',
+  'confirm.data': '設定とデータ',
   'confirm.windowData': '{name} のウィンドウが覚えている言語や外観なども削除する',
 };

@@ -64,13 +64,13 @@ export const pl: Dict = {
 
   'done.installed': '{name} jest zainstalowany.',
   'done.uninstalled': '{name} został odinstalowany.',
-  'done.kept': 'Twoje pobrane pliki, ustawienia i konta nadal tam są.',
+  'done.kept': 'Twoje ustawienia i dane nadal tam są.',
 
   'confirm.lead': 'To usunie {name} {version} z tego komputera.',
   'confirm.removed': 'Zostanie usunięte',
   'confirm.kept': 'Zostaje',
   'confirm.program': 'Program i jego folder',
   'confirm.updates': 'Automatyczne aktualizacje',
-  'confirm.data': 'Twoje pobrane pliki, ustawienia i konta',
+  'confirm.data': 'Twoje ustawienia i dane',
   'confirm.windowData': 'Usunąć też to, co pamięta okno {name}, np. język i wygląd',
 };
