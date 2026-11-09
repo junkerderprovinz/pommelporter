@@ -12,6 +12,7 @@
   "labels": ["dependencies"],
   "prHourlyLimit": 4,
   "prConcurrentLimit": 6,
+  "constraints": { "node": "24", "npm": "<12" },
   "packageRules": [
     {
       "description": "GitHub Actions: auto-merge minor, patch and digest updates",
