@@ -2,7 +2,7 @@
 // image in the GlimStone look: the app's logo and name on top, a slot for the
 // app on the left, one for Applications on the right, and an arrow between.
 //
-//	dmgbackground -logo logo.svg -name KnightLoader [-accent '#FCC419'] [-out dir]
+//	dmgbackground -logo logo.svg -name PommelExample [-accent '#D9A44A'] [-out dir]
 //
 // It writes background.png at 660x400 and background@2x.png at twice that.
 // scripts/make-dmg.sh places the icons on the slots drawn here.
@@ -37,7 +37,7 @@ const (
 	// A slot holds Finder's 128 pt icon and the name under it.
 	slotW, slotH, slotTop = 176, 184, 126
 	cardRadius            = 20 // --radius-card
-	// A wide logo such as TrickWork's banner gets up to three times its
+	// A wide logo, such as a banner, gets up to three times its
 	// height in width.
 	logoH, logoMaxW = 44, 132
 	headerTop       = 46

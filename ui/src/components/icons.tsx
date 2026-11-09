@@ -21,10 +21,10 @@ function glyph(viewBox: string, markup: string): Glyph {
   );
 }
 
-/** Back. KnightLoader's drawing on a 20-unit grid. */
+/** Back, on a 20-unit grid. */
 export const IconBack = glyph("4.25 3.6 12.8 12.8", "<path d=\"M6.6 10 13 3.6l1.7 1.7L10 10l4.7 4.7-1.7 1.7L6.6 10Z\" />");
 
-/** Next, continue. KnightLoader's drawing on a 20-unit grid. */
+/** Next, continue, on a 20-unit grid. */
 export const IconForward = glyph("2.95 3.6 12.8 12.8", "<path d=\"M13.4 10 7 16.4l-1.7-1.7L10 10 5.3 5.3 7 3.6 13.4 10Z\" />");
 
 /** Install. Streamline programming/browser-add.svg. */

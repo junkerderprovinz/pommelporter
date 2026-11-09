@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-The installer behind <a href="https://github.com/junkerderprovinz/knightloader">KnightLoader</a>, <a href="https://github.com/junkerderprovinz/arrowloop">ArrowLoop</a> and <a href="https://github.com/junkerderprovinz/trickwork">TrickWork</a>.<br>
-It installs a <a href="https://wails.io">Wails</a> desktop app on Windows and Linux in a window of its own, in the GlimStone look, and uninstalls it again.
+An installer for <a href="https://wails.io">Wails</a> desktop apps.<br>
+It installs an app on Windows and Linux in a window of its own, in the GlimStone look, and uninstalls it again.
 </p>
 
 <br>
@@ -78,7 +78,7 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <p><a id="3-what-it-does" href="#3-what-it-does"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/3-what-it-does-dark.svg"><img src=".github/assets/sections/3-what-it-does.svg" alt="3. What it does" width="100%"></picture></a></p>
 
-**On Windows** it installs for everyone on the computer, under `C:\Program Files\<App>` or a folder you pick. It adds a Start menu entry and a desktop shortcut if you want them, an entry under Apps with its uninstaller, and a scheduled task that keeps the app up to date. A copy that is still running is asked to quit first, and installations left by the apps' earlier installers are taken over or removed.
+**On Windows** it installs for everyone on the computer, under `C:\Program Files\<App>` or a folder you pick. It adds a Start menu entry and a desktop shortcut if you want them, an entry under Apps with its uninstaller, and a scheduled task that keeps the app up to date. A copy that is still running is asked to quit first, and installations left by the app's earlier installer are taken over or removed.
 
 The update task needs a folder nobody else can change. The installer gives the install folder the same rights as Program Files and checks every folder above it. On a drive where everyone may rename what sits at its top, as on many second drives, the task runs as the person who installed instead of as the system account, so swapping the folder gains nothing.
 
@@ -86,7 +86,7 @@ The update task needs a folder nobody else can change. The installer gives the i
 
 **macOS** gets a disk image instead of an installer: `cmd/dmgbackground` draws the window background from the app's logo, and `scripts/make-dmg.sh` builds the image around it.
 
-The window speaks the 42 languages the apps do, picked from the system's language, and hands that language to the app for its first start.
+The window speaks 42 languages, picked from the system's language, and hands that language to the app for its first start.
 
 <br>
 
@@ -101,13 +101,13 @@ var payload embed.FS
 func main() {
 	files, _ := fs.Sub(payload, "payload")
 	err := pommelporter.Run(pommelporter.App{
-		Name:       "KnightLoader",
-		ID:         "com.junkerderprovinz.knightloader",
-		Executable: "KnightLoader.exe",
+		Name:       "PommelExample",
+		ID:         "com.junkerderprovinz.pommelexample",
+		Executable: "PommelExample.exe",
 		Version:    version,
 		Publisher:  "junkerderprovinz",
-		Homepage:   "https://github.com/junkerderprovinz/knightloader",
-		Accent:     "#FCC419",
+		Homepage:   "https://github.com/junkerderprovinz/pommelporter",
+		Accent:     "#D9A44A",
 		Logo:       logo,
 		Icon:       icon,
 		Payload:    files,
@@ -118,7 +118,7 @@ func main() {
 }
 ```
 
-On Windows the installer needs a manifest that asks for administrator rights, linked in as a `.syso`. KnightLoader's `desktop/installer` and `scripts/desktop.mjs` show the whole build.
+On Windows the installer needs a manifest that asks for administrator rights, linked in as a `.syso`, which a tool such as go-winres writes.
 
 The finished installer takes these switches:
 

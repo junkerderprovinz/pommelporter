@@ -23,7 +23,7 @@ const { chromium } = require(`${execSync("npm root -g").toString().trim()}/playw
 const here = dirname(fileURLToPath(import.meta.url));
 
 const SHOTS = [
-  { file: "folder.png", capture: "folder.png", caption: "Any folder,<br><em>on any drive</em>", sub: "One installer for KnightLoader, ArrowLoop and TrickWork on Windows and Linux" },
+  { file: "folder.png", capture: "folder.png", caption: "Any folder,<br><em>on any drive</em>", sub: "One installer for any Wails app on Windows and Linux" },
   { file: "progress.png", capture: "progress.png", caption: "Every step <em>in plain sight</em>", sub: "It adds a Start menu entry, a desktop shortcut, an entry under Apps and a daily update check" },
   { file: "uninstall.png", capture: "uninstall.png", caption: "Out again,<br><em>your data stays</em>", sub: "The uninstaller lists what it removes and what it keeps" },
 ];

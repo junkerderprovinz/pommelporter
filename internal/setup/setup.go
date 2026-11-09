@@ -112,8 +112,8 @@ type Removal struct {
 	WindowData bool `json:"windowData"`
 }
 
-// ValidLanguage reports whether code looks like one of the apps' language
-// codes, so nothing else reaches the files the apps read it from.
+// ValidLanguage reports whether code looks like a two-letter language code,
+// so nothing else reaches the files an app reads it from.
 func ValidLanguage(code string) bool {
 	if len(code) != 2 {
 		return false

@@ -1,7 +1,6 @@
 // A stand-in for the Installer service, so `npm run dev` shows every page in a
 // plain browser. The query string picks the case:
 //
-//   app=knightloader|arrowloop|trickwork   which app is being installed
 //   accent=1d99f3                           the app's accent, without the #
 //   mode=uninstall                          the uninstall pages
 //   platform=linux                          the Linux pages, without a folder row
@@ -11,15 +10,10 @@
 //   hold=<step>                             the run waits at that step, for screenshots
 import type { DirCheck, Folder, Info, Installer, Options, Progress } from '../bridge';
 import { plannedSteps } from '../run';
-import knightloader from './knightloader.svg?raw';
-import arrowloop from './arrowloop.svg?raw';
-import trickwork from './trickwork.svg?raw';
+import logo from '../assets/logo.svg?raw';
 
-const APPS: Record<string, { name: string; logo: string }> = {
-  knightloader: { name: 'KnightLoader', logo: knightloader },
-  arrowloop: { name: 'ArrowLoop', logo: arrowloop },
-  trickwork: { name: 'TrickWork', logo: trickwork },
-};
+// The stand-in app of example/, so the mock and the CI installer look alike.
+const app = { name: 'PommelExample', logo };
 
 const STEP_MS = 650;
 
@@ -38,7 +32,6 @@ function windowsTree(name: string, existing: boolean): Map<string, string[]> {
 }
 
 export function mockInstaller(query: URLSearchParams): Installer {
-  const app = APPS[query.get('app') ?? ''] ?? APPS.knightloader!;
   const linux = query.get('platform') === 'linux';
   const uninstall = query.get('mode') === 'uninstall';
   const hasExisting = uninstall || query.get('existing') === '1';
@@ -61,8 +54,8 @@ export function mockInstaller(query: URLSearchParams): Installer {
     mode: uninstall ? 'uninstall' : 'install',
     platform: linux ? 'linux' : 'windows',
     frameless: !linux,
-    // ?choice shows an app's own tick, as CannonCommander offers to open folders.
-    // ?stays names what CannonCommander leaves after an uninstall.
+    // ?choice shows an app's own tick, ?stays an app's own words for what an
+    // uninstall leaves.
     stays: query.has('stays') ? { de: { item: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte', note: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte sind noch da.' } } : null,
     choices: query.has('choice') ? [{ id: 'folders', label: { de: 'Als Standard-Dateimanager festlegen', en: 'Make it the default file manager' } }] : null,
     existing: hasExisting ? { version: uninstall ? '2.2.0' : '2.1.0', dir: defaultDir } : null,

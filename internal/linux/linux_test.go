@@ -15,20 +15,20 @@ import (
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
 )
 
-const testID = "com.example.knightloader"
+const testID = "com.junkerderprovinz.pommelexample"
 
 func testApp() setup.App {
 	return setup.App{
-		Name:       "KnightLoader",
+		Name:       "PommelExample",
 		ID:         testID,
-		Executable: "knightloader",
+		Executable: "pommelexample",
 		Version:    "1.2.0",
 		Icon:       []byte("png"),
 		Categories: []string{"Network", "FileTransfer"},
 		Payload: fstest.MapFS{
 			// The redirection is the shell's own, so the script runs without
 			// a PATH.
-			"knightloader":     {Data: []byte("#!/bin/sh\n: > \"$HOME/launched\"\n"), Mode: 0o444},
+			"pommelexample":    {Data: []byte("#!/bin/sh\n: > \"$HOME/launched\"\n"), Mode: 0o444},
 			"share/readme.txt": {Data: []byte("hello"), Mode: 0o444},
 		},
 	}
@@ -88,7 +88,7 @@ func TestInstallPutsTheProgramAndItsEntriesInPlace(t *testing.T) {
 	if o.Dir != dir {
 		t.Errorf("Defaults().Dir = %q, want %q", o.Dir, dir)
 	}
-	exe := filepath.Join(dir, "knightloader")
+	exe := filepath.Join(dir, "pommelexample")
 	if m := mode(t, exe); m != 0o755 {
 		t.Errorf("program mode = %v, want 0755", m)
 	}
@@ -104,11 +104,11 @@ func TestInstallPutsTheProgramAndItsEntriesInPlace(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, line := range []string{
-		"Name=KnightLoader",
+		"Name=PommelExample",
 		"Exec=" + exe,
 		"Icon=" + testID,
 		"Categories=Network;FileTransfer;",
-		"StartupWMClass=KnightLoader",
+		"StartupWMClass=PommelExample",
 		"Exec=" + filepath.Join(dir, "uninstall") + " --uninstall",
 	} {
 		if !strings.Contains(string(entry), line+"\n") {
@@ -121,7 +121,7 @@ func TestInstallPutsTheProgramAndItsEntriesInPlace(t *testing.T) {
 	if m := mode(t, filepath.Join(home, "Desktop", testID+".desktop")); m != 0o755 {
 		t.Errorf("desktop copy mode = %v, want 0755", m)
 	}
-	if target, err := os.Readlink(filepath.Join(home, ".local/bin/knightloader")); err != nil || target != exe {
+	if target, err := os.Readlink(filepath.Join(home, ".local/bin/pommelexample")); err != nil || target != exe {
 		t.Errorf("launcher points at %q (%v), want %q", target, err, exe)
 	}
 
@@ -170,12 +170,12 @@ func TestUninstallRemovesEverythingButTheSettings(t *testing.T) {
 	install(t, app, New().Defaults(app))
 	dir := filepath.Join(home, ".local/share", testID)
 	// What the app's updater leaves next to the program.
-	for _, name := range []string{"knightloader.old", ".knightloader.update-123"} {
+	for _, name := range []string{"pommelexample.old", ".pommelexample.update-123"} {
 		if err := os.WriteFile(filepath.Join(dir, name), nil, 0o644); err != nil {
 			t.Fatal(err)
 		}
 	}
-	settings := filepath.Join(home, ".config/KnightLoader/settings.json")
+	settings := filepath.Join(home, ".config/PommelExample/settings.json")
 	if err := os.MkdirAll(filepath.Dir(settings), 0o755); err != nil {
 		t.Fatal(err)
 	}
@@ -195,7 +195,7 @@ func TestUninstallRemovesEverythingButTheSettings(t *testing.T) {
 		filepath.Join(home, ".local/share/applications", testID+".desktop"),
 		filepath.Join(home, ".local/share/icons/hicolor/256x256/apps", testID+".png"),
 		filepath.Join(home, "Desktop", testID+".desktop"),
-		filepath.Join(home, ".local/bin/knightloader"),
+		filepath.Join(home, ".local/bin/pommelexample"),
 	} {
 		if exists(path) {
 			t.Errorf("%s is still there", path)
@@ -212,7 +212,7 @@ func TestUninstallRemovesEverythingButTheSettings(t *testing.T) {
 func TestLauncherLeavesAnotherProgramsNameAlone(t *testing.T) {
 	home := newHome(t)
 	app := testApp()
-	other := filepath.Join(home, ".local/bin/knightloader")
+	other := filepath.Join(home, ".local/bin/pommelexample")
 	if err := os.WriteFile(other, []byte("someone else's"), 0o755); err != nil {
 		t.Fatal(err)
 	}
@@ -245,7 +245,7 @@ func TestXDGFoldersAreRespected(t *testing.T) {
 	app := testApp()
 	install(t, app, New().Defaults(app))
 	for _, path := range []string{
-		filepath.Join(data, testID, "knightloader"),
+		filepath.Join(data, testID, "pommelexample"),
 		filepath.Join(data, "applications", testID+".desktop"),
 		filepath.Join(home, "Schreibtisch", testID+".desktop"),
 	} {
@@ -342,7 +342,7 @@ func TestTheProgramCarriesOutTheChoicesAndTakesThemBack(t *testing.T) {
 	home := newHome(t)
 	app := testApp()
 	app.Payload = fstest.MapFS{
-		"knightloader": {Data: []byte("#!/bin/sh\nprintf '%s\\n' \"$*\" >> \"$HOME/choices\"\n"), Mode: 0o555},
+		"pommelexample": {Data: []byte("#!/bin/sh\nprintf '%s\\n' \"$*\" >> \"$HOME/choices\"\n"), Mode: 0o555},
 	}
 	app.Choices = []setup.Choice{
 		{ID: "folders", Platforms: []string{"windows", "linux"}, Do: []string{"--file-manager", "on"}, Undo: []string{"--file-manager", "off"}},
@@ -364,7 +364,7 @@ func TestTheProgramCarriesOutTheChoicesAndTakesThemBack(t *testing.T) {
 }
 
 func TestTheUninstallActionSpeaksTheMenusLanguage(t *testing.T) {
-	entry := desktopEntry(testApp(), paths{dir: "/opt/knightloader", exe: "/opt/knightloader/knightloader"})
+	entry := desktopEntry(testApp(), paths{dir: "/opt/pommelexample", exe: "/opt/pommelexample/pommelexample"})
 	_, action, _ := strings.Cut(entry, "[Desktop Action uninstall]\n")
 	for _, line := range []string{"Name=Uninstall", "Name[de]=Deinstallieren", "Name[fr]=Désinstaller"} {
 		if !strings.Contains(action, line+"\n") {
@@ -392,7 +392,7 @@ func TestTheSetupWindowHasAnEntryOfItsOwnThroughTheUninstall(t *testing.T) {
 	setupEntry := filepath.Join(home, ".local/share/applications", testID+"-setup.desktop")
 	install(t, app, New().Defaults(app))
 
-	remove := New().(platform).WindowEntry(app, "KnightLoader-setup")
+	remove := New().(platform).WindowEntry(app, "PommelExample-setup")
 	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
 		t.Fatal(err)
 	}
@@ -402,7 +402,7 @@ func TestTheSetupWindowHasAnEntryOfItsOwnThroughTheUninstall(t *testing.T) {
 	}
 	// GLib drops an entry whose Exec names no program, and the uninstaller
 	// that runs the window is gone by now.
-	for _, line := range []string{"Name=KnightLoader", "Exec=true", "NoDisplay=true", "StartupWMClass=KnightLoader-setup"} {
+	for _, line := range []string{"Name=PommelExample", "Exec=true", "NoDisplay=true", "StartupWMClass=PommelExample-setup"} {
 		if !strings.Contains(string(body), line+"\n") {
 			t.Errorf("the entry lacks %q:\n%s", line, body)
 		}
@@ -425,14 +425,14 @@ func TestTheHiddenEntryStandsBeforeTheUninstallRemovesTheAppsEntry(t *testing.T)
 	// The program records, while the uninstall takes its choice back, which
 	// entries there are.
 	app.Payload = fstest.MapFS{
-		"knightloader": {Data: []byte("#!/bin/sh\nfor f in \"$HOME\"/.local/share/applications/*; do echo \"${f##*/}\"; done > \"$HOME/entries\"\n"), Mode: 0o555},
+		"pommelexample": {Data: []byte("#!/bin/sh\nfor f in \"$HOME\"/.local/share/applications/*; do echo \"${f##*/}\"; done > \"$HOME/entries\"\n"), Mode: 0o555},
 	}
 	app.Choices = []setup.Choice{{ID: "folders", Platforms: []string{"linux"}, Do: []string{"on"}, Undo: []string{"off"}}}
 	o := New().Defaults(app)
 	o.Choices = map[string]bool{"folders": true}
 	install(t, app, o)
 
-	defer New().(platform).WindowEntry(app, "KnightLoader-setup")()
+	defer New().(platform).WindowEntry(app, "PommelExample-setup")()
 	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
 		t.Fatal(err)
 	}

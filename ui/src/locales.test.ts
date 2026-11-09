@@ -52,12 +52,12 @@ describe('the language pick', () => {
 
 describe('a refused folder', () => {
   it('is explained by its code', () => {
-    expect(refusalText({ ok: false, code: 'notEmpty', detail: 'x' }, 'KnightLoader')).toBe(en['refusal.notEmpty']);
-    expect(refusalText({ ok: false, code: 'fixed' }, 'KnightLoader')).toContain('KnightLoader');
+    expect(refusalText({ ok: false, code: 'notEmpty', detail: 'x' }, 'PommelExample')).toBe(en['refusal.notEmpty']);
+    expect(refusalText({ ok: false, code: 'fixed' }, 'PommelExample')).toContain('PommelExample');
   });
 
   it('falls back to the platform sentence for a code the window does not know', () => {
-    expect(refusalText({ ok: false, code: 'brandNew', detail: 'cannot use it' }, 'KnightLoader')).toBe('cannot use it');
+    expect(refusalText({ ok: false, code: 'brandNew', detail: 'cannot use it' }, 'PommelExample')).toBe('cannot use it');
   });
 });
 

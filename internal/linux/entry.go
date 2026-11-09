@@ -31,7 +31,7 @@ func desktopEntry(app setup.App, p paths) string {
 	}
 	line("Terminal", "false")
 	line("Categories", escapeValue(strings.Join(categories, ";")+";"))
-	// The apps hand GTK their Name as the program name, which is the window
+	// An app hands GTK its Name as the program name, which is the window
 	// class X11 docks match against.
 	line("StartupWMClass", escapeValue(app.Name))
 	line("StartupNotify", "true")

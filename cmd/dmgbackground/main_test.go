@@ -16,7 +16,7 @@ func TestRenderDrawsTheLayoutAtBothScales(t *testing.T) {
 		t.Errorf("accent ink = %v, want %v as GlimStone derives it", ink, want)
 	}
 	for _, scale := range []int{1, 2} {
-		img, err := render([]byte(square), "KnightLoader", ink, scale)
+		img, err := render([]byte(square), "PommelExample", ink, scale)
 		if err != nil {
 			t.Fatal(err)
 		}

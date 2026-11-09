@@ -1,7 +1,7 @@
-// Package pommelporter is the installer of KnightLoader, ArrowLoop and
-// TrickWork. An app builds a small main package that fills in an App and
-// calls Run; the result is one program that installs the app, shows its own
-// window in the GlimStone look, and uninstalls it again.
+// Package pommelporter installs a Wails desktop app on Windows and Linux.
+// An app builds a small main package that fills in an App and calls Run;
+// the result is one program that installs the app, shows its own window in
+// the GlimStone look, and uninstalls it again.
 package pommelporter
 
 import (
@@ -20,7 +20,7 @@ type App struct {
 	// Name is shown in the window and names the folder, the shortcuts, the
 	// entry under Apps and the update task.
 	Name string
-	// ID is the reverse-DNS identifier, such as com.junkerderprovinz.knightloader.
+	// ID is the reverse-DNS identifier, such as com.junkerderprovinz.pommelexample.
 	ID string
 	// Executable is the program's file name inside Payload.
 	Executable string

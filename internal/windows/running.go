@@ -22,7 +22,8 @@ var (
 const (
 	hwndMessage = ^uintptr(2) // HWND_MESSAGE, -3
 	wmClose     = 0x10
-	// closeWait covers the 15 seconds the apps give a run under way to stop.
+	// closeWait leaves room for an app that takes up to 15 seconds to stop
+	// a run under way.
 	closeWait = 30_000
 )
 

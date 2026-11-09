@@ -149,7 +149,7 @@ func lockedRisk(sd *windows.SECURITY_DESCRIPTOR, writer *windows.SID) error {
 	})
 }
 
-// normalize turns dir into the form the apps see as their own folder: full,
+// normalize turns dir into the form an app sees as its own folder: full,
 // clean, without the dots and spaces Windows drops from names, and with long
 // names for the part that exists.
 func normalize(dir string) (string, error) {

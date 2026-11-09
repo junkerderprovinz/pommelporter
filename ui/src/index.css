@@ -10,7 +10,7 @@ body,
   height: 100%;
 }
 
-/* The two halves of the app tile, lit from the left as on the apps' icons. */
+/* The two halves of the app tile, lit from the left. */
 :root {
   --tile-lit: #ffffff;
   --tile-shade: #e0e0e0;

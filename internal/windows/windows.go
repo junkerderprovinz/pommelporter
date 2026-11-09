@@ -345,9 +345,9 @@ func (p *platform) shortcuts(app setup.App, exe string, o setup.Options) error {
 	return nil
 }
 
-// register writes the entry under Apps and the shortcut choice. The apps
-// compare their own folder with InstallLocation to tell the installed copy
-// from a portable one, and their updater keeps DisplayVersion current while
+// register writes the entry under Apps and the shortcut choice. An app can
+// compare its own folder with InstallLocation to tell the installed copy
+// from a portable one, and an updater can keep DisplayVersion current while
 // DisplayIcon names the program.
 func (p *platform) register(app setup.App, dir string, size int64, o setup.Options) error {
 	k, _, err := registry.CreateKey(p.machine, entryKey(app), registry.SET_VALUE)
