@@ -3,7 +3,9 @@
 package linux
 
 import (
+	"maps"
 	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
@@ -36,6 +38,9 @@ func desktopEntry(app setup.App, p paths) string {
 	line("Actions", "uninstall;")
 	b.WriteString("\n[Desktop Action uninstall]\n")
 	line("Name", "Uninstall")
+	for _, code := range slices.Sorted(maps.Keys(uninstallNames)) {
+		line("Name["+code+"]", escapeValue(uninstallNames[code]))
+	}
 	line("Exec", execArg(filepath.Join(p.dir, uninstaller))+" --uninstall")
 	return b.String()
 }

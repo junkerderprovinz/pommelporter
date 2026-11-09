@@ -362,3 +362,23 @@ func TestTheProgramCarriesOutTheChoicesAndTakesThemBack(t *testing.T) {
 		t.Fatalf("the program ran with %q", got)
 	}
 }
+
+func TestTheUninstallActionSpeaksTheMenusLanguage(t *testing.T) {
+	entry := desktopEntry(testApp(), paths{dir: "/opt/knightloader", exe: "/opt/knightloader/knightloader"})
+	_, action, _ := strings.Cut(entry, "[Desktop Action uninstall]\n")
+	for _, line := range []string{"Name=Uninstall", "Name[de]=Deinstallieren", "Name[fr]=Désinstaller"} {
+		if !strings.Contains(action, line+"\n") {
+			t.Errorf("the action lacks %q:\n%s", line, action)
+		}
+	}
+	locales, err := filepath.Glob("../../ui/src/locales/*.ts")
+	if err != nil || len(locales) == 0 {
+		t.Fatal("no locales of the window")
+	}
+	for _, l := range locales {
+		code := strings.TrimSuffix(filepath.Base(l), ".ts")
+		if code != "en" && !strings.Contains(action, "Name["+code+"]=") {
+			t.Errorf("the action has no name in %s", code)
+		}
+	}
+}
