@@ -15,6 +15,12 @@
   "constraints": { "node": "24", "npm": "<12" },
   "packageRules": [
     {
+      "description": "The constraints above set the Node and npm that Renovate itself runs for lockfile updates, so they move by hand",
+      "matchManagers": ["renovate-config"],
+      "matchDepNames": ["node", "npm"],
+      "enabled": false
+    },
+    {
       "description": "GitHub Actions: auto-merge minor, patch and digest updates",
       "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch", "digest"],
