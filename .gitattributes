@@ -1,0 +1,5 @@
+# Linguist counts bytes. The translation tables are data in .ts files, and
+# ui/src/glimstone is a copy of the design system, so without these lines
+# TypeScript and CSS would outweigh the Go they serve.
+ui/src/locales/*.ts linguist-detectable=false
+ui/src/glimstone/** linguist-vendored=true
