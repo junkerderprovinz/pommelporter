@@ -142,6 +142,7 @@ func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, r
 		return err
 	}
 	report(setup.StepRemove)
+	keepWindowEntry()
 	// What the choices changed outside the folder goes back while the program
 	// is still there to do it.
 	if _, err := os.Stat(p.exe); err == nil {
@@ -159,7 +160,6 @@ func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, r
 		}
 	}
 	errs = append(errs, removeFile(p.entry), removeFile(p.icon), os.RemoveAll(p.dir))
-	keepWindowEntry()
 	refreshCaches(ctx, p)
 	return errors.Join(errs...)
 }

@@ -13,8 +13,8 @@ import (
 )
 
 // standIn writes the hidden entry of the open window, or is nil without one.
-// Uninstall calls it once the app's own entry is gone, so the last page keeps
-// the icon.
+// Uninstall calls it before it takes the app's own entry away, so the window
+// never stands without one.
 var standIn struct {
 	sync.Mutex
 	write func()

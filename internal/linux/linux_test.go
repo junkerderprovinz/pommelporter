@@ -442,3 +442,35 @@ func TestTheUninstalledPageKeepsTheIconOnceTheAppsEntryIsGone(t *testing.T) {
 		t.Error("the entry or its icon is still there")
 	}
 }
+
+// GNOME matches a window to an entry once, when it opens, so the hidden entry
+// has to stand before the uninstall takes the app's own away.
+func TestTheHiddenEntryStandsBeforeTheUninstallRemovesTheAppsEntry(t *testing.T) {
+	home := newHome(t)
+	app := testApp()
+	apps := filepath.Join(home, ".local/share/applications")
+	// The program records, while the uninstall takes its choice back, which
+	// entries there are.
+	app.Payload = fstest.MapFS{
+		"knightloader": {Data: []byte("#!/bin/sh\nfor f in \"$HOME\"/.local/share/applications/*; do echo \"${f##*/}\"; done > \"$HOME/entries\"\n"), Mode: 0o555},
+	}
+	app.Choices = []setup.Choice{{ID: "folders", Platforms: []string{"linux"}, Do: []string{"on"}, Undo: []string{"off"}}}
+	o := New().Defaults(app)
+	o.Choices = map[string]bool{"folders": true}
+	install(t, app, o)
+
+	defer New().(platform).WindowEntry(app)()
+	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	got, err := os.ReadFile(filepath.Join(home, "entries"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if want := testID + "-setup.desktop\n" + testID + ".desktop\n"; string(got) != want {
+		t.Fatalf("while the app's entry was there: %q", got)
+	}
+	if !exists(filepath.Join(apps, testID+"-setup.desktop")) {
+		t.Error("no hidden entry once the app's own is gone")
+	}
+}
