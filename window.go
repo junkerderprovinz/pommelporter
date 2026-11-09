@@ -125,15 +125,21 @@ func (e *dirError) Error() string { return e.chk.Detail }
 
 func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 	svc := &Installer{p: p, a: a, uninstall: uninstall}
+	if e, ok := p.(interface{ WindowEntry(setup.App) func() }); ok {
+		defer e.WindowEntry(a)()
+	}
 	title := a.Name
 	app := application.New(application.Options{
 		Name: title,
-		// GTK shows it in the title bar and the dock, which have no file
-		// of the program to take it from.
+		// GTK hands it to the window manager as _NET_WM_ICON, which KDE
+		// and Xfce show. GNOME needs the entry WindowEntry writes.
 		Icon:     a.Icon,
 		Services: []application.Service{application.NewService(svc)},
 		Assets:   application.AssetOptions{Handler: application.AssetFileServerFS(ui.Dist)},
 		Mac:      application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
+		// The window's WM_CLASS, which the app's menu entry names in
+		// StartupWMClass, so the desktop shows the window under its icon.
+		Linux: application.LinuxOptions{ProgramName: a.Name},
 	})
 	svc.app = app
 	opts := application.WebviewWindowOptions{
