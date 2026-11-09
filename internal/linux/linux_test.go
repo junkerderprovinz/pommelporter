@@ -414,3 +414,31 @@ func TestTheInstallerWindowHasAnEntryWhileTheAppHasNone(t *testing.T) {
 		t.Error("an entry beside the app's own")
 	}
 }
+
+func TestTheUninstalledPageKeepsTheIconOnceTheAppsEntryIsGone(t *testing.T) {
+	home := newHome(t)
+	app := testApp()
+	setupEntry := filepath.Join(home, ".local/share/applications", testID+"-setup.desktop")
+	install(t, app, New().Defaults(app))
+
+	remove := New().(platform).WindowEntry(app)
+	if exists(setupEntry) {
+		t.Fatal("an entry beside the app's own")
+	}
+	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	body, err := os.ReadFile(setupEntry)
+	if err != nil {
+		t.Fatal("no entry once the app's own is gone")
+	}
+	_, icon, _ := strings.Cut(string(body), "Icon=")
+	icon, _, _ = strings.Cut(icon, "\n")
+	if b, err := os.ReadFile(icon); err != nil || string(b) != "png" {
+		t.Errorf("the icon %q: %v", icon, err)
+	}
+	remove()
+	if exists(setupEntry) || exists(icon) {
+		t.Error("the entry or its icon is still there")
+	}
+}

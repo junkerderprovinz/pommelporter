@@ -159,6 +159,7 @@ func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, r
 		}
 	}
 	errs = append(errs, removeFile(p.entry), removeFile(p.icon), os.RemoveAll(p.dir))
+	keepWindowEntry()
 	refreshCaches(ctx, p)
 	return errors.Join(errs...)
 }
