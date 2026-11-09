@@ -127,7 +127,10 @@ func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 	svc := &Installer{p: p, a: a, uninstall: uninstall}
 	title := a.Name
 	app := application.New(application.Options{
-		Name:     title,
+		Name: title,
+		// GTK shows it in the title bar and the dock, which have no file
+		// of the program to take it from.
+		Icon:     a.Icon,
 		Services: []application.Service{application.NewService(svc)},
 		Assets:   application.AssetOptions{Handler: application.AssetFileServerFS(ui.Dist)},
 		Mac:      application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
