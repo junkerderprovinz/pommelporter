@@ -4,6 +4,13 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.1.4 - 2026-11-09
+
+## 🔧 Under the hood
+
+- **The docs name no app.** The README, the package docs, the mock and the tests use PommelExample, the stand-in app of `example/`.
+- **The language stats show Go first.** The translation tables and the copy of GlimStone stay out of GitHub's count.
+
 ## 1.1.3 - 2026-11-09
 
 ## ✨ Added
