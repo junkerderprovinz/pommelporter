@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.1.5 - 2026-11-09
+
+## 🌐 Translations
+
+- **The uninstall pages speak of settings and data.** Without an app's own words they say that your settings and data stay, in all 42 languages, and no longer name downloads and accounts.
+
 ## 1.1.4 - 2026-11-09
 
 ## 🔧 Under the hood
