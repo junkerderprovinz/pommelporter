@@ -82,9 +82,15 @@ function textGroups(fnt, text, fontSize, x0, y0) {
   return parts.join("");
 }
 
-const logo = readFileSync(join(__dir, "logo.svg"), "utf8").replace(
+// The logo comes straight from the design tool, so its XML declaration has to
+// go before it can sit inside the banner.
+const logoSrc = readFileSync(join(__dir, "logo.svg"), "utf8")
+  .replace(/<\?xml[^>]*\?>/, "")
+  .replace(/<!--[\s\S]*?-->/g, "");
+const viewBox = logoSrc.match(/<svg\b[^>]*\bviewBox="([^"]+)"/)[1];
+const logo = logoSrc.replace(
   /<svg\b[^>]*>/,
-  `<svg x="${startX}" y="${(H - LOGO) / 2}" width="${LOGO}" height="${LOGO}" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">`,
+  `<svg x="${startX}" y="${(H - LOGO) / 2}" width="${LOGO}" height="${LOGO}" viewBox="${viewBox}" xmlns="http://www.w3.org/2000/svg">`,
 );
 
 for (const t of THEMES) {
