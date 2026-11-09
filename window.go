@@ -125,8 +125,14 @@ func (e *dirError) Error() string { return e.chk.Detail }
 
 func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 	svc := &Installer{p: p, a: a, uninstall: uninstall}
-	if e, ok := p.(interface{ WindowEntry(setup.App) func() }); ok {
-		defer e.WindowEntry(a)()
+	// The window's own WM_CLASS, which a hidden menu entry names while it is
+	// open, so the desktop shows it under the app's icon also once an
+	// uninstall has taken the app's entry away.
+	class := a.Name + "-setup"
+	if e, ok := p.(interface {
+		WindowEntry(setup.App, string) func()
+	}); ok {
+		defer e.WindowEntry(a, class)()
 	}
 	title := a.Name
 	app := application.New(application.Options{
@@ -137,9 +143,7 @@ func runWindow(p setup.Platform, a setup.App, uninstall bool) error {
 		Services: []application.Service{application.NewService(svc)},
 		Assets:   application.AssetOptions{Handler: application.AssetFileServerFS(ui.Dist)},
 		Mac:      application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
-		// The window's WM_CLASS, which the app's menu entry names in
-		// StartupWMClass, so the desktop shows the window under its icon.
-		Linux: application.LinuxOptions{ProgramName: a.Name},
+		Linux:    application.LinuxOptions{ProgramName: class},
 	})
 	svc.app = app
 	opts := application.WebviewWindowOptions{

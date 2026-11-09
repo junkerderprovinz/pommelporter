@@ -142,7 +142,6 @@ func (platform) Uninstall(ctx context.Context, app setup.App, _ setup.Removal, r
 		return err
 	}
 	report(setup.StepRemove)
-	keepWindowEntry()
 	// What the choices changed outside the folder goes back while the program
 	// is still there to do it.
 	if _, err := os.Stat(p.exe); err == nil {

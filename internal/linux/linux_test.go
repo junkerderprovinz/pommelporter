@@ -383,54 +383,29 @@ func TestTheUninstallActionSpeaksTheMenusLanguage(t *testing.T) {
 	}
 }
 
-func TestTheInstallerWindowHasAnEntryWhileTheAppHasNone(t *testing.T) {
-	home := newHome(t)
-	app := testApp()
-	apps := filepath.Join(home, ".local/share/applications")
-
-	remove := New().(platform).WindowEntry(app)
-	body, err := os.ReadFile(filepath.Join(apps, testID+"-setup.desktop"))
-	if err != nil {
-		t.Fatal(err)
-	}
-	for _, line := range []string{"Name=KnightLoader", "NoDisplay=true", "StartupWMClass=KnightLoader"} {
-		if !strings.Contains(string(body), line+"\n") {
-			t.Errorf("the entry lacks %q:\n%s", line, body)
-		}
-	}
-	_, icon, _ := strings.Cut(string(body), "Icon=")
-	icon, _, _ = strings.Cut(icon, "\n")
-	if b, err := os.ReadFile(icon); err != nil || string(b) != "png" {
-		t.Errorf("the icon %q: %v", icon, err)
-	}
-	remove()
-	if exists(filepath.Join(apps, testID+"-setup.desktop")) || exists(icon) {
-		t.Error("the entry or its icon is still there")
-	}
-
-	install(t, app, New().Defaults(app))
-	New().(platform).WindowEntry(app)()
-	if exists(filepath.Join(apps, testID+"-setup.desktop")) {
-		t.Error("an entry beside the app's own")
-	}
-}
-
-func TestTheUninstalledPageKeepsTheIconOnceTheAppsEntryIsGone(t *testing.T) {
+// GNOME matches a window to an entry once, when it opens, and then takes the
+// icon by its name from the theme. The app's own entry and icon go during an
+// uninstall, so the window has an entry and an icon of its own.
+func TestTheSetupWindowHasAnEntryOfItsOwnThroughTheUninstall(t *testing.T) {
 	home := newHome(t)
 	app := testApp()
 	setupEntry := filepath.Join(home, ".local/share/applications", testID+"-setup.desktop")
 	install(t, app, New().Defaults(app))
 
-	remove := New().(platform).WindowEntry(app)
-	if exists(setupEntry) {
-		t.Fatal("an entry beside the app's own")
-	}
+	remove := New().(platform).WindowEntry(app, "KnightLoader-setup")
 	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
 		t.Fatal(err)
 	}
 	body, err := os.ReadFile(setupEntry)
 	if err != nil {
-		t.Fatal("no entry once the app's own is gone")
+		t.Fatal(err)
+	}
+	// GLib drops an entry whose Exec names no program, and the uninstaller
+	// that runs the window is gone by now.
+	for _, line := range []string{"Name=KnightLoader", "Exec=true", "NoDisplay=true", "StartupWMClass=KnightLoader-setup"} {
+		if !strings.Contains(string(body), line+"\n") {
+			t.Errorf("the entry lacks %q:\n%s", line, body)
+		}
 	}
 	_, icon, _ := strings.Cut(string(body), "Icon=")
 	icon, _, _ = strings.Cut(icon, "\n")
@@ -443,8 +418,6 @@ func TestTheUninstalledPageKeepsTheIconOnceTheAppsEntryIsGone(t *testing.T) {
 	}
 }
 
-// GNOME matches a window to an entry once, when it opens, so the hidden entry
-// has to stand before the uninstall takes the app's own away.
 func TestTheHiddenEntryStandsBeforeTheUninstallRemovesTheAppsEntry(t *testing.T) {
 	home := newHome(t)
 	app := testApp()
@@ -459,7 +432,7 @@ func TestTheHiddenEntryStandsBeforeTheUninstallRemovesTheAppsEntry(t *testing.T)
 	o.Choices = map[string]bool{"folders": true}
 	install(t, app, o)
 
-	defer New().(platform).WindowEntry(app)()
+	defer New().(platform).WindowEntry(app, "KnightLoader-setup")()
 	if err := New().Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
 		t.Fatal(err)
 	}
