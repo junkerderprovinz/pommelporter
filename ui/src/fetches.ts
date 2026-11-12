@@ -1,5 +1,5 @@
 // The words for the components an install fetches: their names in the app's
-// own words, and how much of a download has arrived.
+// own words, and how far each one has come.
 import type { Component } from './bridge';
 import type { Fetch } from './run';
 import { language, t, type Key } from './i18n';
@@ -25,6 +25,15 @@ export function sizeText(fetch: Fetch, lang = language()): string {
   if (fetch.done <= 0) return '';
   if (fetch.total <= 0) return megabytes(fetch.done, lang);
   return t('component.size', { done: megabytes(fetch.done, lang), total: megabytes(fetch.total, lang) });
+}
+
+/**
+ * How far a running component has come: the share the program names for one
+ * given by Run, such as "40%", else what has arrived of its download.
+ */
+export function amountText(fetch: Fetch, lang = language()): string {
+  if (fetch.fraction === null) return sizeText(fetch, lang);
+  return new Intl.NumberFormat(lang, { style: 'percent', maximumFractionDigits: 0 }).format(fetch.fraction);
 }
 
 const REASONS: Record<string, Key> = {

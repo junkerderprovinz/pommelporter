@@ -51,6 +51,16 @@ describe('the components', () => {
     expect(fetching(run)).toBe(true);
   });
 
+  it('fill the bar by the share the program names, and keep its status while it reports on', () => {
+    let run = advance(fetch(), { component: 'a', state: 'running', total: -1 });
+    expect(run.fetches.a!.fraction).toBeNull();
+    expect(fraction(run)).toBeCloseTo(1 / 2);
+    run = advance(run, { component: 'a', state: 'running', status: 'Part 1 of 2' });
+    run = advance(run, { component: 'a', state: 'running', fraction: 0.5 });
+    expect(run.fetches.a).toMatchObject({ fraction: 0.5, status: 'Part 1 of 2' });
+    expect(fraction(run)).toBeCloseTo((1 + 0.25) / 2);
+  });
+
   it('do not fail the install when one of them fails', () => {
     const run = advance(fetch(), { component: 'a', state: 'failed', error: 'no such host' });
     expect(run.error).toBeNull();

@@ -1,7 +1,7 @@
 import type { Info } from '../bridge';
 import { t, type Key } from '../i18n';
-import { componentName, sizeText } from '../fetches';
-import { COMPONENTS_STEP, fetching, fraction, stepState, type Fetch, type Mode, type Run, type StepState } from '../run';
+import { amountText, componentName } from '../fetches';
+import { COMPONENTS_STEP, WAITING, fetching, fraction, stepState, type Fetch, type Mode, type Run, type StepState } from '../run';
 import { Button } from '../glimstone/react/Button';
 import { IconCheck, IconClose, IconLater } from '../components/icons';
 import { Page } from '../components/Page';
@@ -66,7 +66,7 @@ function fetchMark(f: Fetch): Mark {
 function fetchDetail(f: Fetch): string {
   switch (f.state) {
     case 'running':
-      return sizeText(f);
+      return amountText(f);
     case 'present':
       return t('component.present');
     case 'failed':
@@ -152,16 +152,24 @@ export function Progress({
                 {step === COMPONENTS_STEP && components.length > 0 && (
                   <ul className="flex flex-col ps-7">
                     {components.map((c) => {
-                      const f = run.fetches[c.id] ?? { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
+                      const f = run.fetches[c.id] ?? WAITING;
                       const mark = fetchMark(f);
                       return (
-                        <li key={c.id} className="flex items-center gap-3 text-subline">
-                          <span className="flex h-4 w-4 shrink-0 items-center justify-center">
-                            <StepMark state={mark} />
+                        <li key={c.id} className="flex flex-col text-subline">
+                          <span className="flex items-center gap-3">
+                            <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                              <StepMark state={mark} />
+                            </span>
+                            <span className={LABEL_INK[mark]}>{componentName(c)}</span>
+                            <span className="flex-1" />
+                            <span className="text-carbon-textMuted tabular-nums">{fetchDetail(f)}</span>
                           </span>
-                          <span className={LABEL_INK[mark]}>{componentName(c)}</span>
-                          <span className="flex-1" />
-                          <span className="text-carbon-textMuted tabular-nums">{fetchDetail(f)}</span>
+                          {/* The program words its status itself, so the line keeps its own direction. */}
+                          {f.state === 'running' && f.status && (
+                            <span dir="auto" className="truncate ps-7 text-carbon-textMuted">
+                              {f.status}
+                            </span>
+                          )}
                         </li>
                       );
                     })}

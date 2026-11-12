@@ -104,6 +104,10 @@ export interface Fetched {
   /** Bytes so far and in all; total is -1 while unknown. */
   done?: number;
   total?: number;
+  /** How far the installed program has come with a component given by Run, from 0 to 1. */
+  fraction?: number;
+  /** What that program last said it is doing. */
+  status?: string;
   /** In English, for the details. */
   error?: string;
   /** Why it failed, as setup's Reason constants: network, server, checksum or other. */

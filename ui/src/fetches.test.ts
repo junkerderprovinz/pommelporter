@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { en } from './locales/en';
-import { componentName, nameList, reasonText, sizeText } from './fetches';
+import { amountText, componentName, nameList, reasonText, sizeText } from './fetches';
+import { WAITING } from './run';
 
 describe('a component', () => {
   const component = { id: 'runtime', name: { en: 'Runtime', de: 'Laufzeitumgebung' } };
@@ -16,7 +17,7 @@ describe('a component', () => {
 });
 
 describe('a download', () => {
-  const running = (done: number, total: number) => ({ state: 'running' as const, done, total, error: '', reason: '' });
+  const running = (done: number, total: number) => ({ ...WAITING, state: 'running' as const, done, total });
 
   it('says how much of it has arrived', () => {
     expect(sizeText(running(42_000_000, 180_000_000), 'en')).toBe('42 MB of 180 MB');
@@ -29,6 +30,23 @@ describe('a download', () => {
   it('shows only what arrived while the size is unknown, and nothing before the first byte', () => {
     expect(sizeText(running(5_000_000, -1), 'en')).toBe('5 MB');
     expect(sizeText(running(0, 100), 'en')).toBe('');
+  });
+});
+
+describe('a component the program fetches', () => {
+  const running = (fraction: number | null) => ({ ...WAITING, state: 'running' as const, fraction });
+
+  it('says how far the program has come', () => {
+    expect(amountText(running(0.4), 'en')).toBe('40%');
+    expect(amountText(running(1), 'de')).toBe('100 %');
+  });
+
+  it('says nothing until the program names a share', () => {
+    expect(amountText(running(null), 'en')).toBe('');
+  });
+
+  it('shares the words of a download otherwise', () => {
+    expect(amountText({ ...WAITING, state: 'running', done: 5_000_000, total: -1 }, 'en')).toBe('5 MB');
   });
 });
 

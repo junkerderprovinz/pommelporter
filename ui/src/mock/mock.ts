@@ -9,8 +9,9 @@
 //   fail=<step>                             the run stops with an error at that step
 //   hold=<step>                             the run waits at that step, for screenshots
 //   components=1                            the install fetches three components after the program
-//   failComponent=<id>                      that component fails and is left for the app (a, b or c)
-//   holdComponent=<id>                      the run waits halfway through that component's download
+//   run=1                                   the installed program fetches one more, d, by itself
+//   failComponent=<id>                      that component fails and is left for the app (a, b, c or d)
+//   holdComponent=<id>                      the run waits halfway through that component
 import type { Component, DirCheck, Folder, Info, Installer, Options, Progress } from '../bridge';
 import { plannedSteps } from '../run';
 import logo from '../assets/logo.svg?raw';
@@ -26,6 +27,10 @@ const COMPONENTS: (Component & { size: number })[] = [
   { id: 'b', name: { en: 'Component B', de: 'Komponente B' }, size: 48_500_000 },
   { id: 'c', name: { en: 'Component C', de: 'Komponente C' }, size: 3_200_000 },
 ];
+
+// One the installed program fetches itself, reporting parts instead of bytes.
+const RUN_COMPONENT: Component = { id: 'd', name: { en: 'Component D', de: 'Komponente D' } };
+const RUN_PARTS = 4;
 
 /** A small disk: each folder maps to its sub-folders. */
 function windowsTree(name: string, existing: boolean): Map<string, string[]> {
@@ -49,6 +54,8 @@ export function mockInstaller(query: URLSearchParams): Installer {
   const fail = query.get('fail');
   const hold = query.get('hold');
   const components = !uninstall && query.get('components') === '1' ? COMPONENTS : [];
+  const runComponent = !uninstall && query.get('run') === '1' ? [RUN_COMPONENT] : [];
+  const listed: Component[] = [...components.map(({ id, name }) => ({ id, name })), ...runComponent];
   const failComponent = query.get('failComponent');
   const holdComponent = query.get('holdComponent');
   let skip = false;
@@ -73,7 +80,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
     stays: query.has('stays') ? { de: { item: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte', note: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte sind noch da.' } } : null,
     choices: query.has('choice') ? [{ id: 'folders', label: { de: 'Als Standard-Dateimanager festlegen', en: 'Make it the default file manager' } }] : null,
     existing: hasExisting ? { version: uninstall ? '2.2.0' : '2.1.0', dir: defaultDir } : null,
-    components: components.map(({ id, name }) => ({ id, name })),
+    components: listed,
   };
 
   function checkDir(dir: string): DirCheck {
@@ -126,12 +133,32 @@ export function mockInstaller(query: URLSearchParams): Installer {
         emit({ component: c.id, state: skip ? 'skipped' : 'done' });
       }
     }
+    for (const c of runComponent) {
+      if (skip) {
+        emit({ component: c.id, state: 'skipped' });
+        continue;
+      }
+      emit({ component: c.id, state: 'running', total: -1 });
+      await pause(STEP_MS * 2);
+      for (let part = 1; part <= RUN_PARTS && !skip; part++) {
+        emit({ component: c.id, state: 'running', status: `Part ${part} of ${RUN_PARTS}` });
+        if (c.id === holdComponent && part === RUN_PARTS / 2) return false;
+        if (c.id === failComponent && part === RUN_PARTS / 2) break;
+        await pause(STEP_MS * 2);
+        emit({ component: c.id, state: 'running', fraction: part / RUN_PARTS });
+      }
+      if (c.id === failComponent) {
+        emit({ component: c.id, state: 'failed', reason: 'other', error: `${app.name}.exe --fetch-extras: exit status 1` });
+      } else {
+        emit({ component: c.id, state: skip ? 'skipped' : 'done' });
+      }
+    }
     return true;
   }
 
   async function run(mode: 'install' | 'uninstall') {
     skip = false;
-    for (const step of plannedSteps(mode, info.platform, components.length > 0)) {
+    for (const step of plannedSteps(mode, info.platform, listed.length > 0)) {
       emit({ step });
       if (step === 'components' && !(await fetchComponents())) return;
       await pause(STEP_MS);

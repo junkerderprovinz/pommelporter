@@ -14,6 +14,9 @@ export interface Fetch {
   done: number;
   /** -1 while unknown. */
   total: number;
+  /** How far the program has come with a component given by Run; null until it says. */
+  fraction: number | null;
+  status: string;
   error: string;
   reason: string;
 }
@@ -27,6 +30,9 @@ export interface Run {
   /** The components to fetch by id, in the order they are fetched. */
   fetches: Record<string, Fetch>;
 }
+
+/** A component whose turn has not come yet. */
+export const WAITING: Fetch = { state: 'waiting', done: 0, total: -1, fraction: null, status: '', error: '', reason: '' };
 
 /** The step that fetches the components, last of an install. */
 export const COMPONENTS_STEP = 'components';
@@ -45,7 +51,7 @@ export function plannedSteps(mode: Mode, platform: string, components = false): 
 
 export function startRun(steps: string[], components: string[] = []): Run {
   const fetches: Record<string, Fetch> = {};
-  for (const id of components) fetches[id] = { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
+  for (const id of components) fetches[id] = WAITING;
   return { steps, current: -1, finished: false, error: null, fetches };
 }
 
@@ -55,11 +61,13 @@ export function advance(run: Run, event: Progress): Run {
     return { ...run, current: Math.max(run.current, 0), error: event.error };
   }
   if ('component' in event) {
-    const was = run.fetches[event.component] ?? { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
+    const was = run.fetches[event.component] ?? WAITING;
     const fetch: Fetch = {
       state: event.state,
       done: event.done ?? was.done,
       total: event.total ?? was.total,
+      fraction: event.fraction ?? was.fraction,
+      status: event.status ?? was.status,
       error: event.error ?? '',
       reason: event.reason ?? '',
     };
@@ -85,13 +93,17 @@ export function stepState(run: Run, index: number): StepState {
   return run.error === null ? 'running' : 'failed';
 }
 
-/** How much of the components' work is over, from 0 to 1. A download counts by its bytes while it runs. */
+/**
+ * How much of the components' work is over, from 0 to 1. A download counts by
+ * its bytes while it runs, and one the program works on by the share it names.
+ */
 function fetched(run: Run): number {
   const all = Object.values(run.fetches);
   if (all.length === 0) return 0;
   const share = (f: Fetch) => {
     if (f.state === 'waiting') return 0;
     if (f.state !== 'running') return 1;
+    if (f.fraction !== null) return f.fraction;
     return f.total > 0 ? Math.min(f.done / f.total, 1) : 0;
   };
   return all.reduce((sum, f) => sum + share(f), 0) / all.length;
