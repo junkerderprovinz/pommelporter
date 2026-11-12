@@ -2,71 +2,9 @@
   "targets": [
     {
       "name": "ui",
-      "mode": "copy",
+      "mode": "port",
       "version": "3.9.0",
-      "versionFile": "ui/src/glimstone/react/version.ts",
-      "files": [
-        {
-          "from": "reference/appearance.ts",
-          "to": "ui/src/glimstone/appearance.ts"
-        },
-        {
-          "from": "reference/controls.ts",
-          "to": "ui/src/glimstone/controls.ts"
-        },
-        {
-          "from": "reference/react/Badge.tsx",
-          "to": "ui/src/glimstone/react/Badge.tsx"
-        },
-        {
-          "from": "reference/react/Button.tsx",
-          "to": "ui/src/glimstone/react/Button.tsx"
-        },
-        {
-          "from": "reference/react/Card.tsx",
-          "to": "ui/src/glimstone/react/Card.tsx"
-        },
-        {
-          "from": "reference/react/IconTipButton.tsx",
-          "to": "ui/src/glimstone/react/IconTipButton.tsx"
-        },
-        {
-          "from": "reference/react/InfoBubble.tsx",
-          "to": "ui/src/glimstone/react/InfoBubble.tsx"
-        },
-        {
-          "from": "reference/react/Toggle.tsx",
-          "to": "ui/src/glimstone/react/Toggle.tsx"
-        },
-        {
-          "from": "reference/react/bubblePosition.ts",
-          "to": "ui/src/glimstone/react/bubblePosition.ts"
-        },
-        {
-          "from": "reference/react/glyphs.tsx",
-          "to": "ui/src/glimstone/react/glyphs.tsx"
-        },
-        {
-          "from": "reference/react/useLabelMode.ts",
-          "to": "ui/src/glimstone/react/useLabelMode.ts"
-        },
-        {
-          "from": "reference/react/useTipBubble.tsx",
-          "to": "ui/src/glimstone/react/useTipBubble.tsx"
-        },
-        {
-          "from": "reference/react/version.ts",
-          "to": "ui/src/glimstone/react/version.ts"
-        },
-        {
-          "from": "reference/tailwind-theme.css",
-          "to": "ui/src/glimstone/tailwind-theme.css"
-        },
-        {
-          "from": "reference/tokens.css",
-          "to": "ui/src/glimstone/tokens.css"
-        }
-      ]
+      "versionFile": "ui/src/glimstone/react/version.ts"
     }
   ]
 }
