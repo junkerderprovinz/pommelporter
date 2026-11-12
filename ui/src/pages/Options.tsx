@@ -71,13 +71,13 @@ export function Options({
     <Page
       actions={
         <>
-          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" onClick={onCancel} />
-          <Button label={t('button.back')} labelKey="button.back" tone="neutral" className="glim-btn-key" onClick={onBack} />
+          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" size="key" onClick={onCancel} />
+          <Button label={t('button.back')} labelKey="button.back" tone="neutral" size="key" onClick={onBack} />
           <Button
             label={t('button.install')}
             labelKey="button.install"
             tone="accent"
-            className="glim-btn-key"
+            size="key"
             disabled={!current?.ok}
             onClick={onInstall}
           />

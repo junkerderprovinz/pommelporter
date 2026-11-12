@@ -34,18 +34,18 @@ export function Done({
       actions={
         installed ? (
           <>
-            <Button label={t('button.close')} labelKey="button.close" tone="neutral" className="glim-btn-key" onClick={onClose} />
+            <Button label={t('button.close')} labelKey="button.close" tone="neutral" size="key" onClick={onClose} />
             <Button
               label={t('button.start', { name: info.name })}
               labelKey="button.start"
               tone="accent"
-              className="glim-btn-key"
+              size="key"
               autoFocus
               onClick={() => onLaunch().catch((e: unknown) => setLaunchError(String(e instanceof Error ? e.message : e)))}
             />
           </>
         ) : (
-          <Button label={t('button.close')} labelKey="button.close" tone="accent" className="glim-btn-key" autoFocus onClick={onClose} />
+          <Button label={t('button.close')} labelKey="button.close" tone="accent" size="key" autoFocus onClick={onClose} />
         )
       }
     >

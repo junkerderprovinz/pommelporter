@@ -25,13 +25,13 @@ export function Welcome({
     <Page
       start={
         info.homepage && (
-          <Button label={t('button.website')} labelKey="button.website" tone="subtle" className="glim-btn-key" onClick={onWebsite} />
+          <Button label={t('button.website')} labelKey="button.website" tone="subtle" size="key" onClick={onWebsite} />
         )
       }
       actions={
         <>
-          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" onClick={onCancel} />
-          <Button label={t('button.next')} labelKey="button.next" tone="accent" className="glim-btn-key" autoFocus onClick={onNext} />
+          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" size="key" onClick={onCancel} />
+          <Button label={t('button.next')} labelKey="button.next" tone="accent" size="key" autoFocus onClick={onNext} />
         </>
       }
     >

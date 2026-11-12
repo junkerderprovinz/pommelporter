@@ -105,9 +105,9 @@ export function Progress({
       actions={
         failed ? (
           <>
-            <Button label={t('button.close')} labelKey="button.close" tone="neutral" className="glim-btn-key" onClick={onClose} />
-            <Button label={t('button.back')} labelKey="button.back" tone="neutral" className="glim-btn-key" onClick={onBack} />
-            <Button label={t('button.retry')} labelKey="button.retry" tone="accent" className="glim-btn-key" onClick={onRetry} />
+            <Button label={t('button.close')} labelKey="button.close" tone="neutral" size="key" onClick={onClose} />
+            <Button label={t('button.back')} labelKey="button.back" tone="neutral" size="key" onClick={onBack} />
+            <Button label={t('button.retry')} labelKey="button.retry" tone="accent" size="key" onClick={onRetry} />
           </>
         ) : (
           fetching(run) && (
@@ -115,7 +115,7 @@ export function Progress({
               label={t('button.skip')}
               labelKey="button.skip"
               tone="neutral"
-              className="glim-btn-key"
+              size="key"
               disabled={skipping}
               busy={skipping}
               onClick={onSkip}

@@ -93,16 +93,15 @@ export function FolderChooser({
   // The longest matching root, since one root can sit inside another.
   const activeRoot = roots.filter((r) => underRoot(r, text)).sort((a, b) => b.length - a.length)[0];
 
+  // The chooser takes the whole window instead of GlimStone's narrower window
+  // card, so a long path and the folder list have room.
   return createPortal(
-    <div
-      className="glim-modal-backdrop fixed inset-0 z-50 flex items-stretch justify-center p-4"
-      onClick={(e) => e.target === e.currentTarget && onClose()}
-    >
+    <div className="glim-modal-backdrop items-stretch" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="glim-modal-card relative mt-2 flex w-full flex-col gap-3 rounded-card bg-carbon-surface p-5 pt-6 shadow-2xl"
+        className="glim-modal-card mt-2 max-h-none max-w-none gap-3 p-5 pt-6"
       >
         <h2 id={titleId} className="flex items-center">
           <Badge tone="heading" size="heading" insetStart={5}>
@@ -217,12 +216,12 @@ export function FolderChooser({
         )}
 
         <footer className="flex items-center justify-end gap-3 pt-1">
-          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" onClick={onClose} />
+          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" size="key" onClick={onClose} />
           <Button
             label={t('button.use')}
             labelKey="button.use"
             tone="accent"
-            className="glim-btn-key"
+            size="key"
             disabled={text.trim() === ''}
             onClick={() => onPick(text.trim())}
           />

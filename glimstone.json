@@ -3,8 +3,8 @@
     {
       "name": "ui",
       "mode": "port",
-      "version": "3.9.0",
-      "versionFile": "ui/src/glimstone/react/version.ts"
+      "version": "4.3.7",
+      "versionFile": "ui/src/glimstone/version.ts"
     }
   ]
 }

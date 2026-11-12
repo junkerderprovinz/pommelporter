@@ -45,9 +45,9 @@ export function Confirm({
     <Page
       actions={
         <>
-          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" className="glim-btn-key" autoFocus onClick={onCancel} />
+          <Button label={t('button.cancel')} labelKey="button.cancel" tone="neutral" size="key" autoFocus onClick={onCancel} />
           {/* Not the accent and not red: the page's sentence is what asks. */}
-          <Button label={t('button.uninstall')} labelKey="button.uninstall" tone="neutral" className="glim-btn-key" onClick={onUninstall} />
+          <Button label={t('button.uninstall')} labelKey="button.uninstall" tone="neutral" size="key" onClick={onUninstall} />
         </>
       }
     >

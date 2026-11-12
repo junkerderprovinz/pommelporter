@@ -9,6 +9,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": { "@glimstone/core": ["./src/glimstone/index.ts"] },
     "jsx": "react-jsx",
     "strict": true,
     "noUnusedLocals": true,

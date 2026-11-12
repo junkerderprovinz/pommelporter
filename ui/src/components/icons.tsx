@@ -1,4 +1,4 @@
-// The glyphs this window uses, copied from GlimStone's reference/glyphs.json
+// The glyphs this window uses, copied from GlimStone's packages/core/glyphs.json
 // with the viewBox each one is cropped to there, so every mark fills its box
 // alike. All are filled shapes in currentColor and hidden from assistive tech,
 // since the label beside them is the name.

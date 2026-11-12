@@ -6,6 +6,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: './',
+  // The GlimStone copy imports @glimstone/core as the package does, and
+  // tsconfig.json points that name at the copy, so a port stays a plain copy.
+  resolve: { tsconfigPaths: true },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
