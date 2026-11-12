@@ -10,30 +10,14 @@ Every release is written by hand. The full notes for each release are in
 
 - **An install can fetch what the app needs.** An app names its components, such as a runtime or a set of codecs too large for the installer, and the window downloads them as the last step. Each one gets its own row, and the bar fills by the bytes that arrive. A component is one file checked against its SHA-256 or the app's own check, or a fetch function of the app's own for anything that needs unpacking. One that is already there is left alone, so an update neither downloads it again nor replaces a newer copy.
 - **A failed download does not fail the install.** Its row says it comes on first start, and the app fetches it itself then. The last page names it and says why in plain words, such as no connection or a checksum that does not match, with the error itself under Details. Skip stops a slow download and leaves the rest for later the same way. A silent install fetches nothing.
-
-## 🌐 Translations
-
-- **The new step, Skip and the note on the last page** speak all 42 languages.
-
-## 1.1.5 - 2026-11-09
-
-## 🌐 Translations
-
-- **The uninstall pages speak of settings and data.** Without an app's own words they say that your settings and data stay, in all 42 languages, and no longer name downloads and accounts.
-
-## 1.1.4 - 2026-11-09
-
-## 🔧 Under the hood
-
-- **The docs name no app.** The README, the package docs, the mock and the tests use PommelExample, the stand-in app of `example/`.
-- **The language stats show Go first.** The translation tables and the copy of GlimStone stay out of GitHub's count.
-
-## 1.1.3 - 2026-11-09
-
-## ✨ Added
-
 - **An app can offer its own choices.** They show as unticked toggles on the options page. After the install the program runs once for each ticked choice, as the person signed in. Before an uninstall it runs again with each choice's undo arguments, so nothing it changed outside its folder stays behind.
-- **An app can say what an uninstall leaves.** The uninstall page and the last page show the app's own line and sentence in each language. Without them the window keeps its words about downloads, settings and accounts.
+- **An app can say what an uninstall leaves.** The uninstall page and the last page show the app's own line and sentence in each language. Without them the window says that your settings and data stay.
+
+## 🎨 Design
+
+- **The window follows GlimStone 3.9.0.** Install, Try again, Create and Use this folder wear GlimStone's glyphs, and the grey buttons and the drive buttons in the folder picker take on a touch of the app's colour when the pointer or the keyboard reaches them. Minimise and Close look and behave like GlimStone's title bar buttons and show their name in a bubble. The progress bar only glides when your system allows motion.
+- **The pommel has an open centre and wears gold and silver,** in the window icon, the README banner and the screenshots.
+- **The app's logo shows once.** The uninstall page and the last page show the app tile and no second, smaller logo under it.
 
 ## 🐛 Fixed
 
@@ -42,31 +26,16 @@ Every release is written by hand. The full notes for each release are in
 
 ## 🌐 Translations
 
+- **The new step, Skip and the note on the last page** speak all 42 languages.
 - **The Uninstall action in the app's menu entry** is named in the window's languages.
-
-## 🎨 Design
-
-- **The pommel has an open centre.** The new logo is in the window icon, the README banner and the screenshots.
+- **The uninstall pages speak of settings and data** in all 42 languages, rather than of downloads and accounts.
 
 ## 🔧 Under the hood
 
+- **Wails 3.1.0** draws the window, and the example installer is built with Go 1.27.4.
 - **A test checks the update folder:** users can change the settings in it and nothing else.
-
-## 1.1.2 - 2026-11-06
-
-## 🔧 Under the hood
-
-- **The example installer is built with Go 1.27.3.**
-
-## 1.1.1 - 2026-11-03
-
-## 🎨 Design
-
-- **The window follows GlimStone 3.9.0.** Cancel, Back, Browse and the other grey buttons take on a touch of the app's colour when the pointer or the keyboard reaches them, and their glyph turns that colour. The drive buttons in the folder picker do the same.
-
-## 🔧 Under the hood
-
-- **Wails 3.1.0** draws the window.
+- **The docs name no app.** The README, the package docs, the mock and the tests use PommelExample, the stand-in app of `example/`.
+- **The language stats show Go first.** The translation tables and the copy of GlimStone stay out of GitHub's count.
 
 ## 1.1.0 - 2026-10-31
 
