@@ -4,7 +4,7 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
-## Unreleased
+## 1.2.1 - 2026-11-12
 
 ## ✨ Added
 
