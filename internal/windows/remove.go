@@ -14,7 +14,13 @@ import (
 // removeTree deletes path and what is below it. A link anywhere in it is
 // removed as a link: the installer runs as an administrator, and following a
 // junction a user planted in their own folder would delete wherever it leads.
-func removeTree(path string) error {
+func removeTree(path string) error { return removeTreeWith(path, os.Remove, os.Remove) }
+
+// removeTreeSoon is removeTree for files a running program may still hold,
+// which go at the next start together with the folders they are in.
+func removeTreeSoon(path string) error { return removeTreeWith(path, removeSoon, removeDirSoon) }
+
+func removeTreeWith(path string, file, dir func(string) error) error {
 	attrs, err := attributes(path)
 	if notFound(err) {
 		return nil
@@ -23,7 +29,7 @@ func removeTree(path string) error {
 		return err
 	}
 	if isLink(attrs) || !isDir(attrs) {
-		return os.Remove(path)
+		return file(path)
 	}
 	entries, err := os.ReadDir(path)
 	if err != nil {
@@ -31,14 +37,14 @@ func removeTree(path string) error {
 	}
 	var first error
 	for _, e := range entries {
-		if err := removeTree(filepath.Join(path, e.Name())); err != nil && first == nil {
+		if err := removeTreeWith(filepath.Join(path, e.Name()), file, dir); err != nil && first == nil {
 			first = err
 		}
 	}
 	if first != nil {
 		return first
 	}
-	return os.Remove(path)
+	return dir(path)
 }
 
 // removeSoon deletes the file at path, or has Windows delete it at the next

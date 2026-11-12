@@ -27,6 +27,7 @@ type App struct {
 	Legacy     Legacy
 	Choices    []Choice
 	Stays      map[string]Stay
+	Removes    []string
 	Components []Component
 }
 

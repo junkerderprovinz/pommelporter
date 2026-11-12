@@ -514,6 +514,54 @@ func TestUninstallKeepsTheWindowDataUnlessAsked(t *testing.T) {
 	}
 }
 
+func TestUninstallRemovesWhatTheProgramNamesAndNothingElse(t *testing.T) {
+	p, _ := testPlatform(t)
+	app := appFixture()
+	app.Removes = []string{"helpers", "cache.db", "never/made"}
+	base := t.TempDir()
+	dir := filepath.Join(base, "Prog")
+	writeFile(t, filepath.Join(dir, "Prog.exe"), "program")
+	writeFile(t, filepath.Join(dir, "helpers", "tool.exe"), "helper")
+	writeFile(t, filepath.Join(dir, "helpers", "lib", "codec.dll"), "codec")
+	writeFile(t, filepath.Join(dir, "cache.db"), "cache")
+	mine := filepath.Join(dir, "notes.txt")
+	writeFile(t, mine, "the person's own")
+	beside := filepath.Join(base, "helpers", "tool.exe")
+	writeFile(t, beside, "another program's")
+	setString(t, p.machine, entryKey(app), "InstallLocation", dir)
+
+	if err := p.Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	for _, gone := range []string{"Prog.exe", "helpers", "cache.db"} {
+		if _, err := os.Stat(filepath.Join(dir, gone)); !os.IsNotExist(err) {
+			t.Errorf("%s is still there", gone)
+		}
+	}
+	for _, kept := range []string{mine, beside} {
+		if _, err := os.Stat(kept); err != nil {
+			t.Errorf("%s went too: %v", kept, err)
+		}
+	}
+}
+
+func TestUninstallRemovesTheFolderOnceTheProgramsOwnFilesAreGone(t *testing.T) {
+	p, _ := testPlatform(t)
+	app := appFixture()
+	app.Removes = []string{"helpers"}
+	dir := filepath.Join(t.TempDir(), "Prog")
+	writeFile(t, filepath.Join(dir, "Prog.exe"), "program")
+	writeFile(t, filepath.Join(dir, "helpers", "tool.exe"), "helper")
+	setString(t, p.machine, entryKey(app), "InstallLocation", dir)
+
+	if err := p.Uninstall(context.Background(), app, setup.Removal{}, func(string) {}); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := os.Stat(dir); !os.IsNotExist(err) {
+		t.Errorf("%s is still there", dir)
+	}
+}
+
 func TestUninstallUndoesTheChoicesWhileTheProgramIsThere(t *testing.T) {
 	p, _ := testPlatform(t)
 	app := appFixture()

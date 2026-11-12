@@ -451,10 +451,10 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 		keep(removeTree(p.windowData(app)))
 	}
 
-	// Only what the installer and the updates put there, since the folder
-	// could have been chosen by hand. A copy that still runs goes at the
-	// next start. The uninstaller that handed the work to this copy and its
-	// folder go once it has ended, see FinishHandOver.
+	// Only what the installer, the updates and the program put there, since
+	// the folder could have been chosen by hand. A copy that still runs goes
+	// at the next start. The uninstaller that handed the work to this copy
+	// and its folder go once it has ended, see FinishHandOver.
 	var dirs []string
 	fs.WalkDir(app.Payload, ".", func(name string, d fs.DirEntry, err error) error {
 		if err != nil || name == "." {
@@ -468,6 +468,9 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 		keep(removeSoon(target))
 		return nil
 	})
+	for _, r := range app.Removes {
+		keep(removeTreeSoon(filepath.Join(dir, filepath.FromSlash(r))))
+	}
 	keep(removeSoon(exe + ".old"))
 	keep(removeMatches(filepath.Join(dir, "."+app.Executable+".update-*")))
 	own := filepath.Join(dir, uninstaller)

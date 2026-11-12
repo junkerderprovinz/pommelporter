@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
@@ -55,6 +56,11 @@ type App struct {
 	// such as "de", with "en" for a language it lacks. Without it the window
 	// says the settings and data stay.
 	Stays map[string]Stay
+	// Removes names what the program puts in its install folder itself, such
+	// as helpers a Run component fetches, as slash-separated paths relative
+	// to that folder. An uninstall removes each one, file or folder, with the
+	// payload, so the folder can go too when nothing else is left in it.
+	Removes []string
 	// Components are fetched one after the other once the program is in
 	// place, each with its own row and progress in the window.
 	Components []Component
@@ -166,7 +172,7 @@ func Run(app App) error {
 		Publisher: app.Publisher, Homepage: app.Homepage, Accent: app.Accent,
 		Logo: app.Logo, Icon: app.Icon, Categories: app.Categories, Payload: app.Payload,
 		InstanceID: app.InstanceID, Autostart: app.Autostart,
-		Legacy: setup.Legacy(app.Legacy),
+		Legacy: setup.Legacy(app.Legacy), Removes: app.Removes,
 	}
 	for _, c := range app.Choices {
 		a.Choices = append(a.Choices, setup.Choice(c))
@@ -184,6 +190,9 @@ func Run(app App) error {
 		return errors.New("pommelporter: App needs a Name, an Executable and a Payload")
 	}
 	if err := checkComponents(a.Components); err != nil {
+		return err
+	}
+	if err := checkRemoves(a.Removes); err != nil {
 		return err
 	}
 	args, err := parseArgs(os.Args[1:])
@@ -252,6 +261,17 @@ func checkComponents(components []setup.Component) error {
 			return fmt.Errorf("pommelporter: Component %s needs a SHA256 or a Verify for its download", c.ID)
 		}
 		seen[c.ID] = true
+	}
+	return nil
+}
+
+// checkRemoves refuses a path an uninstall could not keep inside the install
+// folder, or one that would take the whole folder.
+func checkRemoves(removes []string) error {
+	for _, r := range removes {
+		if !fs.ValidPath(r) || r == "." || strings.ContainsAny(r, `\:`) || !filepath.IsLocal(filepath.FromSlash(r)) {
+			return fmt.Errorf("pommelporter: Removes needs slash-separated paths inside the install folder, %q is not one", r)
+		}
 	}
 	return nil
 }

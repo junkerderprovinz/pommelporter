@@ -7,6 +7,17 @@ import (
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
 )
 
+func TestRemovesStaysInsideTheInstallFolder(t *testing.T) {
+	for _, r := range []string{"", ".", "/etc/passwd", "../other", "helpers/../../other", `C:\Windows`, `helpers\tool.exe`, "C:helpers", "helpers/"} {
+		if err := checkRemoves([]string{r}); err == nil {
+			t.Errorf("%q was accepted", r)
+		}
+	}
+	if err := checkRemoves([]string{"helpers", "helpers/tool.exe", ".cache"}); err != nil {
+		t.Fatalf("refused %v", err)
+	}
+}
+
 func TestComponentsThatCannotBeFetchedSafelyAreRefused(t *testing.T) {
 	name := map[string]string{"en": "Runtime"}
 	fetch := func(context.Context, func(int64, int64)) error { return nil }
