@@ -40,16 +40,17 @@ func digest(b []byte) string {
 
 // states runs FetchComponents and returns each component's states in order.
 func states(ctx context.Context, components []Component) (map[string][]string, map[string]string) {
-	got, errs, _ := fetchAll(ctx, components)
+	got, errs, _ := fetchAll(ctx, "", components)
 	return got, errs
 }
 
-// fetchAll is states with the reason each failed component ended with.
-func fetchAll(ctx context.Context, components []Component) (map[string][]string, map[string]string, map[string]string) {
+// fetchAll is states with the reason each failed component ended with, for
+// the program at exe.
+func fetchAll(ctx context.Context, exe string, components []Component) (map[string][]string, map[string]string, map[string]string) {
 	got := map[string][]string{}
 	errs := map[string]string{}
 	reasons := map[string]string{}
-	FetchComponents(ctx, components, func(f Fetched) {
+	FetchComponents(ctx, exe, components, func(f Fetched) {
 		if n := len(got[f.Component]); n > 0 && got[f.Component][n-1] == f.State {
 			return
 		}
@@ -150,7 +151,7 @@ func TestFetchReportsItsProgressAndItsEnd(t *testing.T) {
 	t.Cleanup(func() { progressEvery = was })
 
 	var seen []Fetched
-	FetchComponents(context.Background(), []Component{{ID: "pack", Fetch: func(_ context.Context, progress func(int64, int64)) error {
+	FetchComponents(context.Background(), "", []Component{{ID: "pack", Fetch: func(_ context.Context, progress func(int64, int64)) error {
 		progress(50, 100)
 		progress(100, 100)
 		return nil
@@ -197,7 +198,7 @@ func TestAFailureIsExplainedByItsCause(t *testing.T) {
 	}
 	offline := fmt.Errorf("downloading the runtime: %w", &net.OpError{Op: "dial", Net: "tcp", Err: errors.New("connection refused")})
 
-	_, _, got := fetchAll(context.Background(), []Component{
+	_, _, got := fetchAll(context.Background(), "", []Component{
 		{ID: "missing", Target: filepath.Join(dir, "a"), URL: url + "/missing", SHA256: digest(nil)},
 		{ID: "tampered", Target: filepath.Join(dir, "b"), URL: url + "/b", SHA256: digest([]byte("genuine"))},
 		{ID: "offline", Fetch: fails(offline)},

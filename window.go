@@ -2,6 +2,7 @@ package pommelporter
 
 import (
 	"context"
+	"path/filepath"
 	"sync"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
@@ -92,14 +93,14 @@ func (s *Installer) Install(o setup.Options) {
 		if err := s.p.Install(ctx, s.a, o, report); err != nil {
 			return err
 		}
-		s.fetchComponents(ctx, report)
+		s.fetchComponents(ctx, filepath.Join(o.Dir, s.a.Executable), report)
 		return nil
 	})
 }
 
-// fetchComponents is the last step of an install. The program is in place by
-// then, so nothing here can fail the install.
-func (s *Installer) fetchComponents(ctx context.Context, report setup.Report) {
+// fetchComponents is the last step of an install. The program is in place at
+// exe by then, so nothing here can fail the install.
+func (s *Installer) fetchComponents(ctx context.Context, exe string, report setup.Report) {
 	components := s.a.ComponentsOn(platformName)
 	if len(components) == 0 {
 		return
@@ -115,7 +116,7 @@ func (s *Installer) fetchComponents(ctx context.Context, report setup.Report) {
 		s.mu.Unlock()
 		cancel()
 	}()
-	setup.FetchComponents(ctx, components, func(f setup.Fetched) { s.app.Event.Emit(progressEvent, f) })
+	setup.FetchComponents(ctx, exe, components, func(f setup.Fetched) { s.app.Event.Emit(progressEvent, f) })
 }
 
 // SkipComponents stops the components' fetch and leaves what is still

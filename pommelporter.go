@@ -62,11 +62,12 @@ type App struct {
 
 // Component is something the program needs that is too large for the
 // payload or changes too often to ship in it, such as a runtime. The window
-// fetches it as the last step of an install. One that fails or is skipped is
-// named on the last page and the install still succeeds, so the program must
-// be able to fetch it itself on its first start. A silent install fetches
-// none, since deployment tools often run it as the system account, whose
-// folders are not the person's.
+// fetches it as the last step of an install, from a URL, through a Fetch of
+// the app's own, or by running the installed program with Run. One that
+// fails or is skipped is named on the last page and the install still
+// succeeds, so the program must be able to fetch it itself on its first
+// start. A silent install fetches none, since deployment tools often run it
+// as the system account, whose folders are not the person's.
 type Component struct {
 	// ID names the component in the events the window gets.
 	ID string
@@ -75,7 +76,8 @@ type Component struct {
 	Name map[string]string
 	// Target is the file the component becomes. When it exists already the
 	// component is left as it is, so an update of the app neither fetches it
-	// again nor replaces a newer copy the program fetched itself.
+	// again nor replaces a newer copy the program fetched itself. A component
+	// given by Run may leave it empty and is then run on every install.
 	Target string
 	// URL is where the file comes from, over https.
 	URL string
@@ -95,6 +97,15 @@ type Component struct {
 	// a ServerError or a ChecksumError gets the sentence for that, and any
 	// other one a general sentence, with the error itself under Details.
 	Fetch func(ctx context.Context, progress func(done, total int64)) error
+	// Run hands the work to the installed program, for files that belong in
+	// the install folder, which only the program knows how to fill. It runs
+	// as <install folder>/<Executable> <Run...> in that folder, with the
+	// installer's rights and without a window. Its row shows the lines
+	// "progress <fraction from 0 to 1>" and "status <text>" it prints on
+	// stdout. A program that cannot start, exits with a code other than 0 or
+	// is still at work after 15 minutes leaves the component for later.
+	// Its stderr goes to the installer's.
+	Run []string
 	// Platforms limits the component to these, "windows" or "linux"; empty
 	// means everywhere.
 	Platforms []string
@@ -215,19 +226,28 @@ type ServerError = setup.ServerError
 // so the window says the download did not match its checksum.
 type ChecksumError = setup.ChecksumError
 
-// checkComponents refuses a component the window could not fetch, or one
-// whose download nothing would check before the program runs it.
+// checkComponents refuses a component the window could not fetch, one that
+// names more than one way to fetch it, or one whose download nothing would
+// check before the program runs it.
 func checkComponents(components []setup.Component) error {
 	seen := map[string]bool{}
 	for _, c := range components {
+		ways := 0
+		for _, set := range []bool{c.Fetch != nil, c.URL != "", len(c.Run) > 0} {
+			if set {
+				ways++
+			}
+		}
 		switch {
 		case c.ID == "" || seen[c.ID]:
 			return fmt.Errorf("pommelporter: every Component needs an ID of its own, %q is empty or taken", c.ID)
 		case len(c.Name) == 0:
 			return fmt.Errorf("pommelporter: Component %s needs a Name", c.ID)
-		case c.Fetch != nil:
+		case ways > 1:
+			return fmt.Errorf("pommelporter: Component %s sets more than one of Fetch, URL and Run", c.ID)
+		case c.Fetch != nil, len(c.Run) > 0:
 		case c.Target == "" || !strings.HasPrefix(c.URL, "https://"):
-			return fmt.Errorf("pommelporter: Component %s needs a Fetch, or a Target and an https URL", c.ID)
+			return fmt.Errorf("pommelporter: Component %s needs a Fetch, a Run, or a Target and an https URL", c.ID)
 		case c.SHA256 == "" && c.Verify == nil:
 			return fmt.Errorf("pommelporter: Component %s needs a SHA256 or a Verify for its download", c.ID)
 		}

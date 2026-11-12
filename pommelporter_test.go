@@ -22,6 +22,10 @@ func TestComponentsThatCannotBeFetchedSafelyAreRefused(t *testing.T) {
 		{"a URL without a Target", []setup.Component{{ID: "rt", Name: name, URL: "https://example.org/rt", SHA256: "ab"}}},
 		{"plain http", []setup.Component{{ID: "rt", Name: name, Target: "/opt/rt", URL: "http://example.org/rt", SHA256: "ab"}}},
 		{"nothing that checks the download", []setup.Component{{ID: "rt", Name: name, Target: "/opt/rt", URL: "https://example.org/rt"}}},
+		{"an empty Run", []setup.Component{{ID: "rt", Name: name, Run: []string{}}}},
+		{"a Fetch and a Run", []setup.Component{{ID: "rt", Name: name, Fetch: fetch, Run: []string{"--rt"}}}},
+		{"a URL and a Run", []setup.Component{{ID: "rt", Name: name, Target: "/opt/rt", URL: "https://example.org/rt", SHA256: "ab", Run: []string{"--rt"}}}},
+		{"a Fetch and a URL", []setup.Component{{ID: "rt", Name: name, Target: "/opt/rt", URL: "https://example.org/rt", SHA256: "ab", Fetch: fetch}}},
 	} {
 		if err := checkComponents(tc.c); err == nil {
 			t.Errorf("%s was accepted", tc.why)
@@ -32,6 +36,8 @@ func TestComponentsThatCannotBeFetchedSafelyAreRefused(t *testing.T) {
 		{ID: "a", Name: name, Fetch: fetch},
 		{ID: "b", Name: name, Target: "/opt/b", URL: "https://example.org/b", SHA256: "ab"},
 		{ID: "c", Name: name, Target: "/opt/c", URL: "https://example.org/c", Verify: verify},
+		{ID: "d", Name: name, Run: []string{"--fetch-helpers"}},
+		{ID: "e", Name: name, Target: "/opt/e", Run: []string{"--fetch-helpers"}},
 	}
 	if err := checkComponents(ok); err != nil {
 		t.Fatalf("refused %v", err)

@@ -28,6 +28,7 @@ type Component struct {
 	Executable bool                                                              `json:"-"`
 	Verify     func(path string) error                                           `json:"-"`
 	Fetch      func(ctx context.Context, progress func(done, total int64)) error `json:"-"`
+	Run        []string                                                          `json:"-"`
 	Platforms  []string                                                          `json:"-"`
 }
 
@@ -42,15 +43,19 @@ const (
 )
 
 // Fetched is how far one component has come, as the window gets it. Total
-// is -1 while the size is unknown. A failed one carries its error in English
-// for the details, and a reason the window says in its own words.
+// is -1 while the size is unknown. A component given by Run reports a
+// Fraction from 0 to 1 instead, nil until the program names one, and the
+// Status it last printed. A failed one carries its error in English for the
+// details, and a reason the window says in its own words.
 type Fetched struct {
-	Component string `json:"component"`
-	State     string `json:"state"`
-	Done      int64  `json:"done,omitempty"`
-	Total     int64  `json:"total,omitempty"`
-	Error     string `json:"error,omitempty"`
-	Reason    string `json:"reason,omitempty"`
+	Component string   `json:"component"`
+	State     string   `json:"state"`
+	Done      int64    `json:"done,omitempty"`
+	Total     int64    `json:"total,omitempty"`
+	Fraction  *float64 `json:"fraction,omitempty"`
+	Status    string   `json:"status,omitempty"`
+	Error     string   `json:"error,omitempty"`
+	Reason    string   `json:"reason,omitempty"`
 }
 
 // The reasons a fetch fails for, as the window explains them.
@@ -102,10 +107,11 @@ var progressEvery = 200 * time.Millisecond
 // window's Skip ends it through ctx.
 var client = &http.Client{}
 
-// FetchComponents fetches each component in turn and tells how each one goes.
-// None of them can fail the install: one that fails is told as failed and the
-// next one starts. Once ctx ends, the rest are told as skipped.
-func FetchComponents(ctx context.Context, components []Component, tell func(Fetched)) {
+// FetchComponents fetches each component in turn and tells how each one goes;
+// exe is the installed program, which a component given by Run starts. None
+// of them can fail the install: one that fails is told as failed and the next
+// one starts. Once ctx ends, the rest are told as skipped.
+func FetchComponents(ctx context.Context, exe string, components []Component, tell func(Fetched)) {
 	for _, c := range components {
 		if ctx.Err() != nil {
 			tell(Fetched{Component: c.ID, State: FetchSkipped})
@@ -118,7 +124,7 @@ func FetchComponents(ctx context.Context, components []Component, tell func(Fetc
 			}
 		}
 		tell(Fetched{Component: c.ID, State: FetchRunning, Total: -1})
-		err := fetchOne(ctx, c, paced(c.ID, tell))
+		err := fetchOne(ctx, exe, c, tell)
 		switch {
 		case err == nil:
 			tell(Fetched{Component: c.ID, State: FetchDone})
@@ -146,11 +152,14 @@ func paced(id string, tell func(Fetched)) func(done, total int64) {
 	}
 }
 
-func fetchOne(ctx context.Context, c Component, progress func(done, total int64)) error {
-	if c.Fetch != nil {
-		return c.Fetch(ctx, progress)
+func fetchOne(ctx context.Context, exe string, c Component, tell func(Fetched)) error {
+	switch {
+	case c.Fetch != nil:
+		return c.Fetch(ctx, paced(c.ID, tell))
+	case len(c.Run) > 0:
+		return runProgram(ctx, exe, c, tell)
 	}
-	return download(ctx, c, progress)
+	return download(ctx, c, paced(c.ID, tell))
 }
 
 // download puts the file at c.URL in place as c.Target once its digest and
