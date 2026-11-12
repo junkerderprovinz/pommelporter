@@ -1,0 +1,10 @@
+{
+  "targets": [
+    {
+      "name": "ui",
+      "mode": "port",
+      "version": "3.9.0",
+      "versionFile": "ui/src/glimstone/react/version.ts"
+    }
+  ]
+}
