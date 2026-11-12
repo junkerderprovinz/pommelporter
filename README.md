@@ -149,6 +149,14 @@ Components: []pommelporter.Component{
 
 A component whose Target exists is left alone, so the app keeps its own copy current. A silent install fetches none.
 
+What the program puts in its install folder itself, such as the helpers a `Run` component fetches, is listed in `Removes` as paths relative to that folder:
+
+```go
+Removes: []string{"helpers"},
+```
+
+An uninstall removes these files and folders with the rest of the program, so the install folder goes too once nothing else is in it. An absolute path, or one that climbs out with `..`, is refused.
+
 On Windows the installer needs a manifest that asks for administrator rights, linked in as a `.syso`, which a tool such as go-winres writes.
 
 The finished installer takes these switches:

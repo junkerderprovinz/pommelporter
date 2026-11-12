@@ -9,10 +9,11 @@ Every release is written by hand. The full notes for each release are in
 ## ✨ Added
 
 - **The installed program can fetch a component itself.** Files that belong next to the program, such as helper programs from the app's own release, are fetched by running the freshly installed program with the component's arguments, without a window. The row shows how far it has come and what it is doing, from the lines the program prints. A program that fails, cannot start or is still at work after 15 minutes leaves its component for the first start like a failed download, and Skip ends it.
+- **An uninstall takes what the program added to its folder.** An app lists the files and folders its program creates there in `Removes`, and an uninstall removes them with the rest, so on Windows the install folder goes too. A path outside the install folder is refused.
 
 ## 🔧 Under the hood
 
-- **The example installer has a component its program fetches itself,** and the mock shows one with `?run=1`.
+- **The example installer has a component its program fetches itself,** and the mock shows one with `?run=1`. The roundtrip in CI checks that an uninstall removes what the component put in the install folder.
 
 ## 1.2.0 - 2026-11-12
 
