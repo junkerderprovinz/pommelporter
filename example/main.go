@@ -25,6 +25,11 @@ func main() {
 		Accent:     "#D9A44A",
 		Logo:       logo,
 		Payload:    os.DirFS(os.Getenv("POMMELPORTER_PAYLOAD")),
+		Components: []pommelporter.Component{{
+			ID:   "extras",
+			Name: map[string]string{"en": "Extras", "de": "Extras"},
+			Run:  []string{"--fetch-extras"},
+		}},
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
