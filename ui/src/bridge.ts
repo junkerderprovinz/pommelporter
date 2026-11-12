@@ -104,7 +104,10 @@ export interface Fetched {
   /** Bytes so far and in all; total is -1 while unknown. */
   done?: number;
   total?: number;
+  /** In English, for the details. */
   error?: string;
+  /** Why it failed, as setup's Reason constants: network, server, checksum or other. */
+  reason?: string;
 }
 
 /** The "progress" event: a step as it starts, a component as it moves on, or the error that ended the run. */

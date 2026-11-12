@@ -92,7 +92,7 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
         return (
           <Done
             info={info}
-            later={leftForLater(run).map((id) => ({ id, error: run.fetches[id]!.error }))}
+            later={leftForLater(run)}
             onLaunch={async () => {
               await installer.launch();
               quit();

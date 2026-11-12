@@ -9,7 +9,7 @@ Every release is written by hand. The full notes for each release are in
 ## ✨ Added
 
 - **An install can fetch what the app needs.** An app names its components, such as a runtime or a set of codecs too large for the installer, and the window downloads them as the last step. Each one gets its own row, and the bar fills by the bytes that arrive. A component is one file checked against its SHA-256 or the app's own check, or a fetch function of the app's own for anything that needs unpacking. One that is already there is left alone, so an update neither downloads it again nor replaces a newer copy.
-- **A failed download does not fail the install.** The row says the component comes on first start, the last page names it, and the app fetches it itself. Skip stops a slow download and leaves the rest for later the same way. A silent install fetches nothing.
+- **A failed download does not fail the install.** Its row says it comes on first start, and the app fetches it itself then. The last page names it and says why in plain words, such as no connection or a checksum that does not match, with the error itself under Details. Skip stops a slow download and leaves the rest for later the same way. A silent install fetches nothing.
 
 ## 🌐 Translations
 

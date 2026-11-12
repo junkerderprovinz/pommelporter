@@ -59,10 +59,11 @@ describe('the components', () => {
   });
 
   it('leave the failed and the skipped ones for the app', () => {
-    let run = advance(fetch(), { component: 'a', state: 'failed', error: 'timeout' });
+    let run = advance(fetch(), { component: 'a', state: 'failed', error: 'i/o timeout', reason: 'network' });
     run = advance(run, { component: 'b', state: 'skipped' });
     run = advance(run, { step: 'done' });
-    expect(leftForLater(run)).toEqual(['a', 'b']);
+    expect(leftForLater(run).map((l) => l.id)).toEqual(['a', 'b']);
+    expect(leftForLater(run)[0]).toMatchObject({ error: 'i/o timeout', reason: 'network' });
     expect(fetching(run)).toBe(false);
   });
 

@@ -152,7 +152,7 @@ export function Progress({
                 {step === COMPONENTS_STEP && components.length > 0 && (
                   <ul className="flex flex-col ps-7">
                     {components.map((c) => {
-                      const f = run.fetches[c.id] ?? { state: 'waiting', done: 0, total: -1, error: '' };
+                      const f = run.fetches[c.id] ?? { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
                       const mark = fetchMark(f);
                       return (
                         <li key={c.id} className="flex items-center gap-3 text-subline">

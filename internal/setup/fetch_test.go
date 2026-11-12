@@ -5,6 +5,8 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"errors"
+	"fmt"
+	"net"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -38,8 +40,15 @@ func digest(b []byte) string {
 
 // states runs FetchComponents and returns each component's states in order.
 func states(ctx context.Context, components []Component) (map[string][]string, map[string]string) {
+	got, errs, _ := fetchAll(ctx, components)
+	return got, errs
+}
+
+// fetchAll is states with the reason each failed component ended with.
+func fetchAll(ctx context.Context, components []Component) (map[string][]string, map[string]string, map[string]string) {
 	got := map[string][]string{}
 	errs := map[string]string{}
+	reasons := map[string]string{}
 	FetchComponents(ctx, components, func(f Fetched) {
 		if n := len(got[f.Component]); n > 0 && got[f.Component][n-1] == f.State {
 			return
@@ -47,9 +56,10 @@ func states(ctx context.Context, components []Component) (map[string][]string, m
 		got[f.Component] = append(got[f.Component], f.State)
 		if f.Error != "" {
 			errs[f.Component] = f.Error
+			reasons[f.Component] = f.Reason
 		}
 	})
-	return got, errs
+	return got, errs, reasons
 }
 
 func TestADownloadThatMatchesItsDigestLandsAtItsTarget(t *testing.T) {
@@ -176,6 +186,33 @@ func TestSkippingStopsTheRunningFetchAndLeavesTheRestForLater(t *testing.T) {
 	}
 	if want := []string{FetchSkipped}; !reflect.DeepEqual(got["small"], want) {
 		t.Fatalf("small %v, want %v", got["small"], want)
+	}
+}
+
+func TestAFailureIsExplainedByItsCause(t *testing.T) {
+	url := serve(t, []byte("tampered"))
+	dir := t.TempDir()
+	fails := func(err error) func(context.Context, func(int64, int64)) error {
+		return func(context.Context, func(int64, int64)) error { return err }
+	}
+	offline := fmt.Errorf("downloading the runtime: %w", &net.OpError{Op: "dial", Net: "tcp", Err: errors.New("connection refused")})
+
+	_, _, got := fetchAll(context.Background(), []Component{
+		{ID: "missing", Target: filepath.Join(dir, "a"), URL: url + "/missing", SHA256: digest(nil)},
+		{ID: "tampered", Target: filepath.Join(dir, "b"), URL: url + "/b", SHA256: digest([]byte("genuine"))},
+		{ID: "offline", Fetch: fails(offline)},
+		{ID: "marked", Fetch: fails(&ServerError{errors.New("github answered 503")})},
+		{ID: "broken", Fetch: fails(errors.New("the archive holds no bin/ffmpeg"))},
+	})
+	want := map[string]string{
+		"missing":  ReasonServer,
+		"tampered": ReasonChecksum,
+		"offline":  ReasonNetwork,
+		"marked":   ReasonServer,
+		"broken":   ReasonOther,
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("reasons %v, want %v", got, want)
 	}
 }
 

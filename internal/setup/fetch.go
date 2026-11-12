@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -41,13 +42,55 @@ const (
 )
 
 // Fetched is how far one component has come, as the window gets it. Total
-// is -1 while the size is unknown.
+// is -1 while the size is unknown. A failed one carries its error in English
+// for the details, and a reason the window says in its own words.
 type Fetched struct {
 	Component string `json:"component"`
 	State     string `json:"state"`
 	Done      int64  `json:"done,omitempty"`
 	Total     int64  `json:"total,omitempty"`
 	Error     string `json:"error,omitempty"`
+	Reason    string `json:"reason,omitempty"`
+}
+
+// The reasons a fetch fails for, as the window explains them.
+const (
+	ReasonNetwork  = "network"
+	ReasonServer   = "server"
+	ReasonChecksum = "checksum"
+	ReasonOther    = "other"
+)
+
+// ServerError marks Err as the server's refusal, such as a 404. See
+// pommelporter.ServerError.
+type ServerError struct{ Err error }
+
+func (e *ServerError) Error() string { return e.Err.Error() }
+func (e *ServerError) Unwrap() error { return e.Err }
+
+// ChecksumError marks Err as a download whose digest is not the expected one.
+// See pommelporter.ChecksumError.
+type ChecksumError struct{ Err error }
+
+func (e *ChecksumError) Error() string { return e.Err.Error() }
+func (e *ChecksumError) Unwrap() error { return e.Err }
+
+// reason names why err ended a fetch. A broken connection is told apart by
+// the error types the standard library returns for it, so a Fetch of the
+// app's own gets that reason without marking anything.
+func reason(err error) string {
+	var timeout interface{ Timeout() bool }
+	switch {
+	case errors.As(err, new(*ChecksumError)):
+		return ReasonChecksum
+	case errors.As(err, new(*ServerError)):
+		return ReasonServer
+	case errors.As(err, new(*net.OpError)), errors.As(err, new(*net.DNSError)),
+		errors.Is(err, io.ErrUnexpectedEOF), errors.Is(err, context.DeadlineExceeded),
+		errors.As(err, &timeout) && timeout.Timeout():
+		return ReasonNetwork
+	}
+	return ReasonOther
 }
 
 // progressEvery spaces out the byte counts, since a large download would
@@ -82,7 +125,7 @@ func FetchComponents(ctx context.Context, components []Component, tell func(Fetc
 		case ctx.Err() != nil:
 			tell(Fetched{Component: c.ID, State: FetchSkipped})
 		default:
-			tell(Fetched{Component: c.ID, State: FetchFailed, Error: err.Error()})
+			tell(Fetched{Component: c.ID, State: FetchFailed, Error: err.Error(), Reason: reason(err)})
 		}
 	}
 }
@@ -129,7 +172,7 @@ func download(ctx context.Context, c Component, progress func(done, total int64)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("GET %s: %s", c.URL, resp.Status)
+		return &ServerError{fmt.Errorf("GET %s: %s", c.URL, resp.Status)}
 	}
 
 	tmp, err := os.CreateTemp(dir, "."+filepath.Base(c.Target)+".fetch-*")
@@ -146,7 +189,7 @@ func download(ctx context.Context, c Component, progress func(done, total int64)
 	}
 	if c.SHA256 != "" {
 		if got := hex.EncodeToString(sum.Sum(nil)); got != strings.ToLower(c.SHA256) {
-			return fmt.Errorf("%s has SHA-256 %s instead of %s, so it was thrown away", c.URL, got, c.SHA256)
+			return &ChecksumError{fmt.Errorf("%s has SHA-256 %s instead of %s, so it was thrown away", c.URL, got, c.SHA256)}
 		}
 	}
 	mode := fs.FileMode(0o644)

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import type { Info } from '../bridge';
 import { t } from '../i18n';
-import { componentName, nameList } from '../fetches';
+import { componentName, nameList, reasonText } from '../fetches';
+import type { Later } from '../run';
 import { stays } from '../stays';
 import { Button } from '../glimstone/react/Button';
+import { IconExpand } from '../glimstone/react/glyphs';
 import { Page } from '../components/Page';
 
 export function Done({
@@ -13,18 +15,19 @@ export function Done({
   onClose,
 }: {
   info: Info;
-  /** The ids of the components the app fetches itself, with why the installer did not. */
-  later: { id: string; error: string }[];
+  /** The components the app fetches itself, with why the installer did not. */
+  later: Later[];
   onLaunch: () => Promise<void>;
   onClose: () => void;
 }) {
   const [launchError, setLaunchError] = useState('');
+  const [details, setDetails] = useState(false);
   const installed = info.mode === 'install';
   const names = later.map(({ id }) => {
     const c = info.components?.find((c) => c.id === id);
     return c ? componentName(c) : id;
   });
-  const reasons = later.flatMap(({ error }, i) => (error ? [`${names[i]}: ${error}`] : []));
+  const errors = later.flatMap(({ error }, i) => (error ? [`${names[i]}: ${error}`] : []));
 
   return (
     <Page
@@ -54,12 +57,37 @@ export function Done({
         {installed && names.length > 0 && (
           <div className="glim-well flex max-w-md flex-col gap-1 px-4 py-2.5 text-start">
             <p className="text-sm text-carbon-text">{t('done.later', { name: info.name, list: nameList(names) })}</p>
-            {/* The app reports in English, so each line keeps its own direction. */}
-            {reasons.map((r) => (
-              <p key={r} dir="auto" className="max-h-10 overflow-y-auto text-subline break-words text-carbon-textSub select-text">
-                {r}
+            {later.map((f, i) => (
+              <p key={f.id} className="text-subline text-carbon-textSub">
+                {t('done.reason', { component: names[i]!, reason: reasonText(f) })}
               </p>
             ))}
+            {errors.length > 0 && (
+              <>
+                <button
+                  type="button"
+                  aria-expanded={details}
+                  aria-controls="fetch-details"
+                  onClick={() => setDetails(!details)}
+                  className="flex items-center gap-1 self-start text-subline text-carbon-textMuted hover:text-carbon-text"
+                >
+                  {t('button.details')}
+                  <span className={`flex motion-safe:transition-transform ${details ? 'rotate-180' : ''}`}>
+                    <IconExpand />
+                  </span>
+                </button>
+                {details && (
+                  <div id="fetch-details" className="flex max-h-16 flex-col gap-1 overflow-y-auto">
+                    {/* The errors are in English, so each line keeps its own direction. */}
+                    {errors.map((e) => (
+                      <p key={e} dir="auto" className="text-subline break-words text-carbon-textMuted select-text">
+                        {e}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
         )}
         {launchError && (

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { componentName, nameList, sizeText } from './fetches';
+import { en } from './locales/en';
+import { componentName, nameList, reasonText, sizeText } from './fetches';
 
 describe('a component', () => {
   const component = { id: 'runtime', name: { en: 'Runtime', de: 'Laufzeitumgebung' } };
@@ -15,7 +16,7 @@ describe('a component', () => {
 });
 
 describe('a download', () => {
-  const running = (done: number, total: number) => ({ state: 'running' as const, done, total, error: '' });
+  const running = (done: number, total: number) => ({ state: 'running' as const, done, total, error: '', reason: '' });
 
   it('says how much of it has arrived', () => {
     expect(sizeText(running(42_000_000, 180_000_000), 'en')).toBe('42 MB of 180 MB');
@@ -28,6 +29,20 @@ describe('a download', () => {
   it('shows only what arrived while the size is unknown, and nothing before the first byte', () => {
     expect(sizeText(running(5_000_000, -1), 'en')).toBe('5 MB');
     expect(sizeText(running(0, 100), 'en')).toBe('');
+  });
+});
+
+describe('a component left for later', () => {
+  it('is explained in plain words for the common causes', () => {
+    expect(reasonText({ state: 'failed', reason: 'network' })).toBe(en['reason.network']);
+    expect(reasonText({ state: 'failed', reason: 'server' })).toBe(en['reason.server']);
+    expect(reasonText({ state: 'failed', reason: 'checksum' })).toBe(en['reason.checksum']);
+  });
+
+  it('gets a general sentence for any other cause, and says when it was skipped', () => {
+    expect(reasonText({ state: 'failed', reason: 'other' })).toBe(en['reason.other']);
+    expect(reasonText({ state: 'failed', reason: '' })).toBe(en['reason.other']);
+    expect(reasonText({ state: 'skipped', reason: '' })).toBe(en['reason.skipped']);
   });
 });
 

@@ -15,6 +15,7 @@ export interface Fetch {
   /** -1 while unknown. */
   total: number;
   error: string;
+  reason: string;
 }
 
 export interface Run {
@@ -44,7 +45,7 @@ export function plannedSteps(mode: Mode, platform: string, components = false): 
 
 export function startRun(steps: string[], components: string[] = []): Run {
   const fetches: Record<string, Fetch> = {};
-  for (const id of components) fetches[id] = { state: 'waiting', done: 0, total: -1, error: '' };
+  for (const id of components) fetches[id] = { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
   return { steps, current: -1, finished: false, error: null, fetches };
 }
 
@@ -54,12 +55,13 @@ export function advance(run: Run, event: Progress): Run {
     return { ...run, current: Math.max(run.current, 0), error: event.error };
   }
   if ('component' in event) {
-    const was = run.fetches[event.component] ?? { state: 'waiting', done: 0, total: -1, error: '' };
+    const was = run.fetches[event.component] ?? { state: 'waiting', done: 0, total: -1, error: '', reason: '' };
     const fetch: Fetch = {
       state: event.state,
       done: event.done ?? was.done,
       total: event.total ?? was.total,
       error: event.error ?? '',
+      reason: event.reason ?? '',
     };
     return { ...run, fetches: { ...run.fetches, [event.component]: fetch } };
   }
@@ -107,9 +109,11 @@ export function fetching(run: Run): boolean {
   return !run.finished && run.error === null && run.steps[run.current] === COMPONENTS_STEP;
 }
 
-/** The components the app fetches itself, since the installer could not or was told to skip them. */
-export function leftForLater(run: Run): string[] {
+/** A component the app fetches itself, since the installer could not or was told to skip it. */
+export type Later = Fetch & { id: string };
+
+export function leftForLater(run: Run): Later[] {
   return Object.entries(run.fetches)
     .filter(([, f]) => f.state === 'failed' || f.state === 'skipped')
-    .map(([id]) => id);
+    .map(([id, f]) => ({ ...f, id }));
 }

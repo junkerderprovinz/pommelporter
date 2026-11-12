@@ -121,7 +121,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
         if (skip) break;
       }
       if (c.id === failComponent) {
-        emit({ component: c.id, state: 'failed', error: `Get "https://example.org/component-${c.id}.zip": dial tcp: lookup example.org: no such host` });
+        emit({ component: c.id, state: 'failed', reason: 'network', error: `Get "https://example.org/component-${c.id}.zip": dial tcp: lookup example.org: no such host` });
       } else {
         emit({ component: c.id, state: skip ? 'skipped' : 'done' });
       }

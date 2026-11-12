@@ -91,6 +91,9 @@ type Component struct {
 	// more than one download, such as an archive to check and unpack.
 	// progress hears how much has arrived of how much; total is -1 while
 	// unknown. It must end when ctx does and leave nothing half done behind.
+	// The window explains a broken connection by itself; an error wrapped in
+	// a ServerError or a ChecksumError gets the sentence for that, and any
+	// other one a general sentence, with the error itself under Details.
 	Fetch func(ctx context.Context, progress func(done, total int64)) error
 	// Platforms limits the component to these, "windows" or "linux"; empty
 	// means everywhere.
@@ -203,6 +206,14 @@ func Run(app App) error {
 	}
 	return err
 }
+
+// ServerError marks Err as the server's refusal, such as a 404, so the window
+// says the server answered with an error.
+type ServerError = setup.ServerError
+
+// ChecksumError marks Err as a download whose digest is not the expected one,
+// so the window says the download did not match its checksum.
+type ChecksumError = setup.ChecksumError
 
 // checkComponents refuses a component the window could not fetch, or one
 // whose download nothing would check before the program runs it.
