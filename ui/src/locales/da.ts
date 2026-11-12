@@ -12,6 +12,7 @@ export const da: Dict = {
   'button.uninstall': 'Afinstaller',
   'button.start': 'Start {name}',
   'button.retry': 'Prøv igen',
+  'button.skip': 'Spring over',
   'button.website': 'Websted',
   'button.browse': 'Gennemse',
   'button.up': 'Op en mappe',
@@ -56,7 +57,12 @@ export const da: Dict = {
   'step.updates.install': 'Opsætter automatiske opdateringer',
   'step.updates.uninstall': 'Slår automatiske opdateringer fra',
   'step.remove': 'Fjerner filer',
+  'step.components': 'Henter det, {name} skal bruge',
   'step.other': 'Arbejder',
+
+  'component.size': '{done} af {total}',
+  'component.present': 'Allerede på plads',
+  'component.later': 'Ved første start',
 
   'progress.label': 'Fremskridt',
   'progress.failed.install': '{name} kunne ikke installeres.',
@@ -65,6 +71,7 @@ export const da: Dict = {
   'done.installed': '{name} er installeret.',
   'done.uninstalled': '{name} er afinstalleret.',
   'done.kept': 'Dine indstillinger og data er der stadig.',
+  'done.later': '{name} henter selv {list}, når det starter første gang.',
 
   'confirm.lead': 'Dette fjerner {name} {version} fra denne computer.',
   'confirm.removed': 'Fjernes',

@@ -8,7 +8,10 @@
 //   refuse=<code>                           the default folder is refused with a DirCheck code
 //   fail=<step>                             the run stops with an error at that step
 //   hold=<step>                             the run waits at that step, for screenshots
-import type { DirCheck, Folder, Info, Installer, Options, Progress } from '../bridge';
+//   components=1                            the install fetches three components after the program
+//   failComponent=<id>                      that component fails and is left for the app (a, b or c)
+//   holdComponent=<id>                      the run waits halfway through that component's download
+import type { Component, DirCheck, Folder, Info, Installer, Options, Progress } from '../bridge';
 import { plannedSteps } from '../run';
 import logo from '../assets/logo.svg?raw';
 
@@ -16,6 +19,13 @@ import logo from '../assets/logo.svg?raw';
 const app = { name: 'PommelExample', logo };
 
 const STEP_MS = 650;
+
+// Neutral stand-ins with sizes like those of a runtime, a codec pack and a plug-in.
+const COMPONENTS: (Component & { size: number })[] = [
+  { id: 'a', name: { en: 'Component A', de: 'Komponente A' }, size: 182_000_000 },
+  { id: 'b', name: { en: 'Component B', de: 'Komponente B' }, size: 48_500_000 },
+  { id: 'c', name: { en: 'Component C', de: 'Komponente C' }, size: 3_200_000 },
+];
 
 /** A small disk: each folder maps to its sub-folders. */
 function windowsTree(name: string, existing: boolean): Map<string, string[]> {
@@ -38,6 +48,10 @@ export function mockInstaller(query: URLSearchParams): Installer {
   const refuse = query.get('refuse');
   const fail = query.get('fail');
   const hold = query.get('hold');
+  const components = !uninstall && query.get('components') === '1' ? COMPONENTS : [];
+  const failComponent = query.get('failComponent');
+  const holdComponent = query.get('holdComponent');
+  let skip = false;
 
   const defaultDir = linux ? `/home/jdp/.local/share/com.junkerderprovinz.${app.name.toLowerCase()}` : `C:\\Program Files\\${app.name}`;
   const tree = windowsTree(app.name, hasExisting);
@@ -59,6 +73,7 @@ export function mockInstaller(query: URLSearchParams): Installer {
     stays: query.has('stays') ? { de: { item: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte', note: 'Deine Einstellungen, Verknüpfungen, Farben und Schlagworte sind noch da.' } } : null,
     choices: query.has('choice') ? [{ id: 'folders', label: { de: 'Als Standard-Dateimanager festlegen', en: 'Make it the default file manager' } }] : null,
     existing: hasExisting ? { version: uninstall ? '2.2.0' : '2.1.0', dir: defaultDir } : null,
+    components: components.map(({ id, name }) => ({ id, name })),
   };
 
   function checkDir(dir: string): DirCheck {
@@ -90,10 +105,36 @@ export function mockInstaller(query: URLSearchParams): Installer {
     };
   }
 
+  const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  async function fetchComponents() {
+    for (const c of components) {
+      if (skip) {
+        emit({ component: c.id, state: 'skipped' });
+        continue;
+      }
+      for (let tenth = 1; tenth <= 10; tenth++) {
+        emit({ component: c.id, state: 'running', done: (c.size * tenth) / 10, total: c.size });
+        if (c.id === holdComponent && tenth === 5) return false;
+        if (c.id === failComponent && tenth === 3) break;
+        await pause(STEP_MS / 3);
+        if (skip) break;
+      }
+      if (c.id === failComponent) {
+        emit({ component: c.id, state: 'failed', error: `Get "https://example.org/component-${c.id}.zip": dial tcp: lookup example.org: no such host` });
+      } else {
+        emit({ component: c.id, state: skip ? 'skipped' : 'done' });
+      }
+    }
+    return true;
+  }
+
   async function run(mode: 'install' | 'uninstall') {
-    for (const step of plannedSteps(mode, info.platform)) {
+    skip = false;
+    for (const step of plannedSteps(mode, info.platform, components.length > 0)) {
       emit({ step });
-      await new Promise((r) => setTimeout(r, STEP_MS));
+      if (step === 'components' && !(await fetchComponents())) return;
+      await pause(STEP_MS);
       if (step === hold) return;
       if (step === fail) {
         emit({ error: `open ${defaultDir}\\${app.name}.exe: The process cannot access the file because it is being used by another process.` });
@@ -129,6 +170,9 @@ export function mockInstaller(query: URLSearchParams): Installer {
       }),
     install: async () => void run('install'),
     uninstall: async () => void run('uninstall'),
+    skipComponents: async () => {
+      skip = true;
+    },
     launch: async () => {},
     openURL: async (url) => void window.open(url, '_blank'),
     minimise: async () => {},

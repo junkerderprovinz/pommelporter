@@ -12,6 +12,7 @@ export const sv: Dict = {
   'button.uninstall': 'Avinstallera',
   'button.start': 'Starta {name}',
   'button.retry': 'Försök igen',
+  'button.skip': 'Hoppa över',
   'button.website': 'Webbplats',
   'button.browse': 'Bläddra',
   'button.up': 'Upp en mapp',
@@ -56,7 +57,12 @@ export const sv: Dict = {
   'step.updates.install': 'Ställer in automatiska uppdateringar',
   'step.updates.uninstall': 'Stänger av automatiska uppdateringar',
   'step.remove': 'Tar bort filer',
+  'step.components': 'Hämtar det {name} behöver',
   'step.other': 'Arbetar',
+
+  'component.size': '{done} av {total}',
+  'component.present': 'Finns redan',
+  'component.later': 'Vid första starten',
 
   'progress.label': 'Förlopp',
   'progress.failed.install': '{name} kunde inte installeras.',
@@ -65,6 +71,7 @@ export const sv: Dict = {
   'done.installed': '{name} är installerat.',
   'done.uninstalled': '{name} har avinstallerats.',
   'done.kept': 'Dina inställningar och data finns kvar.',
+  'done.later': '{name} hämtar {list} själv vid första starten.',
 
   'confirm.lead': 'Det här tar bort {name} {version} från den här datorn.',
   'confirm.removed': 'Tas bort',

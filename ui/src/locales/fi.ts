@@ -12,6 +12,7 @@ export const fi: Dict = {
   'button.uninstall': 'Poista asennus',
   'button.start': 'Käynnistä {name}',
   'button.retry': 'Yritä uudelleen',
+  'button.skip': 'Ohita',
   'button.website': 'Verkkosivu',
   'button.browse': 'Selaa',
   'button.up': 'Kansio ylös',
@@ -56,7 +57,12 @@ export const fi: Dict = {
   'step.updates.install': 'Otetaan automaattiset päivitykset käyttöön',
   'step.updates.uninstall': 'Poistetaan automaattiset päivitykset käytöstä',
   'step.remove': 'Poistetaan tiedostoja',
+  'step.components': 'Ladataan sovelluksen {name} tarvitsemat osat',
   'step.other': 'Käynnissä',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Jo valmiina',
+  'component.later': 'Ensimmäisellä käynnistyskerralla',
 
   'progress.label': 'Edistyminen',
   'progress.failed.install': 'Sovelluksen {name} asennus epäonnistui.',
@@ -65,6 +71,7 @@ export const fi: Dict = {
   'done.installed': '{name} on asennettu.',
   'done.uninstalled': '{name} on poistettu.',
   'done.kept': 'Asetuksesi ja tietosi ovat yhä tallessa.',
+  'done.later': 'Sovellus {name} lataa itse ensimmäisellä käynnistyskerralla: {list}.',
 
   'confirm.lead': 'Tämä poistaa sovelluksen {name} {version} tästä tietokoneesta.',
   'confirm.removed': 'Poistetaan',

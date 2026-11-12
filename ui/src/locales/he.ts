@@ -12,6 +12,7 @@ export const he: Dict = {
   'button.uninstall': 'הסרה',
   'button.start': 'הפעלת {name}',
   'button.retry': 'לנסות שוב',
+  'button.skip': 'דילוג',
   'button.website': 'אתר',
   'button.browse': 'עיון',
   'button.up': 'תיקייה אחת למעלה',
@@ -56,7 +57,12 @@ export const he: Dict = {
   'step.updates.install': 'מגדיר עדכונים אוטומטיים',
   'step.updates.uninstall': 'מכבה עדכונים אוטומטיים',
   'step.remove': 'מסיר קבצים',
+  'step.components': 'מוריד את מה ש-{name} צריך',
   'step.other': 'עובד',
+
+  'component.size': '{done} מתוך {total}',
+  'component.present': 'כבר קיים',
+  'component.later': 'בהפעלה הראשונה',
 
   'progress.label': 'התקדמות',
   'progress.failed.install': 'לא ניתן היה להתקין את {name}.',
@@ -65,6 +71,7 @@ export const he: Dict = {
   'done.installed': '{name} מותקן.',
   'done.uninstalled': '{name} הוסר.',
   'done.kept': 'ההגדרות והנתונים שלך עדיין שם.',
+  'done.later': '{name} יוריד בעצמו את {list} בהפעלה הראשונה.',
 
   'confirm.lead': 'הפעולה מסירה את {name} {version} מהמחשב הזה.',
   'confirm.removed': 'יוסר',

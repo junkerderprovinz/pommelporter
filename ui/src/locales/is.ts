@@ -12,6 +12,7 @@ export const is: Dict = {
   'button.uninstall': 'Fjarlægja',
   'button.start': 'Ræsa {name}',
   'button.retry': 'Reyna aftur',
+  'button.skip': 'Sleppa',
   'button.website': 'Vefsíða',
   'button.browse': 'Skoða',
   'button.up': 'Upp um möppu',
@@ -56,7 +57,12 @@ export const is: Dict = {
   'step.updates.install': 'Set upp sjálfvirkar uppfærslur',
   'step.updates.uninstall': 'Slekk á sjálfvirkum uppfærslum',
   'step.remove': 'Fjarlægi skrár',
+  'step.components': 'Sæki það sem {name} þarf',
   'step.other': 'Í vinnslu',
+
+  'component.size': '{done} af {total}',
+  'component.present': 'Þegar til staðar',
+  'component.later': 'Við fyrstu ræsingu',
 
   'progress.label': 'Framvinda',
   'progress.failed.install': 'Ekki tókst að setja upp {name}.',
@@ -65,6 +71,7 @@ export const is: Dict = {
   'done.installed': '{name} er uppsett.',
   'done.uninstalled': '{name} hefur verið fjarlægt.',
   'done.kept': 'Stillingar og gögn þín eru enn til staðar.',
+  'done.later': '{name} sækir {list} sjálft við fyrstu ræsingu.',
 
   'confirm.lead': 'Þetta fjarlægir {name} {version} úr þessari tölvu.',
   'confirm.removed': 'Fjarlægt',

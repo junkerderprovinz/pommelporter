@@ -12,6 +12,7 @@ export const ms: Dict = {
   'button.uninstall': 'Nyahpasang',
   'button.start': 'Buka {name}',
   'button.retry': 'Cuba lagi',
+  'button.skip': 'Langkau',
   'button.website': 'Laman web',
   'button.browse': 'Semak imbas',
   'button.up': 'Naik satu folder',
@@ -56,7 +57,12 @@ export const ms: Dict = {
   'step.updates.install': 'Menyediakan kemas kini automatik',
   'step.updates.uninstall': 'Mematikan kemas kini automatik',
   'step.remove': 'Membuang fail',
+  'step.components': 'Memuat turun keperluan {name}',
   'step.other': 'Sedang berjalan',
+
+  'component.size': '{done} daripada {total}',
+  'component.present': 'Sudah ada',
+  'component.later': 'Semasa mula pertama',
 
   'progress.label': 'Kemajuan',
   'progress.failed.install': '{name} tidak dapat dipasang.',
@@ -65,6 +71,7 @@ export const ms: Dict = {
   'done.installed': '{name} sudah dipasang.',
   'done.uninstalled': '{name} sudah dinyahpasang.',
   'done.kept': 'Tetapan dan data anda masih ada.',
+  'done.later': '{name} akan memuat turun {list} sendiri apabila dimulakan buat kali pertama.',
 
   'confirm.lead': 'Ini membuang {name} {version} daripada komputer ini.',
   'confirm.removed': 'Dibuang',

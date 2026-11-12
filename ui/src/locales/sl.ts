@@ -12,6 +12,7 @@ export const sl: Dict = {
   'button.uninstall': 'Odstrani',
   'button.start': 'Zaženi {name}',
   'button.retry': 'Poskusi znova',
+  'button.skip': 'Preskoči',
   'button.website': 'Spletna stran',
   'button.browse': 'Prebrskaj',
   'button.up': 'Mapo višje',
@@ -56,7 +57,12 @@ export const sl: Dict = {
   'step.updates.install': 'Nastavljanje samodejnih posodobitev',
   'step.updates.uninstall': 'Izklop samodejnih posodobitev',
   'step.remove': 'Odstranjevanje datotek',
+  'step.components': 'Prenos tega, kar potrebuje {name}',
   'step.other': 'V teku',
+
+  'component.size': '{done} od {total}',
+  'component.present': 'Že na voljo',
+  'component.later': 'Ob prvem zagonu',
 
   'progress.label': 'Napredek',
   'progress.failed.install': '{name} ni bilo mogoče namestiti.',
@@ -65,6 +71,7 @@ export const sl: Dict = {
   'done.installed': '{name} je nameščen.',
   'done.uninstalled': '{name} je odstranjen.',
   'done.kept': 'Vaše nastavitve in podatki so še vedno tam.',
+  'done.later': '{name} bo ob prvem zagonu sam prenesel {list}.',
 
   'confirm.lead': 'S tem odstranite {name} {version} s tega računalnika.',
   'confirm.removed': 'Odstrani se',

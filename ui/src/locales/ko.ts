@@ -12,6 +12,7 @@ export const ko: Dict = {
   'button.uninstall': '제거',
   'button.start': '{name} 시작',
   'button.retry': '다시 시도',
+  'button.skip': '건너뛰기',
   'button.website': '웹사이트',
   'button.browse': '찾아보기',
   'button.up': '상위 폴더',
@@ -56,7 +57,12 @@ export const ko: Dict = {
   'step.updates.install': '자동 업데이트 설정 중',
   'step.updates.uninstall': '자동 업데이트 끄는 중',
   'step.remove': '파일 제거 중',
+  'step.components': '{name}에 필요한 항목 다운로드 중',
   'step.other': '작업 중',
+
+  'component.size': '{done} / {total}',
+  'component.present': '이미 있음',
+  'component.later': '처음 실행할 때',
 
   'progress.label': '진행률',
   'progress.failed.install': '{name}을(를) 설치하지 못했습니다.',
@@ -65,6 +71,7 @@ export const ko: Dict = {
   'done.installed': '{name}이(가) 설치되었습니다.',
   'done.uninstalled': '{name}이(가) 제거되었습니다.',
   'done.kept': '설정과 데이터는 그대로 남아 있습니다.',
+  'done.later': '{list}은(는) {name}을(를) 처음 실행할 때 자동으로 다운로드됩니다.',
 
   'confirm.lead': '이 컴퓨터에서 {name} {version}을(를) 제거합니다.',
   'confirm.removed': '제거됨',

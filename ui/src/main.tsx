@@ -38,6 +38,7 @@ const GLYPHS: Record<string, () => ReactNode> = {
   'button.uninstall': () => <IconTrash />,
   'button.start': () => <IconPlay />,
   'button.retry': () => <IconRetry />,
+  'button.skip': () => <IconForward className={mirrored} />,
   'button.website': () => <IconExternalLink />,
   'button.browse': () => <IconFolderOpen />,
   'button.up': () => <IconFolderUp />,

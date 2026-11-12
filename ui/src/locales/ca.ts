@@ -12,6 +12,7 @@ export const ca: Dict = {
   'button.uninstall': 'Desinstal·la',
   'button.start': 'Obre {name}',
   'button.retry': 'Torna-ho a provar',
+  'button.skip': 'Omet',
   'button.website': 'Lloc web',
   'button.browse': 'Navega',
   'button.up': 'Carpeta superior',
@@ -56,7 +57,12 @@ export const ca: Dict = {
   'step.updates.install': 'Configurant les actualitzacions automàtiques',
   'step.updates.uninstall': 'Desactivant les actualitzacions automàtiques',
   'step.remove': 'Traient fitxers',
+  'step.components': 'Baixant el que necessita {name}',
   'step.other': 'Treballant',
+
+  'component.size': '{done} de {total}',
+  'component.present': 'Ja hi és',
+  'component.later': 'En el primer inici',
 
   'progress.label': 'Progrés',
   'progress.failed.install': "No s'ha pogut instal·lar {name}.",
@@ -65,6 +71,7 @@ export const ca: Dict = {
   'done.installed': '{name} està instal·lat.',
   'done.uninstalled': "{name} s'ha desinstal·lat.",
   'done.kept': 'La teva configuració i les teves dades encara hi són.',
+  'done.later': "{name} baixarà {list} pel seu compte la primera vegada que s'iniciï.",
 
   'confirm.lead': "Això treu {name} {version} d'aquest ordinador.",
   'confirm.removed': 'Es treu',

@@ -2,11 +2,20 @@
 // the "progress" events have moved it. A platform skips the steps that mean
 // nothing to it and may report one this list does not know, so the list is
 // a forecast that the events correct.
-import type { Progress } from './bridge';
+import type { FetchState, Progress } from './bridge';
 
 export type Mode = 'install' | 'uninstall';
 
 export type StepState = 'waiting' | 'running' | 'done' | 'failed';
+
+/** One component's fetch as the page shows it. */
+export interface Fetch {
+  state: 'waiting' | FetchState;
+  done: number;
+  /** -1 while unknown. */
+  total: number;
+  error: string;
+}
 
 export interface Run {
   steps: string[];
@@ -14,27 +23,45 @@ export interface Run {
   current: number;
   finished: boolean;
   error: string | null;
+  /** The components to fetch by id, in the order they are fetched. */
+  fetches: Record<string, Fetch>;
 }
 
+/** The step that fetches the components, last of an install. */
+export const COMPONENTS_STEP = 'components';
+
 /** The step names of internal/setup, in the order the platforms run them. */
-export function plannedSteps(mode: Mode, platform: string): string[] {
+export function plannedSteps(mode: Mode, platform: string, components = false): string[] {
   const linux = platform === 'linux';
   if (mode === 'uninstall') {
     return linux ? ['remove'] : ['close', 'remove'];
   }
-  return linux
+  const steps = linux
     ? ['prepare', 'files', 'shortcuts', 'register']
     : ['prepare', 'close', 'legacy', 'files', 'shortcuts', 'register', 'updates'];
+  return components ? [...steps, COMPONENTS_STEP] : steps;
 }
 
-export function startRun(steps: string[]): Run {
-  return { steps, current: -1, finished: false, error: null };
+export function startRun(steps: string[], components: string[] = []): Run {
+  const fetches: Record<string, Fetch> = {};
+  for (const id of components) fetches[id] = { state: 'waiting', done: 0, total: -1, error: '' };
+  return { steps, current: -1, finished: false, error: null, fetches };
 }
 
 export function advance(run: Run, event: Progress): Run {
-  if ('error' in event) {
+  if ('error' in event && !('component' in event)) {
     // A refusal before the first step still fails a row, so the list shows where it stopped.
     return { ...run, current: Math.max(run.current, 0), error: event.error };
+  }
+  if ('component' in event) {
+    const was = run.fetches[event.component] ?? { state: 'waiting', done: 0, total: -1, error: '' };
+    const fetch: Fetch = {
+      state: event.state,
+      done: event.done ?? was.done,
+      total: event.total ?? was.total,
+      error: event.error ?? '',
+    };
+    return { ...run, fetches: { ...run.fetches, [event.component]: fetch } };
   }
   if (event.step === 'done') {
     return { ...run, current: run.steps.length, finished: true };
@@ -56,8 +83,33 @@ export function stepState(run: Run, index: number): StepState {
   return run.error === null ? 'running' : 'failed';
 }
 
+/** How much of the components' work is over, from 0 to 1. A download counts by its bytes while it runs. */
+function fetched(run: Run): number {
+  const all = Object.values(run.fetches);
+  if (all.length === 0) return 0;
+  const share = (f: Fetch) => {
+    if (f.state === 'waiting') return 0;
+    if (f.state !== 'running') return 1;
+    return f.total > 0 ? Math.min(f.done / f.total, 1) : 0;
+  };
+  return all.reduce((sum, f) => sum + share(f), 0) / all.length;
+}
+
 /** How much of the bar is filled, from 0 to 1. A step counts once it is over. */
 export function fraction(run: Run): number {
   if (run.finished) return 1;
-  return Math.max(run.current, 0) / run.steps.length;
+  const within = run.steps[run.current] === COMPONENTS_STEP ? fetched(run) : 0;
+  return (Math.max(run.current, 0) + within) / run.steps.length;
+}
+
+/** Whether the components step runs, which is when it can be skipped. */
+export function fetching(run: Run): boolean {
+  return !run.finished && run.error === null && run.steps[run.current] === COMPONENTS_STEP;
+}
+
+/** The components the app fetches itself, since the installer could not or was told to skip them. */
+export function leftForLater(run: Run): string[] {
+  return Object.entries(run.fetches)
+    .filter(([, f]) => f.state === 'failed' || f.state === 'skipped')
+    .map(([id]) => id);
 }

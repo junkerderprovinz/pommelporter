@@ -12,6 +12,7 @@ export const hu: Dict = {
   'button.uninstall': 'Eltávolítás',
   'button.start': '{name} indítása',
   'button.retry': 'Újra',
+  'button.skip': 'Kihagyás',
   'button.website': 'Webhely',
   'button.browse': 'Tallózás',
   'button.up': 'Egy mappával feljebb',
@@ -56,7 +57,12 @@ export const hu: Dict = {
   'step.updates.install': 'Automatikus frissítések beállítása',
   'step.updates.uninstall': 'Automatikus frissítések kikapcsolása',
   'step.remove': 'Fájlok eltávolítása',
+  'step.components': 'A(z) {name} működéséhez szükséges elemek letöltése',
   'step.other': 'Folyamatban',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Már megvan',
+  'component.later': 'Az első indításkor',
 
   'progress.label': 'Haladás',
   'progress.failed.install': 'A(z) {name} telepítése nem sikerült.',
@@ -65,6 +71,7 @@ export const hu: Dict = {
   'done.installed': 'A(z) {name} telepítve.',
   'done.uninstalled': 'A(z) {name} eltávolítva.',
   'done.kept': 'A beállításai és adatai megmaradtak.',
+  'done.later': 'A(z) {name} az első indításkor maga tölti le: {list}.',
 
   'confirm.lead': 'Ez eltávolítja a(z) {name} {version} programot erről a számítógépről.',
   'confirm.removed': 'Eltávolítva',

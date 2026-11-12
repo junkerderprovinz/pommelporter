@@ -12,6 +12,7 @@ export const ro: Dict = {
   'button.uninstall': 'Dezinstalează',
   'button.start': 'Pornește {name}',
   'button.retry': 'Încearcă din nou',
+  'button.skip': 'Omite',
   'button.website': 'Site web',
   'button.browse': 'Răsfoiește',
   'button.up': 'Un dosar mai sus',
@@ -56,7 +57,12 @@ export const ro: Dict = {
   'step.updates.install': 'Se configurează actualizările automate',
   'step.updates.uninstall': 'Se opresc actualizările automate',
   'step.remove': 'Se elimină fișierele',
+  'step.components': 'Se descarcă ce îi trebuie lui {name}',
   'step.other': 'În lucru',
+
+  'component.size': '{done} din {total}',
+  'component.present': 'Există deja',
+  'component.later': 'La prima pornire',
 
   'progress.label': 'Progres',
   'progress.failed.install': '{name} nu a putut fi instalat.',
@@ -65,6 +71,7 @@ export const ro: Dict = {
   'done.installed': '{name} este instalat.',
   'done.uninstalled': '{name} a fost dezinstalat.',
   'done.kept': 'Setările și datele tale sunt încă acolo.',
+  'done.later': '{name} va descărca singur {list} la prima pornire.',
 
   'confirm.lead': 'Astfel elimini {name} {version} de pe acest computer.',
   'confirm.removed': 'Se elimină',

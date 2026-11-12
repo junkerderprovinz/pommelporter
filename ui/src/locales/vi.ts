@@ -12,6 +12,7 @@ export const vi: Dict = {
   'button.uninstall': 'Gỡ cài đặt',
   'button.start': 'Mở {name}',
   'button.retry': 'Thử lại',
+  'button.skip': 'Bỏ qua',
   'button.website': 'Trang web',
   'button.browse': 'Duyệt',
   'button.up': 'Lên một thư mục',
@@ -56,7 +57,12 @@ export const vi: Dict = {
   'step.updates.install': 'Đang thiết lập cập nhật tự động',
   'step.updates.uninstall': 'Đang tắt cập nhật tự động',
   'step.remove': 'Đang gỡ tệp',
+  'step.components': 'Đang tải những gì {name} cần',
   'step.other': 'Đang xử lý',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Đã có sẵn',
+  'component.later': 'Khi khởi động lần đầu',
 
   'progress.label': 'Tiến độ',
   'progress.failed.install': 'Không cài được {name}.',
@@ -65,6 +71,7 @@ export const vi: Dict = {
   'done.installed': '{name} đã được cài.',
   'done.uninstalled': '{name} đã được gỡ.',
   'done.kept': 'Cài đặt và dữ liệu của bạn vẫn còn đó.',
+  'done.later': '{name} sẽ tự tải {list} khi khởi động lần đầu.',
 
   'confirm.lead': 'Bước này gỡ {name} {version} khỏi máy tính này.',
   'confirm.removed': 'Bị gỡ',

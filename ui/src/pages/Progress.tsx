@@ -1,8 +1,9 @@
 import type { Info } from '../bridge';
 import { t, type Key } from '../i18n';
-import { fraction, stepState, type Mode, type Run, type StepState } from '../run';
+import { componentName, sizeText } from '../fetches';
+import { COMPONENTS_STEP, fetching, fraction, stepState, type Fetch, type Mode, type Run, type StepState } from '../run';
 import { Button } from '../glimstone/react/Button';
-import { IconCheck, IconClose } from '../components/icons';
+import { IconCheck, IconClose, IconLater } from '../components/icons';
 import { Page } from '../components/Page';
 
 /** The words for a step; a few name the opposite act when uninstalling. */
@@ -16,16 +17,21 @@ function stepLabel(step: string, mode: Mode, name: string): string {
     register: mode === 'install' ? 'step.register.install' : 'step.register.uninstall',
     updates: mode === 'install' ? 'step.updates.install' : 'step.updates.uninstall',
     remove: 'step.remove',
+    [COMPONENTS_STEP]: 'step.components',
   };
   return t(keys[step] ?? 'step.other', { name });
 }
 
-function StepMark({ state }: { state: StepState }) {
+type Mark = StepState | 'later';
+
+function StepMark({ state }: { state: Mark }) {
   switch (state) {
     case 'done':
       return <IconCheck className="text-statusOk" width={14} height={14} />;
     case 'failed':
       return <IconClose className="text-statusFail" width={12} height={12} />;
+    case 'later':
+      return <IconLater className="text-statusWarn" width={14} height={14} />;
     case 'running':
       return <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent border-t-transparent" />;
     default:
@@ -33,12 +39,43 @@ function StepMark({ state }: { state: StepState }) {
   }
 }
 
-const LABEL_INK: Record<StepState, string> = {
+const LABEL_INK: Record<Mark, string> = {
   waiting: 'text-carbon-textMuted',
   running: 'text-carbon-text font-medium',
   done: 'text-carbon-textSub',
   failed: 'text-statusFail font-medium',
+  later: 'text-carbon-textSub',
 };
+
+/** A component's row mark: one the app fetches later is not a failed install. */
+function fetchMark(f: Fetch): Mark {
+  switch (f.state) {
+    case 'running':
+      return 'running';
+    case 'done':
+    case 'present':
+      return 'done';
+    case 'failed':
+    case 'skipped':
+      return 'later';
+    default:
+      return 'waiting';
+  }
+}
+
+function fetchDetail(f: Fetch): string {
+  switch (f.state) {
+    case 'running':
+      return sizeText(f);
+    case 'present':
+      return t('component.present');
+    case 'failed':
+    case 'skipped':
+      return t('component.later');
+    default:
+      return '';
+  }
+}
 
 export function Progress({
   info,
@@ -46,26 +83,44 @@ export function Progress({
   onRetry,
   onBack,
   onClose,
+  onSkip,
+  skipping,
 }: {
   info: Info;
   run: Run;
   onRetry: () => void;
   onBack: () => void;
   onClose: () => void;
+  onSkip: () => void;
+  /** Skip was pressed and the download under way is being stopped. */
+  skipping: boolean;
 }) {
   const mode = info.mode;
   const percent = Math.round(fraction(run) * 100);
   const failed = run.error !== null;
+  const components = info.components ?? [];
 
   return (
     <Page
       actions={
-        failed && (
+        failed ? (
           <>
             <Button label={t('button.close')} labelKey="button.close" tone="neutral" className="glim-btn-key" onClick={onClose} />
             <Button label={t('button.back')} labelKey="button.back" tone="neutral" className="glim-btn-key" onClick={onBack} />
             <Button label={t('button.retry')} labelKey="button.retry" tone="accent" className="glim-btn-key" onClick={onRetry} />
           </>
+        ) : (
+          fetching(run) && (
+            <Button
+              label={t('button.skip')}
+              labelKey="button.skip"
+              tone="neutral"
+              className="glim-btn-key"
+              disabled={skipping}
+              busy={skipping}
+              onClick={onSkip}
+            />
+          )
         )
       }
     >
@@ -87,11 +142,31 @@ export function Progress({
           {run.steps.map((step, i) => {
             const state = stepState(run, i);
             return (
-              <li key={step} className="flex items-center gap-3 text-sm" aria-current={state === 'running' ? 'step' : undefined}>
-                <span className="flex h-4 w-4 shrink-0 items-center justify-center">
-                  <StepMark state={state} />
+              <li key={step} className="flex flex-col text-sm" aria-current={state === 'running' ? 'step' : undefined}>
+                <span className="flex items-center gap-3">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                    <StepMark state={state} />
+                  </span>
+                  <span className={LABEL_INK[state]}>{stepLabel(step, mode, info.name)}</span>
                 </span>
-                <span className={LABEL_INK[state]}>{stepLabel(step, mode, info.name)}</span>
+                {step === COMPONENTS_STEP && components.length > 0 && (
+                  <ul className="flex flex-col ps-7">
+                    {components.map((c) => {
+                      const f = run.fetches[c.id] ?? { state: 'waiting', done: 0, total: -1, error: '' };
+                      const mark = fetchMark(f);
+                      return (
+                        <li key={c.id} className="flex items-center gap-3 text-subline">
+                          <span className="flex h-4 w-4 shrink-0 items-center justify-center">
+                            <StepMark state={mark} />
+                          </span>
+                          <span className={LABEL_INK[mark]}>{componentName(c)}</span>
+                          <span className="flex-1" />
+                          <span className="text-carbon-textMuted tabular-nums">{fetchDetail(f)}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </li>
             );
           })}

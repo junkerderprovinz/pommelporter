@@ -12,6 +12,7 @@ export const gl: Dict = {
   'button.uninstall': 'Desinstalar',
   'button.start': 'Abrir {name}',
   'button.retry': 'Tentar de novo',
+  'button.skip': 'Omitir',
   'button.website': 'Sitio web',
   'button.browse': 'Explorar',
   'button.up': 'Cartafol superior',
@@ -56,7 +57,12 @@ export const gl: Dict = {
   'step.updates.install': 'Configurando as actualizacións automáticas',
   'step.updates.uninstall': 'Desactivando as actualizacións automáticas',
   'step.remove': 'Quitando ficheiros',
+  'step.components': 'Descargando o que precisa {name}',
   'step.other': 'Traballando',
+
+  'component.size': '{done} de {total}',
+  'component.present': 'Xa está',
+  'component.later': 'No primeiro inicio',
 
   'progress.label': 'Progreso',
   'progress.failed.install': 'Non se puido instalar {name}.',
@@ -65,6 +71,7 @@ export const gl: Dict = {
   'done.installed': '{name} está instalado.',
   'done.uninstalled': '{name} foi desinstalado.',
   'done.kept': 'A túa configuración e os teus datos seguen aí.',
+  'done.later': '{name} descargará {list} pola súa conta a primeira vez que se inicie.',
 
   'confirm.lead': 'Isto quita {name} {version} deste ordenador.',
   'confirm.removed': 'Quítase',

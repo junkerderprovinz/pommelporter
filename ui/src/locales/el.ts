@@ -12,6 +12,7 @@ export const el: Dict = {
   'button.uninstall': 'Απεγκατάσταση',
   'button.start': 'Άνοιγμα {name}',
   'button.retry': 'Ξανά',
+  'button.skip': 'Παράλειψη',
   'button.website': 'Ιστότοπος',
   'button.browse': 'Αναζήτηση',
   'button.up': 'Έναν φάκελο πάνω',
@@ -56,7 +57,12 @@ export const el: Dict = {
   'step.updates.install': 'Ρύθμιση αυτόματων ενημερώσεων',
   'step.updates.uninstall': 'Απενεργοποίηση αυτόματων ενημερώσεων',
   'step.remove': 'Αφαίρεση αρχείων',
+  'step.components': 'Λήψη όσων χρειάζεται το {name}',
   'step.other': 'Σε εξέλιξη',
+
+  'component.size': '{done} από {total}',
+  'component.present': 'Υπάρχει ήδη',
+  'component.later': 'Στην πρώτη εκκίνηση',
 
   'progress.label': 'Πρόοδος',
   'progress.failed.install': 'Δεν ήταν δυνατή η εγκατάσταση του {name}.',
@@ -65,6 +71,7 @@ export const el: Dict = {
   'done.installed': 'Το {name} εγκαταστάθηκε.',
   'done.uninstalled': 'Το {name} απεγκαταστάθηκε.',
   'done.kept': 'Οι ρυθμίσεις και τα δεδομένα σας είναι ακόμα εκεί.',
+  'done.later': 'Το {name} θα κατεβάσει μόνο του στην πρώτη εκκίνηση: {list}.',
 
   'confirm.lead': 'Αυτό αφαιρεί το {name} {version} από αυτόν τον υπολογιστή.',
   'confirm.removed': 'Αφαιρείται',

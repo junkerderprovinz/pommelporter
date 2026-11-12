@@ -26,7 +26,22 @@ export interface Info {
   choices: Choice[] | null;
   /** What an uninstall leaves, by language code; null for the window's own words. */
   stays?: Record<string, Stay> | null;
+  /** What the installer fetches once the program is in place, for this platform. */
+  components?: Component[] | null;
 }
+
+/** Something the installer fetches after the program, as setup.Component. */
+export interface Component {
+  id: string;
+  /** The name the window shows, by language code. */
+  name: Record<string, string>;
+}
+
+/**
+ * How far one component has come. "present" was there already, and "failed"
+ * and "skipped" are left for the app to fetch itself.
+ */
+export type FetchState = 'running' | 'done' | 'present' | 'failed' | 'skipped';
 
 /** What an uninstall leaves in one language, as setup.Stay. */
 export interface Stay {
@@ -82,8 +97,18 @@ export interface Folder {
   entries: Entry[];
 }
 
-/** The "progress" event: a step as it starts, or the error that ended the run. */
-export type Progress = { step: string } | { error: string };
+/** One component's part of the "progress" event, as setup.Fetched. */
+export interface Fetched {
+  component: string;
+  state: FetchState;
+  /** Bytes so far and in all; total is -1 while unknown. */
+  done?: number;
+  total?: number;
+  error?: string;
+}
+
+/** The "progress" event: a step as it starts, a component as it moves on, or the error that ended the run. */
+export type Progress = { step: string } | { error: string } | Fetched;
 
 export interface Installer {
   info(): Promise<Info>;
@@ -94,6 +119,8 @@ export interface Installer {
   /** Returns at once; the work reports through onProgress. */
   install(options: Options): Promise<void>;
   uninstall(removal: Removal): Promise<void>;
+  /** Stops fetching components and leaves the rest to the app. */
+  skipComponents(): Promise<void>;
   launch(): Promise<void>;
   openURL(url: string): Promise<void>;
   minimise(): Promise<void>;
@@ -128,6 +155,7 @@ async function wailsInstaller(): Promise<Installer> {
     makeDir: (parent, name) => call('MakeDir', parent, name),
     install: (options) => call('Install', options),
     uninstall: (removal) => call('Uninstall', removal),
+    skipComponents: () => call('SkipComponents'),
     launch: () => call('Launch'),
     openURL: (url) => call('OpenURL', url),
     minimise: () => call('Minimise'),

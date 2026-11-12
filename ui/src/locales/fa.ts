@@ -12,6 +12,7 @@ export const fa: Dict = {
   'button.uninstall': 'حذف نصب',
   'button.start': 'اجرای {name}',
   'button.retry': 'تلاش دوباره',
+  'button.skip': 'رد کردن',
   'button.website': 'وب‌سایت',
   'button.browse': 'مرور',
   'button.up': 'یک پوشه بالاتر',
@@ -56,7 +57,12 @@ export const fa: Dict = {
   'step.updates.install': 'در حال راه‌اندازی به‌روزرسانی خودکار',
   'step.updates.uninstall': 'در حال خاموش کردن به‌روزرسانی خودکار',
   'step.remove': 'در حال حذف فایل‌ها',
+  'step.components': 'در حال دانلود آنچه {name} لازم دارد',
   'step.other': 'در حال کار',
+
+  'component.size': '{done} از {total}',
+  'component.present': 'از قبل موجود است',
+  'component.later': 'در اولین اجرا',
 
   'progress.label': 'پیشرفت',
   'progress.failed.install': '{name} نصب نشد.',
@@ -65,6 +71,7 @@ export const fa: Dict = {
   'done.installed': '{name} نصب شد.',
   'done.uninstalled': 'نصب {name} حذف شد.',
   'done.kept': 'تنظیمات و داده‌های شما هنوز سر جایشان هستند.',
+  'done.later': '{name} در اولین اجرا خودش {list} را دانلود می‌کند.',
 
   'confirm.lead': 'با این کار {name} {version} از این رایانه حذف می‌شود.',
   'confirm.removed': 'حذف می‌شود',

@@ -12,6 +12,7 @@ export const lv: Dict = {
   'button.uninstall': 'Atinstalēt',
   'button.start': 'Palaist {name}',
   'button.retry': 'Mēģināt vēlreiz',
+  'button.skip': 'Izlaist',
   'button.website': 'Tīmekļa vietne',
   'button.browse': 'Pārlūkot',
   'button.up': 'Mapi augstāk',
@@ -56,7 +57,12 @@ export const lv: Dict = {
   'step.updates.install': 'Iestata automātiskos atjauninājumus',
   'step.updates.uninstall': 'Izslēdz automātiskos atjauninājumus',
   'step.remove': 'Noņem failus',
+  'step.components': 'Lejupielādē, kas vajadzīgs {name}',
   'step.other': 'Notiek',
+
+  'component.size': '{done} no {total}',
+  'component.present': 'Jau ir',
+  'component.later': 'Pirmajā palaišanā',
 
   'progress.label': 'Norise',
   'progress.failed.install': '{name} neizdevās instalēt.',
@@ -65,6 +71,7 @@ export const lv: Dict = {
   'done.installed': '{name} ir instalēta.',
   'done.uninstalled': '{name} ir atinstalēta.',
   'done.kept': 'Jūsu iestatījumi un dati joprojām ir vietā.',
+  'done.later': '{name} pirmajā palaišanā pats lejupielādēs: {list}.',
 
   'confirm.lead': 'Tā {name} {version} tiks noņemta no šī datora.',
   'confirm.removed': 'Tiek noņemts',

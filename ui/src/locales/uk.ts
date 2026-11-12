@@ -12,6 +12,7 @@ export const uk: Dict = {
   'button.uninstall': 'Видалити',
   'button.start': 'Запустити {name}',
   'button.retry': 'Спробувати ще раз',
+  'button.skip': 'Пропустити',
   'button.website': 'Сайт',
   'button.browse': 'Огляд',
   'button.up': 'На рівень вище',
@@ -56,7 +57,12 @@ export const uk: Dict = {
   'step.updates.install': 'Налаштування автоматичних оновлень',
   'step.updates.uninstall': 'Вимкнення автоматичних оновлень',
   'step.remove': 'Видалення файлів',
+  'step.components': 'Завантаження того, що потрібно {name}',
   'step.other': 'Виконується',
+
+  'component.size': '{done} з {total}',
+  'component.present': 'Уже є',
+  'component.later': 'Під час першого запуску',
 
   'progress.label': 'Перебіг',
   'progress.failed.install': 'Не вдалося встановити {name}.',
@@ -65,6 +71,7 @@ export const uk: Dict = {
   'done.installed': '{name} встановлено.',
   'done.uninstalled': '{name} видалено.',
   'done.kept': 'Ваші налаштування й дані на місці.',
+  'done.later': '{name} сам завантажить {list} під час першого запуску.',
 
   'confirm.lead': "{name} {version} буде видалено з цього комп'ютера.",
   'confirm.removed': 'Видаляється',

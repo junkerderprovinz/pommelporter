@@ -12,6 +12,7 @@ export const th: Dict = {
   'button.uninstall': 'ถอนการติดตั้ง',
   'button.start': 'เปิด {name}',
   'button.retry': 'ลองอีกครั้ง',
+  'button.skip': 'ข้าม',
   'button.website': 'เว็บไซต์',
   'button.browse': 'เรียกดู',
   'button.up': 'ขึ้นไปหนึ่งโฟลเดอร์',
@@ -56,7 +57,12 @@ export const th: Dict = {
   'step.updates.install': 'กำลังตั้งค่าการอัปเดตอัตโนมัติ',
   'step.updates.uninstall': 'กำลังปิดการอัปเดตอัตโนมัติ',
   'step.remove': 'กำลังลบไฟล์',
+  'step.components': 'กำลังดาวน์โหลดสิ่งที่ {name} ต้องใช้',
   'step.other': 'กำลังดำเนินการ',
+
+  'component.size': '{done} จาก {total}',
+  'component.present': 'มีอยู่แล้ว',
+  'component.later': 'เมื่อเปิดครั้งแรก',
 
   'progress.label': 'ความคืบหน้า',
   'progress.failed.install': 'ติดตั้ง {name} ไม่สำเร็จ',
@@ -65,6 +71,7 @@ export const th: Dict = {
   'done.installed': 'ติดตั้ง {name} แล้ว',
   'done.uninstalled': 'ถอนการติดตั้ง {name} แล้ว',
   'done.kept': 'การตั้งค่าและข้อมูลของคุณยังอยู่ครบ',
+  'done.later': '{name} จะดาวน์โหลด {list} เองเมื่อเปิดครั้งแรก',
 
   'confirm.lead': 'ขั้นตอนนี้จะลบ {name} {version} ออกจากคอมพิวเตอร์เครื่องนี้',
   'confirm.removed': 'จะถูกลบ',

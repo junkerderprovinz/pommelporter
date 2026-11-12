@@ -12,6 +12,7 @@ export const ru: Dict = {
   'button.uninstall': 'Удалить',
   'button.start': 'Запустить {name}',
   'button.retry': 'Повторить',
+  'button.skip': 'Пропустить',
   'button.website': 'Сайт',
   'button.browse': 'Обзор',
   'button.up': 'На уровень выше',
@@ -56,7 +57,12 @@ export const ru: Dict = {
   'step.updates.install': 'Настройка автоматических обновлений',
   'step.updates.uninstall': 'Отключение автоматических обновлений',
   'step.remove': 'Удаление файлов',
+  'step.components': 'Загрузка того, что нужно {name}',
   'step.other': 'Выполняется',
+
+  'component.size': '{done} из {total}',
+  'component.present': 'Уже есть',
+  'component.later': 'При первом запуске',
 
   'progress.label': 'Ход выполнения',
   'progress.failed.install': 'Не удалось установить {name}.',
@@ -65,6 +71,7 @@ export const ru: Dict = {
   'done.installed': '{name} установлен.',
   'done.uninstalled': '{name} удалён.',
   'done.kept': 'Ваши настройки и данные на месте.',
+  'done.later': '{name} сам загрузит {list} при первом запуске.',
 
   'confirm.lead': '{name} {version} будет удалён с этого компьютера.',
   'confirm.removed': 'Удаляется',

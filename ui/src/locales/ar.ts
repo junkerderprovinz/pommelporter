@@ -12,6 +12,7 @@ export const ar: Dict = {
   'button.uninstall': 'إلغاء التثبيت',
   'button.start': 'تشغيل {name}',
   'button.retry': 'حاول مجددًا',
+  'button.skip': 'تخطي',
   'button.website': 'الموقع',
   'button.browse': 'استعراض',
   'button.up': 'مجلد للأعلى',
@@ -56,7 +57,12 @@ export const ar: Dict = {
   'step.updates.install': 'جارٍ إعداد التحديثات التلقائية',
   'step.updates.uninstall': 'جارٍ إيقاف التحديثات التلقائية',
   'step.remove': 'جارٍ إزالة الملفات',
+  'step.components': 'جارٍ تنزيل ما يحتاجه {name}',
   'step.other': 'جارٍ العمل',
+
+  'component.size': '{done} من {total}',
+  'component.present': 'موجود بالفعل',
+  'component.later': 'عند أول تشغيل',
 
   'progress.label': 'التقدم',
   'progress.failed.install': 'تعذّر تثبيت {name}.',
@@ -65,6 +71,7 @@ export const ar: Dict = {
   'done.installed': 'تم تثبيت {name}.',
   'done.uninstalled': 'تم إلغاء تثبيت {name}.',
   'done.kept': 'إعداداتك وبياناتك ما زالت موجودة.',
+  'done.later': 'سيُنزّل {name} بنفسه {list} عند تشغيله أول مرة.',
 
   'confirm.lead': 'سيُزال {name} {version} من هذا الكمبيوتر.',
   'confirm.removed': 'يُزال',

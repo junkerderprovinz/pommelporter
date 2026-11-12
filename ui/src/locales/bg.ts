@@ -12,6 +12,7 @@ export const bg: Dict = {
   'button.uninstall': 'Деинсталирай',
   'button.start': 'Стартирай {name}',
   'button.retry': 'Опитай пак',
+  'button.skip': 'Пропускане',
   'button.website': 'Уебсайт',
   'button.browse': 'Преглед',
   'button.up': 'Една папка нагоре',
@@ -56,7 +57,12 @@ export const bg: Dict = {
   'step.updates.install': 'Настройване на автоматични обновления',
   'step.updates.uninstall': 'Изключване на автоматичните обновления',
   'step.remove': 'Премахване на файлове',
+  'step.components': 'Изтегляне на необходимото за {name}',
   'step.other': 'В процес',
+
+  'component.size': '{done} от {total}',
+  'component.present': 'Вече е налично',
+  'component.later': 'При първото стартиране',
 
   'progress.label': 'Напредък',
   'progress.failed.install': '{name} не можа да се инсталира.',
@@ -65,6 +71,7 @@ export const bg: Dict = {
   'done.installed': '{name} е инсталиран.',
   'done.uninstalled': '{name} е деинсталиран.',
   'done.kept': 'Настройките и данните ви са все още там.',
+  'done.later': '{name} сам ще изтегли {list} при първото си стартиране.',
 
   'confirm.lead': 'Това премахва {name} {version} от този компютър.',
   'confirm.removed': 'Премахва се',

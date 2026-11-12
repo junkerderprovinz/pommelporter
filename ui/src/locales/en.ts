@@ -12,6 +12,7 @@ export const en = {
   'button.uninstall': 'Uninstall',
   'button.start': 'Start {name}',
   'button.retry': 'Try again',
+  'button.skip': 'Skip',
   'button.website': 'Website',
   'button.browse': 'Browse',
   'button.up': 'Up one folder',
@@ -56,7 +57,12 @@ export const en = {
   'step.updates.install': 'Setting up automatic updates',
   'step.updates.uninstall': 'Turning off automatic updates',
   'step.remove': 'Removing files',
+  'step.components': 'Downloading what {name} needs',
   'step.other': 'Working on it',
+
+  'component.size': '{done} of {total}',
+  'component.present': 'Already there',
+  'component.later': 'On first start',
 
   'progress.label': 'Progress',
   'progress.failed.install': "{name} couldn't be installed.",
@@ -65,6 +71,7 @@ export const en = {
   'done.installed': '{name} is installed.',
   'done.uninstalled': '{name} has been uninstalled.',
   'done.kept': 'Your settings and data are still there.',
+  'done.later': '{name} downloads {list} itself when it first starts.',
 
   'confirm.lead': 'This removes {name} {version} from this computer.',
   'confirm.removed': 'Removed',

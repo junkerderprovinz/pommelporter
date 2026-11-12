@@ -27,6 +27,7 @@ type App struct {
 	Legacy     Legacy
 	Choices    []Choice
 	Stays      map[string]Stay
+	Components []Component
 }
 
 // Stay is what is left on the computer after an uninstall, in one language.
@@ -68,6 +69,17 @@ func (a App) Ticked(platform string, o Options) [][]string {
 		}
 	}
 	return runs
+}
+
+// ComponentsOn are the app's components that apply on platform.
+func (a App) ComponentsOn(platform string) []Component {
+	var on []Component
+	for _, c := range a.Components {
+		if len(c.Platforms) == 0 || slices.Contains(c.Platforms, platform) {
+			on = append(on, c)
+		}
+	}
+	return on
 }
 
 // Undos are the arguments to run the installed program with before an
@@ -168,15 +180,16 @@ type Entry struct {
 // The steps a platform reports, in the order they run. The window shows them
 // by these names, translated.
 const (
-	StepPrepare   = "prepare"
-	StepClose     = "close"
-	StepLegacy    = "legacy"
-	StepFiles     = "files"
-	StepShortcuts = "shortcuts"
-	StepRegister  = "register"
-	StepUpdates   = "updates"
-	StepRemove    = "remove"
-	StepDone      = "done"
+	StepPrepare    = "prepare"
+	StepClose      = "close"
+	StepLegacy     = "legacy"
+	StepFiles      = "files"
+	StepShortcuts  = "shortcuts"
+	StepRegister   = "register"
+	StepUpdates    = "updates"
+	StepComponents = "components"
+	StepRemove     = "remove"
+	StepDone       = "done"
 )
 
 // Report is called as each step starts.

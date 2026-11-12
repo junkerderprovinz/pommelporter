@@ -12,6 +12,7 @@ export const eu: Dict = {
   'button.uninstall': 'Desinstalatu',
   'button.start': 'Abiarazi {name}',
   'button.retry': 'Saiatu berriro',
+  'button.skip': 'Saltatu',
   'button.website': 'Webgunea',
   'button.browse': 'Arakatu',
   'button.up': 'Karpeta bat gora',
@@ -56,7 +57,12 @@ export const eu: Dict = {
   'step.updates.install': 'Eguneratze automatikoak konfiguratzen',
   'step.updates.uninstall': 'Eguneratze automatikoak desaktibatzen',
   'step.remove': 'Fitxategiak kentzen',
+  'step.components': '{name} abiarazteko behar dena deskargatzen',
   'step.other': 'Lanean',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Badago jada',
+  'component.later': 'Lehen abioan',
 
   'progress.label': 'Aurrerapena',
   'progress.failed.install': 'Ezin izan da {name} instalatu.',
@@ -65,6 +71,7 @@ export const eu: Dict = {
   'done.installed': '{name} instalatuta dago.',
   'done.uninstalled': '{name} desinstalatu da.',
   'done.kept': 'Zure ezarpenak eta datuak hor daude oraindik.',
+  'done.later': '{name} lehen abioan bere kabuz deskargatuko du: {list}.',
 
   'confirm.lead': 'Honek {name} {version} kentzen du ordenagailu honetatik.',
   'confirm.removed': 'Kentzen da',

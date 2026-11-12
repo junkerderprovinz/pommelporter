@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io/fs"
 	"os"
+	"strings"
 
 	"github.com/junkerderprovinz/pommelporter/internal/setup"
 )
@@ -54,6 +55,46 @@ type App struct {
 	// such as "de", with "en" for a language it lacks. Without it the window
 	// says the settings and data stay.
 	Stays map[string]Stay
+	// Components are fetched one after the other once the program is in
+	// place, each with its own row and progress in the window.
+	Components []Component
+}
+
+// Component is something the program needs that is too large for the
+// payload or changes too often to ship in it, such as a runtime. The window
+// fetches it as the last step of an install. One that fails or is skipped is
+// named on the last page and the install still succeeds, so the program must
+// be able to fetch it itself on its first start. A silent install fetches
+// none, since deployment tools often run it as the system account, whose
+// folders are not the person's.
+type Component struct {
+	// ID names the component in the events the window gets.
+	ID string
+	// Name is what the window calls it, by language code such as "de";
+	// "en" stands in for a language it lacks.
+	Name map[string]string
+	// Target is the file the component becomes. When it exists already the
+	// component is left as it is, so an update of the app neither fetches it
+	// again nor replaces a newer copy the program fetched itself.
+	Target string
+	// URL is where the file comes from, over https.
+	URL string
+	// SHA256 is the file's digest in hex.
+	SHA256 string
+	// Executable gives the file the execute bits on Linux.
+	Executable bool
+	// Verify checks the downloaded file at path before it replaces Target,
+	// such as by running it once. A component given by URL needs SHA256,
+	// Verify or both.
+	Verify func(path string) error
+	// Fetch does the whole work instead of URL, for a component that needs
+	// more than one download, such as an archive to check and unpack.
+	// progress hears how much has arrived of how much; total is -1 while
+	// unknown. It must end when ctx does and leave nothing half done behind.
+	Fetch func(ctx context.Context, progress func(done, total int64)) error
+	// Platforms limits the component to these, "windows" or "linux"; empty
+	// means everywhere.
+	Platforms []string
 }
 
 // Stay is what an uninstall leaves, in one language.
@@ -116,6 +157,9 @@ func Run(app App) error {
 	for _, c := range app.Choices {
 		a.Choices = append(a.Choices, setup.Choice(c))
 	}
+	for _, c := range app.Components {
+		a.Components = append(a.Components, setup.Component(c))
+	}
 	if len(app.Stays) > 0 {
 		a.Stays = map[string]setup.Stay{}
 		for lang, s := range app.Stays {
@@ -124,6 +168,9 @@ func Run(app App) error {
 	}
 	if a.Name == "" || a.Executable == "" || a.Payload == nil {
 		return errors.New("pommelporter: App needs a Name, an Executable and a Payload")
+	}
+	if err := checkComponents(a.Components); err != nil {
+		return err
 	}
 	args, err := parseArgs(os.Args[1:])
 	if err != nil {
@@ -155,6 +202,27 @@ func Run(app App) error {
 		finishHandOver(code)
 	}
 	return err
+}
+
+// checkComponents refuses a component the window could not fetch, or one
+// whose download nothing would check before the program runs it.
+func checkComponents(components []setup.Component) error {
+	seen := map[string]bool{}
+	for _, c := range components {
+		switch {
+		case c.ID == "" || seen[c.ID]:
+			return fmt.Errorf("pommelporter: every Component needs an ID of its own, %q is empty or taken", c.ID)
+		case len(c.Name) == 0:
+			return fmt.Errorf("pommelporter: Component %s needs a Name", c.ID)
+		case c.Fetch != nil:
+		case c.Target == "" || !strings.HasPrefix(c.URL, "https://"):
+			return fmt.Errorf("pommelporter: Component %s needs a Fetch, or a Target and an https URL", c.ID)
+		case c.SHA256 == "" && c.Verify == nil:
+			return fmt.Errorf("pommelporter: Component %s needs a SHA256 or a Verify for its download", c.ID)
+		}
+		seen[c.ID] = true
+	}
+	return nil
 }
 
 type cmdline struct {

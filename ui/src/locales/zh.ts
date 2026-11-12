@@ -12,6 +12,7 @@ export const zh: Dict = {
   'button.uninstall': '卸载',
   'button.start': '启动 {name}',
   'button.retry': '重试',
+  'button.skip': '跳过',
   'button.website': '网站',
   'button.browse': '浏览',
   'button.up': '上一级文件夹',
@@ -56,7 +57,12 @@ export const zh: Dict = {
   'step.updates.install': '正在设置自动更新',
   'step.updates.uninstall': '正在关闭自动更新',
   'step.remove': '正在移除文件',
+  'step.components': '正在下载 {name} 所需的组件',
   'step.other': '正在处理',
+
+  'component.size': '{done} / {total}',
+  'component.present': '已存在',
+  'component.later': '首次启动时',
 
   'progress.label': '进度',
   'progress.failed.install': '无法安装 {name}。',
@@ -65,6 +71,7 @@ export const zh: Dict = {
   'done.installed': '{name} 已安装。',
   'done.uninstalled': '{name} 已卸载。',
   'done.kept': '你的设置和数据都还在。',
+  'done.later': '{name} 首次启动时会自行下载 {list}。',
 
   'confirm.lead': '这会从这台电脑上移除 {name} {version}。',
   'confirm.removed': '将移除',

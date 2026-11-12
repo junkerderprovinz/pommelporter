@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Info, Installer, Options as Choices, Removal } from './bridge';
-import { advance, plannedSteps, startRun, type Run } from './run';
+import { advance, leftForLater, plannedSteps, startRun, type Run } from './run';
 import { language } from './i18n';
 import { Confirm } from './pages/Confirm';
 import { Done } from './pages/Done';
@@ -19,7 +19,10 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   const [step, setStep] = useState<Step>(mode === 'install' ? 'welcome' : 'confirm');
   const [choices, setChoices] = useState({ ...defaults, language: language() });
   const [removal, setRemoval] = useState<Removal>({ windowData: false });
-  const [run, setRun] = useState<Run>(() => startRun(plannedSteps(mode, info.platform)));
+  const components = info.components ?? [];
+  const fresh = () => startRun(plannedSteps(mode, info.platform, components.length > 0), components.map((c) => c.id));
+  const [run, setRun] = useState<Run>(fresh);
+  const [skipping, setSkipping] = useState(false);
 
   useEffect(() => installer.onProgress((event) => setRun((r) => advance(r, event))), [installer]);
 
@@ -30,7 +33,8 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
   }, [run.finished]);
 
   function begin() {
-    setRun(startRun(plannedSteps(mode, info.platform)));
+    setRun(fresh());
+    setSkipping(false);
     setStep('progress');
     void (mode === 'install' ? installer.install(choices) : installer.uninstall(removal));
   }
@@ -77,12 +81,18 @@ export function App({ installer, info, defaults }: { installer: Installer; info:
             onRetry={begin}
             onBack={() => setStep(mode === 'install' ? 'options' : 'confirm')}
             onClose={quit}
+            onSkip={() => {
+              setSkipping(true);
+              void installer.skipComponents();
+            }}
+            skipping={skipping}
           />
         );
       case 'done':
         return (
           <Done
             info={info}
+            later={leftForLater(run).map((id) => ({ id, error: run.fetches[id]!.error }))}
             onLaunch={async () => {
               await installer.launch();
               quit();

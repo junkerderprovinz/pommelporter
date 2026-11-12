@@ -12,6 +12,7 @@ export const nl: Dict = {
   'button.uninstall': 'Verwijderen',
   'button.start': '{name} starten',
   'button.retry': 'Opnieuw proberen',
+  'button.skip': 'Overslaan',
   'button.website': 'Website',
   'button.browse': 'Bladeren',
   'button.up': 'Map omhoog',
@@ -56,7 +57,12 @@ export const nl: Dict = {
   'step.updates.install': 'Automatische updates instellen',
   'step.updates.uninstall': 'Automatische updates uitzetten',
   'step.remove': 'Bestanden verwijderen',
+  'step.components': 'Downloaden wat {name} nodig heeft',
   'step.other': 'Bezig',
+
+  'component.size': '{done} van {total}',
+  'component.present': 'Al aanwezig',
+  'component.later': 'Bij de eerste start',
 
   'progress.label': 'Voortgang',
   'progress.failed.install': '{name} kon niet worden geïnstalleerd.',
@@ -65,6 +71,7 @@ export const nl: Dict = {
   'done.installed': '{name} is geïnstalleerd.',
   'done.uninstalled': '{name} is verwijderd.',
   'done.kept': 'Je instellingen en gegevens zijn er nog.',
+  'done.later': '{name} downloadt {list} zelf bij de eerste start.',
 
   'confirm.lead': 'Dit verwijdert {name} {version} van deze computer.',
   'confirm.removed': 'Wordt verwijderd',

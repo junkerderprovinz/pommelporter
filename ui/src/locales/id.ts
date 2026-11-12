@@ -12,6 +12,7 @@ export const id: Dict = {
   'button.uninstall': 'Copot',
   'button.start': 'Buka {name}',
   'button.retry': 'Coba lagi',
+  'button.skip': 'Lewati',
   'button.website': 'Situs web',
   'button.browse': 'Telusuri',
   'button.up': 'Naik satu folder',
@@ -56,7 +57,12 @@ export const id: Dict = {
   'step.updates.install': 'Menyiapkan pembaruan otomatis',
   'step.updates.uninstall': 'Mematikan pembaruan otomatis',
   'step.remove': 'Menghapus file',
+  'step.components': 'Mengunduh yang dibutuhkan {name}',
   'step.other': 'Sedang bekerja',
+
+  'component.size': '{done} dari {total}',
+  'component.present': 'Sudah ada',
+  'component.later': 'Saat pertama dijalankan',
 
   'progress.label': 'Kemajuan',
   'progress.failed.install': '{name} tidak bisa dipasang.',
@@ -65,6 +71,7 @@ export const id: Dict = {
   'done.installed': '{name} sudah terpasang.',
   'done.uninstalled': '{name} sudah dicopot.',
   'done.kept': 'Pengaturan dan data Anda masih ada.',
+  'done.later': '{name} akan mengunduh {list} sendiri saat pertama dijalankan.',
 
   'confirm.lead': 'Ini menghapus {name} {version} dari komputer ini.',
   'confirm.removed': 'Dihapus',

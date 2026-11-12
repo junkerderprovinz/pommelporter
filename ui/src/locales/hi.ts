@@ -12,6 +12,7 @@ export const hi: Dict = {
   'button.uninstall': 'अनइंस्टॉल करें',
   'button.start': '{name} शुरू करें',
   'button.retry': 'फिर से कोशिश करें',
+  'button.skip': 'छोड़ें',
   'button.website': 'वेबसाइट',
   'button.browse': 'ब्राउज़ करें',
   'button.up': 'एक फ़ोल्डर ऊपर',
@@ -56,7 +57,12 @@ export const hi: Dict = {
   'step.updates.install': 'अपने-आप अपडेट सेट किए जा रहे हैं',
   'step.updates.uninstall': 'अपने-आप अपडेट बंद किए जा रहे हैं',
   'step.remove': 'फ़ाइलें हटाई जा रही हैं',
+  'step.components': '{name} के लिए ज़रूरी चीज़ें डाउनलोड हो रही हैं',
   'step.other': 'काम चल रहा है',
+
+  'component.size': '{total} में से {done}',
+  'component.present': 'पहले से मौजूद',
+  'component.later': 'पहली बार शुरू होने पर',
 
   'progress.label': 'प्रगति',
   'progress.failed.install': '{name} इंस्टॉल नहीं हो सका।',
@@ -65,6 +71,7 @@ export const hi: Dict = {
   'done.installed': '{name} इंस्टॉल हो गया है।',
   'done.uninstalled': '{name} अनइंस्टॉल हो गया है।',
   'done.kept': 'आपकी सेटिंग्स और डेटा अब भी मौजूद हैं।',
+  'done.later': '{name} पहली बार शुरू होने पर {list} खुद डाउनलोड कर लेगा।',
 
   'confirm.lead': 'इससे {name} {version} इस कंप्यूटर से हट जाएगा।',
   'confirm.removed': 'हटेगा',

@@ -12,6 +12,7 @@ export const lt: Dict = {
   'button.uninstall': 'Pašalinti',
   'button.start': 'Paleisti {name}',
   'button.retry': 'Bandyti dar kartą',
+  'button.skip': 'Praleisti',
   'button.website': 'Svetainė',
   'button.browse': 'Naršyti',
   'button.up': 'Aplanku aukščiau',
@@ -56,7 +57,12 @@ export const lt: Dict = {
   'step.updates.install': 'Nustatomi automatiniai naujinimai',
   'step.updates.uninstall': 'Išjungiami automatiniai naujinimai',
   'step.remove': 'Šalinami failai',
+  'step.components': 'Atsisiunčiama, ko reikia {name}',
   'step.other': 'Vykdoma',
+
+  'component.size': '{done} iš {total}',
+  'component.present': 'Jau yra',
+  'component.later': 'Pirmą kartą paleidus',
 
   'progress.label': 'Eiga',
   'progress.failed.install': 'Nepavyko įdiegti {name}.',
@@ -65,6 +71,7 @@ export const lt: Dict = {
   'done.installed': '{name} įdiegta.',
   'done.uninstalled': '{name} pašalinta.',
   'done.kept': 'Jūsų nustatymai ir duomenys liko vietoje.',
+  'done.later': 'Pirmą kartą paleistas {name} pats atsisiųs: {list}.',
 
   'confirm.lead': 'Taip {name} {version} bus pašalinta iš šio kompiuterio.',
   'confirm.removed': 'Pašalinama',

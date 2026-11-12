@@ -86,6 +86,8 @@ The update task needs a folder nobody else can change. The installer gives the i
 
 **macOS** gets a disk image instead of an installer: `cmd/dmgbackground` draws the window background from the app's logo, and `scripts/make-dmg.sh` builds the image around it.
 
+**Anything else the app needs**, such as a runtime or a set of codecs too large to ship in the installer, comes down as the last step of an install. Each part gets its own row and progress. A part that fails, or that the person skips, does not fail the install: the last page names it, and the app fetches it on its first start.
+
 The window speaks 42 languages, picked from the system's language, and hands that language to the app for its first start.
 
 <br>
@@ -117,6 +119,28 @@ func main() {
 	}
 }
 ```
+
+Components are listed the same way. One is a file at an https URL with its digest, or a function of the app's own that downloads, checks and unpacks it and reports its progress:
+
+```go
+Components: []pommelporter.Component{
+	{
+		ID:     "runtime",
+		Name:   map[string]string{"en": "Runtime", "de": "Laufzeitumgebung"},
+		Target: filepath.Join(dataDir, "runtime", "runtime.bin"),
+		URL:    "https://example.org/runtime-2.4.bin",
+		SHA256: "9f2c…",
+	},
+	{
+		ID:     "codecs",
+		Name:   map[string]string{"en": "Codecs"},
+		Target: filepath.Join(dataDir, "codecs", "codecs.json"),
+		Fetch:  fetchCodecs, // func(ctx context.Context, progress func(done, total int64)) error
+	},
+},
+```
+
+A component whose Target exists is left alone, so the app keeps its own copy current. A silent install fetches none.
 
 On Windows the installer needs a manifest that asks for administrator rights, linked in as a `.syso`, which a tool such as go-winres writes.
 

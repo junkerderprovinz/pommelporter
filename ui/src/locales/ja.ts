@@ -12,6 +12,7 @@ export const ja: Dict = {
   'button.uninstall': 'アンインストール',
   'button.start': '{name} を起動',
   'button.retry': '再試行',
+  'button.skip': 'スキップ',
   'button.website': 'Web サイト',
   'button.browse': '参照',
   'button.up': '1 つ上のフォルダー',
@@ -56,7 +57,12 @@ export const ja: Dict = {
   'step.updates.install': '自動更新を設定中',
   'step.updates.uninstall': '自動更新をオフにしています',
   'step.remove': 'ファイルを削除中',
+  'step.components': '{name} に必要なものをダウンロード中',
   'step.other': '処理中',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'インストール済み',
+  'component.later': '初回起動時',
 
   'progress.label': '進行状況',
   'progress.failed.install': '{name} をインストールできませんでした。',
@@ -65,6 +71,7 @@ export const ja: Dict = {
   'done.installed': '{name} をインストールしました。',
   'done.uninstalled': '{name} をアンインストールしました。',
   'done.kept': '設定とデータはそのまま残っています。',
+  'done.later': '{list} は {name} の初回起動時に自動でダウンロードされます。',
 
   'confirm.lead': 'このコンピューターから {name} {version} を削除します。',
   'confirm.removed': '削除されるもの',

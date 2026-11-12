@@ -12,6 +12,7 @@ export const it: Dict = {
   'button.uninstall': 'Disinstalla',
   'button.start': 'Avvia {name}',
   'button.retry': 'Riprova',
+  'button.skip': 'Salta',
   'button.website': 'Sito web',
   'button.browse': 'Sfoglia',
   'button.up': 'Cartella superiore',
@@ -56,7 +57,12 @@ export const it: Dict = {
   'step.updates.install': 'Attivazione degli aggiornamenti automatici',
   'step.updates.uninstall': 'Disattivazione degli aggiornamenti automatici',
   'step.remove': 'Rimozione dei file',
+  'step.components': 'Download di ciò che serve a {name}',
   'step.other': 'In corso',
+
+  'component.size': '{done} di {total}',
+  'component.present': 'Già presente',
+  'component.later': 'Al primo avvio',
 
   'progress.label': 'Avanzamento',
   'progress.failed.install': 'Non è stato possibile installare {name}.',
@@ -65,6 +71,7 @@ export const it: Dict = {
   'done.installed': '{name} è installato.',
   'done.uninstalled': '{name} è stato disinstallato.',
   'done.kept': 'Le tue impostazioni e i tuoi dati sono ancora lì.',
+  'done.later': '{name} scaricherà {list} da solo al primo avvio.',
 
   'confirm.lead': 'Questo rimuove {name} {version} da questo computer.',
   'confirm.removed': 'Rimosso',

@@ -12,6 +12,7 @@ export const sk: Dict = {
   'button.uninstall': 'Odinštalovať',
   'button.start': 'Spustiť {name}',
   'button.retry': 'Skúsiť znova',
+  'button.skip': 'Preskočiť',
   'button.website': 'Web',
   'button.browse': 'Prehľadávať',
   'button.up': 'O priečinok vyššie',
@@ -56,7 +57,12 @@ export const sk: Dict = {
   'step.updates.install': 'Nastavenie automatických aktualizácií',
   'step.updates.uninstall': 'Vypínanie automatických aktualizácií',
   'step.remove': 'Odstraňovanie súborov',
+  'step.components': 'Sťahovanie toho, čo {name} potrebuje',
   'step.other': 'Prebieha',
+
+  'component.size': '{done} z {total}',
+  'component.present': 'Už je k dispozícii',
+  'component.later': 'Pri prvom spustení',
 
   'progress.label': 'Priebeh',
   'progress.failed.install': '{name} sa nepodarilo nainštalovať.',
@@ -65,6 +71,7 @@ export const sk: Dict = {
   'done.installed': '{name} je nainštalovaný.',
   'done.uninstalled': '{name} je odinštalovaný.',
   'done.kept': 'Vaše nastavenia a údaje tu zostali.',
+  'done.later': '{name} si pri prvom spustení sám stiahne {list}.',
 
   'confirm.lead': 'Týmto odstránite {name} {version} z tohto počítača.',
   'confirm.removed': 'Odstráni sa',

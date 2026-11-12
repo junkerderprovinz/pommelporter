@@ -12,6 +12,7 @@ export const tr: Dict = {
   'button.uninstall': 'Kaldır',
   'button.start': '{name} uygulamasını başlat',
   'button.retry': 'Yeniden dene',
+  'button.skip': 'Atla',
   'button.website': 'Web sitesi',
   'button.browse': 'Gözat',
   'button.up': 'Bir üst klasör',
@@ -56,7 +57,12 @@ export const tr: Dict = {
   'step.updates.install': 'Otomatik güncellemeler ayarlanıyor',
   'step.updates.uninstall': 'Otomatik güncellemeler kapatılıyor',
   'step.remove': 'Dosyalar kaldırılıyor',
+  'step.components': '{name} için gerekenler indiriliyor',
   'step.other': 'Çalışıyor',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Zaten var',
+  'component.later': 'İlk açılışta',
 
   'progress.label': 'İlerleme',
   'progress.failed.install': '{name} kurulamadı.',
@@ -65,6 +71,7 @@ export const tr: Dict = {
   'done.installed': '{name} kuruldu.',
   'done.uninstalled': '{name} kaldırıldı.',
   'done.kept': 'Ayarlarınız ve verileriniz hâlâ yerinde.',
+  'done.later': '{name}, ilk açılışta şunları kendisi indirecek: {list}.',
 
   'confirm.lead': 'Bu, {name} {version} uygulamasını bu bilgisayardan kaldırır.',
   'confirm.removed': 'Kaldırılır',

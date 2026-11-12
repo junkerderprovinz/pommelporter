@@ -10,8 +10,9 @@ import (
 	"github.com/wailsapp/wails/v3/pkg/events"
 )
 
-// progressEvent carries each step to the window as {"step": name}, and a
-// failure as {"error": text}.
+// progressEvent carries each step to the window as {"step": name}, a
+// failure as {"error": text}, and how a component comes on as a
+// setup.Fetched.
 const progressEvent = "progress"
 
 // frameless leaves out the system's title bar on Windows, where the window
@@ -29,6 +30,8 @@ type Installer struct {
 
 	mu   sync.Mutex
 	busy bool
+	// skip ends the components' fetch while it runs.
+	skip context.CancelFunc
 }
 
 // Info is everything the window shows before anything happens.
@@ -48,18 +51,23 @@ type Info struct {
 	// Stays names what an uninstall leaves, by language; null for the
 	// window's own words.
 	Stays map[string]setup.Stay `json:"stays"`
+	// Components are what an install fetches after the program, for this
+	// platform; null for an uninstall.
+	Components []setup.Component `json:"components"`
 }
 
 func (s *Installer) Info() Info {
 	mode := "install"
+	components := s.a.ComponentsOn(platformName)
 	if s.uninstall {
 		mode = "uninstall"
+		components = nil
 	}
 	return Info{
 		Name: s.a.Name, Version: s.a.Version, Publisher: s.a.Publisher, Homepage: s.a.Homepage,
 		Accent: s.a.Accent, Logo: string(s.a.Logo), Mode: mode, Platform: platformName,
 		Existing: s.p.Existing(s.a), Frameless: frameless, Choices: s.a.ChoicesOn(platformName),
-		Stays: s.a.Stays,
+		Stays: s.a.Stays, Components: components,
 	}
 }
 
@@ -81,8 +89,43 @@ func (s *Installer) Install(o setup.Options) {
 		if !setup.ValidLanguage(o.Language) {
 			o.Language = ""
 		}
-		return s.p.Install(ctx, s.a, o, report)
+		if err := s.p.Install(ctx, s.a, o, report); err != nil {
+			return err
+		}
+		s.fetchComponents(ctx, report)
+		return nil
 	})
+}
+
+// fetchComponents is the last step of an install. The program is in place by
+// then, so nothing here can fail the install.
+func (s *Installer) fetchComponents(ctx context.Context, report setup.Report) {
+	components := s.a.ComponentsOn(platformName)
+	if len(components) == 0 {
+		return
+	}
+	report(setup.StepComponents)
+	ctx, cancel := context.WithCancel(ctx)
+	s.mu.Lock()
+	s.skip = cancel
+	s.mu.Unlock()
+	defer func() {
+		s.mu.Lock()
+		s.skip = nil
+		s.mu.Unlock()
+		cancel()
+	}()
+	setup.FetchComponents(ctx, components, func(f setup.Fetched) { s.app.Event.Emit(progressEvent, f) })
+}
+
+// SkipComponents stops the components' fetch and leaves what is still
+// missing to the program.
+func (s *Installer) SkipComponents() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.skip != nil {
+		s.skip()
+	}
 }
 
 // Uninstall runs in the background like Install.

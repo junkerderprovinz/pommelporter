@@ -12,6 +12,7 @@ export const et: Dict = {
   'button.uninstall': 'Eemalda',
   'button.start': 'Käivita {name}',
   'button.retry': 'Proovi uuesti',
+  'button.skip': 'Jäta vahele',
   'button.website': 'Veebisait',
   'button.browse': 'Sirvi',
   'button.up': 'Kaust üles',
@@ -56,7 +57,12 @@ export const et: Dict = {
   'step.updates.install': 'Automaatsete uuenduste seadistamine',
   'step.updates.uninstall': 'Automaatsete uuenduste väljalülitamine',
   'step.remove': 'Failide eemaldamine',
+  'step.components': '{name} jaoks vajaliku allalaadimine',
   'step.other': 'Käib',
+
+  'component.size': '{done} / {total}',
+  'component.present': 'Juba olemas',
+  'component.later': 'Esimesel käivitamisel',
 
   'progress.label': 'Edenemine',
   'progress.failed.install': '{name} paigaldamine ebaõnnestus.',
@@ -65,6 +71,7 @@ export const et: Dict = {
   'done.installed': '{name} on paigaldatud.',
   'done.uninstalled': '{name} on eemaldatud.',
   'done.kept': 'Sinu seaded ja andmed on alles.',
+  'done.later': '{name} laadib esimesel käivitamisel ise alla: {list}.',
 
   'confirm.lead': 'Nii eemaldad {name} {version} sellest arvutist.',
   'confirm.removed': 'Eemaldatakse',
