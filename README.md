@@ -120,7 +120,7 @@ func main() {
 }
 ```
 
-Components are listed the same way. One is a file at an https URL with its digest, or a function of the app's own that downloads, checks and unpacks it and reports its progress:
+Components are listed the same way. One is a file at an https URL with its digest, a function of the app's own that downloads, checks and unpacks it and reports its progress, or work the installed program does itself:
 
 ```go
 Components: []pommelporter.Component{
@@ -137,8 +137,15 @@ Components: []pommelporter.Component{
 		Target: filepath.Join(dataDir, "codecs", "codecs.json"),
 		Fetch:  fetchCodecs, // func(ctx context.Context, progress func(done, total int64)) error
 	},
+	{
+		ID:   "helpers",
+		Name: map[string]string{"en": "Helper programs"},
+		Run:  []string{"--fetch-helpers"},
+	},
 },
 ```
+
+`Run` is for files that belong in the install folder, which only the program knows how to fill. The installer starts `<install folder>/<Executable> <Run...>` in that folder, with its own rights and without a window. The program fills the row by printing `progress 0.4`, a fraction from 0 to 1, on a line of its own, and puts a short line under it with `status Part 2 of 5`. Anything else on stdout is ignored, and stderr goes to the installer's stderr. A program that cannot start, exits with a code other than 0 or takes longer than 15 minutes leaves its component for the first start, like a failed download. Its Target is optional.
 
 A component whose Target exists is left alone, so the app keeps its own copy current. A silent install fetches none.
 

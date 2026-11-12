@@ -4,6 +4,16 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## Unreleased
+
+## ✨ Added
+
+- **The installed program can fetch a component itself.** Files that belong next to the program, such as helper programs from the app's own release, are fetched by running the freshly installed program with the component's arguments, without a window. The row shows how far it has come and what it is doing, from the lines the program prints. A program that fails, cannot start or is still at work after 15 minutes leaves its component for the first start like a failed download, and Skip ends it.
+
+## 🔧 Under the hood
+
+- **The example installer has a component its program fetches itself,** and the mock shows one with `?run=1`.
+
 ## 1.2.0 - 2026-11-12
 
 ## ✨ Added
