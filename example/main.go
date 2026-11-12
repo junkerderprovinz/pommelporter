@@ -30,6 +30,7 @@ func main() {
 			Name: map[string]string{"en": "Extras", "de": "Extras"},
 			Run:  []string{"--fetch-extras"},
 		}},
+		Removes: []string{"extras"},
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)

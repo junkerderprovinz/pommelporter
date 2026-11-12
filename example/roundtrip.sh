@@ -26,6 +26,12 @@ expect '[ -x "$dir/uninstall" ]' "the uninstaller in $dir"
 expect '[ -f "$entry" ]' "the menu entry"
 expect 'grep -q "^Exec=.*pommelexample" "$entry"' "the menu entry starting the program"
 
+# What the extras component would have put there, which a silent install
+# does not fetch.
+mkdir -p "$dir/extras"
+: > "$dir/extras/part-1.txt"
+
 "$dir/uninstall" --uninstall --silent
 expect '[ ! -e "$dir/pommelexample" ]' "the program removed"
+expect '[ ! -e "$dir/extras" ]' "the extras removed"
 expect '[ ! -e "$entry" ]' "the menu entry removed"

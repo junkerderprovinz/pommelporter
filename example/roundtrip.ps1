@@ -43,7 +43,12 @@ function CheckInstalled([string] $dir) {
 }
 
 function Uninstall([string] $dir) {
+    # What the extras component would have put there, which a silent install
+    # does not fetch.
+    New-Item -ItemType Directory "$dir\extras" -Force | Out-Null
+    Set-Content "$dir\extras\part-1.txt" 'part'
     Run "$dir\uninstall.exe" @('--uninstall', '/S')
+    Expect (-not (Test-Path "$dir\extras")) 'the extras removed'
     Expect (-not (Test-Path $key)) 'the Apps entry removed'
     schtasks /Query /TN $task 2>$null | Out-Null
     Expect ($LASTEXITCODE -ne 0) 'the task removed'
