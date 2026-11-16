@@ -146,7 +146,7 @@ export function FolderChooser({
                   className={`h-7 min-w-14 rounded-pill px-3 text-sm font-medium transition-colors ${
                     on
                       ? 'bg-accent text-accentContrast'
-                      : 'glim-btn-subtle bg-carbon-surface2 text-carbon-textSub hover:bg-carbon-surface3 hover:text-carbon-text'
+                      : 'glim-btn-subtle bg-carbon-surface2 text-carbon-textSub hover:bg-hover hover:text-carbon-text'
                   }`}
                 >
                   {root}
@@ -166,7 +166,7 @@ export function FolderChooser({
               key={entry.path}
               type="button"
               onClick={() => go(entry.path)}
-              className="flex w-full items-center gap-2 px-3 py-1.5 text-start text-sm text-carbon-text transition-colors hover:bg-carbon-surface3"
+              className="flex w-full items-center gap-2 px-3 py-1.5 text-start text-sm text-carbon-text transition-colors hover:bg-hover"
             >
               <IconFolder className="shrink-0 text-carbon-textMuted" />
               <span className="truncate">{entry.name}</span>

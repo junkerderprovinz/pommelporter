@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { dismissBubbleOn, placeBubble, pointerWasLast, trackInputModality } from "@glimstone/core";
+import { dismissBubbleOn, placeBubble, pointerWasLast, trackInputModality, portalTarget } from "@glimstone/core";
 
 // The one hover and focus tooltip, as a hook. The "(i)" of InfoBubble, a
 // bare IconTipButton, a SelectorTab segment and a Button whose text the label
@@ -103,7 +103,7 @@ export function useTipBubble(tip?: string, disabled = false): TipBubble {
           >
             {tip}
           </div>,
-          document.body,
+          portalTarget(),
         )
       : null,
     wrap: (node: ReactNode) =>
