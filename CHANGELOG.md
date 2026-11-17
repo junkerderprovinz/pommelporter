@@ -4,6 +4,16 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.2.2 - 2026-11-17
+
+## 🎨 Design
+
+- **The window follows GlimStone 4.5.4.** Every button takes the same soft shade of the app's colour under the pointer, and its words stay easy to read on it. Accent text in the light theme is a little deeper, so it reads clearly on every ground, and the ring that shows where the keyboard is stands out on every background.
+
+## 🐛 Fixed
+
+- **The folder picker lights up like the rest of the window.** Its folder rows and drive buttons turned a plain grey under the pointer and now take the same shade of the app's colour as every button.
+
 ## 1.2.1 - 2026-11-12
 
 ## ✨ Added
