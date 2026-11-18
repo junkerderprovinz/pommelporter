@@ -2,7 +2,7 @@
  * The version every GlimStone package carries, so an app's Version card names
  * the one it runs. All packages share it and move together.
  */
-export const GLIMSTONE_VERSION = "4.5.4";
+export const GLIMSTONE_VERSION = "4.5.5";
 
 export const GLIMSTONE_REPO = "https://github.com/junkerderprovinz/glimstone";
 
