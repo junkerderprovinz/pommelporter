@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.2.3 - 2026-11-18
+
+## 🐛 Fixed
+
+- **A folder with spaces after /D= installs where it should.** Deployment tools pass the folder after `/D=` without quotes, the way NSIS reads it, and the installer cut it at the first space, so `/D=C:\Program Files\App` installed into `C:\Program`.
+
 ## 1.2.2 - 2026-11-17
 
 ## 🎨 Design
