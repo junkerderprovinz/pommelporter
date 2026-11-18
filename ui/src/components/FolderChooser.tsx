@@ -94,9 +94,10 @@ export function FolderChooser({
   const activeRoot = roots.filter((r) => underRoot(r, text)).sort((a, b) => b.length - a.length)[0];
 
   // The chooser takes the whole window instead of GlimStone's narrower window
-  // card, so a long path and the folder list have room.
+  // card, so a long path and the folder list have room. A press beside it
+  // leaves it open, so a typed path or folder name is not lost to a stray click.
   return createPortal(
-    <div className="glim-modal-backdrop items-stretch" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="glim-modal-backdrop items-stretch">
       <div
         role="dialog"
         aria-modal="true"
