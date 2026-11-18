@@ -54,3 +54,25 @@ func TestComponentsThatCannotBeFetchedSafelyAreRefused(t *testing.T) {
 		t.Fatalf("refused %v", err)
 	}
 }
+
+// NSIS takes /D= as the last argument and the rest of the line as the folder,
+// spaces and all, so a deployment tool sends it unquoted.
+func TestAnUnquotedFolderAfterDKeepsItsSpaces(t *testing.T) {
+	c, err := parseArgs([]string{"/S", `/D=C:\Program`, `Files\Example`, `App`})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !c.silent || c.dir != `C:\Program Files\Example App` {
+		t.Fatalf("got %+v", c)
+	}
+}
+
+func TestAQuotedFolderAfterDStaysWhole(t *testing.T) {
+	c, err := parseArgs([]string{`/D=C:\Program Files\Example App`, "/S"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if c.dir != `C:\Program Files\Example App` || !c.silent {
+		t.Fatalf("got %+v", c)
+	}
+}

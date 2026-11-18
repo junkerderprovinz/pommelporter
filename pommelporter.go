@@ -283,16 +283,24 @@ type cmdline struct {
 }
 
 // parseArgs reads NSIS's /S and /D= next to the usual flags, so deployment
-// tools that know the old installer keep working.
+// tools that know the old installer keep working. NSIS reads the folder after
+// /D= unquoted to the end of the line, so the pieces after it that are no
+// switch belong to it.
 func parseArgs(argv []string) (cmdline, error) {
 	var c cmdline
 	var rest []string
-	for _, arg := range argv {
+	for i := 0; i < len(argv); i++ {
+		arg := argv[i]
 		switch {
 		case arg == "/S":
 			c.silent = true
 		case len(arg) > 3 && arg[:3] == "/D=":
-			c.dir = arg[3:]
+			dir := arg[3:]
+			for i+1 < len(argv) && !strings.HasPrefix(argv[i+1], "/") && !strings.HasPrefix(argv[i+1], "-") {
+				i++
+				dir += " " + argv[i]
+			}
+			c.dir = dir
 		default:
 			rest = append(rest, arg)
 		}
