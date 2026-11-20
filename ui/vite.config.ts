@@ -9,9 +9,9 @@ export default defineConfig({
   // The GlimStone copy imports @glimstone/core as the package does, and
   // tsconfig.json points that name at the copy, so a port stays a plain copy.
   resolve: { tsconfigPaths: true },
-  // Vitest reads every stylesheet as empty, and the tests that hold the app's
-  // own rules to GlimStone need index.css as it is written.
-  test: { css: { include: /\/index\.css/ } },
+  // Vitest reads every stylesheet as empty, and the tests that hold the look to
+  // GlimStone need index.css and the copied tokens as they are written.
+  test: { css: { include: /\/(index|tokens)\.css/ } },
   build: {
     outDir: 'dist',
     emptyOutDir: true,
