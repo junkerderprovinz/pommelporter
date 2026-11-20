@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.2.5 - 2026-11-20
+
+## 🎨 Design
+
+- **The window follows GlimStone 4.8.1.** GlimStone keeps the tails of Arabic letters on button labels itself, so the installer drops the rule it carried for that. The window looks just as before.
+
 ## 1.2.4 - 2026-11-20
 
 ## 🎨 Design
