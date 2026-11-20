@@ -4,6 +4,16 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.2.4 - 2026-11-20
+
+## 🎨 Design
+
+- **The window follows GlimStone 4.7.0.** The folder picker stays open when you click beside it, so a folder name you are typing isn't lost to a stray click. Cancel and Escape still close it.
+
+## 🐛 Fixed
+
+- **Arabic button labels keep their whole letters.** The parts of a letter that reach below the line were cut off, so the two dots under ي went missing and Next read as التالى. Website, Next and Use this folder show their full words now, and the buttons keep their size.
+
 ## 1.2.3 - 2026-11-18
 
 ## 🐛 Fixed
