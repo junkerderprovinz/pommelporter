@@ -3,7 +3,7 @@
     {
       "name": "ui",
       "mode": "port",
-      "version": "4.5.7",
+      "version": "4.7.0",
       "versionFile": "ui/src/glimstone/version.ts"
     }
   ]

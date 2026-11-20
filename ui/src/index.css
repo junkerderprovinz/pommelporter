@@ -34,6 +34,14 @@ html.floating .glim-modal-backdrop {
   border-radius: var(--radius-card);
 }
 
+/* The clip that ends a long label would cut the tail of an Arabic ع or ي, so
+   the label reaches a little past its line and gives that room back outside,
+   as GlimStone does for a tile's name. */
+.glim-btn-label {
+  padding-block: 0.15em;
+  margin-block: -0.15em;
+}
+
 /* The window has a fixed size, so nothing scrolls but the lists inside it. */
 body {
   overflow: hidden;
