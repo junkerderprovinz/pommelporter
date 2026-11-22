@@ -78,7 +78,7 @@ If it has earned a place on your server or computer, toss a coin to your knight:
 
 <p><a id="3-what-it-does" href="#3-what-it-does"><picture><source media="(prefers-color-scheme: dark)" srcset=".github/assets/sections/3-what-it-does-dark.svg"><img src=".github/assets/sections/3-what-it-does.svg" alt="3. What it does" width="100%"></picture></a></p>
 
-**On Windows** it installs for everyone on the computer, under `C:\Program Files\<App>` or a folder you pick. It adds a Start menu entry and a desktop shortcut if you want them, an entry under Apps with its uninstaller, and a scheduled task that keeps the app up to date. A copy that is still running is asked to quit first, and installations left by the app's earlier installer are taken over or removed.
+**On Windows** it installs for everyone on the computer, under `C:\Program Files\<App>` or a folder you pick. It adds a Start menu entry and a desktop shortcut if you want them, an entry under Apps with its uninstaller, and a scheduled task that keeps the app up to date. A copy that is still running is asked to quit first, and a silent uninstall from another session, such as a deployment tool's, ends a copy it cannot ask. Installations left by the app's earlier installer are taken over or removed.
 
 The update task needs a folder nobody else can change. The installer gives the install folder the same rights as Program Files and checks every folder above it. On a drive where everyone may rename what sits at its top, as on many second drives, the task runs as the person who installed instead of as the system account, so swapping the folder gains nothing.
 

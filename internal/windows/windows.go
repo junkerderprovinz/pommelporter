@@ -431,7 +431,9 @@ func (p *platform) Uninstall(ctx context.Context, app setup.App, r setup.Removal
 	exe := filepath.Join(dir, app.Executable)
 
 	report(setup.StepClose)
-	closeRunning(dir, app.InstanceID)
+	if !closeRunning(dir, app.InstanceID) {
+		endRunning(exe)
+	}
 
 	report(setup.StepRemove)
 	// What the choices changed outside the folder goes back while the program

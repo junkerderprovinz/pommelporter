@@ -16,6 +16,9 @@ import (
 const playUninstaller = "POMMELPORTER_TEST_UNINSTALLER"
 
 func TestMain(m *testing.M) {
+	if os.Getenv(playParent) != "" {
+		startsAChild()
+	}
 	if os.Getenv(playUninstaller) != "" {
 		if handled, code, err := HandOver(os.Args[1:]); err != nil {
 			os.Exit(2)

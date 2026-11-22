@@ -104,3 +104,78 @@ func stepAside(exe string) error {
 	}
 	return os.Rename(exe, old)
 }
+
+// process is one entry of a process snapshot.
+type process struct {
+	pid, parent uint32
+	image       string
+}
+
+// processes lists the running processes with the image each was started
+// from, "" where this process may not ask.
+func processes() []process {
+	snap, err := windows.CreateToolhelp32Snapshot(windows.TH32CS_SNAPPROCESS, 0)
+	if err != nil {
+		return nil
+	}
+	defer windows.CloseHandle(snap)
+	var out []process
+	e := windows.ProcessEntry32{Size: uint32(unsafe.Sizeof(windows.ProcessEntry32{}))}
+	for err := windows.Process32First(snap, &e); err == nil; err = windows.Process32Next(snap, &e) {
+		p := process{pid: e.ProcessID, parent: e.ParentProcessID}
+		if h, err := windows.OpenProcess(windows.PROCESS_QUERY_LIMITED_INFORMATION, false, e.ProcessID); err == nil {
+			p.image = imageName(h)
+			windows.CloseHandle(h)
+		}
+		out = append(out, p)
+	}
+	return out
+}
+
+// endRunning ends a copy of exe that closeRunning could not reach, together
+// with the programs it started. Its window lies on a desktop this process
+// cannot see when the copy runs in another session, as it does when a
+// deployment tool uninstalls as the system account or someone does over SSH,
+// and a copy left running keeps its files and those of its helpers open.
+func endRunning(exe string) {
+	all := processes()
+	for _, p := range all {
+		if p.image != "" && strings.EqualFold(p.image, exe) {
+			endTree(p.pid, all)
+		}
+	}
+}
+
+// endTree ends pid after the processes it started. A process whose parent
+// id is pid but which is older than pid had another parent of that id.
+func endTree(pid uint32, all []process) {
+	h, err := windows.OpenProcess(windows.PROCESS_TERMINATE|windows.SYNCHRONIZE|windows.PROCESS_QUERY_LIMITED_INFORMATION, false, pid)
+	if err != nil {
+		return
+	}
+	defer windows.CloseHandle(h)
+	born := started(h)
+	for _, p := range all {
+		if p.parent != pid || p.pid == pid {
+			continue
+		}
+		if c, err := windows.OpenProcess(windows.PROCESS_QUERY_LIMITED_INFORMATION, false, p.pid); err == nil {
+			older := started(c) < born
+			windows.CloseHandle(c)
+			if !older {
+				endTree(p.pid, all)
+			}
+		}
+	}
+	windows.TerminateProcess(h, 1)
+	windows.WaitForSingleObject(h, 5000)
+}
+
+// started is when the process began, in 100-nanosecond steps.
+func started(h windows.Handle) int64 {
+	var created, exited, kernel, user windows.Filetime
+	if windows.GetProcessTimes(h, &created, &exited, &kernel, &user) != nil {
+		return 0
+	}
+	return created.Nanoseconds() / 100
+}
