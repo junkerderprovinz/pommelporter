@@ -8,7 +8,7 @@ Every release is written by hand. The full notes for each release are in
 
 ## 🐛 Fixed
 
-- **A silent uninstall ends a copy it cannot reach.** When a deployment tool uninstalled as the system account, or someone did over SSH, the uninstaller couldn't see the app's window in the user's session. The app and the programs it started kept running with their files open. The uninstaller now ends them, and a copy in its own session is still asked to quit first.
+- **A silent uninstall ends a copy it cannot reach.** When a deployment tool uninstalled as the system account, or someone ran the uninstaller over SSH, it couldn't see the app's window in the user's session, so the app and the programs it started kept running with their files open. The uninstaller now ends them. A copy in its own session is still asked to quit first.
 
 ## 1.2.5 - 2026-11-20
 
