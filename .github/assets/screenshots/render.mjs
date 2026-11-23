@@ -7,10 +7,14 @@
  * the UI's mock (`npm run dev` in ui/) in dark mode, with the clear edge around
  * the card left transparent, since the card is the whole window.
  *
+ * The heading is set in Bree Serif Light and the line below in Bree Light. Both
+ * are licensed and never committed, so HOUSE_FONTS (default
+ * %LOCALAPPDATA%\halleluja-fonts) must hold them as TTF.
+ *
  * Needs playwright-core installed globally and Chrome.
  * Run: node .github/assets/screenshots/render.mjs
  */
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
@@ -28,34 +32,24 @@ const SHOTS = [
   { file: "uninstall.png", capture: "uninstall.png", caption: "Out again,<br><em>your data stays</em>", sub: "The uninstaller lists what it removes and what it keeps" },
 ];
 
-async function cached(file, url) {
-  const path = join(tmpdir(), `pommelporter-${file}`);
-  if (!existsSync(path)) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`${file}: fetch ${res.status}`);
-    writeFileSync(path, Buffer.from(await res.arrayBuffer()));
-  }
-  return readFileSync(path);
-}
-
 const dataUrl = (buf, type) => `data:${type};base64,${buf.toString("base64")}`;
-const fonts = "https://github.com/google/fonts/raw/main/ofl";
-const bree = dataUrl(await cached("BreeSerif-Regular.ttf", `${fonts}/breeserif/BreeSerif-Regular.ttf`), "font/ttf");
-const lato = dataUrl(await cached("Lato-Regular.ttf", `${fonts}/lato/Lato-Regular.ttf`), "font/ttf");
+// The house typeface is licensed, so it is read from a local folder and never committed.
+const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
+const font = (file) => dataUrl(readFileSync(join(fonts, file)), "font/ttf");
 const logo = dataUrl(readFileSync(join(here, "..", "logo.svg")), "image/svg+xml");
 
 const STYLE = `
-@font-face { font-family: "Bree Serif"; src: url(${bree}); }
-@font-face { font-family: Lato; src: url(${lato}); }
+@font-face { font-family: "Bree Serif"; src: url(${font("bree-serif-light.ttf")}); font-weight: 300; }
+@font-face { font-family: Bree; src: url(${font("bree-light.ttf")}); font-weight: 300; }
 * { box-sizing: border-box; margin: 0; }
-body { position: relative; width: 1920px; height: 1000px; overflow: hidden; font-family: Lato, sans-serif; background: #0c0c0b; }
+body { position: relative; width: 1920px; height: 1000px; overflow: hidden; font-family: Bree, sans-serif; font-weight: 300; background: #0c0c0b; }
 .wall { position: absolute; inset: 0; background: radial-gradient(55% 60% at 62% 35%, #26231d, #0f0e0c 72%); }
 .relief { position: absolute; width: 52%; left: -10%; top: 6%; opacity: .32;
   filter: grayscale(1) brightness(.36) contrast(1.2) drop-shadow(-2px -2px 0 rgba(255,255,255,.16)) drop-shadow(12px 18px 26px rgba(0,0,0,.85)); }
 .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 200px rgba(0,0,0,.6); }
 .copy { position: absolute; left: 84px; top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .copy img { width: 132px; }
-h1 { font: 400 64px/1.12 "Bree Serif", serif; color: #f4f4f4; }
+h1 { font: 300 64px/1.12 "Bree Serif", serif; color: #f4f4f4; text-wrap: balance; }
 h1 em { font-style: normal; color: #FCC419; }
 .sub { font-size: 28px; line-height: 1.35; color: #9d9481; }
 .stage { position: absolute; left: 700px; top: 110px; width: 1100px; perspective: 2400px; }
@@ -77,7 +71,7 @@ const browser = await chromium.launch({ channel: "chrome" });
 for (const shot of SHOTS) {
   const big = await browser.newPage({ viewport: { width: 1920, height: 1000 }, deviceScaleFactor: 2 });
   await big.setContent(page(shot));
-  await big.evaluate(() => document.fonts.ready);
+  await big.evaluate(() => Promise.all(['300 1em "Bree Serif"', "300 1em Bree"].map((f) => document.fonts.load(f))));
   const png = await big.screenshot();
   await big.close();
   const small = await browser.newPage({ viewport: { width: 1920, height: 1000 } });

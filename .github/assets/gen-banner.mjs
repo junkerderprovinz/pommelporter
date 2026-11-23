@@ -7,12 +7,13 @@
  *   pommelporter-banner-dark.svg/.png  dark banner
  *
  * Text is converted to paths with opentype.js so the SVG needs no font: Bree
- * Serif for the name, Lato for the claim.
+ * Serif Light for the name, Bree Light for the claim.
  *
- * Deps (global): opentype.js, @resvg/resvg-js. Fonts are fetched to the OS
- * temp dir. Run: node .github/assets/gen-banner.mjs
+ * Deps (global): opentype.js, @resvg/resvg-js, and the house fonts as TTF in
+ * HOUSE_FONTS (default %LOCALAPPDATA%\halleluja-fonts).
+ * Run: node .github/assets/gen-banner.mjs
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { tmpdir } from "node:os";
@@ -37,18 +38,10 @@ const THEMES = [
   { suffix: "-dark", bg: "#0d1117", name: "#e6edf3", claim: "#9aa4ad" },
 ];
 
-async function loadFont(file, url) {
-  const path = join(tmpdir(), file);
-  if (!existsSync(path)) {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`font fetch ${res.status}: ${url}`);
-    writeFileSync(path, Buffer.from(await res.arrayBuffer()));
-  }
-  return opentype.parse(readFileSync(path));
-}
-
-const font = await loadFont("PommelPorter-BreeSerif-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/breeserif/BreeSerif-Regular.ttf");
-const claimFont = await loadFont("PommelPorter-Lato-Regular.ttf", "https://github.com/google/fonts/raw/main/ofl/lato/Lato-Regular.ttf");
+// The house typeface is licensed, so it is read from a local folder and never committed.
+const fonts = process.env.HOUSE_FONTS ?? join(process.env.LOCALAPPDATA ?? tmpdir(), "halleluja-fonts");
+const font = opentype.parse(readFileSync(join(fonts, "bree-serif-light.ttf")).buffer);
+const claimFont = opentype.parse(readFileSync(join(fonts, "bree-light.ttf")).buffer);
 
 const nameW = font.getAdvanceWidth(NAME, nameSize);
 const claimW = claimFont.getAdvanceWidth(CLAIM, claimSize);
