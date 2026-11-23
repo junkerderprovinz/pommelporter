@@ -4,6 +4,12 @@ Every release is written by hand. The full notes for each release are in
 [`.github/release-notes/`](.github/release-notes/) and on the
 [releases page](https://github.com/junkerderprovinz/pommelporter/releases).
 
+## 1.2.7 - 2026-11-24
+
+## 🎨 Design
+
+- **The window follows GlimStone 4.9.0.** The installer looks just as before.
+
 ## 1.2.6 - 2026-11-22
 
 ## 🐛 Fixed
