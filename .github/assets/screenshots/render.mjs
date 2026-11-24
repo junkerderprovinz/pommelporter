@@ -7,9 +7,9 @@
  * the UI's mock (`npm run dev` in ui/) in dark mode, with the clear edge around
  * the card left transparent, since the card is the whole window.
  *
- * The heading is set in Bree Serif Light and the line below in Bree Light. Both
- * are licensed and never committed, so HOUSE_FONTS (default
- * %LOCALAPPDATA%\halleluja-fonts) must hold them as TTF.
+ * The heading is set in Bree Serif Regular and the line below in Bree Light. Neither
+ * is committed, so HOUSE_FONTS (default %LOCALAPPDATA%\halleluja-fonts) must
+ * hold them as TTF.
  *
  * Needs playwright-core installed globally and Chrome.
  * Run: node .github/assets/screenshots/render.mjs
@@ -39,7 +39,7 @@ const font = (file) => dataUrl(readFileSync(join(fonts, file)), "font/ttf");
 const logo = dataUrl(readFileSync(join(here, "..", "logo.svg")), "image/svg+xml");
 
 const STYLE = `
-@font-face { font-family: "Bree Serif"; src: url(${font("bree-serif-light.ttf")}); font-weight: 300; }
+@font-face { font-family: "Bree Serif"; src: url(${font("bree-serif-regular.ttf")}); font-weight: 400; }
 @font-face { font-family: Bree; src: url(${font("bree-light.ttf")}); font-weight: 300; }
 * { box-sizing: border-box; margin: 0; }
 body { position: relative; width: 1920px; height: 1000px; overflow: hidden; font-family: Bree, sans-serif; font-weight: 300; background: #0c0c0b; }
@@ -49,7 +49,7 @@ body { position: relative; width: 1920px; height: 1000px; overflow: hidden; font
 .vignette { position: absolute; inset: 0; box-shadow: inset 0 0 200px rgba(0,0,0,.6); }
 .copy { position: absolute; left: 84px; top: 0; bottom: 0; width: 520px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .copy img { width: 132px; }
-h1 { font: 300 64px/1.12 "Bree Serif", serif; color: #f4f4f4; text-wrap: balance; }
+h1 { font: 400 64px/1.12 "Bree Serif", serif; color: #f4f4f4; text-wrap: balance; }
 h1 em { font-style: normal; color: #FCC419; }
 .sub { font-size: 28px; line-height: 1.35; color: #9d9481; }
 .stage { position: absolute; left: 700px; top: 110px; width: 1100px; perspective: 2400px; }
@@ -71,7 +71,7 @@ const browser = await chromium.launch({ channel: "chrome" });
 for (const shot of SHOTS) {
   const big = await browser.newPage({ viewport: { width: 1920, height: 1000 }, deviceScaleFactor: 2 });
   await big.setContent(page(shot));
-  await big.evaluate(() => Promise.all(['300 1em "Bree Serif"', "300 1em Bree"].map((f) => document.fonts.load(f))));
+  await big.evaluate(() => Promise.all(['400 1em "Bree Serif"', "300 1em Bree"].map((f) => document.fonts.load(f))));
   const png = await big.screenshot();
   await big.close();
   const small = await browser.newPage({ viewport: { width: 1920, height: 1000 } });
